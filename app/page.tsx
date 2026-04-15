@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import {
-  GraduationCap,
-  BarChart3,
   ShieldCheck,
   CheckCircle2,
   Building2,
@@ -20,23 +18,14 @@ import {
 
 const VALUE_CARDS = [
   {
-    icon: ShieldCheck,
-    iconBg: 'bg-navy-100',
-    iconColor: 'text-navy-900',
     title: '시민 주도의 실천',
     desc: '안전은 관의 주도로만 완성되지 않습니다. 시민 스스로 일상의 위험 요인을 진단하고 예방하는 참여형 안전문화를 확산시킵니다.',
   },
   {
-    icon: GraduationCap,
-    iconBg: 'bg-green-100',
-    iconColor: 'text-green-800',
     title: '검증된 전문가 양성',
     desc: '보이스피싱 예방부터 생활안전까지, 체계적 커리큘럼과 실무 평가를 거쳐 지역사회에서 활동할 전문가를 배출합니다.',
   },
   {
-    icon: BarChart3,
-    iconBg: 'bg-amber-100',
-    iconColor: 'text-amber-700',
     title: '참여형 사회공헌',
     desc: '배출된 전문가들이 학교·경로당·복지관 등 취약계층을 직접 찾아가 안전 교육과 캠페인을 수행합니다.',
   },
@@ -153,20 +142,15 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {VALUE_CARDS.map(({ icon: Icon, iconBg, iconColor, title, desc }) => (
+            {VALUE_CARDS.map(({ title, desc }) => (
               <div
                 key={title}
-                className="group bg-white p-8 md:p-10 rounded-xl transition-transform duration-500 hover:-translate-y-2"
-                style={{ boxShadow: '0 20px 40px rgba(27, 28, 28, 0.06)' }}
+                className="group bg-white border-2 border-gray-200 p-8 md:p-10 rounded-xl transition-all duration-300 hover:border-navy-900 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div
-                  className={`w-16 h-16 ${iconBg} rounded-full flex items-center justify-center mb-8 ${iconColor} group-hover:scale-110 transition-transform`}
-                >
-                  <Icon size={32} strokeWidth={1.75} />
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-4 text-navy-900">
+                <h3 className="text-2xl md:text-[28px] font-extrabold text-navy-900 leading-tight mb-4">
                   {title}
                 </h3>
+                <div className="w-12 h-1 bg-green-700 mb-6 transition-all duration-300 group-hover:w-20" />
                 <p className="text-gray-600 text-base md:text-lg leading-relaxed">
                   {desc}
                 </p>
