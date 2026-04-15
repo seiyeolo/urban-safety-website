@@ -140,46 +140,53 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* PC 내비게이션 */}
-          <nav className="hidden lg:flex items-center gap-1" role="navigation">
-            {NAV_ITEMS.map((item) => (
-              <div
-                key={item.href}
-                className="relative"
-                onMouseEnter={() => setActiveMenu(item.href)}
-                onMouseLeave={() => setActiveMenu(null)}
-              >
-                <Link
-                  href={item.href}
-                  className="flex items-center gap-1 px-4 py-5 text-sm font-semibold text-gray-700 hover:text-navy-900 transition-colors"
+          {/* PC 내비게이션 — pill-shaped bordered menu items (2026-04-16) */}
+          <nav className="hidden lg:flex items-center gap-2" role="navigation">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeMenu === item.href
+              return (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setActiveMenu(item.href)}
+                  onMouseLeave={() => setActiveMenu(null)}
                 >
-                  {item.label}
-                  {item.children && (
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${
-                        activeMenu === item.href ? 'rotate-180' : ''
-                      }`}
-                    />
-                  )}
-                </Link>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-md border transition-colors ${
+                      isActive
+                        ? 'border-navy-900 bg-navy-50 text-navy-900'
+                        : 'border-gray-200 text-gray-700 hover:border-navy-900 hover:bg-navy-50 hover:text-navy-900'
+                    }`}
+                  >
+                    {item.label}
+                    {item.children && (
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-200 ${
+                          isActive ? 'rotate-180' : ''
+                        }`}
+                      />
+                    )}
+                  </Link>
 
-                {/* 드롭다운 */}
-                {item.children && activeMenu === item.href && (
-                  <div className="absolute top-full left-0 bg-white shadow-xl border border-gray-100 rounded-b-lg min-w-48 py-2 z-50">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-5 py-2.5 text-sm text-gray-600 hover:text-navy-900 hover:bg-navy-50 transition-colors"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                  {/* 드롭다운 */}
+                  {item.children && isActive && (
+                    <div className="absolute top-full left-0 mt-1 bg-white shadow-xl border border-gray-100 rounded-lg min-w-48 py-2 z-50">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block px-5 py-2.5 text-sm text-gray-600 hover:text-navy-900 hover:bg-navy-50 transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
 
             <Link
               href="/certificates/voice-phishing"
