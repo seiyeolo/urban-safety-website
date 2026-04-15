@@ -170,18 +170,20 @@ export default function Header() {
                     )}
                   </Link>
 
-                  {/* 드롭다운 */}
+                  {/* 드롭다운 — pt-2 투명 브릿지로 hover 끊김 방지 */}
                   {item.children && isActive && (
-                    <div className="absolute top-full left-0 mt-1 bg-white shadow-xl border border-gray-100 rounded-lg min-w-48 py-2 z-50">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="block px-5 py-2.5 text-sm text-gray-600 hover:text-navy-900 hover:bg-navy-50 transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 pt-2 z-50">
+                      <div className="bg-white shadow-xl border border-gray-100 rounded-lg min-w-48 py-2">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="block px-5 py-2.5 text-sm text-gray-600 hover:text-navy-900 hover:bg-navy-50 transition-colors whitespace-nowrap"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
