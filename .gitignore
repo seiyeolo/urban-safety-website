@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev agents & local tooling
+.agents/
+.claude/
+skills/
+skills-lock.json
+
+# local screenshots (Playwright/Puppeteer)
+temporary screenshots/
+.playwright-mcp/
