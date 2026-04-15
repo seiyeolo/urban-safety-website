@@ -47,7 +47,7 @@ const NAV_ITEMS = [
     ],
   },
   {
-    label: '사업·활동',
+    label: '사업',
     href: '/activities',
     children: [
       { label: '포럼/세미나', href: '/activities/forum' },
@@ -57,7 +57,7 @@ const NAV_ITEMS = [
     ],
   },
   {
-    label: '공지·자료실',
+    label: '자료실',
     href: '/notice',
     children: [
       { label: '공지사항', href: '/notice' },
@@ -68,7 +68,7 @@ const NAV_ITEMS = [
     ],
   },
   {
-    label: '참여·문의',
+    label: '문의',
     href: '/contact',
     children: [
       { label: '일반문의', href: '/contact' },
@@ -153,7 +153,7 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-md border transition-colors ${
+                    className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-md border whitespace-nowrap transition-colors ${
                       isActive
                         ? 'border-navy-900 bg-navy-50 text-navy-900'
                         : 'border-gray-200 text-gray-700 hover:border-navy-900 hover:bg-navy-50 hover:text-navy-900'
