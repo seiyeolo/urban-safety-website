@@ -4,6 +4,64 @@
 
 ---
 
+## [2026-04-16] 홈페이지 Stitch "The Civic Anchor" 이식 완료
+
+### 배경
+Stitch Pro(Thinking 3.1)로 `urban-safety-website.vercel.app` 분석 후 생성한
+디자인 시스템 "The Civic Anchor"의 홈 스크린을 Next.js로 이식.
+- 원본: Stitch project `6493943939238031404` screen `00852b28e2454f0b9da4ff3d19d8da4d`
+- 크기: 1280×3841 (긴 랜딩 페이지)
+- 디자인 철학: Architectural Archive / Safe Authority / Tonal Layering
+
+### 변경된 파일
+- **`app/page.tsx`** (전면 재작성, +340/-250 라인)
+  - 구조: Hero → Value Cards → Flagship Programs → News Archive → Consultation → Partners
+  - 원본 Stitch HTML의 Material Design 토큰을 프로젝트 기존 Navy/Green/Amber 토큰으로 매핑
+  - 모든 카피 한글화 (원본 영문)
+  - 실데이터 교체: "25 Years" → "35년", "02-763-0694" → "042-254-8060"
+  - Material Symbols Outlined 아이콘 → lucide-react 아이콘
+    (policy → ShieldCheck, school → GraduationCap, query_stats → BarChart3,
+     security → ShieldCheck, architecture → Building2, check_circle →
+     CheckCircle2, verified → BadgeCheck, arrow_forward → ArrowRight)
+  - 히어로 배경 이미지: Unsplash (도시 야경) placeholder, 나중에 대전 이미지로 교체 예정
+  - 파트너 스트립: GOV_METRO / ARCH_ASSOC 등 영문 placeholder → 실제 한국 기관명
+    (대전광역시, 대전경찰청, 대한건축사협회, 경제정의실천시민연합, 한국안전연구원)
+
+### Stitch 원본과의 차이 (의도적 조정)
+| 원본 (Stitch) | 이식본 | 사유 |
+|---|---|---|
+| Building a Legacy of Urban Safety & Trust | 가족을 믿고 맡길 수 있는 / 우리 동네 안전 전문가 | 기존 브랜드 카피 유지 |
+| 25 Years of Excellence | 35년의 공신력 · 경실련 산하 | 실 데이터 |
+| 02-763-0694 | 042-254-8060 | 대전 실 번호 |
+| Life Safety Academy (영) | 생활 안전 아카데미 | 한글화 |
+| Urban Safety Design Expert | 보이스피싱 예방지도사 | 실 자격과정명 |
+| Material Symbols | lucide-react | 프로젝트 아이콘 라이브러리 통일 |
+| PUBLIC_SANS | Noto Sans KR | 한글 렌더링 품질 |
+
+### 구조적 결정
+1. **Header/Footer 유지** — 기존 `components/Header.tsx`, `components/Footer.tsx`가
+   그대로 동작. Stitch HTML의 nav/footer는 무시, 기존 컴포넌트 재활용
+2. **Tailwind 토큰 매핑** — Stitch는 `bg-primary-container` 등 Material 토큰을
+   썼으나, 프로젝트 기존 `navy-900`/`green-700`/`amber-*` 토큰으로 1:1 치환
+3. **Editorial shadow** — `0 20px 40px rgba(27, 28, 28, 0.06)` 인라인 style 적용
+4. **Tonal Layering** — 섹션 배경을 `#f5f3f3` ↔ `#fafaf8` 교대로 배치해 섹션
+   구분이 테두리 없이도 명확
+5. **터치 타겟 48px+** — 모든 버튼 `min-h-[48px]` 또는 `min-h-[56px]` 적용
+6. **반응형** — 텍스트 크기, 패딩, 그리드 열 개수 모두 모바일 375px부터 단계적 확장
+
+### 검증 (Playwright)
+- **데스크톱 1440×900**: 모든 섹션 정상 렌더, 녹색 CTA 통일, 카드 그리드 정렬
+- **모바일 375×812**: 히어로·카드·Flagship·공지·CTA 전부 세로 스택 정상
+
+### 후속 작업 (TODO)
+- [ ] 히어로 배경 이미지를 대전 실제 사진으로 교체
+- [ ] Consultation 섹션 배경 이미지 교체 (현재 Unsplash)
+- [ ] 파트너 기관명 → 실제 로고 이미지로 (BRAND_ASSET_AUDIT.md 후속)
+- [ ] 메인 공지 카드의 링크·이미지 실데이터 연동
+- [ ] 다른 핵심 페이지(certificates, education, contact) Stitch 이식 확장
+
+---
+
 ## [2026-04-16] 2024년 더미 데이터 → 2026년 플레이스홀더 교체
 
 ### 배경
