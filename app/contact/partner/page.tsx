@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Phone, Mail } from 'lucide-react'
+import PartnerInquiryForm from '@/components/contact/PartnerInquiryForm'
 
 export const metadata: Metadata = {
   title: '제휴 문의',
@@ -38,42 +39,15 @@ export default function PartnerContactPage() {
             ))}
           </div>
 
-          <form className="space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">이름 <span className="text-red-500">*</span></label>
-                <input type="text" placeholder="홍길동" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">연락처 <span className="text-red-500">*</span></label>
-                <input type="tel" placeholder="010-0000-0000" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">소속 기관·단체</label>
-              <input type="text" placeholder="소속 기관명을 입력해주세요" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">제휴 유형 <span className="text-red-500">*</span></label>
-              <select className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] bg-white">
-                <option value="">선택해주세요</option>
-                <option>기관 협력 제안</option>
-                <option>강사 파트너 등록</option>
-                <option>기타 제휴 제안</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">제안 내용 <span className="text-red-500">*</span></label>
-              <textarea rows={5} placeholder="제휴 목적, 희망 협력 내용 등을 자유롭게 작성해주세요" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] resize-none" />
-            </div>
-            <div className="flex items-start gap-2">
-              <input type="checkbox" id="privacy" className="mt-1" />
-              <label htmlFor="privacy" className="text-sm text-gray-600">
-                <Link href="/privacy" className="text-[#0f2d5e] underline">개인정보처리방침</Link>에 동의합니다. <span className="text-red-500">*</span>
-              </label>
-            </div>
-            <button type="submit" className="btn-primary w-full justify-center py-4">제휴 문의 보내기</button>
-          </form>
+          <div className="bg-gray-50 rounded-2xl p-6 mb-8">
+            <h2 className="font-bold text-[#0f2d5e] mb-3">협력 제안 안내</h2>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              도시안전디자인센터는 도시안전디자인포럼 활동 기반 위에서 공공기관, 연구기관, 대학, 시민사회단체와
+              협력해 왔습니다. 안전교육 공동 운영, 세미나 및 캠페인 협업, 현장 네트워크 구축 제안을 환영합니다.
+            </p>
+          </div>
+
+          <PartnerInquiryForm />
 
           <div className="mt-8 p-5 bg-gray-50 rounded-xl">
             <p className="text-sm font-semibold text-gray-700 mb-3">직접 연락하기</p>

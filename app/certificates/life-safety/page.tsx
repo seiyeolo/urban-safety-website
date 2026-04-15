@@ -222,7 +222,7 @@ export default function LifeSafetyCertPage() {
               <h3 className="font-bold text-[#0f2d5e] mb-3">자격 정보</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="text-gray-500">자격종류:</span> 민간자격</p>
-                <p><span className="text-gray-500">등록번호:</span> [등록번호 기입]</p>
+                <p><span className="text-gray-500">등록번호:</span> 2022-003785</p>
                 <p><span className="text-gray-500">자격관리기관:</span> 대전경실련 도시안전디자인센터</p>
                 <p><span className="text-gray-500">연락처:</span> <a href="tel:042-254-8060" className="text-[#0f2d5e] hover:underline">042-254-8060</a></p>
               </div>

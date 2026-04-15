@@ -1,19 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight, Bell, Calendar, Trophy, Download, Newspaper } from 'lucide-react'
+import { getSectionItems } from '@/lib/content-store'
 
 export const metadata: Metadata = {
   title: '공지·자료실',
   description: '대전경실련 도시안전디자인센터 공지사항, 교육 일정, 자료실 안내입니다.',
 }
-
-const NOTICES = [
-  { id: 1, category: '공지', title: '2024년 5월 교육 일정 안내', date: '2024-04-25', isNew: true },
-  { id: 2, category: '공지', title: '보이스피싱 예방지도사 5기 수강생 모집', date: '2024-04-20', isNew: true },
-  { id: 3, category: '공지', title: '생활안전지도사 4기 합격자 발표', date: '2024-04-15', isNew: false },
-  { id: 4, category: '공지', title: '개인정보처리방침 개정 안내', date: '2024-04-01', isNew: false },
-  { id: 5, category: '공지', title: '2024년 기관·단체 교육 신청 접수', date: '2024-03-20', isNew: false },
-]
 
 const QUICK_LINKS = [
   { icon: Bell, label: '공지사항', href: '/notice', desc: '센터 소식과 주요 안내' },
@@ -23,7 +16,9 @@ const QUICK_LINKS = [
   { icon: Newspaper, label: '언론 보도', href: '/notice/press', desc: '관련 뉴스 및 보도자료' },
 ]
 
-export default function NoticePage() {
+export default async function NoticePage() {
+  const notices = await getSectionItems('notices')
+
   return (
     <>
       <div className="page-hero">
@@ -72,11 +67,11 @@ export default function NoticePage() {
             </Link>
           </div>
           <div className="bg-white rounded-2xl overflow-hidden border border-gray-200">
-            {NOTICES.map(({ id, category, title, date, isNew }, i) => (
+            {notices.map(({ id, category, title, date, isNew }, i) => (
               <div
                 key={id}
                 className={`flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors cursor-pointer ${
-                  i < NOTICES.length - 1 ? 'border-b border-gray-100' : ''
+                  i < notices.length - 1 ? 'border-b border-gray-100' : ''
                 }`}
               >
                 <span className="text-xs font-semibold text-[#0f2d5e] bg-blue-50 px-2 py-0.5 rounded shrink-0">{category}</span>

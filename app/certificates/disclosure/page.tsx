@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 const CERTS_INFO = [
   {
     title: '보이스피싱 예방지도사',
-    registNo: '[등록번호 기입]',
-    registDate: '[등록일 기입]',
+    registNo: '2022-003784',
+    registDate: '세부 등록일 확인 중',
     govRelated: '금융위원회',
     cost: {
       수강료: '220,000원',
@@ -22,8 +22,8 @@ const CERTS_INFO = [
   },
   {
     title: '생활안전지도사',
-    registNo: '[등록번호 기입]',
-    registDate: '[등록일 기입]',
+    registNo: '2022-003785',
+    registDate: '세부 등록일 확인 중',
     govRelated: '행정안전부',
     cost: {
       수강료: '220,000원',
@@ -128,6 +128,7 @@ export default function DisclosurePage() {
 
           <p className="text-xs text-gray-400 mt-8 leading-relaxed">
             ※ 본 표시사항은 자격기본법 제17조(민간자격의 관리·운영에 관한 기준) 및 동법 시행령에 따라 공개됩니다.
+            등록번호는 현재 사이트에 반영된 공개 정보를 기준으로 표기했으며, 세부 등록일은 공식 자격정보 문서 확인 후 추가 보완할 예정입니다.
             비용은 변경될 수 있으며, 최신 정보는 각 자격 상세 페이지 또는 전화(042-254-8060)로 확인하시기 바랍니다.
           </p>
         </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react'
+import InquiryForm from '@/components/contact/InquiryForm'
 
 export const metadata: Metadata = {
   title: '참여·문의',
@@ -79,72 +80,7 @@ export default function ContactPage() {
             {/* 문의 폼 */}
             <div>
               <h2 className="text-2xl font-bold text-[#0f2d5e] mb-6">온라인 문의</h2>
-              <form className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">이름 <span className="text-red-500">*</span></label>
-                    <input
-                      type="text"
-                      placeholder="홍길동"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">연락처 <span className="text-red-500">*</span></label>
-                    <input
-                      type="tel"
-                      placeholder="010-0000-0000"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">이메일</label>
-                  <input
-                    type="email"
-                    placeholder="example@email.com"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">문의 유형 <span className="text-red-500">*</span></label>
-                  <select className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] transition-colors bg-white">
-                    <option value="">선택해주세요</option>
-                    <option>교육 및 자격증 문의</option>
-                    <option>단체교육 문의</option>
-                    <option>제휴 문의</option>
-                    <option>기타</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">제목 <span className="text-red-500">*</span></label>
-                  <input
-                    type="text"
-                    placeholder="문의 제목을 입력해주세요"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">내용 <span className="text-red-500">*</span></label>
-                  <textarea
-                    rows={5}
-                    placeholder="문의 내용을 자세히 입력해주세요"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors resize-none"
-                  />
-                </div>
-                <div className="flex items-start gap-2">
-                  <input type="checkbox" id="privacy" className="mt-1" />
-                  <label htmlFor="privacy" className="text-sm text-gray-600">
-                    <Link href="/privacy" className="text-[#0f2d5e] underline">개인정보처리방침</Link>에 동의합니다. <span className="text-red-500">*</span>
-                  </label>
-                </div>
-                <button type="submit" className="btn-primary w-full justify-center py-4">
-                  문의 보내기
-                </button>
-              </form>
-              <p className="text-xs text-gray-400 mt-3 text-center">
-                문의 접수 후 1~2 영업일 내 답변 드립니다.
-              </p>
+              <InquiryForm />
             </div>
           </div>
         </div>

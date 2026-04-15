@@ -28,7 +28,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-base font-bold text-[#0f2d5e] mb-3">제1조 (목적)</h2>
               <p>
-                이 약관은 대전경실련 도시안전디자인센터(이하 "센터")가 운영하는 웹사이트 및 온라인 교육 서비스(이하 "서비스")를
+                이 약관은 대전경실련 도시안전디자인센터(이하 &quot;센터&quot;)가 운영하는 웹사이트 및 온라인 교육 서비스(이하 &quot;서비스&quot;)를
                 이용함에 있어 센터와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
               </p>
             </div>
@@ -36,8 +36,8 @@ export default function TermsPage() {
             <div>
               <h2 className="text-base font-bold text-[#0f2d5e] mb-3">제2조 (용어의 정의)</h2>
               <ul className="space-y-2 list-disc list-inside">
-                <li>"이용자"란 이 약관에 따라 센터가 제공하는 서비스를 받는 회원 및 비회원을 말합니다.</li>
-                <li>"서비스"란 센터가 제공하는 온라인 교육과정, 자격검정, 온라인 문의 등 일체의 서비스를 말합니다.</li>
+                <li>&quot;이용자&quot;란 이 약관에 따라 센터가 제공하는 서비스를 받는 회원 및 비회원을 말합니다.</li>
+                <li>&quot;서비스&quot;란 센터가 제공하는 온라인 교육과정, 자격검정, 온라인 문의 등 일체의 서비스를 말합니다.</li>
               </ul>
             </div>
 
