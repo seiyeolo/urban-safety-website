@@ -92,8 +92,18 @@ export default function HomePage() {
       {/* ───────── Hero ───────── */}
       <section className="relative min-h-[680px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&q=80')] bg-cover bg-center" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#0d1829] via-[#1a3a5c]/90 to-[#1a3a5c]/40" />
+          {/* 네이비 그라데이션 (좌상 다크 → 우하 밝은 네이비) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0d1829] via-[#1a3a5c] to-[#2b4870]" />
+          {/* 미세한 radial accent (우측 상단 희미한 밝음) */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.08),_transparent_60%)]" />
+          {/* SVG noise texture 로 질감 부여 */}
+          <div
+            className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
+            style={{
+              backgroundImage:
+                'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+            }}
+          />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full py-24 md:py-32">

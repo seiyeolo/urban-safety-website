@@ -181,7 +181,10 @@ export default function Header() {
               </div>
             ))}
 
-            <Link href="/certificates/voice-phishing" className="ml-4 btn-primary text-sm py-2.5 px-5">
+            <Link
+              href="/certificates/voice-phishing"
+              className="ml-4 inline-flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-5 py-2.5 rounded-md whitespace-nowrap transition-colors shadow-sm"
+            >
               자격증 신청
             </Link>
           </nav>
