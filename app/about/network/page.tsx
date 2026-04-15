@@ -12,25 +12,25 @@ const NETWORKS = [
     icon: Shield,
     title: '공공기관',
     color: 'bg-blue-50 text-blue-700',
-    items: ['대전경찰청', '대전소방본부', '대전광역시', '자치구 행정복지센터', '한국소비자원'],
+    items: ['대전광역시', '대전지방경찰청', '대전소방본부', '대전광역시의회', '연구개발특구지원본부'],
   },
   {
     icon: Building2,
     title: '복지·교육기관',
     color: 'bg-green-50 text-green-700',
-    items: ['대전복지재단', '지역 사회복지관', '노인복지관', '평생학습관', '주민자치센터'],
+    items: ['대전발전연구원', '대전테크노파크', '대전복지재단', '지역 사회복지관', '주민자치센터'],
   },
   {
     icon: GraduationCap,
     title: '학술·연구기관',
     color: 'bg-purple-50 text-purple-700',
-    items: ['충남대학교', '한밭대학교', '한국형사·법무정책연구원', '한국안전교육학회'],
+    items: ['한밭대학교', '목원대학교', '중부대학교', '공주대학교', '대전대학교'],
   },
   {
     icon: Users,
     title: '시민사회단체',
-    color: 'bg-orange-50 text-orange-700',
-    items: ['경제정의실천시민연합', '대전YMCA', '지역 자원봉사센터', '노인회 지부'],
+    color: 'bg-green-50 text-green-700',
+    items: ['경제정의실천시민연합', '한국R&D디자인융합연구조합', '지역 자원봉사센터', '관련 시민단체 및 전문가 네트워크'],
   },
 ]
 
@@ -55,8 +55,8 @@ export default function NetworkPage() {
         <div className="container-main">
           <div className="section-header">
             <p className="section-desc max-w-2xl mx-auto">
-              대전경실련 도시안전디자인센터는 공공기관, 복지·교육기관, 학술·연구기관,
-              시민사회단체 등 다양한 기관과 협력하여 지역사회 안전문화 확산에 앞장서고 있습니다.
+              대전경실련 도시안전디자인센터는 도시안전디자인포럼 시기부터 공공기관, 학술·연구기관,
+              시민사회단체, 산업계와 협력해 왔으며, 이러한 민관산학 네트워크를 바탕으로 지역사회 안전문화 확산에 나서고 있습니다.
             </p>
           </div>
 
@@ -75,6 +75,18 @@ export default function NetworkPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-3 gap-4">
+            {[
+              '대전지방기상청 양해각서 체결',
+              '광주·부산디자인센터, 대전발전연구원 MOU 체결',
+              '대전소방본부·안전IT융합지원센터 좌담회 및 협력',
+            ].map((item) => (
+              <div key={item} className="bg-gray-50 rounded-xl border border-gray-200 p-4 text-sm text-gray-700">
+                {item}
               </div>
             ))}
           </div>

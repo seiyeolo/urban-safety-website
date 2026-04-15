@@ -11,7 +11,7 @@ const COURSES = [
   {
     title: '보이스피싱 예방지도사',
     tag: '자격증 취득',
-    tagColor: 'bg-orange-50 text-orange-700',
+    tagColor: 'bg-navy-50 text-navy-700',
     duration: '4주 (총 20시간)',
     cost: '수강료 220,000원',
     features: ['녹화강의 자율 수강', '실시간 특강 포함', '온라인 검정 응시', '수료 후 자격증 발급'],

@@ -59,8 +59,8 @@ export default function OfflineEducationPage() {
             {PROGRAMS.map(({ title, target, duration, format, desc }) => (
               <div key={title} className="card">
                 <div className="flex items-center gap-2 mb-4">
-                  <MapPin size={16} className="text-[#e85d04]" />
-                  <span className="text-xs font-semibold text-[#e85d04]">현장 교육</span>
+                  <MapPin size={16} className="text-[#1a3a5c]" />
+                  <span className="text-xs font-semibold text-[#1a3a5c]">현장 교육</span>
                 </div>
                 <h3 className="font-bold text-[#0f2d5e] text-lg mb-3">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-5">{desc}</p>
@@ -73,8 +73,8 @@ export default function OfflineEducationPage() {
             ))}
           </div>
 
-          <div className="mt-12 bg-orange-50 rounded-2xl p-8 text-center">
-            <Calendar size={32} className="text-[#e85d04] mx-auto mb-4" />
+          <div className="mt-12 bg-navy-50 rounded-2xl p-8 text-center">
+            <Calendar size={32} className="text-[#1a3a5c] mx-auto mb-4" />
             <h3 className="text-xl font-bold text-[#0f2d5e] mb-3">교육 일정 문의</h3>
             <p className="text-gray-600 text-sm mb-6">
               기관 방문 교육 또는 특강 일정은 전화·온라인 문의로 협의하실 수 있습니다.

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Shield, Target, Eye, Users, Building, ChevronRight } from 'lucide-react'
+import { Shield, Target, Eye, Users, Building, ChevronRight, Network, BookOpen } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '센터소개',
@@ -60,17 +60,47 @@ export default function AboutPage() {
               시민의 일상을 지키는 실천형 안전 플랫폼
             </h2>
             <p className="section-desc">
-              대전경실련 도시안전디자인센터는 범죄예방과 생활안전을 중심으로 시민교육,
-              민간자격 운영, 지역사회 캠페인, 정책 제안과 현장 실천을 추진하는 공익 기반 플랫폼입니다.
-              보이스피싱 예방, CPTED, 생활안전 교육을 통해 지역사회의 안전 역량을 높이고,
-              시민이 직접 참여하는 안전문화 확산을 목표로 합니다.
+              대전경실련 도시안전디자인센터는 도시안전디자인포럼의 활동 기반을 잇는 공익 플랫폼으로,
+              범죄예방과 생활안전을 중심으로 시민교육, 민간자격 운영, 지역사회 캠페인, 정책 제안과 현장 실천을 추진합니다.
+              보이스피싱 예방, CPTED, 생활안전 교육과 더불어 산·학·연·관 협력을 통해
+              지역사회의 안전 역량을 높이고 시민이 직접 참여하는 안전문화 확산을 목표로 합니다.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 운영 2대 축 */}
+      {/* 활동 기반 */}
       <section className="section-padding bg-gray-50">
+        <div className="container-main">
+          <div className="section-header">
+            <span className="section-tag">활동 기반</span>
+            <h2 className="section-title">도시안전디자인포럼에서 이어진 실천 기반</h2>
+            <p className="section-desc max-w-3xl mx-auto">
+              2011년 도시안전디자인포럼 출범 이후 축적된 세미나, 국제교류, 정책 제안, 시민안전교육 경험이
+              오늘의 도시안전디자인센터 운영 기반이 되었습니다.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Network, title: '민관산학 협력', desc: '산업계, 학계, 시민단체, 지방자치단체가 함께 참여하는 협력 구조' },
+              { icon: BookOpen, title: '정책·연구', desc: '학교안전, 방범마을, 공공서비스디자인 등 주제별 연구와 정책 제안' },
+              { icon: Users, title: '시민안전교육', desc: '시민·안전지킴이 교육과 체험형 프로그램 운영 경험 축적' },
+              { icon: Shield, title: '실천 네트워크', desc: 'MOU, 전문가 간담회, 국제심포지움 등으로 이어진 현장 중심 활동' },
+            ].map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="card text-center">
+                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Icon size={24} className="text-[#0f2d5e]" />
+                </div>
+                <h3 className="font-bold text-[#0f2d5e] mb-2">{title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 운영 2대 축 */}
+      <section className="section-padding bg-white">
         <div className="container-main">
           <div className="section-header">
             <span className="section-tag">운영 방향</span>
@@ -79,13 +109,13 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                color: 'bg-[#0f2d5e]',
+                color: 'bg-[#1a3a5c]',
                 icon: Shield,
                 title: '범죄예방',
                 items: ['보이스피싱 예방', 'CPTED (환경설계를 통한 범죄예방)', '지역사회 범죄예방 교육·홍보·실천'],
               },
               {
-                color: 'bg-[#e85d04]',
+                color: 'bg-[#2e7d32]',
                 icon: Target,
                 title: '생활안전',
                 items: ['일상생활 안전교육', '지역사회 안전문화 확산', '시민 실천형 안전지도자 양성'],
@@ -109,7 +139,7 @@ export default function AboutPage() {
       </section>
 
       {/* 핵심 역할 */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-gray-50">
         <div className="container-main">
           <div className="section-header">
             <span className="section-tag">핵심 역할</span>

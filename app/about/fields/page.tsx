@@ -75,10 +75,10 @@ export default function FieldsPage() {
 
             {/* 생활안전 */}
             <div>
-              <div className="bg-[#e85d04] rounded-2xl p-8 text-white mb-6">
+              <div className="bg-[#2e7d32] rounded-2xl p-8 text-white mb-6">
                 <Target size={36} className="mb-4 opacity-90" />
                 <h2 className="text-2xl font-bold mb-3">생활안전</h2>
-                <p className="text-orange-100 leading-relaxed">
+                <p className="text-green-100 leading-relaxed">
                   낙상·화재·교통·재난 등 일상의 안전 위험요인을 파악하고
                   맞춤형 예방교육으로 안전한 일상을 지원합니다.
                 </p>

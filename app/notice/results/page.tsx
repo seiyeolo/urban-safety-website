@@ -102,7 +102,7 @@ export default function ResultsPage() {
               <div key={title} className="bg-white rounded-xl p-5 border border-gray-200">
                 <div className="flex items-center gap-2 mb-3">
                   <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                    type === '온라인' ? 'bg-blue-50 text-blue-700' : 'bg-orange-50 text-orange-700'
+                    type === '온라인' ? 'bg-navy-50 text-navy-700' : 'bg-navy-100 text-navy-800'
                   }`}>{type}</span>
                   <span className="text-xs text-gray-400">{date}</span>
                 </div>

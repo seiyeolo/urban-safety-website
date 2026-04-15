@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, Phone, Shield } from 'lucide-react'
+import Image from 'next/image'
+import { Menu, X, ChevronDown, Phone } from 'lucide-react'
 
 const NAV_ITEMS = [
   {
@@ -110,7 +111,7 @@ export default function Header() {
             </a>
             <Link
               href="/contact/education"
-              className="bg-orange-600 text-white text-xs px-3 py-1 rounded hover:bg-orange-500 transition-colors"
+              className="bg-green-700 text-white text-xs px-3 py-1 rounded hover:bg-green-800 transition-colors"
             >
               교육 신청
             </Link>
@@ -121,11 +122,16 @@ export default function Header() {
       {/* 메인 헤더 */}
       <div className="bg-white border-b border-gray-200">
         <div className="container-main flex items-center justify-between h-16">
-          {/* 로고 */}
+          {/* 로고 — 박스 없이 자연 비율 표시 (2026-04-16 박스 제거) */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-navy-900 rounded-lg flex items-center justify-center group-hover:bg-navy-800 transition-colors">
-              <Shield size={22} className="text-white" />
-            </div>
+            <Image
+              src="/brand/logo.svg"
+              alt="도시안전디자인센터 로고"
+              width={32}
+              height={45}
+              className="h-11 w-auto transition-opacity group-hover:opacity-85"
+              priority
+            />
             <div className="leading-tight">
               <div className="text-xs text-gray-500 font-medium">대전경실련</div>
               <div className="text-base font-bold text-navy-900 whitespace-nowrap">

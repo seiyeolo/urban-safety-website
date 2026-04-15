@@ -54,11 +54,11 @@ export default function VoicePhishingCertPage() {
           </nav>
 
           <div className="flex items-start gap-5">
-            <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center shrink-0">
-              <AlertTriangle size={32} className="text-orange-400" />
+            <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center shrink-0">
+              <AlertTriangle size={32} className="text-green-300" />
             </div>
             <div>
-              <p className="text-orange-300 text-sm font-semibold mb-2">민간자격 | 금융위원회 관련부처</p>
+              <p className="text-green-200 text-sm font-semibold mb-2">민간자격 | 금융위원회 관련부처</p>
               <h1 className="text-3xl md:text-4xl font-bold mb-3">보이스피싱 예방지도사</h1>
               <p className="text-blue-200 text-lg max-w-2xl">
                 보이스피싱 피해를 줄이기 위한 예방교육과 현장 홍보를 수행하는 실천형 민간자격과정
@@ -163,7 +163,7 @@ export default function VoicePhishingCertPage() {
               <ul className="space-y-3">
                 {ACTIVITY_FIELDS.map((field) => (
                   <li key={field} className="flex items-start gap-3">
-                    <ChevronRight size={16} className="text-orange-500 shrink-0 mt-0.5" />
+                    <ChevronRight size={16} className="text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">{field}</span>
                   </li>
                 ))}
@@ -217,17 +217,17 @@ export default function VoicePhishingCertPage() {
               </div>
             </div>
 
-            {/* 자격정보 */}
-            <div className="bg-orange-50 border border-orange-100 rounded-2xl p-6">
+            {/* 자격정보 — 민간자격 면책 고지 (amber 유지) */}
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
               <h3 className="font-bold text-[#0f2d5e] mb-3">자격 정보</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="text-gray-500">자격종류:</span> 민간자격</p>
-                <p><span className="text-gray-500">등록번호:</span> [등록번호 기입]</p>
+                <p><span className="text-gray-500">등록번호:</span> 2022-003784</p>
                 <p><span className="text-gray-500">자격관리기관:</span> 대전경실련 도시안전디자인센터</p>
                 <p><span className="text-gray-500">연락처:</span> <a href="tel:042-254-8060" className="text-[#0f2d5e] hover:underline">042-254-8060</a></p>
               </div>
-              <div className="mt-4 p-3 bg-orange-100 rounded-lg">
-                <p className="text-xs text-orange-800">
+              <div className="mt-4 p-3 bg-amber-100 rounded-lg">
+                <p className="text-xs text-amber-800">
                   ※ 본 자격은 자격기본법에 따라 등록된 민간자격이며,
                   국가자격 또는 공인자격이 아닙니다.
                 </p>

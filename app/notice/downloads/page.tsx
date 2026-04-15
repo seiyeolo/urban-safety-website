@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Download, FileText, Image, FileSpreadsheet } from 'lucide-react'
+import { getSectionItems } from '@/lib/content-store'
 
 export const metadata: Metadata = {
   title: '자료 다운로드',
@@ -10,24 +11,14 @@ export const metadata: Metadata = {
 const FILE_ICON_MAP: Record<string, { icon: typeof FileText; color: string }> = {
   PDF: { icon: FileText, color: 'text-red-500 bg-red-50' },
   HWP: { icon: FileText, color: 'text-blue-500 bg-blue-50' },
-  PPT: { icon: Image, color: 'text-orange-500 bg-orange-50' },
+  PPT: { icon: Image, color: 'text-amber-600 bg-amber-50' },
   XLSX: { icon: FileSpreadsheet, color: 'text-green-600 bg-green-50' },
 }
 
-const FILES = [
-  { category: '교육 자료', title: '보이스피싱 예방 핵심 체크리스트', type: 'PDF', size: '1.2MB', date: '2024-04-01' },
-  { category: '교육 자료', title: '생활안전 예방 가이드북', type: 'PDF', size: '3.5MB', date: '2024-03-15' },
-  { category: '교육 자료', title: '보이스피싱 사례 분석 자료 (2024)', type: 'PDF', size: '2.1MB', date: '2024-03-01' },
-  { category: '홍보 자료', title: '센터 소개 리플렛', type: 'PDF', size: '0.8MB', date: '2024-02-20' },
-  { category: '서식', title: '단체교육 신청서 양식', type: 'HWP', size: '0.3MB', date: '2024-02-10' },
-  { category: '서식', title: '수료증 재발급 신청서', type: 'HWP', size: '0.2MB', date: '2024-01-15' },
-  { category: '서식', title: '자격증 재발급 신청서', type: 'HWP', size: '0.2MB', date: '2024-01-15' },
-  { category: '기타', title: '2024년 교육 일정표', type: 'PDF', size: '0.5MB', date: '2024-01-02' },
-]
+export default async function DownloadsPage() {
+  const files = await getSectionItems('downloads')
+  const categories = ['전체', ...new Set(files.map((item) => item.category))]
 
-const CATEGORIES = ['전체', '교육 자료', '홍보 자료', '서식', '기타']
-
-export default function DownloadsPage() {
   return (
     <>
       <div className="page-hero">
@@ -48,7 +39,7 @@ export default function DownloadsPage() {
         <div className="container-main">
           {/* 카테고리 탭 */}
           <div className="flex flex-wrap gap-2 mb-8">
-            {CATEGORIES.map((cat, i) => (
+            {categories.map((cat, i) => (
               <button
                 key={cat}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
@@ -64,12 +55,12 @@ export default function DownloadsPage() {
 
           {/* 파일 목록 */}
           <div className="space-y-3">
-            {FILES.map(({ category, title, type, size, date }) => {
+            {files.map(({ id, category, title, type, size, date, href }) => {
               const fileInfo = FILE_ICON_MAP[type] ?? FILE_ICON_MAP.PDF
               const Icon = fileInfo.icon
               return (
                 <div
-                  key={title}
+                  key={id}
                   className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:border-[#0f2d5e] hover:shadow-sm transition-all cursor-pointer group"
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${fileInfo.color}`}>
@@ -86,9 +77,12 @@ export default function DownloadsPage() {
                     <span>{size}</span>
                     <span>{date}</span>
                   </div>
-                  <button className="shrink-0 w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-[#0f2d5e] hover:text-white transition-colors text-gray-400 group-hover:bg-blue-50">
+                  <Link
+                    href={href || '#'}
+                    className="shrink-0 w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-[#0f2d5e] hover:text-white transition-colors text-gray-400 group-hover:bg-blue-50"
+                  >
                     <Download size={16} />
-                  </button>
+                  </Link>
                 </div>
               )
             })}

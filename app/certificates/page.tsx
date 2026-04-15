@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 const CERTS = [
   {
     icon: AlertTriangle,
-    iconColor: 'text-orange-400',
-    iconBg: 'bg-orange-500/10',
-    accent: 'border-orange-200',
+    iconColor: 'text-navy-700',
+    iconBg: 'bg-navy-100',
+    accent: 'border-navy-200',
     tag: '금융위원회 관련부처',
-    tagColor: 'text-orange-600 bg-orange-50',
+    tagColor: 'text-navy-700 bg-navy-50',
     title: '보이스피싱 예방지도사',
     desc: '보이스피싱 범죄 유형과 최신 수법을 이해하고, 시민·고령층·청소년·소상공인 등 다양한 대상에게 맞춤형 예방교육과 홍보활동을 수행하는 실천형 민간자격',
     href: '/certificates/voice-phishing',

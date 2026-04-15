@@ -20,8 +20,8 @@ const EDUCATION_TYPES = [
   },
   {
     icon: MapPin,
-    iconBg: 'bg-orange-50',
-    iconColor: 'text-[#e85d04]',
+    iconBg: 'bg-navy-100',
+    iconColor: 'text-[#1a3a5c]',
     title: '오프라인 교육',
     desc: '강사와 함께하는 현장 집합 교육. 실습과 현장 체험을 통해 실전 역량을 키웁니다.',
     features: ['현장 실습 중심', '강사 직접 지도', '그룹 활동 포함', '수료증 발급'],
@@ -116,7 +116,7 @@ export default function EducationPage() {
                 <div className="flex items-center gap-4">
                   <span className="text-sm text-gray-400 w-24 shrink-0">{date}</span>
                   <span className={`text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 ${
-                    type === '온라인' ? 'bg-blue-50 text-blue-700' : 'bg-orange-50 text-orange-700'
+                    type === '온라인' ? 'bg-navy-50 text-navy-700' : 'bg-navy-100 text-navy-800'
                   }`}>{type}</span>
                   <p className="font-medium text-gray-800">{title}</p>
                 </div>
