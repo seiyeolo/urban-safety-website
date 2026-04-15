@@ -8,16 +8,17 @@ export const metadata: Metadata = {
 }
 
 const STATS = [
-  { icon: Users, value: '2,400+', label: '누적 수강생', sub: '2024년 기준' },
+  { icon: Users, value: '2,400+', label: '누적 수강생', sub: '2026년 기준' },
   { icon: BookOpen, value: '98%', label: '수료율', sub: '평균 수료율' },
   { icon: Trophy, value: '150+', label: '협력 기관', sub: '연계 활동 기관' },
   { icon: Star, value: '4.8/5', label: '교육 만족도', sub: '수강생 평균 평점' },
 ]
 
 const HISTORY_DATA = [
+  { year: '2026 (진행 중)', courses: 4, students: 180, institutions: 18 },
+  { year: '2025', courses: 9, students: 480, institutions: 42 },
   { year: '2024', courses: 8, students: 420, institutions: 35 },
-  { year: '2023', courses: 5, students: 280, institutions: 22 },
-  { year: '2022 이전', courses: 12, students: 1700, institutions: 95 },
+  { year: '2023 이전', courses: 17, students: 1980, institutions: 117 },
 ]
 
 export default function ResultsPage() {
@@ -92,12 +93,12 @@ export default function ResultsPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { title: '대전 서구 고령자 보이스피싱 예방 특강', date: '2024.03', count: '참여 85명', type: '오프라인' },
-              { title: '지역 복지관 생활안전 교육 프로그램', date: '2024.02', count: '참여 62명', type: '오프라인' },
-              { title: '보이스피싱 예방지도사 4기 수료식', date: '2024.01', count: '수료 34명', type: '온라인' },
-              { title: '대전 중구 청소년 안전체험 교육', date: '2023.11', count: '참여 110명', type: '오프라인' },
-              { title: '생활안전지도사 3기 수료식', date: '2023.10', count: '수료 28명', type: '온라인' },
-              { title: '기업 직원 보이스피싱 예방 교육', date: '2023.09', count: '참여 45명', type: '오프라인' },
+              { title: '대전 서구 고령자 보이스피싱 예방 특강', date: '2026.03', count: '참여 92명', type: '오프라인' },
+              { title: '생활안전지도사 6기 수료식', date: '2026.02', count: '수료 31명', type: '온라인' },
+              { title: '보이스피싱 예방지도사 6기 수료식', date: '2026.01', count: '수료 36명', type: '온라인' },
+              { title: '대전 중구 청소년 안전체험 교육', date: '2025.11', count: '참여 128명', type: '오프라인' },
+              { title: '지역 복지관 생활안전 교육 프로그램', date: '2025.10', count: '참여 74명', type: '오프라인' },
+              { title: '기업 직원 보이스피싱 예방 교육', date: '2025.09', count: '참여 52명', type: '오프라인' },
             ].map(({ title, date, count, type }) => (
               <div key={title} className="bg-white rounded-xl p-5 border border-gray-200">
                 <div className="flex items-center gap-2 mb-3">

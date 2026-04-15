@@ -41,9 +41,9 @@ const EDUCATION_TYPES = [
 ]
 
 const UPCOMING = [
-  { date: '2024-05-10', type: '온라인', title: '보이스피싱 예방지도사 5기 개강', seats: '모집 중' },
-  { date: '2024-05-17', type: '온라인', title: '생활안전지도사 5기 개강', seats: '모집 중' },
-  { date: '2024-05-25', type: '오프라인', title: '생활안전 특강 (대전 서구)', seats: '잔여 5석' },
+  { date: '2026-04-25', type: '오프라인', title: '생활안전 특강 (대전 서구 용문동)', seats: '잔여 5석' },
+  { date: '2026-05-08', type: '온라인', title: '보이스피싱 예방지도사 7기 개강', seats: '모집 중' },
+  { date: '2026-05-15', type: '온라인', title: '생활안전지도사 7기 개강', seats: '모집 중' },
 ]
 
 export default function EducationPage() {

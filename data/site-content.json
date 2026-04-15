@@ -3,91 +3,91 @@
     {
       "id": "notice-1",
       "category": "공지",
-      "title": "2024년 5월 교육 일정 안내",
-      "date": "2024-04-25",
+      "title": "2026년 2분기 보이스피싱 예방지도사 7기 수강생 모집",
+      "date": "2026-04-14",
       "isNew": true
     },
     {
       "id": "notice-2",
       "category": "공지",
-      "title": "보이스피싱 예방지도사 5기 수강생 모집",
-      "date": "2024-04-20",
+      "title": "생활안전지도사 6기 합격자 발표",
+      "date": "2026-04-10",
       "isNew": true
     },
     {
       "id": "notice-3",
       "category": "공지",
-      "title": "생활안전지도사 4기 합격자 발표",
-      "date": "2024-04-15",
+      "title": "2026년 2분기 교육 일정 공지",
+      "date": "2026-04-05",
       "isNew": false
     },
     {
       "id": "notice-4",
       "category": "공지",
-      "title": "개인정보처리방침 개정 안내",
-      "date": "2024-04-01",
+      "title": "신규 기관·단체 교육 신청 접수 개시",
+      "date": "2026-03-22",
       "isNew": false
     },
     {
       "id": "notice-5",
       "category": "공지",
-      "title": "2024년 기관·단체 교육 신청 접수",
-      "date": "2024-03-20",
+      "title": "개인정보처리방침 개정 안내",
+      "date": "2026-03-10",
       "isNew": false
     }
   ],
   "schedules": [
     {
       "id": "schedule-1",
-      "month": "2024년 5월",
-      "date": "05.10 (금)",
-      "type": "온라인",
-      "title": "보이스피싱 예방지도사 5기 개강",
-      "seats": "모집 중",
-      "href": "/certificates/voice-phishing"
-    },
-    {
-      "id": "schedule-2",
-      "month": "2024년 5월",
-      "date": "05.17 (금)",
-      "type": "온라인",
-      "title": "생활안전지도사 5기 개강",
-      "seats": "모집 중",
-      "href": "/certificates/life-safety"
-    },
-    {
-      "id": "schedule-3",
-      "month": "2024년 5월",
-      "date": "05.25 (토)",
+      "month": "2026년 4월",
+      "date": "04.25 (토)",
       "type": "오프라인",
       "title": "생활안전 특강 – 대전 서구 용문동",
       "seats": "잔여 5석",
       "href": ""
     },
     {
-      "id": "schedule-4",
-      "month": "2024년 6월",
-      "date": "06.07 (금)",
+      "id": "schedule-2",
+      "month": "2026년 5월",
+      "date": "05.08 (금)",
       "type": "온라인",
-      "title": "보이스피싱 예방지도사 6기 개강",
+      "title": "보이스피싱 예방지도사 7기 개강",
+      "seats": "모집 중",
+      "href": "/certificates/voice-phishing"
+    },
+    {
+      "id": "schedule-3",
+      "month": "2026년 5월",
+      "date": "05.15 (금)",
+      "type": "온라인",
+      "title": "생활안전지도사 7기 개강",
+      "seats": "모집 중",
+      "href": "/certificates/life-safety"
+    },
+    {
+      "id": "schedule-4",
+      "month": "2026년 5월",
+      "date": "05.30 (토)",
+      "type": "오프라인",
+      "title": "청소년 안전체험 교육 – 대전 중구",
+      "seats": "잔여 8석",
+      "href": ""
+    },
+    {
+      "id": "schedule-5",
+      "month": "2026년 6월",
+      "date": "06.05 (금)",
+      "type": "온라인",
+      "title": "보이스피싱 예방지도사 8기 개강",
       "seats": "예정",
       "href": "/certificates/voice-phishing"
     },
     {
-      "id": "schedule-5",
-      "month": "2024년 6월",
-      "date": "06.15 (토)",
-      "type": "오프라인",
-      "title": "청소년 안전체험 교육 – 대전 중구",
-      "seats": "예정",
-      "href": ""
-    },
-    {
       "id": "schedule-6",
-      "month": "2024년 6월",
-      "date": "06.28 (금)",
+      "month": "2026년 6월",
+      "date": "06.26 (금)",
       "type": "온라인",
-      "title": "생활안전지도사 6기 개강",
+      "title": "생활안전지도사 8기 개강",
       "seats": "예정",
       "href": "/certificates/life-safety"
     }
@@ -99,7 +99,7 @@
       "title": "보이스피싱 예방 핵심 체크리스트",
       "type": "PDF",
       "size": "1.2MB",
-      "date": "2024-04-01",
+      "date": "2026-04-05",
       "href": "#"
     },
     {
@@ -108,16 +108,16 @@
       "title": "생활안전 예방 가이드북",
       "type": "PDF",
       "size": "3.5MB",
-      "date": "2024-03-15",
+      "date": "2026-03-20",
       "href": "#"
     },
     {
       "id": "download-3",
       "category": "교육 자료",
-      "title": "보이스피싱 사례 분석 자료 (2024)",
+      "title": "보이스피싱 사례 분석 자료 (2026)",
       "type": "PDF",
       "size": "2.1MB",
-      "date": "2024-03-01",
+      "date": "2026-03-10",
       "href": "#"
     },
     {
@@ -126,7 +126,7 @@
       "title": "센터 소개 리플렛",
       "type": "PDF",
       "size": "0.8MB",
-      "date": "2024-02-20",
+      "date": "2026-02-22",
       "href": "#"
     },
     {
@@ -135,7 +135,7 @@
       "title": "단체교육 신청서 양식",
       "type": "HWP",
       "size": "0.3MB",
-      "date": "2024-02-10",
+      "date": "2026-02-12",
       "href": "#"
     },
     {
@@ -144,7 +144,7 @@
       "title": "수료증 재발급 신청서",
       "type": "HWP",
       "size": "0.2MB",
-      "date": "2024-01-15",
+      "date": "2026-01-20",
       "href": "#"
     },
     {
@@ -153,16 +153,16 @@
       "title": "자격증 재발급 신청서",
       "type": "HWP",
       "size": "0.2MB",
-      "date": "2024-01-15",
+      "date": "2026-01-20",
       "href": "#"
     },
     {
       "id": "download-8",
       "category": "기타",
-      "title": "2024년 교육 일정표",
+      "title": "2026년 교육 일정표",
       "type": "PDF",
       "size": "0.5MB",
-      "date": "2024-01-02",
+      "date": "2026-01-05",
       "href": "#"
     }
   ],

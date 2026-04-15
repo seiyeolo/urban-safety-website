@@ -82,7 +82,7 @@ export default function GroupContactPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">교육 희망 일정</label>
-              <input type="text" placeholder="예) 2024년 6월 중, 매주 화요일 오후 등" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
+              <input type="text" placeholder="예) 2026년 6월 중, 매주 화요일 오후 등" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">요청 사항</label>
