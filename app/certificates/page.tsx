@@ -57,7 +57,7 @@ export default function VoicePhishingCertificatePage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-24 lg:py-32">
         <div className="absolute inset-0 opacity-95"></div>
-        <div className="max-w-7xl mx-auto px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <nav className="flex mb-8 gap-2 text-blue-300 text-sm font-medium">
             <Link href="/certificates" className="hover:text-white">민간자격증</Link>
             <ChevronRight size={16} className="self-center" />

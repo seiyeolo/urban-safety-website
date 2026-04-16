@@ -53,7 +53,7 @@ export default function LocationPage() {
     <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-16">
-        <div className="max-w-7xl mx-auto px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <nav className="flex mb-6 gap-2 text-blue-300 text-sm font-medium">
             <Link href="/contact" className="hover:text-white">참여·문의</Link>
             <span className="material-symbols-outlined text-xs self-center">›</span>
@@ -194,7 +194,7 @@ export default function LocationPage() {
       {/* Nearby Landmarks */}
       <section className="px-4 sm:px-8 py-12">
         <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-[24px] font-bold text-[#002444] mb-6">주변 랜드마크</h3>
+          <h3 className="text-xl sm:text-[24px] font-bold text-[#002444] mb-6">주변 랜드마크</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {LANDMARKS.map((landmark) => (
               <span key={landmark} className="bg-[#f5f3f3] text-gray-700 px-4 py-2 rounded-full text-sm font-medium">
@@ -209,7 +209,7 @@ export default function LocationPage() {
       <section className="px-4 sm:px-8 py-12 bg-[#f5f3f3]">
         <div className="max-w-7xl mx-auto">
           <div className="bg-[#ffdbcb] border border-[#ff6f00]/20 rounded-xl p-8">
-            <h3 className="text-[24px] font-bold text-[#793100] mb-6 flex items-center gap-3">
+            <h3 className="text-xl sm:text-[24px] font-bold text-[#793100] mb-6 flex items-center gap-3">
               <CheckCircle size={24} />
               방문 전 확인사항
             </h3>

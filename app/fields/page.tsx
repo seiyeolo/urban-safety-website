@@ -69,7 +69,7 @@ export default function FieldsPage() {
     <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-16">
-        <div className="max-w-7xl mx-auto px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">핵심분야</h1>
           <p className="text-xl text-blue-300 max-w-2xl">
             범죄예방과 생활안전, 두 핵심분야를 통해 시민이 안전한 일상을 누릴 수 있도록 지원합니다.
@@ -98,7 +98,7 @@ export default function FieldsPage() {
                 {/* 헤더 */}
                 <div className={`bg-gradient-to-r ${color} p-8 text-white`}>
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-xl flex items-center justify-center">
                       <Icon size={32} />
                     </div>
                     <div>
@@ -155,7 +155,7 @@ export default function FieldsPage() {
           </div>
 
           {/* 접근 방식 */}
-          <div className="bg-[#f5f3f3] rounded-xl p-12">
+          <div className="bg-[#f5f3f3] rounded-xl p-6 md:p-12">
             <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-4 text-center">
               우리의 접근 방식
             </h2>
@@ -167,7 +167,7 @@ export default function FieldsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {APPROACH.map(({ icon: Icon, title, description }) => (
                 <div key={title} className="bg-white p-8 rounded-xl shadow-sm text-center">
-                  <div className="w-16 h-16 bg-[#2e7d32]/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#2e7d32]/10 rounded-xl flex items-center justify-center mx-auto mb-6">
                     <Icon size={32} className="text-[#2e7d32]" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>

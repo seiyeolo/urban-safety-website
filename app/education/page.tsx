@@ -75,24 +75,24 @@ export default function EducationHubPage() {
     <main className="pt-24 pb-20 max-w-7xl mx-auto px-6">
       {/* Hero Section & Stepper */}
       <section className="py-16 text-center">
-        <h1 className="text-[56px] font-black text-[#002444] leading-tight mb-4 tracking-tighter">교육안내</h1>
-        <p className="text-[20px] text-gray-600 max-w-2xl mx-auto leading-[1.7] mb-12">
+        <h1 className="text-3xl sm:text-4xl md:text-[52px] lg:text-[56px] font-black text-[#002444] leading-tight mb-4 tracking-tighter">교육안내</h1>
+        <p className="text-base sm:text-lg lg:text-[20px] text-gray-600 max-w-2xl mx-auto leading-[1.7] mb-8 sm:mb-12">
           목적과 상황에 맞는 교육과정을 선택하세요. 대전경실련 도시안전디자인센터는 전문적인 시민 안전 교육을 지향합니다.
         </p>
 
         {/* 3-Step Process Stepper */}
-        <div className="flex items-center justify-center gap-4 mb-16">
-          <div className="flex items-center gap-3 bg-[#002444] text-white px-6 py-3 rounded-full shadow-lg">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-16">
+          <div className="flex items-center gap-3 bg-[#002444] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg text-sm sm:text-base">
             <span className="bg-white text-[#002444] rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">1</span>
             <span className="font-bold">교육 방식</span>
           </div>
-          <div className="w-12 h-[2px] bg-gray-300"></div>
-          <div className="flex items-center gap-3 border border-gray-300 px-6 py-3 rounded-full text-gray-500">
+          <div className="w-[2px] h-6 sm:w-12 sm:h-[2px] bg-gray-300"></div>
+          <div className="flex items-center gap-3 border border-gray-300 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-gray-500 text-sm sm:text-base">
             <span className="bg-gray-200 text-gray-500 rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">2</span>
             <span>자격 선택</span>
           </div>
-          <div className="w-12 h-[2px] bg-gray-300"></div>
-          <div className="flex items-center gap-3 border border-gray-300 px-6 py-3 rounded-full text-gray-500">
+          <div className="w-[2px] h-6 sm:w-12 sm:h-[2px] bg-gray-300"></div>
+          <div className="flex items-center gap-3 border border-gray-300 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-gray-500 text-sm sm:text-base">
             <span className="bg-gray-200 text-gray-500 rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">3</span>
             <span>신청 완료</span>
           </div>
@@ -124,8 +124,8 @@ export default function EducationHubPage() {
       {/* Schedule Table */}
       <section className="mb-24">
         <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
-        <div className="bg-white rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
-          <table className="w-full text-left border-collapse">
+        <div className="bg-white rounded-xl overflow-x-auto shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
+          <table className="min-w-[640px] w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#e9e8e8] text-[#002444] font-bold">
                 <th className="px-6 py-5">일자</th>
