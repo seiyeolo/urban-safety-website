@@ -281,26 +281,49 @@ export default function HomePage() {
             </Link>
 
             {/* Secondary List */}
-            <div className="space-y-4">
+            <div className="space-y-5">
               {NOTICE_LIST.map(({ day, month, title, tag, accent }) => (
                 <Link
                   key={title}
                   href="/notice"
-                  className={`bg-white p-6 rounded-lg flex items-center gap-6 border-l-4 ${accent} hover:shadow-md transition-shadow`}
+                  className="bg-white p-7 rounded-xl flex items-start gap-6 hover:shadow-lg transition-all duration-300 group relative overflow-hidden"
+                  style={{
+                    boxShadow: '0 4px 20px rgba(26, 58, 92, 0.08)',
+                  }}
                 >
-                  <div className="text-center min-w-[60px]">
-                    <span className="block text-2xl font-bold text-navy-900">
-                      {day}
-                    </span>
-                    <span className="text-xs text-gray-500 uppercase tracking-wide">
-                      {month}
+                  {/* 날짜 원형 배지 */}
+                  <div className="relative">
+                    <div className={`w-16 h-16 rounded-2xl flex flex-col items-center justify-center text-white font-bold ${
+                      accent === 'border-green-700' ? 'bg-gradient-to-br from-green-600 to-green-700' :
+                      'bg-gradient-to-br from-navy-800 to-navy-900'
+                    } group-hover:scale-105 transition-transform duration-300`}>
+                      <span className="text-lg leading-none">{day}</span>
+                      <span className="text-[10px] leading-none opacity-90">{month}</span>
+                    </div>
+                    {/* 미묘한 그림자 효과 */}
+                    <div className={`absolute inset-0 w-16 h-16 rounded-2xl ${
+                      accent === 'border-green-700' ? 'bg-green-700' : 'bg-navy-900'
+                    } opacity-20 blur-sm scale-110 -z-10`} />
+                  </div>
+
+                  <div className="flex-1 pt-1">
+                    <div className="flex items-start justify-between gap-4 mb-2">
+                      <h4 className="font-bold text-navy-900 text-base md:text-lg leading-snug group-hover:text-green-700 transition-colors">
+                        {title}
+                      </h4>
+                    </div>
+                    <span className={`inline-block text-xs font-medium px-3 py-1 rounded-full ${
+                      accent === 'border-green-700'
+                        ? 'bg-green-50 text-green-700'
+                        : 'bg-navy-50 text-navy-700'
+                    }`}>
+                      {tag}
                     </span>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-navy-900 text-base md:text-lg leading-snug mb-1">
-                      {title}
-                    </h4>
-                    <span className="text-sm text-gray-500">{tag}</span>
+
+                  {/* 우측 하단 미묘한 포인트 */}
+                  <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight size={16} className="text-gray-400" />
                   </div>
                 </Link>
               ))}

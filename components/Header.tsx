@@ -130,18 +130,18 @@ export default function Header() {
       <div className="bg-white border-b border-gray-200">
         <div className="container-main flex items-center justify-between h-16">
           {/* 로고 — 박스 없이 자연 비율 표시 (2026-04-16 박스 제거) */}
-          <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
+          <Link href="/" className="flex items-center gap-4 group flex-shrink-0">
             <Image
               src="/brand/logo.svg"
               alt="도시안전디자인센터 로고"
-              width={32}
-              height={45}
-              className="h-11 w-auto transition-opacity group-hover:opacity-85"
+              width={40}
+              height={56}
+              className="h-14 w-auto transition-opacity group-hover:opacity-85"
               priority
             />
             <div className="leading-tight min-w-0">
-              <div className="text-xs text-gray-500 font-medium">대전경실련</div>
-              <div className="text-sm sm:text-base font-bold text-navy-900">
+              <div className="text-sm text-gray-500 font-medium">대전경실련</div>
+              <div className="text-base sm:text-lg font-bold text-navy-900">
                 도시안전디자인센터
               </div>
             </div>
