@@ -390,9 +390,9 @@ export default function HomePage() {
       {/* ───────── Partners Strip ───────── */}
       <section className="py-14 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <h5 className="text-gray-500 text-xs md:text-sm font-bold uppercase tracking-widest mb-10">
+          <h3 className="text-gray-500 text-xs md:text-sm font-bold uppercase tracking-widest mb-10">
             함께하는 파트너 기관
-          </h5>
+          </h3>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 text-gray-400">
             {PARTNERS.map((partner) => (
               <span
