@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>보이스피싱 예방지도사 - CCEJ 시민안전디자인센터</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;family=Public+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#73777f",
+                        "on-primary-container": "#87a4cc",
+                        "on-primary-fixed": "#001c37",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#abc9f2",
+                        "surface-variant": "#e4e2e2",
+                        "primary-fixed-dim": "#abc9f2",
+                        "on-error": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "tertiary-fixed": "#ffdbcb",
+                        "outline-variant": "#c3c6cf",
+                        "on-tertiary-fixed-variant": "#793100",
+                        "surface": "#fbf9f9",
+                        "on-secondary-container": "#217128",
+                        "tertiary-fixed-dim": "#ffb691",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#1a3a5c",
+                        "surface-container-high": "#e9e8e8",
+                        "inverse-surface": "#303031",
+                        "on-surface": "#1b1c1c",
+                        "secondary-fixed": "#a3f69c",
+                        "secondary": "#1b6d24",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#2a486b",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#d2e4ff",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#88d982",
+                        "surface-dim": "#dbdada",
+                        "surface-container": "#efeded",
+                        "surface-container-low": "#f5f3f3",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-bright": "#fbf9f9",
+                        "on-secondary-fixed-variant": "#005312",
+                        "tertiary": "#401600",
+                        "on-tertiary-container": "#ff7c2e",
+                        "surface-container-highest": "#e4e2e2",
+                        "on-secondary-fixed": "#002204",
+                        "background": "#fbf9f9",
+                        "on-surface-variant": "#43474e",
+                        "secondary-container": "#a0f399",
+                        "surface-tint": "#436084",
+                        "tertiary-container": "#622600",
+                        "primary": "#002444"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Sans KR", "sans-serif"],
+                        "body": ["Noto Sans KR", "sans-serif"],
+                        "label": ["Noto Sans KR", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Noto Sans KR", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAkL3m_f_GWV5QbjOr1AwDHaWWO5v1Ubyjgudep9UoQ5_errlVHim6fxqaxQBCLR0GcPx0EQTKmEAF8uAwqZIoDSRYj9oitd_oCMgDCu_FmEZqn7gmA3GiUSduODsdFVIJw_rd931V1vo7ZvyPvpI5Rykl9ct5FRHS7iIKTNSCIOpW1PBwfgQbePC6Lb86qgGeJMTikK5prN4WdtX9aGa5p_Mqj3WWZpnCZiCkQA58C2CRDy_8t09M73-0D7qCb-rK1jYM6OX0evtg);
+    opacity: 0.03;
+    pointer-events: none
+    }</style>
+</head>
+<body class="bg-background text-on-surface leading-[1.7] text-[18px]">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbf9f9]/85 backdrop-blur-md dark:bg-[#1b1c1c]/85 shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
+<div class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto">
+<a class="text-2xl font-bold text-[#002444] dark:text-[#fbf9f9] tracking-tight" href="#">보이스피싱 예방지도사</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#43474e] dark:text-[#c4c7c5] hover:text-[#1b6d24] transition-colors duration-300" href="#">프로그램 소개</a>
+<a class="text-[#43474e] dark:text-[#c4c7c5] hover:text-[#1b6d24] transition-colors duration-300" href="#">교육 일정</a>
+<a class="text-[#1b6d24] font-bold border-b-2 border-[#1b6d24] pb-1" href="#">자격 안내</a>
+<a class="text-[#43474e] dark:text-[#c4c7c5] hover:text-[#1b6d24] transition-colors duration-300" href="#">커뮤니티</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#002444] font-medium px-4 py-2">로그인</button>
+<button class="bg-[#1b6d24] text-white px-6 py-2.5 rounded-xl font-bold hover:bg-[#217128] transition-colors">수강신청</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative bg-primary overflow-hidden py-24 lg:py-32">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container to-primary opacity-95"></div>
+<div class="absolute inset-0 grain-overlay"></div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<nav class="flex mb-8 gap-2 text-on-primary-container text-sm font-medium">
+<span>민간자격증</span>
+<span class="material-symbols-outlined text-xs self-center">chevron_right</span>
+<span class="text-white">보이스피싱 예방지도사</span>
+</nav>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-white/10 text-white px-3 py-1 rounded-lg text-sm backdrop-blur-sm border border-white/20">민간자격</span>
+<span class="bg-white/10 text-white px-3 py-1 rounded-lg text-sm backdrop-blur-sm border border-white/20">금융피해 전문분야</span>
+</div>
+<h1 class="text-5xl lg:text-6xl font-black text-white mb-6 leading-tight max-w-3xl">보이스피싱 예방지도사</h1>
+<p class="text-xl lg:text-2xl text-on-primary-container mb-12 max-w-2xl font-light">
+                    시민의 소중한 자산을 지키는 <br class="hidden md:block"/>금융 안전 전문가 양성 과정
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-xl font-bold text-lg hover:bg-on-secondary-container transition-all shadow-xl shadow-secondary/20">교육 신청하기</button>
+<button class="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm">자격 문의</button>
+</div>
+</div>
+<!-- Abstract background shape -->
+<div class="absolute right-[-10%] top-0 w-1/2 h-full opacity-20 pointer-events-none">
+<img class="w-full h-full object-cover mix-blend-overlay" data-alt="abstract geometric pattern with flowing lines and dark navy gradients representing digital security and depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvtqUooCxqc32ecXShN94ElEVkBoCMmefNFtoowSBGlgSVoHx2LmAYdqw9wnZTCgx0RhnWNFWsazOFL8xjoalWfewkYpmlKCc8EzBcK2jH1XVb-fwf6qxDHOuUWqvg5thVfSnR4utChxcTeI7_Kt1T1EiOBImF74yfBCSuRtxySVeHhUdj5wfAIc1ejEdoZDSM_CxprvAsoHYRFntq1YoiK0oNHBZGemeClYjdcvAABnxHGaHGUEX0ROTvs0egjZ8xQhWbmK2h7z4"/>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="max-w-7xl mx-auto px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Left: Main Content (8 cols) -->
+<div class="lg:col-span-8 space-y-24">
+<!-- Info Pills & Stats -->
+<section>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+<div class="bg-surface-container-low p-6 rounded-xl text-center">
+<span class="block text-sm text-on-surface-variant mb-2">교육 기간</span>
+<span class="font-bold text-primary">6주 과정</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl text-center">
+<span class="block text-sm text-on-surface-variant mb-2">교육 방식</span>
+<span class="font-bold text-primary">온라인/오프라인</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl text-center">
+<span class="block text-sm text-on-surface-variant mb-2">이수 기준</span>
+<span class="font-bold text-primary">출석 80% 이상</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl text-center">
+<span class="block text-sm text-on-surface-variant mb-2">모집 대상</span>
+<span class="font-bold text-primary">제한 없음</span>
+</div>
+</div>
+<h2 class="text-3xl font-bold text-primary mb-8">보이스피싱 피해 현황</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white p-8 rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-outline/10">
+<p class="text-on-surface-variant text-sm mb-2">연간 총 피해액</p>
+<p class="text-4xl font-black text-primary">7,744억</p>
+<p class="text-error text-sm mt-2 font-medium">전년 대비 12% 증가</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-outline/10">
+<p class="text-on-surface-variant text-sm mb-2">평균 피해액</p>
+<p class="text-4xl font-black text-primary">1,700만</p>
+<p class="text-on-surface-variant text-sm mt-2">1인당 평균 집계</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-outline/10">
+<p class="text-on-surface-variant text-sm mb-2">발생 건수</p>
+<p class="text-4xl font-black text-primary">2.1만건</p>
+<p class="text-on-surface-variant text-sm mt-2">일 평균 58건 발생</p>
+</div>
+</div>
+</section>
+<!-- Education Goals -->
+<section>
+<h2 class="text-3xl font-bold text-primary mb-8">교육 목표</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {[
+                            "보이스피싱 최신 범죄 수법의 완벽한 이해",
+                            "금융 사기 피해자 심리 분석 및 상담 기술 습득",
+                            "지역 사회 안전망 구축을 위한 예방 교육 역량",
+                            "디지털 금융 리터러시 교육 전문성 강화",
+                            "법률적 대응 및 사후 구제 절차 안내 능력"
+                        ].map(goal =&gt; (
+                            <div class="flex items-start gap-4 p-6 bg-surface-container-lowest rounded-xl border-l-4 border-secondary shadow-sm">
+<span class="material-symbols-outlined text-secondary font-bold">check_circle</span>
+<span class="font-medium text-on-surface leading-tight">${goal}</span>
+</div>
+                        ))}
+                    </div>
+</section>
+<!-- Curriculum Accordion -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h2 class="text-3xl font-bold text-primary">커리큘럼</h2>
+<span class="text-on-surface-variant text-sm font-medium">총 6주 (매주 토요일 14:00 - 18:00)</span>
+</div>
+<div class="space-y-4">
+<div class="group border border-outline/10 rounded-2xl bg-white overflow-hidden">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-container-low transition-colors">
+<div>
+<span class="text-secondary font-bold text-sm block mb-1">WEEK 01</span>
+<h3 class="text-xl font-bold text-primary">현대 금융 사기의 메커니즘과 역사</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<div class="group border border-outline/10 rounded-2xl bg-white overflow-hidden">
+<div class="w-full flex justify-between items-center p-6 text-left bg-surface-container-low">
+<div>
+<span class="text-secondary font-bold text-sm block mb-1">WEEK 02</span>
+<h3 class="text-xl font-bold text-primary">딥페이크 및 최신 기술 기반 변종 피싱</h3>
+</div>
+<span class="material-symbols-outlined text-secondary">expand_less</span>
+</div>
+<div class="p-8 border-t border-outline/5 bg-white">
+<ul class="space-y-4 text-on-surface-variant">
+<li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-secondary rounded-full"></div> AI 음성 복제 기술의 범죄 악용 사례</li>
+<li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-secondary rounded-full"></div> 메신저 피싱과 악성 앱 설치 유도 분석</li>
+<li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-secondary rounded-full"></div> 디지털 취약계층 대상 예방 교육법</li>
+</ul>
+</div>
+</div>
+<div class="group border border-outline/10 rounded-2xl bg-white overflow-hidden opacity-60">
+<button class="w-full flex justify-between items-center p-6 text-left">
+<div>
+<span class="text-on-surface-variant font-bold text-sm block mb-1">WEEK 03 - 06</span>
+<h3 class="text-xl font-bold text-primary">상담 심리학, 법률 구제, 실습 및 최종 평가</h3>
+</div>
+<span class="material-symbols-outlined">lock</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Visualization -->
+<section>
+<h2 class="text-3xl font-bold text-primary mb-12">교육 프로세스</h2>
+<div class="relative flex flex-col md:flex-row justify-between gap-8 md:gap-4">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-surface-container-highest -translate-y-1/2 hidden md:block z-0"></div>
+<div class="relative z-10 flex-1 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-white border-2 border-secondary rounded-full flex items-center justify-center mb-4 shadow-lg">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<h4 class="font-bold text-primary mb-2">Video Lecture</h4>
+<p class="text-sm text-on-surface-variant">핵심 이론 및 사례 시청</p>
+</div>
+<div class="relative z-10 flex-1 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-white border-2 border-secondary rounded-full flex items-center justify-center mb-4 shadow-lg">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">assignment</span>
+</div>
+<h4 class="font-bold text-primary mb-2">Task Execution</h4>
+<p class="text-sm text-on-surface-variant">사례별 대응 시뮬레이션</p>
+</div>
+<div class="relative z-10 flex-1 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-secondary text-white rounded-full flex items-center justify-center mb-4 shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h4 class="font-bold text-primary mb-2">Final Evaluation</h4>
+<p class="text-sm text-on-surface-variant">최종 시험 및 자격증 발급</p>
+</div>
+</div>
+</section>
+<!-- FAQ & Testimonials -->
+<section class="bg-surface-container-low p-12 rounded-3xl">
+<h2 class="text-3xl font-bold text-primary mb-10">졸업생 한마디</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white p-8 rounded-2xl relative">
+<span class="material-symbols-outlined text-secondary/30 absolute top-4 right-6 text-4xl">format_quote</span>
+<p class="text-on-surface leading-relaxed mb-6 font-medium">"실제 피해 사례를 중심으로 교육이 진행되어 현장에서 바로 활용할 수 있는 전문성을 갖출 수 있었습니다. 시니어 센터에서 예방 강사로 활동 중인데 큰 보람을 느낍니다."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a middle-aged woman with a warm friendly smile, corporate office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBozGi5exmqJ1meeTQb-N1uEue6zo66EshKYuQMT_5bqsxMZ0c3ugbSTDcPCr8lSKbXyKtaz7EM-Ckaf2LJejwsO1q8lChT8ptZD1M0OCqEED4mpvchuTqn-8JjUvQkI_Ce-c-n2spjOXthLV2w0LbC7ybcVbhyw9SZInrkFsguYAcId4hsShWMildeYDBMpBoQ1Nky4Naxv2iUkz7w5vOMgFzHENNlTADZX7vLmgMIWagzEOWS237BcXWuE_6BtMwayVOMf1imAL8"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">김지현 님</p>
+<p class="text-xs text-on-surface-variant">2기 수료생 / 복지관 강사</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-2xl relative">
+<span class="material-symbols-outlined text-secondary/30 absolute top-4 right-6 text-4xl">format_quote</span>
+<p class="text-on-surface leading-relaxed mb-6 font-medium">"범죄 수법이 이렇게 정교한지 몰랐습니다. 법률적 구제 방법까지 체계적으로 배울 수 있어 주변 지인들을 돕는 데 큰 도움이 되고 있어요."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close up headshot of a professional middle aged man, smiling slightly, natural soft outdoor lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhJ-ucB7tIdV8E2ZDatUy19TEq6zD2SUMr0HboxY8FasCmey3pgethUxQvsUA2MQzysZMXr7_sG3622zJ0Aj4BbHcNyDcTvhsYoB3o0d1WCOOsqDHABmpLsu9d9-BflL9uQwXS1Kenl6gGoDbixgyeSkNsrPUEpfaYid2EdWXl42ocvGgxBJ_n5Z4eXO85J5Vl6itWWNMK59Y8Pdyr5BRTs1f9Ihg961uyxrborXWaBRnfiR6swX6dFhzKn9aopxVXsppV1_2oA7s"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">이박사 님</p>
+<p class="text-xs text-on-surface-variant">4기 수료생 / 자영업</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right: Sidebar (4 cols) -->
+<aside class="lg:col-span-4 space-y-6">
+<div class="sticky top-32 space-y-6">
+<!-- Pricing Card -->
+<div class="bg-white rounded-2xl shadow-[0_32px_64px_rgba(0,36,68,0.12)] border border-outline/5 overflow-hidden">
+<div class="bg-primary p-6 text-white">
+<h3 class="text-lg font-bold opacity-80 mb-1">수강 및 응시료</h3>
+<p class="text-3xl font-black">300,000 KRW</p>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between text-sm py-2 border-b border-outline/5">
+<span class="text-on-surface-variant">교육 수강료</span>
+<span class="font-bold text-primary">250,000원</span>
+</div>
+<div class="flex justify-between text-sm py-2 border-b border-outline/5">
+<span class="text-on-surface-variant">자격 검정료</span>
+<span class="font-bold text-primary">50,000원</span>
+</div>
+<div class="flex justify-between text-sm py-2">
+<span class="text-on-surface-variant">자격증 발급비</span>
+<span class="text-secondary font-bold">무료 (최초 1회)</span>
+</div>
+<button class="w-full bg-secondary text-white py-4 rounded-xl font-bold text-lg hover:bg-on-secondary-container transition-all flex items-center justify-center gap-2 mt-4">
+<span class="material-symbols-outlined">task_alt</span>
+                                지금 바로 신청하기
+                            </button>
+</div>
+</div>
+<!-- Registration Info -->
+<div class="bg-white rounded-2xl p-6 border border-outline/10 shadow-sm space-y-4">
+<h4 class="font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">info</span>
+                            등록 정보
+                        </h4>
+<div class="space-y-3 text-sm">
+<div class="grid grid-cols-3">
+<span class="text-on-surface-variant">등록번호</span>
+<span class="col-span-2 text-on-surface font-medium">제 2024-001234호</span>
+</div>
+<div class="grid grid-cols-3">
+<span class="text-on-surface-variant">자격종류</span>
+<span class="col-span-2 text-on-surface font-medium">등록 민간자격</span>
+</div>
+<div class="grid grid-cols-3">
+<span class="text-on-surface-variant">발급기관</span>
+<span class="col-span-2 text-on-surface font-medium">CCEJ 시민안전디자인센터</span>
+</div>
+<div class="grid grid-cols-3">
+<span class="text-on-surface-variant">합격기준</span>
+<span class="col-span-2 text-on-surface font-medium">필기/실기 70점 이상</span>
+</div>
+</div>
+</div>
+<!-- Refund Policy -->
+<div class="bg-tertiary-container/10 border-2 border-tertiary-container rounded-2xl p-6">
+<h4 class="font-bold text-tertiary-container flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined">warning</span>
+                            환불 규정 안내
+                        </h4>
+<ul class="text-sm space-y-2 text-tertiary">
+<li>• 개강 7일 전: 100% 전액 환불</li>
+<li>• 개강 3일 전: 70% 환불</li>
+<li>• 개강 당일 이후: 환불 불가</li>
+<li class="font-bold underline mt-2">※ 교재 수령 시 교재비 차감</li>
+</ul>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1a3a5c] dark:bg-[#001122] w-full pt-16 pb-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 max-w-7xl mx-auto">
+<div>
+<h2 class="text-xl font-bold text-[#ffffff] opacity-90 mb-4">보이스피싱 예방지도사</h2>
+<p class="text-[#fbf9f9]/70 text-[14px] leading-relaxed mb-6">
+                    35년의 시민 운동 역사와 신뢰를 바탕으로,<br/>
+                    안전한 대한민국을 만들기 위해 시민과 함께합니다.
+                </p>
+<div class="flex gap-4">
+<a class="text-[#fbf9f9]/70 hover:text-[#ffffff]" href="#">기관소개</a>
+<a class="text-[#fbf9f9]/70 hover:text-[#ffffff]" href="#">고객센터</a>
+<a class="text-[#fbf9f9]/70 hover:text-[#ffffff]" href="#">개인정보처리방침</a>
+</div>
+</div>
+<div class="flex flex-col md:items-end justify-between">
+<div class="flex gap-4 mb-8">
+<div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white">FB</div>
+<div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white">YT</div>
+<div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white">IG</div>
+</div>
+<p class="text-[#fbf9f9]/70 text-[14px]">© 35년의 신뢰, 시민의 닻. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body></html>

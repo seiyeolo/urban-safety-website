@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ChevronDown, Phone } from 'lucide-react'
+import { Menu, X, ChevronDown, Phone, User, LogOut } from 'lucide-react'
+import { useAuth } from '@/lib/auth/AuthContext'
 
 const NAV_ITEMS = [
   {
@@ -82,12 +83,18 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const { user, signOut, loading } = useAuth()
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
+
+  const handleSignOut = async () => {
+    await signOut()
+    setMobileOpen(false)
+  }
 
   return (
     <header
@@ -196,6 +203,70 @@ export default function Header() {
             >
               자격증 신청
             </Link>
+
+            {/* 로그인 상태에 따른 버튼 */}
+            {loading ? (
+              <div className="ml-4 w-8 h-8 flex items-center justify-center">
+                <div className="w-4 h-4 border-2 border-gray-300 border-t-navy-900 rounded-full animate-spin"></div>
+              </div>
+            ) : user ? (
+              /* 로그인된 사용자 메뉴 */
+              <div className="relative ml-4"
+                onMouseEnter={() => setActiveMenu('user-menu')}
+                onMouseLeave={() => setActiveMenu(null)}
+              >
+                <button className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:text-navy-900 transition-colors">
+                  <User size={16} />
+                  <span>{user.user_metadata?.name || user.email?.split('@')[0]}</span>
+                  <ChevronDown size={14} className={`transition-transform duration-200 ${
+                    activeMenu === 'user-menu' ? 'rotate-180' : ''
+                  }`} />
+                </button>
+
+                {activeMenu === 'user-menu' && (
+                  <div className="absolute top-full right-0 pt-2 z-50">
+                    <div className="bg-white shadow-xl border border-gray-100 rounded-lg min-w-48 py-2">
+                      <Link
+                        href="/dashboard"
+                        className="block px-5 py-2.5 text-sm text-gray-600 hover:text-navy-900 hover:bg-navy-50 transition-colors whitespace-nowrap"
+                      >
+                        내 정보
+                      </Link>
+                      <Link
+                        href="/dashboard"
+                        className="block px-5 py-2.5 text-sm text-gray-600 hover:text-navy-900 hover:bg-navy-50 transition-colors whitespace-nowrap"
+                      >
+                        수강 현황
+                      </Link>
+                      <hr className="my-2 border-gray-100" />
+                      <button
+                        onClick={handleSignOut}
+                        className="w-full text-left px-5 py-2.5 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors flex items-center gap-2"
+                      >
+                        <LogOut size={14} />
+                        로그아웃
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* 비로그인 사용자 버튼들 */
+              <div className="flex items-center gap-2 ml-4">
+                <Link
+                  href="/auth/login"
+                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-navy-900 transition-colors"
+                >
+                  로그인
+                </Link>
+                <Link
+                  href="/auth/signup"
+                  className="px-4 py-2 text-sm font-semibold bg-navy-900 text-white hover:bg-navy-800 rounded-md transition-colors"
+                >
+                  회원가입
+                </Link>
+              </div>
+            )}
           </nav>
 
           {/* 모바일 메뉴 버튼 */}
@@ -230,7 +301,7 @@ export default function Header() {
               />
             ))}
 
-            <div className="mt-4 pt-4 border-t border-gray-100">
+            <div className="mt-4 pt-4 border-t border-gray-100 space-y-3">
               <Link
                 href="/certificates/voice-phishing"
                 className="btn-primary w-full justify-center"
@@ -238,6 +309,50 @@ export default function Header() {
               >
                 자격증 신청하기
               </Link>
+
+              {/* 모바일 로그인 상태에 따른 버튼 */}
+              {loading ? (
+                <div className="flex items-center justify-center py-2">
+                  <div className="w-4 h-4 border-2 border-gray-300 border-t-navy-900 rounded-full animate-spin"></div>
+                </div>
+              ) : user ? (
+                /* 로그인된 사용자 메뉴 */
+                <div className="space-y-2">
+                  <Link
+                    href="/dashboard"
+                    className="flex items-center gap-2 w-full px-4 py-3 text-sm font-medium text-gray-700 hover:text-navy-900 hover:bg-gray-50 rounded-lg transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <User size={16} />
+                    내 정보 ({user.user_metadata?.name || user.email?.split('@')[0]})
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="flex items-center gap-2 w-full px-4 py-3 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+                    <LogOut size={16} />
+                    로그아웃
+                  </button>
+                </div>
+              ) : (
+                /* 비로그인 사용자 버튼들 */
+                <div className="flex gap-2">
+                  <Link
+                    href="/auth/login"
+                    className="flex-1 px-4 py-3 text-sm font-medium text-gray-700 hover:text-navy-900 border border-gray-300 hover:border-navy-900 rounded-lg transition-colors text-center"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    로그인
+                  </Link>
+                  <Link
+                    href="/auth/signup"
+                    className="flex-1 px-4 py-3 text-sm font-semibold bg-navy-900 text-white hover:bg-navy-800 rounded-lg transition-colors text-center"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    회원가입
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

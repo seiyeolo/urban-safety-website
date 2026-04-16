@@ -1,203 +1,222 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { AlertTriangle, ShieldCheck, ChevronRight, ArrowRight } from 'lucide-react'
+import { CheckCircle, ChevronRight, ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: '민간자격증',
-  description: '대전경실련 도시안전디자인센터에서 운영하는 보이스피싱 예방지도사, 생활안전지도사 민간자격과정을 안내합니다.',
+  title: '보이스피싱 예방지도사 - 민간자격증',
+  description: '대전경실련 도시안전디자인센터의 보이스피싱 예방지도사 민간자격과정. 시민의 소중한 자산을 지키는 금융 안전 전문가를 양성합니다.',
 }
 
-const CERTS = [
+const STATS = [
   {
-    icon: AlertTriangle,
-    iconColor: 'text-navy-700',
-    iconBg: 'bg-navy-100',
-    accent: 'border-navy-200',
-    tag: '금융위원회 관련부처',
-    tagColor: 'text-navy-700 bg-navy-50',
-    title: '보이스피싱 예방지도사',
-    desc: '보이스피싱 범죄 유형과 최신 수법을 이해하고, 시민·고령층·청소년·소상공인 등 다양한 대상에게 맞춤형 예방교육과 홍보활동을 수행하는 실천형 민간자격',
-    href: '/certificates/voice-phishing',
-    duration: '4주 (총 20시간)',
-    cost: '총 300,000원',
-    target: '누구나',
+    label: '연간 총 피해액',
+    value: '7,744억',
+    suffix: '전년 대비 12% 증가',
+    type: 'error' as const,
   },
   {
-    icon: ShieldCheck,
-    iconColor: 'text-green-500',
-    iconBg: 'bg-green-500/10',
-    accent: 'border-green-200',
-    tag: '행정안전부 관련부처',
-    tagColor: 'text-green-700 bg-green-50',
-    title: '생활안전지도사',
-    desc: '가정·교통·재난 등 일상생활 전반의 안전 위험요인을 파악하고, 고령층·어린이 등 취약계층을 포함한 시민에게 맞춤형 생활안전교육을 수행하는 실천형 민간자격',
-    href: '/certificates/life-safety',
-    duration: '4주 (총 20시간)',
-    cost: '총 300,000원',
-    target: '누구나',
+    label: '평균 피해액',
+    value: '1,700만',
+    suffix: '1인당 평균 집계',
+    type: 'normal' as const,
+  },
+  {
+    label: '발생 건수',
+    value: '2.1만건',
+    suffix: '일 평균 58건 발생',
+    type: 'normal' as const,
   },
 ]
 
-const PROCESS_STEPS = [
-  { no: '01', title: '수강 신청', desc: '홈페이지 또는 전화를 통해 교육 신청' },
-  { no: '02', title: '수강료 납부', desc: '안내에 따라 수강료 결제 후 수강 확정' },
-  { no: '03', title: '온라인 교육 수강', desc: '녹화강의 수강 + 실시간 특강 참여 (진도율 80% 이상)' },
-  { no: '04', title: '자격검정 응시', desc: '필기평가(객관식) + 실무평가(과제 제출)' },
-  { no: '05', title: '합격 발표', desc: '필기·실무평가 각 60점 이상 합격' },
-  { no: '06', title: '자격증 발급', desc: '발급 신청 및 비용 납부 후 자격증 수령' },
+const EDUCATION_GOALS = [
+  '보이스피싱 최신 범죄 수법의 완벽한 이해',
+  '금융 사기 피해자 심리 분석 및 상담 기술 습득',
+  '지역 사회 안전망 구축을 위한 예방 교육 역량',
+  '디지털 금융 리터러시 교육 전문성 강화',
+  '법률적 대응 및 사후 구제 절차 안내 능력',
 ]
 
-export default function CertificatesPage() {
+const INFO_PILLS = [
+  { label: '교육 기간', value: '6주 과정' },
+  { label: '교육 방식', value: '온라인/오프라인' },
+  { label: '이수 기준', value: '출석 80% 이상' },
+  { label: '모집 대상', value: '제한 없음' },
+]
+
+const PRICE_TABLE = [
+  { label: '수강료', value: '220,000' },
+  { label: '심사료', value: '30,000' },
+  { label: '자격증 발급비', value: '50,000' },
+]
+
+const TOTAL_PRICE = PRICE_TABLE.reduce((sum, item) => sum + parseInt(item.value), 0)
+
+export default function VoicePhishingCertificatePage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">민간자격증</span>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-24 lg:py-32">
+        <div className="absolute inset-0 opacity-95"></div>
+        <div className="max-w-7xl mx-auto px-8 relative z-10">
+          <nav className="flex mb-8 gap-2 text-blue-300 text-sm font-medium">
+            <Link href="/certificates" className="hover:text-white">민간자격증</Link>
+            <ChevronRight size={16} className="self-center" />
+            <span className="text-white">보이스피싱 예방지도사</span>
           </nav>
-          <h1>민간자격증</h1>
-          <p>대전경실련 도시안전디자인센터에서 운영하는 민간자격과정</p>
-        </div>
-      </div>
 
-      {/* 법적 고지 */}
-      <div className="bg-amber-50 border-b border-amber-200">
-        <div className="container-main py-4">
-          <p className="text-sm text-amber-800 text-center">
-            ※ 본 센터에서 운영하는 자격과정은 <strong>자격기본법에 따라 등록된 민간자격</strong>이며, 국가자격 또는 공인자격이 아닙니다.
-            자격 취득에 따른 취업·창업이 보장되지 않습니다.
-          </p>
-        </div>
-      </div>
-
-      {/* 자격증 목록 */}
-      <section className="section-padding bg-white">
-        <div className="container-main">
-          <div className="section-header">
-            <span className="section-tag">운영 자격과정</span>
-            <h2 className="section-title">2가지 민간자격과정</h2>
-            <p className="section-desc">
-              범죄예방과 생활안전 분야의 실천형 지도자를 양성하는 전문 자격과정입니다.
-            </p>
+          <div className="flex flex-wrap gap-2 mb-6">
+            <span className="bg-white/10 text-white px-3 py-1 rounded-lg text-sm backdrop-blur-sm border border-white/20">민간자격</span>
+            <span className="bg-white/10 text-white px-3 py-1 rounded-lg text-sm backdrop-blur-sm border border-white/20">금융피해 전문분야</span>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {CERTS.map(({ icon: Icon, iconColor, iconBg, accent, tag, tagColor, title, desc, href, duration, cost, target }) => (
-              <div key={href} className={`bg-white border-2 ${accent} rounded-2xl overflow-hidden hover:shadow-lg transition-shadow`}>
-                <div className="p-8">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className={`w-14 h-14 ${iconBg} rounded-2xl flex items-center justify-center shrink-0`}>
-                      <Icon size={28} className={iconColor} />
+          <h1 className="text-5xl lg:text-6xl font-black text-white mb-6 leading-tight max-w-3xl">보이스피싱 예방지도사</h1>
+          <p className="text-xl lg:text-2xl text-blue-300 mb-12 max-w-2xl font-light">
+            시민의 소중한 자산을 지키는 <br className="hidden md:block"/>금융 안전 전문가 양성 과정
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <button className="bg-[#2e7d32] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#217128] transition-all shadow-xl">
+              교육 신청하기
+            </button>
+            <button className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm">
+              자격 문의
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Area */}
+      <div className="max-w-7xl mx-auto px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+        {/* Left: Main Content (8 cols) */}
+        <div className="lg:col-span-8 space-y-24">
+          {/* Info Pills */}
+          <section>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+              {INFO_PILLS.map(({ label, value }) => (
+                <div key={label} className="bg-[#f5f3f3] p-6 rounded-xl text-center">
+                  <span className="block text-sm text-gray-600 mb-2">{label}</span>
+                  <span className="font-bold text-[#002444]">{value}</span>
+                </div>
+              ))}
+            </div>
+
+            <h2 className="text-3xl font-bold text-[#002444] mb-8">보이스피싱 피해 현황</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {STATS.map(({ label, value, suffix, type }) => (
+                <div key={label} className="bg-white p-8 rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-gray-100">
+                  <p className="text-gray-600 text-sm mb-2">{label}</p>
+                  <p className="text-4xl font-black text-[#002444]">{value}</p>
+                  <p className={`text-sm mt-2 font-medium ${type === 'error' ? 'text-red-600' : 'text-gray-600'}`}>
+                    {suffix}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Education Goals */}
+          <section>
+            <h2 className="text-3xl font-bold text-[#002444] mb-8">교육 목표</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {EDUCATION_GOALS.map((goal, index) => (
+                <div key={index} className="flex items-start gap-4 p-6 bg-white rounded-xl border-l-4 border-[#2e7d32] shadow-sm">
+                  <CheckCircle size={24} className="text-[#2e7d32] mt-1 flex-shrink-0" />
+                  <span className="font-medium text-gray-800 leading-tight">{goal}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section>
+            <h2 className="text-3xl font-bold text-[#002444] mb-8">자주 묻는 질문</h2>
+            <div className="space-y-4">
+              {[
+                {
+                  q: '비전공자도 수강할 수 있나요?',
+                  a: '네, 가능합니다. 보이스피싱 예방지도사 과정은 전공이나 학력에 제한이 없으며, 시민 누구나 참여할 수 있도록 설계되었습니다. 기초부터 체계적으로 교육하므로 관련 경험이 없어도 충분히 따라올 수 있습니다.'
+                },
+                {
+                  q: '온라인 교육만으로도 자격증 취득이 가능한가요?',
+                  a: '온라인 교육과 실시간 특강 참여로 자격증 취득이 가능합니다. 6주간의 체계적인 온라인 강의와 주차별 과제 수행, 최종 평가를 통해 자격증을 받을 수 있으며, 필요시 오프라인 보충 교육도 제공됩니다.'
+                },
+                {
+                  q: '자격증 활용도는 어떻게 되나요?',
+                  a: '지역 주민센터, 경로당, 사회복지관 등에서 보이스피싱 예방 교육 강사로 활동할 수 있으며, 금융기관이나 보험회사의 고객 상담 및 교육 업무에도 활용 가능합니다. 또한 개인 컨설팅이나 교육 사업도 가능합니다.'
+                },
+              ].map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl p-6 border border-gray-200">
+                  <h3 className="font-bold text-[#002444] mb-3">Q. {faq.q}</h3>
+                  <p className="text-gray-700 leading-relaxed">A. {faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* Right: Sticky Sidebar (4 cols) */}
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-24 space-y-6">
+            {/* Price Card */}
+            <div className="bg-white rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-gray-100 overflow-hidden">
+              <div className="bg-[#e4e2e2] px-6 py-4">
+                <h3 className="font-bold text-[#002444]">수강료 및 발급비</h3>
+              </div>
+              <div className="p-6">
+                <div className="space-y-3 mb-6">
+                  {PRICE_TABLE.map(({ label, value }) => (
+                    <div key={label} className="flex justify-between items-center">
+                      <span className="text-gray-700">{label}</span>
+                      <span className="font-medium">{parseInt(value).toLocaleString()}원</span>
                     </div>
-                    <div>
-                      <span className={`text-xs font-semibold px-2 py-1 rounded-full ${tagColor}`}>{tag}</span>
-                      <h3 className="text-xl font-bold text-[#0f2d5e] mt-2">{title}</h3>
+                  ))}
+                  <div className="border-t pt-3 mt-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-[#002444]">총액</span>
+                      <span className="font-bold text-[#002444] text-xl">{TOTAL_PRICE.toLocaleString()}원</span>
                     </div>
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6">{desc}</p>
-                  <div className="grid grid-cols-3 gap-3 mb-6 text-sm">
-                    {[
-                      { label: '교육기간', value: duration },
-                      { label: '취득비용', value: cost },
-                      { label: '교육대상', value: target },
-                    ].map(({ label, value }) => (
-                      <div key={label} className="bg-gray-50 rounded-xl p-3 text-center">
-                        <p className="text-xs text-gray-400 mb-1">{label}</p>
-                        <p className="font-semibold text-gray-800 text-xs">{value}</p>
-                      </div>
-                    ))}
+                </div>
+
+                <button className="w-full bg-[#2e7d32] text-white py-4 px-6 rounded-xl font-bold text-lg hover:bg-[#217128] transition-colors mb-6">
+                  지금 교육 신청하기
+                </button>
+
+                {/* Additional Info */}
+                <div className="space-y-4 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">검정방법</span>
+                    <span className="text-gray-800">필기 + 실무평가</span>
                   </div>
-                  <Link href={href} className="btn-primary w-full justify-center">
-                    자세히 보기 <ArrowRight size={16} />
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">합격기준</span>
+                    <span className="text-gray-800">각 60점 이상</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">자격관리기관</span>
+                    <span className="text-gray-800">대전경실련</span>
+                  </div>
+                </div>
+
+                <div className="bg-[#ffdbcb] border border-[#ff6f00]/20 rounded-lg p-4 mt-6">
+                  <Link href="/legal/refund" className="text-[#793100] font-medium hover:underline">
+                    환불규정 확인하기 →
                   </Link>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* 취득 절차 */}
-      <section id="process" className="section-padding bg-gray-50">
-        <div className="container-main">
-          <div className="section-header">
-            <span className="section-tag">취득 절차</span>
-            <h2 className="section-title">자격취득 6단계 프로세스</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {PROCESS_STEPS.map(({ no, title, desc }) => (
-              <div key={no} className="bg-white rounded-2xl p-6 border border-gray-200">
-                <div className="w-10 h-10 bg-[#0f2d5e] text-white rounded-xl flex items-center justify-center font-bold text-sm mb-4">
-                  {no}
+                <div className="mt-6 space-y-2">
+                  <a href="tel:042-254-8060" className="block text-center bg-gray-100 text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-200 transition-colors">
+                    042-254-8060 전화 문의
+                  </a>
+                  <Link href="/contact/education" className="block text-center bg-white border border-gray-300 text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 transition-colors">
+                    온라인 문의하기
+                  </Link>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 비용 비교표 */}
-      <section className="section-padding bg-white">
-        <div className="container-main">
-          <div className="section-header">
-            <span className="section-tag">비용 안내</span>
-            <h2 className="section-title">수강료 및 발급비</h2>
-            <p className="section-desc">자격취득에 필요한 모든 비용을 투명하게 공개합니다.</p>
-          </div>
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-[#0f2d5e] text-white">
-                    <th className="px-6 py-4 text-left">항목</th>
-                    <th className="px-6 py-4 text-right">금액</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { label: '수강료', value: '220,000원' },
-                    { label: '검정료 (응시료)', value: '30,000원' },
-                    { label: '자격증 발급비', value: '50,000원' },
-                    { label: '재발급비', value: '30,000원' },
-                  ].map(({ label, value }, i) => (
-                    <tr key={label} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                      <td className="px-6 py-4 text-gray-700">{label}</td>
-                      <td className="px-6 py-4 text-right font-medium text-gray-800">{value}</td>
-                    </tr>
-                  ))}
-                  <tr className="bg-blue-50 border-t-2 border-[#0f2d5e]">
-                    <td className="px-6 py-4 font-bold text-[#0f2d5e]">총 취득비용</td>
-                    <td className="px-6 py-4 text-right font-bold text-[#0f2d5e] text-lg">300,000원</td>
-                  </tr>
-                </tbody>
-              </table>
-              <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                <p className="text-xs text-gray-500">※ 두 자격과정 모두 동일한 비용으로 운영됩니다. 결제 전 환불규정을 반드시 확인하시기 바랍니다.</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section-padding bg-[#0f2d5e]">
-        <div className="container-main text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">자격증 취득에 궁금한 점이 있으신가요?</h2>
-          <p className="text-blue-200 mb-8">전화 또는 온라인 문의를 통해 자세한 안내를 받으실 수 있습니다.</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="tel:042-254-8060" className="btn-white">
-              042-254-8060 전화 문의
-            </a>
-            <Link href="/contact/education" className="btn-primary border border-white/30">
-              온라인 문의하기 <ChevronRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      </div>
     </>
   )
 }
