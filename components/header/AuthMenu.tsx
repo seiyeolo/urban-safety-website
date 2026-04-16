@@ -22,7 +22,7 @@ export default function AuthMenu() {
   }
 
   return (
-    <div className="hidden lg:block">
+    <div>
       {user ? (
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600">

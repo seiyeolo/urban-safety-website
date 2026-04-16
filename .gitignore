@@ -49,3 +49,5 @@ skills-lock.json
 # local screenshots (Playwright/Puppeteer)
 temporary screenshots/
 .playwright-mcp/
+/test-results/
+/playwright-report/

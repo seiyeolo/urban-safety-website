@@ -36,51 +36,53 @@ export default function HeaderOptimized() {
 
       {/* 메인 헤더 */}
       <div className="bg-white border-b border-gray-200">
-        <div className="container-main flex items-center justify-between h-16">
-          {/* 로고 */}
-          <Link href="/" className="flex items-center gap-4 group flex-shrink-0">
-            <Image
-              src="/brand/logo.svg"
-              alt="도시안전디자인센터 로고"
-              width={40}
-              height={56}
-              className="h-14 w-auto transition-opacity group-hover:opacity-85"
-              priority
-            />
-            <div className="leading-tight min-w-0">
-              <div className="text-sm text-gray-500 font-medium">대전경실련</div>
-              <div className="text-base sm:text-lg font-bold text-navy-900">
-                도시안전디자인센터
+        <div className="container-main h-16">
+          <div className="flex items-center justify-between h-full">
+            {/* 로고 */}
+            <Link href="/" className="flex items-center gap-4 group flex-shrink-0">
+              <Image
+                src="/brand/logo.svg"
+                alt="도시안전디자인센터 로고"
+                width={40}
+                height={56}
+                className="h-14 w-auto transition-opacity group-hover:opacity-85"
+                priority
+              />
+              <div className="leading-tight min-w-0">
+                <div className="text-sm text-gray-500 font-medium">대전경실련</div>
+                <div className="text-base sm:text-lg font-bold text-navy-900">
+                  도시안전디자인센터
+                </div>
               </div>
+            </Link>
+
+            {/* PC 전용 - 네비게이션과 버튼들 */}
+            <div className="hidden lg:flex items-center gap-4">
+              <MainNav
+                activeMenu={activeMenu}
+                onMenuEnter={setActiveMenu}
+                onMenuLeave={() => setActiveMenu(null)}
+              />
+
+              <Link
+                href="/certificates/voice-phishing"
+                className="inline-flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-5 py-2.5 rounded-md whitespace-nowrap transition-colors shadow-sm"
+              >
+                자격증 신청
+              </Link>
+
+              <AuthMenu />
             </div>
-          </Link>
 
-          {/* PC 내비게이션 */}
-          <MainNav
-            activeMenu={activeMenu}
-            onMenuEnter={setActiveMenu}
-            onMenuLeave={() => setActiveMenu(null)}
-          />
-
-          {/* 자격증 신청 버튼 */}
-          <Link
-            href="/certificates/voice-phishing"
-            className="ml-4 inline-flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-5 py-2.5 rounded-md whitespace-nowrap transition-colors shadow-sm hidden lg:flex"
-          >
-            자격증 신청
-          </Link>
-
-          {/* 인증 메뉴 */}
-          <AuthMenu />
-
-          {/* 모바일 메뉴 버튼 */}
-          <button
-            className="lg:hidden p-2 text-gray-600 hover:text-navy-900"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="메뉴 열기"
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* 모바일 전용 - 햄버거 버튼 */}
+            <button
+              className="lg:hidden p-2 text-gray-600 hover:text-navy-900"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="메뉴 열기"
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 

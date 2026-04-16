@@ -10,7 +10,7 @@ interface MainNavProps {
 
 export default function MainNav({ activeMenu, onMenuEnter, onMenuLeave }: MainNavProps) {
   return (
-    <nav className="hidden lg:flex items-center gap-2" role="navigation">
+    <nav className="flex items-center gap-2" role="navigation">
       {NAV_ITEMS.map((item) => {
         const isActive = activeMenu === item.href
         return (
