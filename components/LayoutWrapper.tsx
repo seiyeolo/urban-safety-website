@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import Header from './Header'
+import HeaderOptimized from './HeaderOptimized'
 import Footer from './Footer'
 import { AuthProvider } from '@/lib/auth/AuthContext'
 
@@ -15,7 +15,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
         <>{children}</>
       ) : (
         <>
-          <Header />
+          <HeaderOptimized />
           <main className="flex-1">{children}</main>
           <Footer />
         </>
