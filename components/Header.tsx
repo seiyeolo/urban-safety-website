@@ -130,7 +130,7 @@ export default function Header() {
       <div className="bg-white border-b border-gray-200">
         <div className="container-main flex items-center justify-between h-16">
           {/* 로고 — 박스 없이 자연 비율 표시 (2026-04-16 박스 제거) */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
             <Image
               src="/brand/logo.svg"
               alt="도시안전디자인센터 로고"
@@ -139,9 +139,9 @@ export default function Header() {
               className="h-11 w-auto transition-opacity group-hover:opacity-85"
               priority
             />
-            <div className="leading-tight">
+            <div className="leading-tight min-w-0">
               <div className="text-xs text-gray-500 font-medium">대전경실련</div>
-              <div className="text-base font-bold text-navy-900 whitespace-nowrap">
+              <div className="text-sm sm:text-base font-bold text-navy-900">
                 도시안전디자인센터
               </div>
             </div>
@@ -160,10 +160,10 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-md border whitespace-nowrap transition-colors ${
+                    className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded border-2 whitespace-nowrap transition-all duration-200 ${
                       isActive
-                        ? 'border-navy-900 bg-navy-50 text-navy-900'
-                        : 'border-gray-200 text-gray-700 hover:border-navy-900 hover:bg-navy-50 hover:text-navy-900'
+                        ? 'border-navy-900 bg-navy-50 text-navy-900 shadow-sm'
+                        : 'border-gray-300 text-gray-700 hover:border-navy-900 hover:bg-navy-50 hover:text-navy-900 hover:shadow-sm'
                     }`}
                   >
                     {item.label}
