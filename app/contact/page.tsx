@@ -70,16 +70,17 @@ export default function LocationPage() {
       </section>
 
       {/* Address Action Bar */}
-      <section className="px-8 -mt-12 relative z-20">
-        <div className="max-w-7xl mx-auto bg-white shadow-[0_20px_40px_rgba(27,28,28,0.06)] rounded-xl p-10 flex flex-col lg:flex-row items-center gap-10">
-          <div className="flex items-start gap-6 flex-1">
-            <div className="bg-[#a0f399] p-4 rounded-full">
-              <MapPin size={32} className="text-[#217128]" />
+      <section className="px-4 sm:px-8 -mt-12 relative z-20">
+        <div className="max-w-7xl mx-auto bg-white shadow-[0_20px_40px_rgba(27,28,28,0.06)] rounded-xl p-6 sm:p-10 flex flex-col lg:flex-row items-center gap-6 sm:gap-10">
+          <div className="flex items-start gap-4 sm:gap-6 flex-1">
+            <div className="bg-[#a0f399] p-3 sm:p-4 rounded-full shrink-0">
+              <MapPin size={24} className="text-[#217128] sm:w-8 sm:h-8" />
             </div>
             <div>
               <h2 className="text-gray-600 text-sm font-bold uppercase tracking-wider mb-2">센터 위치 주소</h2>
-              <p className="text-[24px] font-bold text-[#002444] leading-snug">
-                대전광역시 서구 용문동 255-4 서우아파트 상가동 201호
+              <p className="text-base sm:text-xl lg:text-[24px] font-bold text-[#002444] leading-snug">
+                대전광역시 서구 용문동 255-4<br className="sm:hidden" />
+                서우아파트 상가동 201호
               </p>
             </div>
           </div>
