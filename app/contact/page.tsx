@@ -104,8 +104,8 @@ export default function LocationPage() {
       </section>
 
       {/* Map Embed Section */}
-      <section className="px-8 py-16">
-        <div className="max-w-7xl mx-auto bg-[#f5f3f3] rounded-xl overflow-hidden relative border border-gray-200 h-[500px]">
+      <section className="px-4 sm:px-8 py-16">
+        <div className="max-w-7xl mx-auto bg-[#f5f3f3] rounded-xl overflow-hidden relative border border-gray-200 h-[280px] sm:h-[400px] lg:h-[500px]">
           {/* Map Placeholder */}
           <div className="w-full h-full bg-slate-200 flex items-center justify-center relative">
             <div className="text-center text-gray-500">
@@ -129,16 +129,16 @@ export default function LocationPage() {
       </section>
 
       {/* Transit Cards */}
-      <section className="px-8 py-12 bg-[#f5f3f3]">
+      <section className="px-4 sm:px-8 py-12 bg-[#f5f3f3]">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+          <h3 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
             <span className="w-8 h-1 bg-[#2e7d32] block"></span>
             대중교통 이용 안내
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {TRANSIT_INFO.map(({ icon: Icon, title, iconBg, iconColor, stopName, distance, routes, link, parkingInfo, description }) => (
-              <div key={title} className="bg-white p-10 rounded-xl shadow-sm border border-gray-100 flex flex-col">
+              <div key={title} className="bg-white p-5 sm:p-8 lg:p-10 rounded-xl shadow-sm border border-gray-100 flex flex-col">
                 <div className="flex items-center gap-4 mb-8">
                   <div className={`w-14 h-14 ${iconBg} rounded-xl flex items-center justify-center`}>
                     <Icon size={28} className={iconColor} />
@@ -192,7 +192,7 @@ export default function LocationPage() {
       </section>
 
       {/* Nearby Landmarks */}
-      <section className="px-8 py-12">
+      <section className="px-4 sm:px-8 py-12">
         <div className="max-w-7xl mx-auto text-center">
           <h3 className="text-[24px] font-bold text-[#002444] mb-6">주변 랜드마크</h3>
           <div className="flex flex-wrap justify-center gap-3">
@@ -206,7 +206,7 @@ export default function LocationPage() {
       </section>
 
       {/* Visit Tips */}
-      <section className="px-8 py-12 bg-[#f5f3f3]">
+      <section className="px-4 sm:px-8 py-12 bg-[#f5f3f3]">
         <div className="max-w-7xl mx-auto">
           <div className="bg-[#ffdbcb] border border-[#ff6f00]/20 rounded-xl p-8">
             <h3 className="text-[24px] font-bold text-[#793100] mb-6 flex items-center gap-3">
@@ -226,9 +226,9 @@ export default function LocationPage() {
       </section>
 
       {/* Book a Visit CTA */}
-      <section className="px-8 py-16 text-center">
+      <section className="px-4 sm:px-8 py-16 text-center">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-[32px] font-bold text-[#002444] mb-6">방문 상담을 원하시나요?</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-6">방문 상담을 원하시나요?</h2>
           <p className="text-gray-600 mb-8 text-lg">편안한 상담을 위해 미리 예약해주시면 더욱 좋습니다.</p>
 
           <div className="flex flex-wrap justify-center gap-4">

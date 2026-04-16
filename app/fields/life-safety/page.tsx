@@ -138,11 +138,11 @@ export default function LifeSafetyPage() {
       </section>
 
       {/* Main Content */}
-      <section className="px-8 py-16">
+      <section className="px-4 sm:px-8 py-16">
         <div className="max-w-7xl mx-auto">
           {/* 생활안전 영역 */}
           <div className="mb-16">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-4 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               주요 생활안전 분야
             </h2>
@@ -173,14 +173,14 @@ export default function LifeSafetyPage() {
 
           {/* 교육 대상별 프로그램 */}
           <div className="mb-16">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               대상별 맞춤 교육
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {EDUCATION_TARGETS.map(({ icon: Icon, title, description, programs }) => (
-                <div key={title} className="bg-white p-10 rounded-xl shadow-sm border border-gray-100">
+                <div key={title} className="bg-white p-5 sm:p-8 lg:p-10 rounded-xl shadow-sm border border-gray-100">
                   <div className="w-16 h-16 bg-[#2e7d32]/10 rounded-xl flex items-center justify-center mb-6">
                     <Icon size={32} className="text-[#2e7d32]" />
                   </div>
@@ -203,7 +203,7 @@ export default function LifeSafetyPage() {
 
           {/* 안전 통계 */}
           <div className="mb-16 bg-[#f5f3f3] rounded-xl p-12">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               생활안전 교육 효과
             </h2>
@@ -227,7 +227,7 @@ export default function LifeSafetyPage() {
 
           {/* 실용 안전 팁 */}
           <div>
-            <h2 className="text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               실용 안전 가이드
             </h2>
@@ -258,9 +258,9 @@ export default function LifeSafetyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
+      <section className="px-4 sm:px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-[32px] font-bold text-white mb-6">생활안전 전문가가 되어보세요</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-white mb-6">생활안전 전문가가 되어보세요</h2>
           <p className="text-green-100 mb-8 text-lg leading-relaxed">
             체계적인 교육을 통해 나와 가족, 지역사회의 안전을 지키는 전문가가 되실 수 있습니다.
           </p>

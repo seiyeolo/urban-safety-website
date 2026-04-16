@@ -102,7 +102,7 @@ export default function EducationHubPage() {
       {/* Education Modes Cards */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
         {EDUCATION_MODES.map(({ icon: Icon, title, features, bgStyle, iconColor, buttonStyle }, index) => (
-          <div key={index} className={`group rounded-xl p-10 transition-all duration-300 relative overflow-hidden ${bgStyle}`}>
+          <div key={index} className={`group rounded-xl p-5 sm:p-8 lg:p-10 transition-all duration-300 relative overflow-hidden ${bgStyle}`}>
             <div className="absolute top-0 right-0 w-24 h-24 bg-black/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-500"></div>
             <Icon size={48} className={`${iconColor} mb-8 block`} />
             <h3 className="text-2xl font-bold mb-6">{title}</h3>
@@ -123,7 +123,7 @@ export default function EducationHubPage() {
 
       {/* Schedule Table */}
       <section className="mb-24">
-        <h2 className="text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
         <div className="bg-white rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -164,7 +164,7 @@ export default function EducationHubPage() {
 
       {/* Application Form */}
       <section className="mb-24">
-        <h2 className="text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">수강 신청 정보 입력</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">수강 신청 정보 입력</h2>
         <div className="bg-white rounded-xl p-8 shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -227,7 +227,7 @@ export default function EducationHubPage() {
 
       {/* FAQ */}
       <section className="mb-24">
-        <h2 className="text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">자주 묻는 질문</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">자주 묻는 질문</h2>
         <div className="space-y-4">
           {FAQ_DATA.map((faq, index) => (
             <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
@@ -240,7 +240,7 @@ export default function EducationHubPage() {
 
       {/* Inquiry Fallback */}
       <section className="text-center">
-        <h2 className="text-[32px] font-bold text-[#002444] mb-6">결정이 어려우세요?</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-6">결정이 어려우세요?</h2>
         <p className="text-gray-600 mb-8">전문 상담을 통해 최적의 교육과정을 안내해드립니다.</p>
         <div className="flex flex-wrap justify-center gap-4">
           <a href="tel:042-254-8060" className="bg-[#002444] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#1a3a5c] transition-colors flex items-center gap-2">

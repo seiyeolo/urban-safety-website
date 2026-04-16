@@ -78,11 +78,11 @@ export default function FieldsPage() {
       </section>
 
       {/* Main Content */}
-      <section className="px-8 py-16">
+      <section className="px-4 sm:px-8 py-16">
         <div className="max-w-7xl mx-auto">
           {/* 소개 */}
           <div className="text-center mb-16">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-6">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-6">
               35년 경실련 공신력으로 만드는 안전한 도시
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -156,7 +156,7 @@ export default function FieldsPage() {
 
           {/* 접근 방식 */}
           <div className="bg-[#f5f3f3] rounded-xl p-12">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-4 text-center">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-4 text-center">
               우리의 접근 방식
             </h2>
             <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
@@ -180,9 +180,9 @@ export default function FieldsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
+      <section className="px-4 sm:px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-[32px] font-bold text-white mb-6">지역사회 안전 리더가 되어보세요</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-white mb-6">지역사회 안전 리더가 되어보세요</h2>
           <p className="text-green-100 mb-8 text-lg leading-relaxed">
             체계적인 교육과정을 통해 범죄예방과 생활안전 전문가로 성장하실 수 있습니다.
           </p>

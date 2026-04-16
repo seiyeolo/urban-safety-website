@@ -94,11 +94,11 @@ export default function CrimePreventionPage() {
       </section>
 
       {/* Main Content */}
-      <section className="px-8 py-16">
+      <section className="px-4 sm:px-8 py-16">
         <div className="max-w-7xl mx-auto">
           {/* 범죄예방 영역 */}
           <div className="mb-16">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-4 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               주요 범죄예방 영역
             </h2>
@@ -129,14 +129,14 @@ export default function CrimePreventionPage() {
 
           {/* 교육 프로그램 */}
           <div className="mb-16">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               범죄예방 교육 프로그램
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {PROGRAMS.map((program) => (
-                <div key={program.title} className="bg-white p-10 rounded-xl shadow-sm border border-gray-100">
+                <div key={program.title} className="bg-white p-5 sm:p-8 lg:p-10 rounded-xl shadow-sm border border-gray-100">
                   <div className="flex items-start justify-between mb-6">
                     <div>
                       <span className="inline-block px-3 py-1 bg-[#2e7d32]/10 text-[#2e7d32] text-xs font-bold rounded-full mb-3">
@@ -175,7 +175,7 @@ export default function CrimePreventionPage() {
 
           {/* 성공 사례 */}
           <div className="bg-[#f5f3f3] rounded-xl p-12">
-            <h2 className="text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               범죄예방 성공 사례
             </h2>
@@ -211,9 +211,9 @@ export default function CrimePreventionPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
+      <section className="px-4 sm:px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-[32px] font-bold text-white mb-6">범죄예방 전문가가 되어보세요</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-white mb-6">범죄예방 전문가가 되어보세요</h2>
           <p className="text-green-100 mb-8 text-lg leading-relaxed">
             체계적인 교육과정을 통해 지역사회 안전을 지키는 전문가로 성장하실 수 있습니다.
           </p>
