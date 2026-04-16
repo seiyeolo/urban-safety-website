@@ -75,7 +75,7 @@ export default function SignupPage() {
         // 회원가입 성공 - 이메일 확인 안내 페이지로 이동하거나 대시보드로 이동
         router.push('/auth/verify-email')
       }
-    } catch (err) {
+    } catch {
       setError('회원가입 중 오류가 발생했습니다.')
     } finally {
       setLoading(false)
@@ -92,7 +92,7 @@ export default function SignupPage() {
         setError(error.message)
       }
       // OAuth 로그인은 리다이렉트되므로 별도 처리 불필요
-    } catch (err) {
+    } catch {
       setError('구글 회원가입 중 오류가 발생했습니다.')
     } finally {
       setLoading(false)
@@ -109,7 +109,7 @@ export default function SignupPage() {
         setError(error.message)
       }
       // OAuth 로그인은 리다이렉트되므로 별도 처리 불필요
-    } catch (err) {
+    } catch {
       setError('카카오 회원가입 중 오류가 발생했습니다.')
     } finally {
       setLoading(false)

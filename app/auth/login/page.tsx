@@ -28,7 +28,7 @@ export default function LoginPage() {
       } else {
         router.push('/dashboard') // 로그인 후 리다이렉트
       }
-    } catch (err) {
+    } catch {
       setError('로그인 중 오류가 발생했습니다.')
     } finally {
       setLoading(false)
@@ -45,7 +45,7 @@ export default function LoginPage() {
         setError(error.message)
       }
       // OAuth 로그인은 리다이렉트되므로 별도 처리 불필요
-    } catch (err) {
+    } catch {
       setError('구글 로그인 중 오류가 발생했습니다.')
     } finally {
       setLoading(false)
@@ -62,7 +62,7 @@ export default function LoginPage() {
         setError(error.message)
       }
       // OAuth 로그인은 리다이렉트되므로 별도 처리 불필요
-    } catch (err) {
+    } catch {
       setError('카카오 로그인 중 오류가 발생했습니다.')
     } finally {
       setLoading(false)

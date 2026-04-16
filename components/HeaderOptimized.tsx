@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react'
 import TopBar from './header/TopBar'
 import MainNav from './header/MainNav'
 import AuthMenu from './header/AuthMenu'
+import { AuthProvider } from '@/lib/auth/AuthContext'
 
 // 동적 import로 코드 스플리팅 적용
 const MobileMenu = lazy(() => import('./header/MobileMenu'))
@@ -71,7 +72,7 @@ export default function HeaderOptimized() {
                 자격증 신청
               </Link>
 
-              <AuthMenu />
+              <AuthProvider><AuthMenu /></AuthProvider>
             </div>
 
             {/* 모바일 전용 - 햄버거 버튼 */}

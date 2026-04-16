@@ -35,7 +35,7 @@ export default function ForgotPasswordPage() {
         setLoading(false)
       }, 2000)
 
-    } catch (err) {
+    } catch {
       setError('비밀번호 재설정 요청 중 오류가 발생했습니다.')
       setLoading(false)
     }
