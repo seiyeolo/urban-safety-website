@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Shield, Heart, Users, Target, ArrowRight, CheckCircle } from 'lucide-react'
+import { Shield, Heart, ArrowRight, CheckCircle, HandHeart, GraduationCap, Wrench } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '핵심분야 - 대전경실련 도시안전디자인센터',
@@ -48,17 +48,17 @@ const CORE_FIELDS = [
 
 const APPROACH = [
   {
-    icon: Users,
+    icon: HandHeart,
     title: '시민 참여',
     description: '전문가만이 아닌 모든 시민이 참여하는 안전 활동'
   },
   {
-    icon: Target,
+    icon: GraduationCap,
     title: '맞춤 교육',
     description: '연령과 상황에 맞는 차별화된 교육 프로그램'
   },
   {
-    icon: CheckCircle,
+    icon: Wrench,
     title: '실용 중심',
     description: '이론보다는 실제 현장에서 활용 가능한 실무 교육'
   }
