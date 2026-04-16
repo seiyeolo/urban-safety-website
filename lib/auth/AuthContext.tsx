@@ -1,16 +1,32 @@
 'use client'
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { User, Session } from '@supabase/supabase-js'
+import { User, Session, AuthError } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase/client'
+
+interface UserMetadata {
+  name?: string
+  avatar_url?: string
+  [key: string]: any
+}
+
+interface AuthResult {
+  data: { user: User | null; session: Session | null } | null
+  error: AuthError | null
+}
+
+interface OAuthResult {
+  data: { provider: string; url: string } | null
+  error: AuthError | null
+}
 
 interface AuthContextType {
   user: User | null
   session: Session | null
-  signIn: (email: string, password: string) => Promise<any>
-  signUp: (email: string, password: string, metadata?: any) => Promise<any>
-  signInWithGoogle: () => Promise<any>
-  signInWithKakao: () => Promise<any>
+  signIn: (email: string, password: string) => Promise<AuthResult>
+  signUp: (email: string, password: string, metadata?: UserMetadata) => Promise<AuthResult>
+  signInWithGoogle: () => Promise<OAuthResult>
+  signInWithKakao: () => Promise<OAuthResult>
   signOut: () => Promise<void>
   loading: boolean
 }
@@ -45,7 +61,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     getInitialSession()
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (_event, session) => {
         setSession(session)
         setUser(session?.user ?? null)
         setLoading(false)
@@ -55,43 +71,63 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return () => subscription.unsubscribe()
   }, [])
 
-  const signIn = async (email: string, password: string) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
+  const signIn = async (email: string, password: string): Promise<AuthResult> => {
+    const result = await supabase.auth.signInWithPassword({
       email,
       password,
     })
-    return { data, error }
+    return {
+      data: result.data ? { user: result.data.user, session: result.data.session } : null,
+      error: result.error
+    }
   }
 
-  const signUp = async (email: string, password: string, metadata?: any) => {
-    const { data, error } = await supabase.auth.signUp({
+  const signUp = async (email: string, password: string, metadata?: UserMetadata): Promise<AuthResult> => {
+    const result = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: metadata,
       },
     })
-    return { data, error }
+    return {
+      data: result.data ? { user: result.data.user, session: result.data.session } : null,
+      error: result.error
+    }
   }
 
-  const signInWithGoogle = async () => {
+  // 동적 리다이렉트 URL 생성 (하드코딩 해결)
+  const getRedirectUrl = (): string => {
+    if (typeof window === 'undefined') {
+      return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    }
+    return `${window.location.origin}/dashboard`
+  }
+
+  const signInWithGoogle = async (): Promise<OAuthResult> => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/dashboard`
+        redirectTo: getRedirectUrl()
       }
     })
-    return { data, error }
+    return {
+      data: data ? { provider: data.provider, url: data.url || '' } : null,
+      error
+    }
   }
 
-  const signInWithKakao = async () => {
+  const signInWithKakao = async (): Promise<OAuthResult> => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'kakao',
       options: {
-        redirectTo: `${window.location.origin}/dashboard`
+        redirectTo: getRedirectUrl()
       }
     })
-    return { data, error }
+    return {
+      data: data ? { provider: data.provider, url: data.url || '' } : null,
+      error
+    }
   }
 
   const signOut = async () => {
