@@ -13,6 +13,8 @@ import type {
 
 const DATA_DIR = path.join(process.cwd(), 'data')
 const DATA_FILE = path.join(DATA_DIR, 'site-content.json')
+// PII(문의자 개인정보)는 공개 콘텐츠와 분리된 파일에 저장 — gitignore 대상
+const CONTACTS_FILE = path.join(DATA_DIR, 'contacts.json')
 
 const DEFAULT_CONTENT: ContentStore = {
   notices: [
@@ -52,22 +54,46 @@ async function ensureDataFile() {
   }
 }
 
+async function readContacts(): Promise<ContactItem[]> {
+  try {
+    const raw = await readFile(CONTACTS_FILE, 'utf8')
+    const parsed = JSON.parse(raw) as { contacts?: ContactItem[] } | ContactItem[]
+    if (Array.isArray(parsed)) return parsed
+    return parsed.contacts ?? []
+  } catch {
+    return []
+  }
+}
+
+async function writeContacts(contacts: ContactItem[]) {
+  await mkdir(DATA_DIR, { recursive: true })
+  await writeFile(CONTACTS_FILE, JSON.stringify({ contacts }, null, 2), 'utf8')
+}
+
 export async function getContentStore(): Promise<ContentStore> {
   await ensureDataFile()
   const raw = await readFile(DATA_FILE, 'utf8')
   const parsed = JSON.parse(raw) as Partial<ContentStore>
 
+  // site-content.json에 legacy contacts가 남아있으면 별도 파일로 이관
+  const legacyContacts = parsed.contacts && parsed.contacts.length > 0 ? parsed.contacts : []
+  const fileContacts = await readContacts()
+  const contacts = fileContacts.length > 0 ? fileContacts : legacyContacts
+
   return {
     notices: parsed.notices ?? DEFAULT_CONTENT.notices,
     schedules: parsed.schedules ?? DEFAULT_CONTENT.schedules,
     downloads: parsed.downloads ?? DEFAULT_CONTENT.downloads,
-    contacts: parsed.contacts ?? DEFAULT_CONTENT.contacts,
+    contacts,
   }
 }
 
 async function writeContentStore(store: ContentStore) {
   await mkdir(DATA_DIR, { recursive: true })
-  await writeFile(DATA_FILE, JSON.stringify(store, null, 2), 'utf8')
+  // contacts는 별도 파일로 분리 저장 (PII 보호)
+  const { contacts, ...publicContent } = store
+  await writeFile(DATA_FILE, JSON.stringify({ ...publicContent, contacts: [] }, null, 2), 'utf8')
+  await writeContacts(contacts)
 }
 
 export async function getSectionItems<TSection extends ContentSection>(

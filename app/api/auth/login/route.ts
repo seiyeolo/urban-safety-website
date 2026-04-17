@@ -1,6 +1,8 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
+
+import { checkLoginLimit, getClientIp } from '@/lib/rate-limit'
 
 function createSessionToken(secret: string): string {
   const timestamp = Date.now().toString()
@@ -35,8 +37,18 @@ export function verifySessionToken(token: string, secret: string): boolean {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    // Rate limiting — Upstash Redis 기반 (서버리스 간 공유)
+    const ip = getClientIp(request.headers)
+    const rate = await checkLoginLimit(ip)
+    if (!rate.success) {
+      return NextResponse.json(
+        { error: `로그인 시도 횟수를 초과했습니다. ${rate.retryAfter}초 후 다시 시도해주세요.` },
+        { status: 429, headers: { 'Retry-After': String(rate.retryAfter ?? 900) } }
+      )
+    }
+
     const { password } = await request.json()
 
     // 입력 검증
@@ -65,8 +77,11 @@ export async function POST(request: Request) {
       // ADMIN_PASSWORD가 bcrypt 해시인 경우 (권장)
       isValidPassword = await bcrypt.compare(password, adminPassword)
     } else {
-      // ADMIN_PASSWORD가 평문인 경우 (호환성 — 해시로 전환 권장)
-      isValidPassword = password === adminPassword
+      // ADMIN_PASSWORD가 평문인 경우 — 타이밍 공격 방어 위해 상수 시간 비교 사용
+      const provided = Buffer.from(password, 'utf8')
+      const expected = Buffer.from(adminPassword, 'utf8')
+      isValidPassword = provided.length === expected.length
+        && crypto.timingSafeEqual(provided, expected)
     }
 
     if (!isValidPassword) {

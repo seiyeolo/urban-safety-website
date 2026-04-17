@@ -17,28 +17,43 @@ function MobileMenuItem({
   onClose: () => void
 }) {
   const [open, setOpen] = useState(false)
+  const hasChildren = Boolean(item.children && item.children.length > 0)
+  const panelId = `mobile-submenu-${item.href.replace(/[^a-z0-9]/gi, '-')}`
 
   return (
     <div className="border-b border-gray-50 last:border-0">
-      <button
-        className="flex items-center justify-between w-full py-3 text-sm font-semibold text-gray-700"
-        onClick={() => setOpen(!open)}
-      >
-        <span>{item.label}</span>
-        {item.children && (
-          <ChevronDown
-            size={16}
-            className={`transition-transform ${open ? 'rotate-180' : ''}`}
-          />
+      <div className="flex items-stretch">
+        <Link
+          href={item.href}
+          onClick={onClose}
+          className="flex-1 py-3 text-sm font-semibold text-gray-700 hover:text-navy-900 min-h-[44px] flex items-center"
+        >
+          {item.label}
+        </Link>
+        {hasChildren && (
+          <button
+            type="button"
+            className="px-4 flex items-center text-gray-500 hover:text-navy-900 min-w-[44px] min-h-[44px]"
+            onClick={() => setOpen((prev) => !prev)}
+            aria-expanded={open}
+            aria-controls={panelId}
+            aria-label={`${item.label} 하위 메뉴 ${open ? '접기' : '펼치기'}`}
+          >
+            <ChevronDown
+              size={16}
+              className={`transition-transform ${open ? 'rotate-180' : ''}`}
+              aria-hidden="true"
+            />
+          </button>
         )}
-      </button>
-      {item.children && open && (
-        <div className="pl-4 pb-2 space-y-1">
-          {item.children.map((child) => (
+      </div>
+      {hasChildren && open && (
+        <div id={panelId} className="pl-4 pb-2 space-y-1">
+          {item.children?.map((child) => (
             <Link
               key={child.href}
               href={child.href}
-              className="block py-2 text-sm text-gray-500 hover:text-navy-900"
+              className="block py-2 text-sm text-gray-500 hover:text-navy-900 min-h-[44px] flex items-center"
               onClick={onClose}
             >
               {child.label}

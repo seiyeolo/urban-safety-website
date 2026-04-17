@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Phone, Mail } from 'lucide-react'
+import GroupInquiryForm from '@/components/contact/GroupInquiryForm'
 
 export const metadata: Metadata = {
   title: '단체교육 문의',
@@ -43,61 +44,7 @@ export default function GroupContactPage() {
             </ul>
           </div>
 
-          <form className="space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">담당자 이름 <span className="text-red-500">*</span></label>
-                <input type="text" placeholder="홍길동" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">연락처 <span className="text-red-500">*</span></label>
-                <input type="tel" placeholder="010-0000-0000" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">기관·단체명 <span className="text-red-500">*</span></label>
-              <input type="text" placeholder="○○복지관" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">예상 참여 인원</label>
-                <select className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] bg-white">
-                  <option value="">선택해주세요</option>
-                  <option>10~30명</option>
-                  <option>30~50명</option>
-                  <option>50~100명</option>
-                  <option>100명 이상</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">희망 교육 주제</label>
-                <select className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] bg-white">
-                  <option value="">선택해주세요</option>
-                  <option>보이스피싱 예방</option>
-                  <option>생활안전</option>
-                  <option>두 주제 모두</option>
-                  <option>기타 협의</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">교육 희망 일정</label>
-              <input type="text" placeholder="예) 2026년 6월 중, 매주 화요일 오후 등" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">요청 사항</label>
-              <textarea rows={4} placeholder="교육 대상, 목적, 특이사항 등을 자유롭게 적어주세요" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] resize-none" />
-            </div>
-            <div className="flex items-start gap-2">
-              <input type="checkbox" id="privacy" className="mt-1" />
-              <label htmlFor="privacy" className="text-sm text-gray-600">
-                <Link href="/privacy" className="text-[#0f2d5e] underline">개인정보처리방침</Link>에 동의합니다. <span className="text-red-500">*</span>
-              </label>
-            </div>
-            <button type="submit" className="btn-primary w-full justify-center py-4">
-              단체교육 문의 보내기
-            </button>
-          </form>
+          <GroupInquiryForm />
 
           <div className="mt-8 p-5 bg-gray-50 rounded-xl">
             <p className="text-sm font-semibold text-gray-700 mb-3">직접 연락하기</p>

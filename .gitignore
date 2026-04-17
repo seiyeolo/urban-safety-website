@@ -51,3 +51,8 @@ temporary screenshots/
 .playwright-mcp/
 /test-results/
 /playwright-report/
+
+# PII (문의자 개인정보) — 절대 커밋 금지
+/data/contacts.json
+/data/*.runtime.json
+/data/*.local.json

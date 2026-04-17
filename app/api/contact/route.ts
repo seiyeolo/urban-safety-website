@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createContactInquiry } from '@/lib/content-store'
+import { checkContactLimit, getClientIp } from '@/lib/rate-limit'
 
 // Zod 스키마 검증
 const contactSchema = z.object({
@@ -13,36 +14,15 @@ const contactSchema = z.object({
   privacyConsent: z.literal(true, { message: '개인정보처리방침 동의가 필요합니다.' }),
 })
 
-// IP 기반 간이 rate limiting
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
-const RATE_LIMIT = 5 // 5분 내 최대 5건
-const RATE_WINDOW = 5 * 60 * 1000 // 5분
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const entry = rateLimitMap.get(ip)
-
-  if (!entry || now > entry.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_WINDOW })
-    return true
-  }
-
-  if (entry.count >= RATE_LIMIT) {
-    return false
-  }
-
-  entry.count++
-  return true
-}
-
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
-    if (!checkRateLimit(ip)) {
+    // Rate limiting — Upstash Redis 기반 (서버리스 간 공유)
+    const ip = getClientIp(request.headers)
+    const rate = await checkContactLimit(ip)
+    if (!rate.success) {
       return NextResponse.json(
-        { error: '너무 많은 요청입니다. 5분 후에 다시 시도해주세요.' },
-        { status: 429 }
+        { error: `너무 많은 요청입니다. ${rate.retryAfter}초 후에 다시 시도해주세요.` },
+        { status: 429, headers: { 'Retry-After': String(rate.retryAfter ?? 300) } }
       )
     }
 

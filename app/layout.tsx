@@ -1,14 +1,21 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import LayoutWrapper from '@/components/LayoutWrapper'
 
+// 한국어 subset 명시적 지정 — Google Fonts 런타임 추가 요청 방지
 const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
   variable: '--font-noto',
   display: 'swap',
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#1a3a5c',
+}
 
 const metadataBase =
   process.env.NEXT_PUBLIC_SITE_URL
@@ -60,6 +67,12 @@ export default function RootLayout({
   return (
     <html lang="ko" className={notoSansKR.variable}>
       <body className="min-h-screen flex flex-col antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-navy-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-green-500"
+        >
+          본문 바로가기
+        </a>
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>

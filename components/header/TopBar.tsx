@@ -17,10 +17,10 @@ export default function TopBar() {
             <span>042-254-8060</span>
           </a>
           <Link
-            href="/contact/education"
+            href="/education"
             className="bg-green-700 text-white text-xs px-3 py-1 rounded hover:bg-green-800 transition-colors"
           >
-            교육 신청
+            교육 과정 보기
           </Link>
         </div>
       </div>
