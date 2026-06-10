@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase/client'
 interface UserMetadata {
   name?: string
   avatar_url?: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
 interface AuthResult {

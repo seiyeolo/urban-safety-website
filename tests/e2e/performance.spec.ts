@@ -268,7 +268,7 @@ test.describe('성능 테스트', () => {
         let clsValue = 0;
         new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
-            const layoutShiftEntry = entry as any; // LayoutShiftEntry 타입
+            const layoutShiftEntry = entry as PerformanceEntry & { hadRecentInput?: boolean; value: number }; // LayoutShift
             if (!layoutShiftEntry.hadRecentInput) {
               clsValue += layoutShiftEntry.value;
             }

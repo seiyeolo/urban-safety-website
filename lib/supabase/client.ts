@@ -28,7 +28,7 @@ const createMockClient = () => ({
       error: null
     })
   }
-} as any)
+} as unknown as SupabaseClient)
 
 // Export either real Supabase client or mock client
 export const supabase: SupabaseClient = isSupabaseConfigured
