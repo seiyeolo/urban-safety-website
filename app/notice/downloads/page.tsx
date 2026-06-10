@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { Download, FileText, Image, FileSpreadsheet } from 'lucide-react'
 import { getSectionItems } from '@/lib/content-store'
 
+// 관리자 수정이 공개 페이지에 반영되도록 60초 ISR (정적 박제 방지)
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: '자료 다운로드',
   description: '대전경실련 도시안전디자인센터 교육 자료 및 서식 다운로드 페이지입니다.',
@@ -55,6 +58,11 @@ export default async function DownloadsPage() {
 
           {/* 파일 목록 */}
           <div className="space-y-3">
+            {files.length === 0 && (
+              <p className="py-12 text-center text-sm text-gray-400">
+                등록된 자료가 없습니다.
+              </p>
+            )}
             {files.map(({ id, category, title, type, size, date, href }) => {
               const fileInfo = FILE_ICON_MAP[type] ?? FILE_ICON_MAP.PDF
               const Icon = fileInfo.icon

@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { Calendar, ArrowRight } from 'lucide-react'
 import { getSectionItems } from '@/lib/content-store'
 
+// 관리자 수정이 공개 페이지에 반영되도록 60초 ISR (정적 박제 방지)
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: '교육 일정',
   description: '대전경실련 도시안전디자인센터 교육 일정 안내입니다.',
@@ -37,6 +40,11 @@ export default async function SchedulePage() {
       <section className="section-padding bg-white">
         <div className="container-main max-w-3xl mx-auto">
           <div className="space-y-10">
+            {groupedSchedule.length === 0 && (
+              <p className="py-12 text-center text-sm text-gray-400">
+                등록된 교육 일정이 없습니다. 일정이 확정되면 이곳에 공지됩니다.
+              </p>
+            )}
             {groupedSchedule.map(([month, items]) => (
               <div key={month}>
                 <div className="flex items-center gap-3 mb-5">

@@ -4,6 +4,9 @@ import { Shield, FileText, BookOpen, MessageSquare, ExternalLink, Download } fro
 import LogoutButton from './LogoutButton'
 import { getContentStore } from '@/lib/content-store'
 
+// 관리자 대시보드는 항상 최신 콘텐츠 집계를 보여야 함 — 정적 캐시 금지
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: '관리자 대시보드 | 도시안전디자인센터',
 }

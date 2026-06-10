@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { ChevronRight, Bell, Calendar, Trophy, Download, Newspaper } from 'lucide-react'
 import { getSectionItems } from '@/lib/content-store'
 
+// 관리자 수정이 공개 페이지에 반영되도록 60초 ISR (정적 박제 방지)
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: '공지·자료실',
   description: '대전경실련 도시안전디자인센터 공지사항, 교육 일정, 자료실 안내입니다.',
@@ -67,6 +70,11 @@ export default async function NoticePage() {
             </Link>
           </div>
           <div className="bg-white rounded-2xl overflow-hidden border border-gray-200">
+            {notices.length === 0 && (
+              <p className="px-6 py-12 text-center text-sm text-gray-400">
+                등록된 공지사항이 없습니다.
+              </p>
+            )}
             {notices.map(({ id, category, title, date, isNew }, i) => (
               <div
                 key={id}
