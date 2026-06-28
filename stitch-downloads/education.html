@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e4e2e2",
+                      "on-surface-variant": "#43474e",
+                      "surface-container-highest": "#e4e2e2",
+                      "outline": "#73777f",
+                      "on-primary-fixed": "#001c37",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#dbdada",
+                      "surface": "#fbf9f9",
+                      "on-secondary-container": "#217128",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#622600",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#d2e4ff",
+                      "on-tertiary-container": "#ff7c2e",
+                      "surface-container": "#efeded",
+                      "on-error-container": "#93000a",
+                      "secondary-container": "#a0f399",
+                      "on-secondary-fixed-variant": "#005312",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffdbcb",
+                      "surface-container-low": "#f5f3f3",
+                      "inverse-primary": "#abc9f2",
+                      "inverse-on-surface": "#f2f0f0",
+                      "on-background": "#1b1c1c",
+                      "on-secondary-fixed": "#002204",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#c3c6cf",
+                      "background": "#fbf9f9",
+                      "secondary": "#1b6d24",
+                      "primary-fixed-dim": "#abc9f2",
+                      "on-primary-fixed-variant": "#2a486b",
+                      "secondary-fixed": "#a3f69c",
+                      "inverse-surface": "#303031",
+                      "on-tertiary-fixed-variant": "#793100",
+                      "tertiary": "#401600",
+                      "surface-container-high": "#e9e8e8",
+                      "primary-container": "#1a3a5c",
+                      "primary": "#002444",
+                      "error-container": "#ffdad6",
+                      "surface-tint": "#436084",
+                      "tertiary-fixed-dim": "#ffb691",
+                      "on-primary-container": "#87a4cc",
+                      "surface-bright": "#fbf9f9",
+                      "secondary-fixed-dim": "#88d982",
+                      "on-surface": "#1b1c1c",
+                      "on-tertiary-fixed": "#341100",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Noto Sans KR", "Public Sans", "sans-serif"],
+                      "body": ["Noto Sans KR", "Public Sans", "sans-serif"],
+                      "label": ["Noto Sans KR", "Public Sans", "sans-serif"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #fbf9f9;
+            color: #1b1c1c;
+            word-break: keep-all;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px rgba(27, 28, 28, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Safety Notice Banner -->
+<div class="bg-[#622600] text-[#ffb4a2] w-full px-8 py-2 flex items-center justify-center gap-2 font-['Noto_Sans_KR'] text-[12px] font-bold uppercase tracking-widest">
+<span class="material-symbols-outlined text-[16px]" data-icon="warning">warning</span>
+        Private Qualification Disclaimer: All education programs are subject to official civic verification and departmental safety standards.
+    </div>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f9]/85 backdrop-blur-xl border-b border-gray-200/20 shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-bold text-[#1a3a5c] tracking-tight">The Civic Anchor</div>
+<div class="hidden md:flex items-center gap-8 font-['Noto_Sans_KR'] text-[18px] font-medium">
+<a class="text-[#1a3a5c] font-bold border-b-2 border-[#1a3a5c] pb-1" href="#">Education Programs</a>
+<a class="text-[#43474e] hover:text-[#1b6d24] transition-colors duration-300" href="#">Schedule</a>
+<a class="text-[#43474e] hover:text-[#1b6d24] transition-colors duration-300" href="#">Inquiry</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#43474e] font-medium hover:text-[#1b6d24] transition-colors">Login</button>
+<img alt="User profile" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Professional headshot of a mature government official in a clean studio setting with soft neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVRQVdLdJnpMl8NVJhy4S4BQVHkuKOtUOdPaAuc9unCt_S8eCa-fe31HsI9zoY-tZB_QYiyyqG7yWz-yWr8HvTm8fxlEpmqK4_PHzGaJuVotCqo77R4EszxwdcntDo9upZ1lNjttLKdx30RAHCEjsohtlZqv96n71bgntCY2KrySpwJZC46ltZtsiny7HJwPEpbeMorhYGoLBMqWy3hVHtlINjBENCt3CXtmNhqfCyqa_gmhHe3hHSooFmszed60OCmpFZg6xCxjY"/>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-20 max-w-7xl mx-auto px-6">
+<!-- Hero Section & Stepper -->
+<section class="py-16 text-center">
+<h1 class="text-[56px] font-black text-primary leading-tight mb-4 tracking-tighter">교육안내</h1>
+<p class="text-[20px] text-on-surface-variant max-w-2xl mx-auto leading-[1.7] mb-12">목적과 상황에 맞는 교육과정을 선택하세요. 대전경실련 도시안전디자인센터는 전문적인 시민 안전 교육을 지향합니다.</p>
+<!-- Stepper -->
+<div class="flex items-center justify-center gap-4 mb-16">
+<div class="flex items-center gap-3 bg-primary text-white px-6 py-3 rounded-full shadow-lg">
+<span class="bg-white text-primary rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">1</span>
+<span class="font-bold">교육 방식</span>
+</div>
+<div class="w-12 h-[2px] bg-outline-variant"></div>
+<div class="flex items-center gap-3 border border-outline-variant px-6 py-3 rounded-full text-on-surface-variant">
+<span class="bg-surface-variant text-on-surface-variant rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">2</span>
+<span>자격 선택</span>
+</div>
+<div class="w-12 h-[2px] bg-outline-variant"></div>
+<div class="flex items-center gap-3 border border-outline-variant px-6 py-3 rounded-full text-on-surface-variant">
+<span class="bg-surface-variant text-on-surface-variant rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">3</span>
+<span>신청 완료</span>
+</div>
+</div>
+</section>
+<!-- Education Modes Bento-Style Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+<!-- Online Mode -->
+<div class="group bg-surface-container-low rounded-xl p-10 transition-all duration-300 hover:bg-white hover:shadow-2xl border border-transparent hover:border-secondary/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-500"></div>
+<span class="material-symbols-outlined text-secondary text-5xl mb-8 block" data-icon="laptop">laptop</span>
+<h3 class="text-2xl font-bold text-primary mb-6">온라인 교육</h3>
+<ul class="space-y-4 mb-10 text-on-surface-variant text-lg">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span> 24시간 수강 가능</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span> 모바일 지원</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span> 자동 진도관리</li>
+</ul>
+<button class="w-full py-4 bg-secondary text-white font-bold rounded-lg hover:bg-on-secondary-container transition-colors duration-300 flex items-center justify-center gap-2">
+                    선택하기 <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Offline Mode -->
+<div class="group bg-primary-container rounded-xl p-10 transition-all duration-300 hover:shadow-2xl border border-transparent relative overflow-hidden text-white">
+<div class="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-500"></div>
+<span class="material-symbols-outlined text-primary-fixed text-5xl mb-8 block" data-icon="apartment">apartment</span>
+<h3 class="text-2xl font-bold mb-6">오프라인 교육</h3>
+<ul class="space-y-4 mb-10 text-on-primary-container text-lg">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-fixed text-sm" data-icon="check_circle">check_circle</span> 강사 직접 지도</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-fixed text-sm" data-icon="check_circle">check_circle</span> 실습 포함</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-fixed text-sm" data-icon="check_circle">check_circle</span> 수료증 즉시 발급</li>
+</ul>
+<button class="w-full py-4 bg-white text-primary font-bold rounded-lg hover:bg-surface-container-low transition-colors duration-300 flex items-center justify-center gap-2">
+                    선택하기 <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Organization Mode -->
+<div class="group bg-surface-container-low rounded-xl p-10 transition-all duration-300 hover:bg-white hover:shadow-2xl border border-transparent hover:border-primary/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-500"></div>
+<span class="material-symbols-outlined text-primary text-5xl mb-8 block" data-icon="handshake">handshake</span>
+<h3 class="text-2xl font-bold text-primary mb-6">기관·단체 교육</h3>
+<ul class="space-y-4 mb-10 text-on-surface-variant text-lg">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span> 찾아가는 교육</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span> 맞춤형 설계</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span> 단체 할인 혜택</li>
+</ul>
+<button class="w-full py-4 border border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                    선택하기 <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Schedule Table -->
+<section class="mb-24">
+<h2 class="text-[32px] font-bold text-primary mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
+<div class="bg-white rounded-xl overflow-hidden editorial-shadow">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high text-primary font-bold">
+<th class="px-6 py-5">일자</th>
+<th class="px-6 py-5">구분</th>
+<th class="px-6 py-5">과정명</th>
+<th class="px-6 py-5">정원</th>
+<th class="px-6 py-5">상태</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.03.15</td>
+<td class="px-6 py-5 font-medium">오프라인</td>
+<td class="px-6 py-5 font-bold">도시안전 디자인 전문가 1급</td>
+<td class="px-6 py-5">30명</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-sm font-bold">모집중</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.03.22</td>
+<td class="px-6 py-5 font-medium">온라인</td>
+<td class="px-6 py-5 font-bold">C閒 기반 방범 시스템 실무</td>
+<td class="px-6 py-5">100명</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-sm font-bold">모집중</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.04.05</td>
+<td class="px-6 py-5 font-medium">오프라인</td>
+<td class="px-6 py-5 font-bold">공공시설물 안전 진단 마스터</td>
+<td class="px-6 py-5">25명</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-sm font-bold">마감임박</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.04.12</td>
+<td class="px-6 py-5 font-medium">기관·단체</td>
+<td class="px-6 py-5 font-bold">대전광역시 공무원 특성화 과정</td>
+<td class="px-6 py-5">50명</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-surface-dim text-outline rounded-full text-sm font-bold">마감</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.05.02</td>
+<td class="px-6 py-5 font-medium">온라인</td>
+<td class="px-6 py-5 font-bold">시민 안전 디자인 입문</td>
+<td class="px-6 py-5">제한없음</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-sm font-bold">모집중</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.05.18</td>
+<td class="px-6 py-5 font-medium">오프라인</td>
+<td class="px-6 py-5 font-bold">스마트시티 통합 플랫폼 운영</td>
+<td class="px-6 py-5">20명</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-sm font-bold">모집중</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.06.01</td>
+<td class="px-6 py-5 font-medium">온라인</td>
+<td class="px-6 py-5 font-bold">도시 재생과 범죄 예방 기법</td>
+<td class="px-6 py-5">150명</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-sm font-bold">모집중</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 text-on-surface-variant">2026.06.15</td>
+<td class="px-6 py-5 font-medium">오프라인</td>
+<td class="px-6 py-5 font-bold">재난 대응 디자인 워크숍</td>
+<td class="px-6 py-5">30명</td>
+<td class="px-6 py-5"><span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-sm font-bold">마감임박</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Enrollment Form -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-start">
+<div>
+<h2 class="text-[32px] font-bold text-primary mb-6">수강 신청 정보 입력</h2>
+<p class="text-lg text-on-surface-variant mb-8">신청하신 정보는 담당자가 확인 후 24시간 이내에 개별 연락 드립니다. 정확한 연락처 기입을 부탁드립니다.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-medium">공식 교육 인증 기관 대전경실련</span>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined" data-icon="lock_open">lock_open</span>
+<span class="font-medium">개인정보 보안을 위한 SSL 암호화 적용</span>
+</div>
+<img alt="Urban safety office" class="w-full h-64 object-cover rounded-xl mt-8" data-alt="Modern architectural interior with light wooden textures and glass partitions reflecting a clean and professional workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNGHd-IeGfXqUJLHPNlGJY82AY3lWmg3cmCWij8kgAIFKwExhgRxU2eeceZruRKkp6FCg5DVArjJEuK4wAM6MyJcgj37kDD46ar-_zJOOhVq7db_TRog5hQS9IdWNtXi1eB3o91Z6SFfp2IWf0ZOL_HEot9xDzypA253PhzdR_AP74KRWnkFQ2OTR7CvnEFyGb3pTdhBlLetmGO9RoRxRrOxEFJGc1LBrxbUBVyUjN-sKUvjjogwacZY0rjNG3XkQhtijg4h6FOSo"/>
+</div>
+</div>
+<div class="bg-white p-10 rounded-xl editorial-shadow border border-surface-container">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-bold text-primary mb-2">이름*</label>
+<input class="w-full bg-surface-variant border-b-2 border-primary border-t-0 border-x-0 focus:ring-0 focus:border-secondary transition-colors px-4 py-3" placeholder="성함을 입력하세요" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-primary mb-2">연락처*</label>
+<input class="w-full bg-surface-variant border-b-2 border-primary border-t-0 border-x-0 focus:ring-0 focus:border-secondary transition-colors px-4 py-3" placeholder="010-0000-0000" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-bold text-primary mb-2">이메일*</label>
+<input class="w-full bg-surface-variant border-b-2 border-primary border-t-0 border-x-0 focus:ring-0 focus:border-secondary transition-colors px-4 py-3" placeholder="example@email.com" type="email"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-bold text-primary mb-2">교육과정</label>
+<select class="w-full bg-surface-variant border-b-2 border-primary border-t-0 border-x-0 focus:ring-0 focus:border-secondary transition-colors px-4 py-3">
+<option>도시안전 디자인 전문가 1급</option>
+<option>C閒 기반 방범 시스템 실무</option>
+<option>시민 안전 디자인 입문</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-bold text-primary mb-2">수강방식</label>
+<select class="w-full bg-surface-variant border-b-2 border-primary border-t-0 border-x-0 focus:ring-0 focus:border-secondary transition-colors px-4 py-3">
+<option>온라인</option>
+<option>오프라인</option>
+<option>기관·단체</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-sm font-bold text-primary mb-2">희망기수</label>
+<select class="w-full bg-surface-variant border-b-2 border-primary border-t-0 border-x-0 focus:ring-0 focus:border-secondary transition-colors px-4 py-3">
+<option>2026년 1기 (3월 개강)</option>
+<option>2026년 2기 (6월 개강)</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-bold text-primary mb-2">특이사항</label>
+<textarea class="w-full bg-surface-variant border-b-2 border-primary border-t-0 border-x-0 focus:ring-0 focus:border-secondary transition-colors px-4 py-3" placeholder="단체 신청이나 추가 문의사항을 적어주세요" rows="3"></textarea>
+</div>
+<div class="flex items-start gap-3 py-4">
+<input class="mt-1 rounded text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant">개인정보 수집 및 이용에 동의합니다. (필수) <a class="underline text-primary" href="#">자세히 보기</a></span>
+</div>
+<button class="w-full py-5 bg-secondary text-white text-xl font-bold rounded-lg hover:bg-on-secondary-container transition-all transform active:scale-95 shadow-xl" type="submit">
+                        수강 신청하기
+                    </button>
+</form>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="mb-24">
+<h2 class="text-[32px] font-bold text-primary mb-12 text-center">자주 묻는 질문</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- FAQ Item 1 -->
+<div class="bg-white p-8 rounded-lg editorial-shadow border-l-4 border-secondary">
+<h4 class="text-xl font-bold text-primary mb-4 flex items-start gap-2">
+<span class="text-secondary">Q.</span> 비전공자도 수강이 가능한가요?
+                    </h4>
+<p class="text-on-surface-variant leading-relaxed">네, 충분히 가능합니다. 본 센터의 기초 과정은 도시 안전에 관심 있는 시민 누구나 이해할 수 있도록 설계되었습니다. 전공 지식이 없더라도 실제 사례와 도구를 통해 단계별로 학습할 수 있는 커리큘럼을 제공하며, 많은 비전공자 수료생들이 현재 실무에서 활동하고 있습니다.</p>
+</div>
+<!-- FAQ Item 2 -->
+<div class="bg-white p-8 rounded-lg editorial-shadow border-l-4 border-primary">
+<h4 class="text-xl font-bold text-primary mb-4 flex items-start gap-2">
+<span class="text-primary">Q.</span> 온라인 교육 환경은 어떻게 되나요?
+                    </h4>
+<p class="text-on-surface-variant leading-relaxed">자체 LMS 플랫폼을 통해 제공됩니다. PC는 물론 태블릿과 모바일에서도 끊김 없는 학습이 가능하며, 실시간 진도율 체크와 퀴즈를 통해 학습 효과를 극대화합니다. 기술적인 문제가 발생할 경우 카카오톡 채널을 통해 즉각적인 기술 지원을 받으실 수 있습니다.</p>
+</div>
+<!-- FAQ Item 3 -->
+<div class="bg-white p-8 rounded-lg editorial-shadow border-l-4 border-secondary">
+<h4 class="text-xl font-bold text-primary mb-4 flex items-start gap-2">
+<span class="text-secondary">Q.</span> 수료증 발급 기준이 무엇인가요?
+                    </h4>
+<p class="text-on-surface-variant leading-relaxed">전체 강의의 80% 이상 수강과 최종 평가 70점 이상 획득 시 발급됩니다. 오프라인 과정의 경우 출석률 90% 이상이 필수이며, 실습 과제 제출 여부도 평가 항목에 포함됩니다. 기준을 충족하면 디지털 수료증과 실물 수료증이 모두 발급됩니다.</p>
+</div>
+<!-- FAQ Item 4 -->
+<div class="bg-white p-8 rounded-lg editorial-shadow border-l-4 border-primary">
+<h4 class="text-xl font-bold text-primary mb-4 flex items-start gap-2">
+<span class="text-primary">Q.</span> 자격증 취득 후 취업 연계가 되나요?
+                    </h4>
+<p class="text-on-surface-variant leading-relaxed">본 센터는 유관 기관 및 지자체와 긴밀한 협력 관계를 맺고 있습니다. 우수 수료생들에게는 관련 프로젝트 참여 기회를 우선적으로 제공하며, 협력사 채용 공고 발생 시 추천서를 발급해 드립니다. 또한 정기적인 네트워킹 데이를 통해 현직자와의 만남을 주선합니다.</p>
+</div>
+<!-- FAQ Item 5 -->
+<div class="bg-white p-8 rounded-lg editorial-shadow border-l-4 border-secondary">
+<h4 class="text-xl font-bold text-primary mb-4 flex items-start gap-2">
+<span class="text-secondary">Q.</span> 교육비 환불 규정은 어떻게 되나요?
+                    </h4>
+<p class="text-on-surface-variant leading-relaxed">평생교육법 및 소비자 보호법의 환불 규정을 준수합니다. 개강 전날까지는 100% 환불이 가능하며, 개강 후에는 남은 기간에 따라 일할 계산하여 환불해 드립니다. 온라인 강의의 경우 강의를 하나라도 시청하셨을 경우 일정 비율이 차감되니 신청 시 유의해 주시기 바랍니다.</p>
+</div>
+<!-- FAQ Item 6 -->
+<div class="bg-white p-8 rounded-lg editorial-shadow border-l-4 border-primary">
+<h4 class="text-xl font-bold text-primary mb-4 flex items-start gap-2">
+<span class="text-primary">Q.</span> 단체 수강 시 혜택이 있나요?
+                    </h4>
+<p class="text-on-surface-variant leading-relaxed">5인 이상 단체 신청 시 별도의 단체 할인 혜택을 제공합니다. 특히 공공기관이나 학교의 경우 해당 기관의 특성에 맞춘 커스터마이징 강의 설계가 가능합니다. 단체 전용 관리자 페이지를 제공하여 구성원들의 진도와 성적을 일괄 확인하실 수 있도록 지원합니다.</p>
+</div>
+</div>
+</section>
+<!-- Bottom Inquiry Section -->
+<section class="bg-primary text-white rounded-2xl p-12 text-center editorial-shadow overflow-hidden relative">
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgUaPe3A9laNO7M1wTvbwbuCkY1Jybd_n8MmAP3PX92tvfCUrFr_xPmLHEZ1_HMTGRlfpNHIb_fdCSts532zZ0XHN8bxpHj2eHtB6kzyLkx-wWNx2-h_NYKaW5yiOQ4OHH3wAyXBRcjNbu3nX8Y4Zkmi3xkWE5i5b5VHAW9Ddb4mGQxkFpXXDveJ-43OGSsfeoj0UPo5OVHlzesdZEzqBWpRzNnIc96mXBi_9KfnoKGFOEH2uRbA0bVneWwyUXrLjexbMcBC_eizE');"></div>
+<div class="relative z-10">
+<h2 class="text-[32px] font-bold mb-4">결정이 어려우세요?</h2>
+<p class="text-xl text-on-primary-container mb-10">전문 상담원이 여러분의 상황에 맞는 최적의 교육 과정을 추천해 드립니다.</p>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-lg font-bold hover:bg-surface-variant transition-colors" href="tel:042-254-8060">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+                        042-254-8060
+                    </a>
+<button class="flex items-center gap-3 bg-[#FAE100] text-[#3C1E1E] px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                        카카오톡 상담
+                    </button>
+<button class="flex items-center gap-3 border border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                        온라인 1:1 문의
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto border-t-8 border-[#401600] bg-[#1a3a5c]">
+<div class="flex flex-col w-full px-8 py-12 gap-8 text-center md:text-left max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8">
+<div>
+<div class="text-xl font-bold text-white mb-4">The Civic Anchor</div>
+<p class="font-['Noto_Sans_KR'] text-[14px] leading-relaxed text-slate-300 max-w-md">
+                        대전광역시 중구 중앙로 118, 5층 | 대전경실련 도시안전디자인센터<br/>
+                        Tel: 042-254-8060 | Email: contact@civic-anchor.kr
+                    </p>
+</div>
+<div class="flex flex-wrap gap-6 font-['Noto_Sans_KR'] text-[14px]">
+<a class="text-slate-300 hover:text-green-400 transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-slate-300 hover:text-green-400 transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-slate-300 hover:text-green-400 transition-colors duration-200" href="#">Safety Standards</a>
+<a class="text-slate-300 hover:text-green-400 transition-colors duration-200" href="#">Contact Us</a>
+</div>
+</div>
+<div class="border-t border-slate-700 pt-8">
+<p class="font-['Noto_Sans_KR'] text-[14px] text-slate-400">
+                    © 35 Years of Civic Excellence. All rights reserved. Registered Public Archive.
+                </p>
+</div>
+</div>
+</footer>
+</body></html>

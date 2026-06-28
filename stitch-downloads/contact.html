@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>오시는 길 - The Civic Anchor</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#002444",
+                        "primary-container": "#1a3a5c",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#87a4cc",
+                        "secondary": "#1b6d24",
+                        "secondary-container": "#a0f399",
+                        "on-secondary-container": "#217128",
+                        "tertiary": "#401600",
+                        "tertiary-container": "#622600",
+                        "background": "#fbf9f9",
+                        "surface": "#fbf9f9",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e4e2e2",
+                        "on-surface": "#1b1c1c",
+                        "on-surface-variant": "#43474e",
+                        "outline": "#73777f",
+                        "outline-variant": "#c3c6cf",
+                        "error": "#ba1a1a"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Sans KR"],
+                        "body": ["Noto Sans KR"],
+                        "label": ["Noto Sans KR"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            word-break: keep-all;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbf9f9]/85 dark:bg-slate-950/85 backdrop-blur-xl shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
+<div class="flex justify-between items-center px-12 py-6 max-w-[1440px] mx-auto">
+<div class="text-2xl font-bold tracking-tight text-[#002444] dark:text-white">
+                The Civic Anchor
+            </div>
+<div class="hidden md:flex items-center gap-10 font-['Noto_Sans_KR'] text-[18px] leading-[1.7] font-medium">
+<a class="text-[#43474e] dark:text-slate-400 hover:text-[#1b6d24] transition-colors duration-300" href="#">Our Legacy</a>
+<a class="text-[#43474e] dark:text-slate-400 hover:text-[#1b6d24] transition-colors duration-300" href="#">Safety Data</a>
+<a class="text-[#43474e] dark:text-slate-400 hover:text-[#1b6d24] transition-colors duration-300" href="#">Programs</a>
+<a class="text-[#43474e] dark:text-slate-400 hover:text-[#1b6d24] transition-colors duration-300" href="#">News</a>
+<a class="text-[#43474e] dark:text-slate-400 hover:text-[#1b6d24] transition-colors duration-300" href="#">Resources</a>
+<a class="text-[#2e7d32] border-b-2 border-[#2e7d32] pb-1 font-bold" href="#">Visit Us</a>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary text-3xl">menu</span>
+</div>
+</div>
+</nav>
+<main class="pt-[100px]">
+<!-- HERO SECTION -->
+<section class="relative bg-gradient-to-br from-primary-container to-primary py-24 px-12 overflow-hidden">
+<div class="max-w-[1440px] mx-auto relative z-10">
+<nav class="flex mb-8 text-on-primary-container text-sm font-medium">
+<span class="opacity-70">홈</span>
+<span class="mx-3 opacity-50">/</span>
+<span class="text-on-primary">오시는 길</span>
+</nav>
+<h1 class="text-[56px] font-black text-on-primary tracking-tight leading-tight mb-4">
+                    오시는 길
+                </h1>
+<p class="text-[22px] text-on-primary-container font-medium max-w-2xl leading-relaxed">
+                    시민의 발걸음이 안전한 도시의 시작입니다.<br/>
+                    대전경실련 도시안전디자인센터가 여러분을 기다립니다.
+                </p>
+</div>
+<!-- Decorative Texture -->
+<div class="absolute right-0 bottom-0 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</section>
+<!-- ADDRESS ACTION BAR -->
+<section class="px-12 -mt-12 relative z-20">
+<div class="max-w-[1440px] mx-auto bg-surface-container-lowest shadow-[0_20px_40px_rgba(27,28,28,0.06)] rounded-xl p-10 flex flex-col lg:flex-row items-center gap-10">
+<div class="flex items-start gap-6 flex-1">
+<div class="bg-secondary-container p-4 rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl">location_on</span>
+</div>
+<div>
+<h2 class="text-on-surface-variant text-sm font-bold uppercase tracking-wider mb-2">센터 위치 주소</h2>
+<p class="text-[24px] font-bold text-primary leading-snug">대전광역시 서구 용문동 255-4 서우아파트 상가동 201호</p>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full lg:w-auto">
+<button class="h-12 px-6 flex items-center justify-center gap-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-bold rounded-lg transition-all active:scale-95 text-[16px]">
+<span class="material-symbols-outlined text-[20px]">content_copy</span> 주소 복사
+                    </button>
+<button class="h-12 px-6 flex items-center justify-center gap-2 bg-[#FEE500] hover:brightness-95 text-[#3C1E1E] font-bold rounded-lg transition-all active:scale-95 text-[16px]">
+                        카카오맵
+                    </button>
+<button class="h-12 px-6 flex items-center justify-center gap-2 bg-[#03C75A] hover:brightness-95 text-white font-bold rounded-lg transition-all active:scale-95 text-[16px]">
+                        네이버지도
+                    </button>
+<button class="h-12 px-6 flex items-center justify-center gap-2 bg-primary-container hover:brightness-110 text-white font-bold rounded-lg transition-all active:scale-95 text-[16px]">
+                        T맵
+                    </button>
+</div>
+</div>
+</section>
+<!-- MAP EMBED SECTION -->
+<section class="px-12 py-16">
+<div class="max-w-[1440px] mx-auto bg-surface-container-low rounded-xl overflow-hidden relative border border-outline-variant/30 h-[500px]">
+<!-- Placeholder for Map -->
+<div class="w-full h-full bg-slate-200 flex items-center justify-center relative">
+<img class="w-full h-full object-cover grayscale-[20%]" data-alt="professional map showing urban location with a clear safety green pin marker in Daejeon city area" data-location="Daejeon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgtHPjYSmzsMDybsD8ub2-ubiWRKHO8W-JSYrwoSt9ExbQBmc9YXfooa0RCTc6dPw4fAAnez97hlh1A2ScLbYxjgFpLW3VO9OLXrDsVmedDQ5QEhOEOWPBFnRU6LCFz_wN1f6RpQ3sU3_PYhx3DG8LcvPTrg4XRTOnR-HkIcdnWSkSP6YvxqNu7qLtHPy47JYtclMeBcN_9Fat_98YpVE86rWYe9JGDOhFY4EhAA8rPs-3BGwKNtsHJbhMEwJhsXxlqc1v7EUz2oM"/>
+<!-- Marker UI Overlay -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full flex flex-col items-center">
+<div class="bg-white px-6 py-3 rounded-xl shadow-xl border border-secondary/20 mb-2 whitespace-nowrap">
+<span class="text-secondary font-bold text-lg">도시안전디자인센터</span>
+<span class="block text-sm text-on-surface-variant">서우아파트 상가동 201호</span>
+</div>
+<div class="w-10 h-10 bg-secondary rounded-full border-4 border-white flex items-center justify-center shadow-lg animate-pulse">
+<span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TRANSIT CARDS -->
+<section class="px-12 py-12 bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto">
+<h3 class="text-[32px] font-bold text-primary mb-12 flex items-center gap-3">
+<span class="w-8 h-1 bg-secondary block"></span>
+                    대중교통 이용 안내
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Bus Card -->
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-800 text-3xl">directions_bus</span>
+</div>
+<h4 class="text-2xl font-bold text-on-surface">버스 이용</h4>
+</div>
+<div class="space-y-6 flex-1">
+<div>
+<p class="text-on-surface-variant text-sm font-bold mb-1">가까운 정류장</p>
+<p class="text-lg font-medium text-on-surface">용문역 정류장 (도보 5분)</p>
+</div>
+<div>
+<p class="text-on-surface-variant text-sm font-bold mb-2">노선 안내</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded text-sm font-bold">37번</span>
+<span class="px-3 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded text-sm font-bold">102번</span>
+<span class="px-3 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded text-sm font-bold">201번</span>
+</div>
+</div>
+</div>
+<a class="mt-8 text-secondary font-bold flex items-center gap-2 hover:underline" href="#">
+                            카카오버스로 실시간 도착정보 <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<!-- Subway Card -->
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-800 text-3xl">subway</span>
+</div>
+<h4 class="text-2xl font-bold text-on-surface">지하철 이용</h4>
+</div>
+<div class="space-y-6 flex-1 text-[18px] leading-[1.7]">
+<p class="font-medium">
+<strong class="text-orange-700">용문역 1번 출구</strong>에서 나오셔서 도보로 약 <strong class="text-secondary">10분</strong> 정도 소요됩니다.
+                            </p>
+<div class="rounded-lg overflow-hidden border border-outline-variant/30 h-32">
+<img class="w-full h-full object-cover" data-alt="clean minimal schematic showing a short walking path from Yongmun station exit 1 to the building" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMO0afLZL_JjD9zLQDoar5w4Kx9bSgrrsCK4QZpOx085eypp2VuGS608pud_gL7CMXvaJAln5X_1Vr6QKE8v2Yb_c9NihIU1HXdNmTJTzJP_yLS4mcc4In7fBpkXKN2s-cA-xIfRjl4t8nWM0_ZBZ3ZmR-1i2cbzK7st6juJk1LAiuJf6AM7O4bkEZbnacG9q0gpAygj5jwTOj-El4n4RM7henHG6c0FqSLuHzvhgCbbBfAzVB50P1pmBnPM9dM99IhoemtrBc2dc"/>
+</div>
+</div>
+</div>
+<!-- Parking Card -->
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm border border-outline-variant/10 flex flex-col">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-green-800 text-3xl">directions_car</span>
+</div>
+<h4 class="text-2xl font-bold text-on-surface">자동차 / 주차</h4>
+</div>
+<div class="space-y-6 flex-1 text-[18px] leading-[1.7]">
+<p class="font-medium">
+                                서우아파트 단지 내 <strong class="text-secondary">상가 전용 주차장</strong>을 무료로 이용하실 수 있습니다.
+                            </p>
+<p class="text-on-surface-variant text-sm">
+                                * 만차 시 인근 공영주차장을 안내해 드립니다.
+                            </p>
+</div>
+<button class="mt-8 w-full h-12 border-2 border-primary text-primary font-bold rounded-lg flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all">
+                            내비게이션 실행 <span class="material-symbols-outlined">navigation</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- NEARBY LANDMARKS -->
+<section class="px-12 py-16">
+<div class="max-w-[1440px] mx-auto text-center">
+<p class="text-on-surface-variant font-bold text-sm uppercase tracking-widest mb-6">주변 주요 랜드마크</p>
+<div class="flex flex-wrap justify-center gap-4">
+<span class="px-8 py-3 bg-white border border-outline-variant rounded-full text-lg font-medium text-primary shadow-sm">충남대병원</span>
+<span class="px-8 py-3 bg-white border border-outline-variant rounded-full text-lg font-medium text-primary shadow-sm">용문역</span>
+<span class="px-8 py-3 bg-white border border-outline-variant rounded-full text-lg font-medium text-primary shadow-sm">서우아파트</span>
+<span class="px-8 py-3 bg-white border border-outline-variant rounded-full text-lg font-medium text-primary shadow-sm">대전시청 방면</span>
+</div>
+</div>
+</section>
+<!-- VISIT TIPS -->
+<section class="px-12 py-20 bg-background">
+<div class="max-w-[1000px] mx-auto bg-surface-container-lowest p-12 rounded-2xl border-l-[8px] border-secondary shadow-xl">
+<h4 class="text-2xl font-black text-primary mb-10 flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+                    방문 전 꼭 확인해주세요
+                </h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-16">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<div>
+<p class="font-bold text-on-surface mb-1">운영 시간</p>
+<p class="text-on-surface-variant text-[18px]">평일 09:00 - 18:00 (토,일,공휴일 휴무)</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+<div>
+<p class="font-bold text-on-surface mb-1">점심 시간</p>
+<p class="text-on-surface-variant text-[18px]">12:00 - 13:00 (원활한 상담을 위해 피해주세요)</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">event_available</span>
+<div>
+<p class="font-bold text-on-surface mb-1">사전 예약 권장</p>
+<p class="text-on-surface-variant text-[18px]">전문가 대면 상담은 미리 예약하시면 편리합니다.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">accessible</span>
+<div>
+<p class="font-bold text-on-surface mb-1">무장애 접근성</p>
+<p class="text-on-surface-variant text-[18px]">휠체어 접근이 가능한 상가 엘리베이터가 있습니다.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BOOK A VISIT CTA -->
+<section class="px-12 py-24 mb-16">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12 bg-primary-container p-16 rounded-3xl relative overflow-hidden">
+<div class="relative z-10 max-w-xl text-center md:text-left">
+<h3 class="text-[36px] font-bold text-white mb-4">함께 만드는 안전한 대전</h3>
+<p class="text-on-primary-container text-[20px]">지금 바로 방문 상담을 예약하고 전문가의 의견을 들어보세요.</p>
+</div>
+<div class="relative z-10 flex flex-col sm:flex-row gap-6 w-full md:w-auto">
+<button class="h-[60px] px-12 bg-secondary hover:bg-on-secondary-container text-white font-black text-[20px] rounded-lg transition-all flex items-center justify-center gap-3 shadow-lg active:scale-95">
+<span class="material-symbols-outlined">calendar_month</span> 방문 상담 예약하기
+                    </button>
+<button class="h-[60px] px-12 bg-white/10 hover:bg-white/20 text-white border border-white/30 font-black text-[20px] rounded-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm active:scale-95">
+<span class="material-symbols-outlined">call</span> 바로 전화
+                    </button>
+</div>
+<!-- Visual Decoration -->
+<div class="absolute -right-20 -bottom-20 w-[400px] h-[400px] bg-secondary opacity-20 rounded-full blur-[100px]"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1a3a5c] dark:bg-slate-950 w-full mt-auto border-t-4 border-[#1b6d24]">
+<div class="flex flex-col md:flex-row justify-between items-start px-12 py-16 max-w-[1440px] mx-auto gap-8">
+<div class="flex flex-col gap-6 max-w-md">
+<div class="text-xl font-bold text-white">The Civic Anchor</div>
+<p class="text-slate-300 font-['Noto_Sans_KR'] text-[18px] leading-[1.7]">
+                    시민의 안전을 최우선으로 생각하는 대전경실련 도시안전디자인센터입니다. 35년의 전문성으로 더 나은 도시를 디자인합니다.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-x-16 gap-y-4">
+<a class="text-slate-300 hover:text-white hover:underline transition-all duration-300 font-['Noto_Sans_KR'] text-[18px]" href="#">Privacy Policy</a>
+<a class="text-slate-300 hover:text-white hover:underline transition-all duration-300 font-['Noto_Sans_KR'] text-[18px]" href="#">Terms of Service</a>
+<a class="text-slate-300 hover:text-white hover:underline transition-all duration-300 font-['Noto_Sans_KR'] text-[18px]" href="#">Accessibility Statement</a>
+<a class="text-slate-300 hover:text-white hover:underline transition-all duration-300 font-['Noto_Sans_KR'] text-[18px]" href="#">Safety Disclaimer</a>
+</div>
+</div>
+<div class="bg-primary px-12 py-6 border-t border-white/10">
+<div class="max-w-[1440px] mx-auto text-slate-400 text-sm font-medium">
+                © 2024 The Civic Anchor. 35 Years of Public Safety Excellence. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

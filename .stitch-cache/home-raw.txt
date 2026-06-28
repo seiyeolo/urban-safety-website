@@ -1,0 +1,50 @@
+    '                        Since 1989, we have partnered with civil society to design safer cities. Through expert education and rigorous data, we ensure every urban space serves its citizens securely.\n' +
+    '                    </p>\n' +
+    '<div class="flex gap-4">\n' +
+    '<button class="bg-secondary text-white px-8 py-4 rounded-md font-bold text-lg min-h-[56px] hover:bg-on-secondary-container transition-all shadow-lg">\n' +
+    '                            Explore Safety Programs\n' +
+    '                        </button>\n' +
+    '<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-md font-bold text-lg min-h-[56px] hover:bg-white/20 transition-all">\n' +
+    '                            View 2024 Data Report\n' +
+    '                        </button>\n' +
+    '</div>\n' +
+    '</div>\n' +
+    '</div>\n' +
+    '</section>\n' +
+    '<!-- Value Cards: Tonal Layering -->\n' +
+    '<section class="py-24 bg-surface-container-low">\n' +
+    '<div class="max-w-7xl mx-auto px-8">\n' +
+    '<div class="grid grid-cols-1 md:grid-cols-3 gap-8">\n' +
+    '<!-- Card 1 -->\n' +
+    '<div class="bg-surface-container-lowest p-10 rounded-xl editorial-shadow group hover:-translate-y-2 transition-transform duration-500">\n' +
+    '<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mb-8 text-on-primary-container group-hover:scale-110 transition-transform">\n' +
+    '<span class="material-symbols-outlined text-4xl" data-icon="policy">policy</span>\n' +
+    '</div>\n' +
+    '<h3 class="text-2xl font-bold mb-4 text-primary">Public Safety Standards</h3>\n' +
+    '<p class="text-on-surface-variant text-lg leading-relaxed">\n' +
+    '                            Developing rigorous urban safety design guidelines that serve as the foundation for institutional credentials.\n' +
+    '                        </p>\n' +
+    '</div>\n' +
+    '<!-- Card 2 -->\n' +
+    '<div class="bg-surface-container-lowest p-10 rounded-xl editorial-shadow group hover:-translate-y-2 transition-transform duration-500">\n' +
+    '<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-8 text-on-secondary-container group-hover:scale-110 transition-transform">\n' +
+    '<span class="material-symbols-outlined text-4xl" data-icon="school">school</span>\n' +
+    '</div>\n' +
+    '<h3 class="text-2xl font-bold mb-4 text-primary">Expert Qualification</h3>\n' +
+    '<p class="text-on-surface-variant text-lg leading-relaxed">\n' +
+    '                            Certified training programs designed to cultivate the next generation of urban safety design specialists.\n' +
+    '                        </p>\n' +
+    '</div>\n' +
+    '<!-- Card 3 -->\n' +
+    '<div class="bg-surface-container-lowest p-10 rounded-xl editorial-shadow group hover:-translate-y-2 transition-transform duration-500">\n' +
+    '<div class="w-16 h-16 bg-tertiary-fixed rounded-full flex items-center justify-center mb-8 text-on-tertiary-fixed-variant group-hover:scale-110 transition-transform">\n' +
+    '<span class="material-symbols-outlined text-4xl" data-icon="query_stats">query_stats</span>\n' +
+    '</div>\n' +
+    '<h3 class="text-2xl font-bold mb-4 text-primary">Civic Data Advocacy</h3>\n' +
+    '<p class="text-on-surface-variant text-lg leading-relaxed">\n' +
+    '                            Transforming complex urban data into actionable insights for safer, more inclusive neighborhood designs.\n' +
+    '                        </p>\n' +
+    '</div>\n' +
+    '</div>\n' +
+    '</d'... 11657 more characters
+}
