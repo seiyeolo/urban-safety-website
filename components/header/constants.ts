@@ -35,6 +35,8 @@ export const NAV_ITEMS = [
     children: [
       { label: '전체 교육과정', href: '/education' },
       { label: '온라인 교육', href: '/education/online' },
+      { label: '온라인 강의실 MVP', href: '/courses' },
+      { label: '내 강의실 mock', href: '/dashboard/learning' },
       { label: '오프라인 교육', href: '/education/offline' },
       { label: '기관·단체 맞춤형', href: '/education/group' },
     ],
