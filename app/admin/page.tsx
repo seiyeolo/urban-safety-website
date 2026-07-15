@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 const MENUS = [
   { icon: FileText, title: '공지사항 관리', desc: '공지사항 등록·수정·삭제', href: '/admin/notices' },
   { icon: BookOpen, title: '교육 일정 관리', desc: '개강·특강 일정 등록·수정', href: '/admin/schedule' },
+  { icon: BookOpen, title: '수강생 배정 mock', desc: '온라인 강의 배정·진도 mock 확인', href: '/admin/enrollments' },
   { icon: MessageSquare, title: '문의 내역', desc: '접수된 온라인 문의 확인', href: '/admin/contacts' },
   { icon: Download, title: '자료실 관리', desc: '다운로드 파일 업로드·삭제', href: '/admin/files' },
 ]

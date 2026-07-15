@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/lib/auth/AuthContext'
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react'
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -15,6 +15,11 @@ export default function LoginPage() {
 
   const { signIn, signInWithGoogle, signInWithKakao } = useAuth()
   const router = useRouter()
+  const searchParams = useSearchParams()
+
+  // 로그인 후 복귀 경로 — 내부 경로만 허용 (open redirect 방지)
+  const rawRedirect = searchParams.get('redirect')
+  const redirectTo = rawRedirect && rawRedirect.startsWith('/') && !rawRedirect.startsWith('//') ? rawRedirect : '/dashboard/learning'
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -26,7 +31,7 @@ export default function LoginPage() {
       if (error) {
         setError(error.message)
       } else {
-        router.push('/dashboard') // 로그인 후 리다이렉트
+        router.push(redirectTo) // 로그인 후 원래 가려던 페이지로 복귀
       }
     } catch {
       setError('로그인 중 오류가 발생했습니다.')
@@ -80,7 +85,11 @@ export default function LoginPage() {
             </div>
           </Link>
           <h1 className="text-3xl font-bold text-white mb-2">로그인</h1>
-          <p className="text-blue-300">도시안전디자인센터에 오신 것을 환영합니다</p>
+          <p className="text-blue-300">
+            {rawRedirect?.startsWith('/learn') || rawRedirect?.startsWith('/dashboard')
+              ? '온라인 강의실 입장을 위해 로그인해 주세요'
+              : '도시안전디자인센터에 오신 것을 환영합니다'}
+          </p>
         </div>
 
         {/* 로그인 폼 */}
@@ -215,5 +224,19 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-br from-[#1a3a5c] to-[#002444] flex items-center justify-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white" aria-hidden />
+        </div>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   )
 }

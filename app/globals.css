@@ -204,22 +204,24 @@ body {
 /* 카드 */
 .card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 32px;
-  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 24px -4px rgba(26, 58, 92, 0.04), 0 0 2px rgba(26, 58, 92, 0.04);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card:hover {
-  box-shadow: 0 8px 32px rgba(15, 45, 94, 0.12);
-  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -8px rgba(26, 58, 92, 0.12), 0 0 4px rgba(26, 58, 92, 0.04);
+  transform: translateY(-4px);
 }
 
 /* 페이지 히어로 */
 .page-hero {
-  background: linear-gradient(135deg, #1a3a5c 0%, #2b4870 100%);
+  background: linear-gradient(180deg, #0d1829 0%, #1a3a5c 100%);
   color: #ffffff;
-  padding: 80px 24px 64px;
+  padding: 120px 24px 100px;
   text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .page-hero h1 {
@@ -250,3 +252,7 @@ body {
 .breadcrumb a:hover { color: #ffffff; }
 .breadcrumb-sep { opacity: 0.5; }
 .breadcrumb-current { color: #ffffff; font-weight: 500; }
+
+/* Impeccable Custom Utilities */
+.shadow-soft { box-shadow: 0 4px 20px -2px rgba(26, 58, 92, 0.08), 0 0 3px rgba(26, 58, 92, 0.04); }
+.shadow-float { box-shadow: 0 12px 40px -4px rgba(26, 58, 92, 0.12), 0 0 4px rgba(26, 58, 92, 0.04); }

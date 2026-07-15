@@ -25,6 +25,8 @@ const nextConfig: NextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https: http:",
               "connect-src 'self' https:",
+              // 온라인 강의 영상 임베드 허용 (YouTube nocookie)
+              "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

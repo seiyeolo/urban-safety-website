@@ -57,3 +57,10 @@ temporary screenshots/
 /data/contacts.json
 /data/*.runtime.json
 /data/*.local.json
+
+# 대용량 원본 영상/작업 보관물 (YouTube에 업로드됨)
+vedio_lec/
+_archive_20260715/
+.serena/
+.stitch-cache/
+next.config.compiled.js

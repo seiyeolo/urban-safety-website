@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>도시안전 온라인 강의실 — 리디자인 시안 3종</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════ 공통 ═══════════ */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { -webkit-font-smoothing:antialiased; }
+body { font-family:'Noto Sans KR',-apple-system,sans-serif; background:#eceef1; word-break:keep-all; }
+button { font-family:inherit; cursor:pointer; border:none; background:none; }
+a { text-decoration:none; color:inherit; }
+.hidden { display:none !important; }
+
+/* ─── 상단 비교 컨트롤 바 ─── */
+.gallery-bar {
+  position:sticky; top:0; z-index:100;
+  background:#101623; color:#fff;
+  padding:14px 22px; display:flex; flex-wrap:wrap; align-items:center; gap:14px;
+  box-shadow:0 2px 18px rgba(0,0,0,.25);
+}
+.gallery-bar .gtitle { font-weight:900; font-size:15px; letter-spacing:-.02em; }
+.gallery-bar .gtitle small { display:block; font-weight:500; font-size:11px; color:#8fa0b8; margin-top:2px; }
+.tabset { display:flex; gap:6px; background:rgba(255,255,255,.07); padding:5px; border-radius:12px; }
+.tabset button {
+  padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; color:#aab7c9; transition:.18s;
+}
+.tabset button:hover { color:#fff; }
+.tabset button.on { background:#fff; color:#101623; box-shadow:0 2px 8px rgba(0,0,0,.3); }
+.tabset.views { margin-left:auto; }
+.tabset .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:1px; }
+
+/* ─── 시안 소개 스트립 ─── */
+.intro-strip { padding:20px 26px; display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
+.intro-strip .iname { font-size:19px; font-weight:900; letter-spacing:-.03em; }
+.intro-strip .idesc { font-size:13.5px; opacity:.75; max-width:520px; line-height:1.6; }
+.intro-strip .chips { display:flex; gap:8px; flex-wrap:wrap; margin-left:auto; }
+.intro-strip .chip { font-size:11.5px; font-weight:700; padding:6px 12px; border-radius:999px; }
+
+.screen { max-width:1240px; margin:0 auto; padding:0 26px 70px; }
+.foot-note { text-align:center; font-size:12px; color:#7c8698; padding:26px 20px 60px; line-height:1.8; }
+
+/* ═══════════ 시안 A — 클린 아카데미 ═══════════ */
+.dA { background:#f6f7f9; color:#1e2733; }
+.dA .intro-strip { background:#fff; border-bottom:1px solid #e7eaef; }
+.dA .intro-strip .iname { color:#16324f; }
+.dA .intro-strip .chip { background:#eef3f8; color:#16324f; }
+.dA .a-card { background:#fff; border:1px solid #e7eaef; border-radius:16px; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+
+.dA .a-pagehead { display:flex; align-items:flex-end; justify-content:space-between; gap:18px; padding:34px 0 22px; flex-wrap:wrap; }
+.dA .a-pagehead .crumb { font-size:12.5px; font-weight:700; color:#5b6b7e; margin-bottom:10px; }
+.dA .a-pagehead .crumb b { color:#2e7d32; }
+.dA .a-pagehead h1 { font-size:30px; font-weight:900; letter-spacing:-.04em; color:#16324f; }
+.dA .a-user { display:flex; align-items:center; gap:11px; padding:9px 14px; }
+.dA .a-user .av { width:38px; height:38px; border-radius:12px; background:#16324f; color:#fff; display:grid; place-items:center; font-weight:800; font-size:14px; }
+.dA .a-user .nm { font-size:13.5px; font-weight:800; color:#16324f; }
+.dA .a-user .rl { font-size:11px; color:#7a8798; font-weight:600; }
+.dA .a-user .out { font-size:11.5px; font-weight:700; color:#5b6b7e; border:1px solid #e0e5ec; padding:6px 11px; border-radius:9px; margin-left:6px; transition:.15s; }
+.dA .a-user .out:hover { background:#f2f5f8; }
+
+.dA .a-hero { display:grid; grid-template-columns:1.6fr 1fr; overflow:hidden; }
+.dA .a-hero-main { padding:30px 34px; background:linear-gradient(120deg,#16324f 0%,#1d4266 70%,#1f4d5e 100%); color:#fff; }
+.dA .a-hero-main .eyebrow { display:inline-flex; align-items:center; gap:7px; font-size:11.5px; font-weight:800; background:rgba(255,255,255,.12); padding:6px 12px; border-radius:999px; color:#bfe3c4; }
+.dA .a-hero-main h2 { font-size:23px; font-weight:900; letter-spacing:-.03em; margin:16px 0 6px; }
+.dA .a-hero-main .sub { font-size:14px; color:#c6d5e4; line-height:1.7; }
+.dA .a-prog { margin-top:22px; }
+.dA .a-prog .bar { height:8px; border-radius:99px; background:rgba(255,255,255,.16); overflow:hidden; }
+.dA .a-prog .bar i { display:block; height:100%; width:33%; border-radius:99px; background:linear-gradient(90deg,#43a047,#66bb6a); }
+.dA .a-prog .meta { display:flex; justify-content:space-between; font-size:12.5px; font-weight:700; color:#b9c9da; margin-top:9px; }
+.dA .a-cta { display:inline-flex; align-items:center; gap:9px; margin-top:22px; background:#2e7d32; color:#fff; font-weight:800; font-size:14.5px; padding:14px 24px; border-radius:12px; transition:.18s; }
+.dA .a-cta:hover { background:#256b29; transform:translateY(-1px); }
+.dA .a-hero-side { padding:26px 28px; background:#fff; border-left:1px solid #e7eaef; }
+.dA .a-hero-side .t { font-size:12px; font-weight:800; color:#2e7d32; margin-bottom:14px; }
+.dA .a-mini { padding:13px 15px; border-radius:12px; background:#f6f8fa; margin-bottom:9px; }
+.dA .a-mini .l { font-size:11px; font-weight:700; color:#7a8798; }
+.dA .a-mini .v { font-size:13.5px; font-weight:800; color:#16324f; margin-top:3px; line-height:1.5; }
+
+.dA .a-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:16px 0; }
+.dA .a-stat { padding:20px 22px; display:flex; align-items:center; gap:15px; }
+.dA .a-stat .ic { width:42px; height:42px; border-radius:12px; display:grid; place-items:center; font-size:18px; background:#eaf4eb; }
+.dA .a-stat .l { font-size:12px; font-weight:700; color:#7a8798; }
+.dA .a-stat .v { font-size:21px; font-weight:900; color:#16324f; letter-spacing:-.02em; }
+
+.dA .a-cols { display:grid; grid-template-columns:1fr 340px; gap:16px; align-items:start; }
+.dA .a-sec-h { display:flex; align-items:center; justify-content:space-between; padding:20px 24px 4px; }
+.dA .a-sec-h h3 { font-size:16.5px; font-weight:900; color:#16324f; letter-spacing:-.02em; }
+.dA .a-sec-h a { font-size:12.5px; font-weight:800; color:#2e7d32; }
+.dA .a-lessons { padding:14px; }
+.dA .a-lesson { display:flex; align-items:center; gap:14px; padding:14px 12px; border-radius:12px; transition:.15s; border:1px solid transparent; }
+.dA .a-lesson:hover { background:#f6f8fa; border-color:#e7eaef; }
+.dA .a-lesson .no { width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-size:13px; font-weight:900; background:#f0f3f6; color:#5b6b7e; flex-shrink:0; }
+.dA .a-lesson.done .no { background:#2e7d32; color:#fff; }
+.dA .a-lesson.now .no { background:#16324f; color:#fff; }
+.dA .a-lesson .tt { font-size:14px; font-weight:800; color:#1e2733; line-height:1.45; }
+.dA .a-lesson .dm { font-size:11.5px; font-weight:600; color:#8b97a6; margin-top:2px; }
+.dA .a-lesson .st { margin-left:auto; font-size:11px; font-weight:800; padding:5px 11px; border-radius:999px; flex-shrink:0; }
+.dA .a-lesson.done .st { background:#eaf4eb; color:#2e7d32; }
+.dA .a-lesson.now .st { background:#16324f; color:#fff; }
+.dA .a-lesson.todo .st { background:#f0f3f6; color:#8b97a6; }
+
+.dA .a-side > div { margin-bottom:16px; }
+.dA .a-notice { padding:22px 24px; border-left:4px solid #ff8f00; }
+.dA .a-notice h4 { font-size:14px; font-weight:900; color:#16324f; margin-bottom:8px; }
+.dA .a-notice p { font-size:13px; color:#57616e; line-height:1.75; }
+.dA .a-files { padding:22px 24px; }
+.dA .a-files h4 { font-size:14px; font-weight:900; color:#16324f; margin-bottom:12px; }
+.dA .a-file { display:flex; align-items:center; justify-content:space-between; padding:11px 14px; border-radius:10px; background:#f6f8fa; font-size:12.5px; font-weight:700; color:#3d4a59; margin-bottom:7px; }
+.dA .a-file span { color:#2e7d32; font-size:11px; font-weight:800; }
+
+/* A 플레이어 */
+.dA .a-player { display:grid; grid-template-columns:1fr 360px; gap:16px; align-items:start; margin-top:26px; }
+.dA .a-stage { overflow:hidden; }
+.dA .a-video { aspect-ratio:16/9; background:radial-gradient(circle at 25% 30%, #24486b, #14283f 65%); display:grid; place-items:center; position:relative; }
+.dA .a-video .play { width:74px; height:74px; border-radius:50%; background:rgba(255,255,255,.92); display:grid; place-items:center; box-shadow:0 12px 40px rgba(0,0,0,.35); transition:.2s; }
+.dA .a-video .play:hover { transform:scale(1.06); }
+.dA .a-video .play svg { margin-left:4px; }
+.dA .a-video .tag { position:absolute; top:16px; left:16px; font-size:11px; font-weight:800; color:#fff; background:rgba(0,0,0,.4); padding:6px 12px; border-radius:999px; backdrop-filter:blur(4px); }
+.dA .a-vbody { padding:24px 28px; }
+.dA .a-vbody .k { font-size:12px; font-weight:800; color:#2e7d32; }
+.dA .a-vbody h2 { font-size:21px; font-weight:900; color:#16324f; letter-spacing:-.03em; margin:6px 0 10px; }
+.dA .a-vbody p { font-size:14px; color:#57616e; line-height:1.8; }
+.dA .a-vfoot { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+.dA .a-btn2 { padding:12px 20px; border-radius:11px; font-size:13.5px; font-weight:800; border:1px solid #e0e5ec; color:#3d4a59; transition:.15s; }
+.dA .a-btn2:hover { background:#f2f5f8; }
+.dA .a-btn1 { padding:12px 22px; border-radius:11px; font-size:13.5px; font-weight:800; background:#2e7d32; color:#fff; transition:.15s; }
+.dA .a-btn1:hover { background:#256b29; }
+.dA .a-plist { padding:20px; }
+.dA .a-plist h4 { font-size:14.5px; font-weight:900; color:#16324f; padding:0 6px 12px; display:flex; justify-content:space-between; align-items:center; }
+.dA .a-plist h4 em { font-style:normal; font-size:11px; background:#eef3f8; color:#16324f; padding:4px 10px; border-radius:999px; }
+
+/* ═══════════ 시안 B — 포커스 다크 ═══════════ */
+.dB { background:#0d1320; color:#e8edf5; }
+.dB .intro-strip { background:#111a2b; border-bottom:1px solid rgba(255,255,255,.06); }
+.dB .intro-strip .iname { color:#fff; }
+.dB .intro-strip .idesc { color:#93a1b5; opacity:1; }
+.dB .intro-strip .chip { background:rgba(76,195,138,.12); color:#4cc38a; }
+.dB .b-card { background:#151d2e; border:1px solid rgba(255,255,255,.07); border-radius:18px; }
+
+.dB .b-pagehead { display:flex; align-items:flex-end; justify-content:space-between; padding:36px 0 24px; flex-wrap:wrap; gap:16px; }
+.dB .b-pagehead .hello { font-size:13px; font-weight:700; color:#7f8ea3; margin-bottom:8px; }
+.dB .b-pagehead h1 { font-size:31px; font-weight:900; letter-spacing:-.04em; color:#fff; }
+.dB .b-pagehead h1 b { color:#4cc38a; }
+.dB .b-user { display:flex; align-items:center; gap:12px; padding:10px 16px; border-radius:16px; background:#151d2e; border:1px solid rgba(255,255,255,.07); }
+.dB .b-user .av { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#4cc38a,#2a8f60); display:grid; place-items:center; color:#08130d; font-weight:900; font-size:14px; }
+.dB .b-user .nm { font-size:13px; font-weight:800; }
+.dB .b-user .rl { font-size:10.5px; color:#7f8ea3; font-weight:600; }
+
+.dB .b-hero { position:relative; overflow:hidden; padding:34px 38px; background:
+  radial-gradient(ellipse at 80% -10%, rgba(76,195,138,.16), transparent 55%),
+  radial-gradient(ellipse at 0% 110%, rgba(59,130,246,.10), transparent 50%), #151d2e; }
+.dB .b-hero .kick { display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:800; color:#4cc38a; letter-spacing:.06em; text-transform:uppercase; }
+.dB .b-hero .kick i { width:7px; height:7px; border-radius:50%; background:#4cc38a; box-shadow:0 0 12px #4cc38a; }
+.dB .b-hero h2 { font-size:26px; font-weight:900; letter-spacing:-.035em; margin:14px 0 8px; color:#fff; max-width:640px; line-height:1.35; }
+.dB .b-hero .sub { font-size:14px; color:#93a1b5; line-height:1.75; max-width:560px; }
+.dB .b-hero-row { display:flex; align-items:center; gap:30px; margin-top:26px; flex-wrap:wrap; }
+.dB .b-ring { position:relative; width:92px; height:92px; flex-shrink:0; }
+.dB .b-ring svg { transform:rotate(-90deg); }
+.dB .b-ring .pct { position:absolute; inset:0; display:grid; place-items:center; font-size:18px; font-weight:900; color:#fff; }
+.dB .b-ring .pct small { display:block; font-size:9px; color:#7f8ea3; font-weight:700; text-align:center; }
+.dB .b-hero-meta { display:flex; gap:26px; flex-wrap:wrap; }
+.dB .b-hm .l { font-size:11px; font-weight:700; color:#7f8ea3; }
+.dB .b-hm .v { font-size:16px; font-weight:900; color:#fff; margin-top:3px; }
+.dB .b-cta { margin-left:auto; display:inline-flex; align-items:center; gap:10px; background:#4cc38a; color:#07130c; font-weight:900; font-size:14.5px; padding:15px 26px; border-radius:14px; transition:.18s; box-shadow:0 10px 32px rgba(76,195,138,.25); }
+.dB .b-cta:hover { transform:translateY(-2px); box-shadow:0 14px 40px rgba(76,195,138,.35); }
+
+.dB .b-cols { display:grid; grid-template-columns:1fr 340px; gap:16px; align-items:start; margin-top:16px; }
+.dB .b-lessons { padding:10px; }
+.dB .b-sec-h { padding:18px 18px 10px; display:flex; justify-content:space-between; align-items:center; }
+.dB .b-sec-h h3 { font-size:15.5px; font-weight:900; color:#fff; }
+.dB .b-sec-h span { font-size:11.5px; font-weight:700; color:#7f8ea3; }
+.dB .b-lesson { display:flex; align-items:center; gap:15px; padding:15px 16px; border-radius:13px; transition:.15s; }
+.dB .b-lesson:hover { background:rgba(255,255,255,.045); }
+.dB .b-lesson .no { width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-size:12.5px; font-weight:900; border:2px solid rgba(255,255,255,.14); color:#93a1b5; flex-shrink:0; }
+.dB .b-lesson.done .no { border-color:#4cc38a; background:#4cc38a; color:#07130c; }
+.dB .b-lesson.now .no { border-color:#4cc38a; color:#4cc38a; box-shadow:0 0 14px rgba(76,195,138,.35); }
+.dB .b-lesson .tt { font-size:14px; font-weight:700; color:#e8edf5; line-height:1.4; }
+.dB .b-lesson.now .tt { font-weight:900; }
+.dB .b-lesson .dm { font-size:11px; font-weight:600; color:#7f8ea3; margin-top:2px; }
+.dB .b-lesson .go { margin-left:auto; font-size:11px; font-weight:800; color:#4cc38a; opacity:0; transition:.15s; }
+.dB .b-lesson:hover .go { opacity:1; }
+.dB .b-side > div { margin-bottom:16px; padding:22px 24px; }
+.dB .b-side h4 { font-size:13.5px; font-weight:900; color:#fff; margin-bottom:10px; }
+.dB .b-side p { font-size:12.5px; color:#93a1b5; line-height:1.8; }
+.dB .b-file { display:flex; justify-content:space-between; align-items:center; padding:11px 14px; border-radius:11px; background:rgba(255,255,255,.045); font-size:12.5px; font-weight:700; margin-bottom:7px; }
+.dB .b-file span { font-size:10.5px; color:#7f8ea3; }
+
+/* B 플레이어 */
+.dB .b-player { display:grid; grid-template-columns:1fr 350px; gap:0; margin-top:26px; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,.07); }
+.dB .b-stage { background:#0a0f19; }
+.dB .b-phead { padding:18px 26px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.06); }
+.dB .b-phead .bk { font-size:12.5px; font-weight:800; color:#7f8ea3; transition:.15s; }
+.dB .b-phead .bk:hover { color:#fff; }
+.dB .b-phead .tm { font-size:11.5px; font-weight:700; color:#4cc38a; background:rgba(76,195,138,.1); padding:6px 13px; border-radius:999px; }
+.dB .b-video { aspect-ratio:16/9; background:radial-gradient(circle at 30% 25%, #1a2c45, #0a1322 70%); display:grid; place-items:center; position:relative; }
+.dB .b-video .play { width:82px; height:82px; border-radius:50%; background:#4cc38a; display:grid; place-items:center; box-shadow:0 0 0 12px rgba(76,195,138,.12), 0 18px 55px rgba(0,0,0,.5); transition:.2s; }
+.dB .b-video .play:hover { transform:scale(1.07); }
+.dB .b-video .play svg { margin-left:4px; }
+.dB .b-vbar { height:5px; background:rgba(255,255,255,.09); position:relative; }
+.dB .b-vbar i { position:absolute; left:0; top:0; height:100%; width:38%; background:linear-gradient(90deg,#2a8f60,#4cc38a); border-radius:0 4px 4px 0; }
+.dB .b-vbody { padding:24px 28px 30px; }
+.dB .b-vbody .k { font-size:11.5px; font-weight:800; color:#4cc38a; letter-spacing:.05em; }
+.dB .b-vbody h2 { font-size:21px; font-weight:900; letter-spacing:-.03em; color:#fff; margin:8px 0 10px; }
+.dB .b-vbody p { font-size:13.5px; color:#93a1b5; line-height:1.8; max-width:640px; }
+.dB .b-vfoot { display:flex; gap:10px; margin-top:22px; flex-wrap:wrap; }
+.dB .b-btn2 { padding:12px 20px; border-radius:12px; font-size:13px; font-weight:800; border:1px solid rgba(255,255,255,.14); color:#e8edf5; transition:.15s; }
+.dB .b-btn2:hover { background:rgba(255,255,255,.06); }
+.dB .b-btn1 { padding:12px 24px; border-radius:12px; font-size:13px; font-weight:900; background:#4cc38a; color:#07130c; transition:.15s; }
+.dB .b-btn1:hover { filter:brightness(1.08); }
+.dB .b-qlist { background:#121a2a; padding:20px 16px; }
+.dB .b-qlist h4 { font-size:13.5px; font-weight:900; color:#fff; padding:0 10px 12px; display:flex; justify-content:space-between; align-items:center; }
+.dB .b-qlist h4 em { font-style:normal; font-size:10.5px; color:#4cc38a; background:rgba(76,195,138,.1); padding:4px 10px; border-radius:999px; }
+
+/* ═══════════ 시안 C — 웜 트러스트 ═══════════ */
+.dC { background:#faf6ee; color:#2d3327; font-size:16.5px; }
+.dC .intro-strip { background:#f3ecdd; border-bottom:1px solid #e7dec9; }
+.dC .intro-strip .iname { color:#205c33; font-family:'Noto Serif KR',serif; }
+.dC .intro-strip .chip { background:#fff; color:#205c33; border:1px solid #e2d8c2; }
+.dC .c-card { background:#fffdf8; border:1px solid #eae1cd; border-radius:20px; box-shadow:0 2px 10px rgba(120,100,60,.06); }
+.dC .c-serif { font-family:'Noto Serif KR',serif; }
+
+.dC .c-pagehead { text-align:center; padding:44px 0 30px; }
+.dC .c-pagehead .kick { display:inline-block; font-size:12px; font-weight:800; color:#a8632f; letter-spacing:.14em; margin-bottom:12px; }
+.dC .c-pagehead h1 { font-family:'Noto Serif KR',serif; font-size:34px; font-weight:900; letter-spacing:-.02em; color:#1e3a26; }
+.dC .c-pagehead p { font-size:15px; color:#6f7563; margin-top:10px; }
+.dC .c-pagehead .who { display:inline-flex; align-items:center; gap:9px; margin-top:16px; background:#fffdf8; border:1px solid #eae1cd; border-radius:999px; padding:8px 10px 8px 18px; font-size:13px; font-weight:700; color:#3f4a38; }
+.dC .c-pagehead .who button { font-size:11.5px; font-weight:800; color:#a8632f; background:#f6efe0; padding:6px 13px; border-radius:999px; }
+
+.dC .c-hero { display:grid; grid-template-columns:1.5fr 1fr; overflow:hidden; }
+.dC .c-hero-main { padding:34px 38px; background:linear-gradient(135deg,#205c33,#2a6e40 60%,#33794a); color:#f4f8ee; position:relative; }
+.dC .c-hero-main::after { content:''; position:absolute; right:-40px; top:-40px; width:190px; height:190px; border-radius:50%; border:26px solid rgba(255,255,255,.07); }
+.dC .c-hero-main .eyebrow { font-size:12px; font-weight:800; color:#c9e3b8; letter-spacing:.08em; }
+.dC .c-hero-main h2 { font-family:'Noto Serif KR',serif; font-size:25px; font-weight:900; line-height:1.4; margin:14px 0 10px; letter-spacing:-.01em; }
+.dC .c-hero-main .sub { font-size:14.5px; color:#d7e6cb; line-height:1.85; }
+.dC .c-steps { display:flex; gap:7px; margin-top:26px; }
+.dC .c-steps i { flex:1; height:10px; border-radius:6px; background:rgba(255,255,255,.18); }
+.dC .c-steps i.f { background:#f2c14e; }
+.dC .c-steps i.h { background:linear-gradient(90deg,#f2c14e 50%,rgba(255,255,255,.18) 50%); }
+.dC .c-steps-l { display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; color:#c9e3b8; margin-top:9px; }
+.dC .c-cta { display:inline-flex; align-items:center; gap:10px; margin-top:24px; background:#f2c14e; color:#3d2e0a; font-weight:900; font-size:15px; padding:15px 28px; border-radius:14px; transition:.18s; box-shadow:0 8px 24px rgba(0,0,0,.18); }
+.dC .c-cta:hover { transform:translateY(-2px); filter:brightness(1.04); }
+.dC .c-hero-side { padding:30px 32px; }
+.dC .c-hero-side h3 { font-family:'Noto Serif KR',serif; font-size:16px; font-weight:900; color:#1e3a26; margin-bottom:16px; }
+.dC .c-today { display:flex; gap:13px; padding:13px 0; border-bottom:1px dashed #e2d8c2; }
+.dC .c-today:last-child { border-bottom:none; }
+.dC .c-today .n { width:30px; height:30px; border-radius:50%; background:#eef3e4; color:#205c33; font-size:12.5px; font-weight:900; display:grid; place-items:center; flex-shrink:0; }
+.dC .c-today .t { font-size:13.5px; font-weight:700; color:#3f4a38; line-height:1.55; }
+.dC .c-today .t small { display:block; font-size:11.5px; color:#8d9480; font-weight:600; margin-top:2px; }
+
+.dC .c-cols { display:grid; grid-template-columns:1fr 340px; gap:18px; align-items:start; margin-top:18px; }
+.dC .c-sec-h { padding:24px 28px 6px; }
+.dC .c-sec-h h3 { font-family:'Noto Serif KR',serif; font-size:19px; font-weight:900; color:#1e3a26; }
+.dC .c-sec-h p { font-size:12.5px; color:#8d9480; margin-top:4px; }
+.dC .c-lessons { padding:16px; }
+.dC .c-lesson { display:flex; align-items:center; gap:16px; padding:16px 14px; border-radius:14px; transition:.15s; }
+.dC .c-lesson:hover { background:#f6f1e4; }
+.dC .c-lesson .no { width:40px; height:40px; border-radius:14px; display:grid; place-items:center; font-size:14px; font-weight:900; background:#f0ead9; color:#7a7258; flex-shrink:0; }
+.dC .c-lesson.done .no { background:#205c33; color:#fff; }
+.dC .c-lesson.now .no { background:#f2c14e; color:#3d2e0a; }
+.dC .c-lesson .tt { font-size:15px; font-weight:800; color:#2d3327; line-height:1.5; }
+.dC .c-lesson .dm { font-size:12px; font-weight:600; color:#8d9480; margin-top:3px; }
+.dC .c-lesson .st { margin-left:auto; font-size:11.5px; font-weight:800; padding:6px 13px; border-radius:999px; flex-shrink:0; }
+.dC .c-lesson.done .st { background:#eef3e4; color:#205c33; }
+.dC .c-lesson.now .st { background:#fdf3d7; color:#8a6a14; }
+.dC .c-lesson.todo .st { background:#f0ead9; color:#9a917a; }
+.dC .c-side > div { margin-bottom:18px; padding:26px 28px; }
+.dC .c-side h4 { font-family:'Noto Serif KR',serif; font-size:16px; font-weight:900; color:#1e3a26; margin-bottom:10px; }
+.dC .c-side p { font-size:13.5px; color:#5d6552; line-height:1.9; }
+.dC .c-file { display:flex; justify-content:space-between; align-items:center; padding:12px 15px; border-radius:12px; background:#f6f1e4; font-size:13px; font-weight:700; color:#3f4a38; margin-bottom:8px; }
+.dC .c-file span { font-size:11px; color:#a8632f; font-weight:800; }
+.dC .c-call { background:#1e3a26 !important; border:none !important; color:#e9f0dd; }
+.dC .c-call h4 { color:#fff; }
+.dC .c-call p { color:#c3d4b2; }
+.dC .c-call .tel { display:block; font-family:'Noto Serif KR',serif; font-size:21px; font-weight:900; color:#f2c14e; margin-top:10px; }
+
+/* C 플레이어 */
+.dC .c-player { display:grid; grid-template-columns:1fr 350px; gap:18px; align-items:start; margin-top:30px; }
+.dC .c-stage { overflow:hidden; }
+.dC .c-phead { padding:20px 28px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #eae1cd; }
+.dC .c-phead .bk { font-size:13px; font-weight:800; color:#205c33; }
+.dC .c-phead .no-b { font-size:11.5px; font-weight:800; background:#fdf3d7; color:#8a6a14; padding:6px 14px; border-radius:999px; }
+.dC .c-video-wrap { padding:22px 22px 0; }
+.dC .c-video { aspect-ratio:16/9; border-radius:14px; background:radial-gradient(circle at 30% 25%, #2f5e3f, #1c3a27 70%); display:grid; place-items:center; position:relative; overflow:hidden; }
+.dC .c-video::after { content:''; position:absolute; left:-30px; bottom:-60px; width:170px; height:170px; border-radius:50%; border:22px solid rgba(255,255,255,.06); }
+.dC .c-video .play { width:78px; height:78px; border-radius:50%; background:#f2c14e; display:grid; place-items:center; box-shadow:0 14px 40px rgba(0,0,0,.35); transition:.2s; }
+.dC .c-video .play:hover { transform:scale(1.06); }
+.dC .c-video .play svg { margin-left:4px; }
+.dC .c-vbody { padding:26px 30px 30px; }
+.dC .c-vbody .k { font-size:12px; font-weight:800; color:#a8632f; letter-spacing:.08em; }
+.dC .c-vbody h2 { font-family:'Noto Serif KR',serif; font-size:23px; font-weight:900; color:#1e3a26; margin:10px 0 12px; line-height:1.4; }
+.dC .c-vbody p { font-size:14.5px; color:#5d6552; line-height:1.9; }
+.dC .c-vfoot { display:flex; gap:11px; margin-top:24px; flex-wrap:wrap; }
+.dC .c-btn2 { padding:13px 22px; border-radius:13px; font-size:14px; font-weight:800; border:1.5px solid #d9cfb6; color:#3f4a38; transition:.15s; }
+.dC .c-btn2:hover { background:#f6f1e4; }
+.dC .c-btn1 { padding:13px 26px; border-radius:13px; font-size:14px; font-weight:900; background:#205c33; color:#fff; transition:.15s; }
+.dC .c-btn1:hover { background:#1a4c2a; }
+.dC .c-plist { padding:24px 20px; }
+.dC .c-plist h4 { font-family:'Noto Serif KR',serif; font-size:16.5px; font-weight:900; color:#1e3a26; padding:0 8px 14px; display:flex; justify-content:space-between; align-items:center; }
+.dC .c-plist h4 em { font-style:normal; font-family:'Noto Sans KR',sans-serif; font-size:11px; background:#eef3e4; color:#205c33; padding:5px 11px; border-radius:999px; }
+
+/* 반응형 */
+@media (max-width: 980px) {
+  .dA .a-hero, .dC .c-hero { grid-template-columns:1fr; }
+  .dA .a-hero-side { border-left:none; border-top:1px solid #e7eaef; }
+  .dA .a-cols, .dB .b-cols, .dC .c-cols,
+  .dA .a-player, .dB .b-player, .dC .c-player { grid-template-columns:1fr; }
+  .dA .a-stats { grid-template-columns:1fr; }
+  .gallery-bar { gap:10px; }
+  .tabset.views { margin-left:0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ 상단 컨트롤 ═══ -->
+<div class="gallery-bar">
+  <div class="gtitle">온라인 강의실 리디자인 시안<small>도시안전디자인센터 · 2026-07-16 · 코드 미반영 시안 (안전)</small></div>
+  <div class="tabset designs">
+    <button data-design="a" class="on"><span class="dot" style="background:#2e7d32"></span>A 클린 아카데미</button>
+    <button data-design="b"><span class="dot" style="background:#4cc38a"></span>B 포커스 다크</button>
+    <button data-design="c"><span class="dot" style="background:#f2c14e"></span>C 웜 트러스트</button>
+  </div>
+  <div class="tabset views">
+    <button data-view="room" class="on">내 강의실</button>
+    <button data-view="player">강의 플레이어</button>
+  </div>
+</div>
+
+<!-- ═════════════════ 시안 A — 클린 아카데미 ═════════════════ -->
+<div class="dA" id="design-a">
+  <div class="intro-strip">
+    <div>
+      <div class="iname">A. 클린 아카데미</div>
+      <div class="idesc">화이트 기반의 정제된 교육 플랫폼 스타일. 현재 브랜드 팔레트(네이비+그린)를 그대로 유지하면서 카드·간격·타이포만 정리 — <b>이식 비용이 가장 낮은 안</b>입니다.</div>
+    </div>
+    <div class="chips"><span class="chip">기존 팔레트 유지</span><span class="chip">이식 난이도 하</span><span class="chip">edX·FastCampus 계열</span></div>
+  </div>
+
+  <!-- A · 내 강의실 -->
+  <div class="screen view-room" id="a-room">
+    <div class="a-pagehead">
+      <div>
+        <div class="crumb">온라인 강의실 <b>›</b> 내 강의실</div>
+        <h1>내 강의실</h1>
+      </div>
+      <div class="a-card a-user">
+        <div class="av">김</div>
+        <div><div class="nm">김수강 님</div><div class="rl">보이스피싱 예방지도사 1기</div></div>
+        <button class="out">로그아웃</button>
+      </div>
+    </div>
+
+    <div class="a-card a-hero">
+      <div class="a-hero-main">
+        <span class="eyebrow">● 이어보기</span>
+        <h2>3강. 상담·신고·피해 확산 방지 대응 흐름</h2>
+        <p class="sub">보이스피싱 예방지도사 온라인 보충과정 · 48분</p>
+        <div class="a-prog">
+          <div class="bar"><i></i></div>
+          <div class="meta"><span>진도율 33% · 2강 완료</span><span>남은 차시 4강</span></div>
+        </div>
+        <a class="a-cta" href="#">▶&ensp;강의 이어보기</a>
+      </div>
+      <div class="a-hero-side">
+        <div class="t">오늘의 학습</div>
+        <div class="a-mini"><div class="l">다음 차시</div><div class="v">3강 상담·신고·대응 흐름 (48분)</div></div>
+        <div class="a-mini"><div class="l">수료 기준</div><div class="v">전체 6차시 수강 완료</div></div>
+        <div class="a-mini"><div class="l">수강 기간</div><div class="v">2026. 8. 15.까지 (D-30)</div></div>
+      </div>
+    </div>
+
+    <div class="a-stats">
+      <div class="a-card a-stat"><div class="ic">📗</div><div><div class="l">배정 과정</div><div class="v">1개</div></div></div>
+      <div class="a-card a-stat"><div class="ic">✅</div><div><div class="l">완료 차시</div><div class="v">2 / 6</div></div></div>
+      <div class="a-card a-stat"><div class="ic">⏱️</div><div><div class="l">학습 시간</div><div class="v">1시간 37분</div></div></div>
+    </div>
+
+    <div class="a-cols">
+      <div class="a-card">
+        <div class="a-sec-h"><h3>전체 차시</h3><a href="#">전체 과정 보기</a></div>
+        <div class="a-lessons">
+          <div class="a-lesson done"><div class="no">✓</div><div><div class="tt">보이스피싱 예방교육의 목적과 지도사 역할</div><div class="dm">1강 · 42분</div></div><span class="st">완료</span></div>
+          <div class="a-lesson done"><div class="no">✓</div><div><div class="tt">주요 사기 유형과 위험 신호 분류</div><div class="dm">2강 · 55분</div></div><span class="st">완료</span></div>
+          <div class="a-lesson now"><div class="no">3</div><div><div class="tt">상담·신고·피해 확산 방지 대응 흐름</div><div class="dm">3강 · 48분</div></div><span class="st">수강 중</span></div>
+          <div class="a-lesson todo"><div class="no">4</div><div><div class="tt">시민 대상 5분 설명 실습</div><div class="dm">4강 · 50분</div></div><span class="st">대기</span></div>
+          <div class="a-lesson todo"><div class="no">5</div><div><div class="tt">교육 현장 운영과 질문 대응</div><div class="dm">5강 · 45분</div></div><span class="st">대기</span></div>
+          <div class="a-lesson todo"><div class="no">6</div><div><div class="tt">복습 퀴즈와 수료 기준 안내</div><div class="dm">6강 · 38분</div></div><span class="st">대기</span></div>
+        </div>
+      </div>
+      <div class="a-side">
+        <div class="a-card a-notice">
+          <h4>📢 공지</h4>
+          <p>본 과정은 민간자격 연계 교육입니다. 수료·평가 세부 기준과 자료 배포 일정은 이곳 공지로 안내됩니다.</p>
+        </div>
+        <div class="a-card a-files">
+          <h4>강의자료</h4>
+          <div class="a-file">강의 요약 PDF <span>다운로드</span></div>
+          <div class="a-file">위험 신호 체크리스트 <span>다운로드</span></div>
+          <div class="a-file">시민 안내 스크립트 <span>다운로드</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A · 플레이어 -->
+  <div class="screen view-player hidden" id="a-player">
+    <div class="a-player">
+      <div class="a-card a-stage">
+        <div class="a-video">
+          <span class="tag">3강 · 48분</span>
+          <button class="play" aria-label="재생"><svg width="26" height="26" viewBox="0 0 24 24" fill="#16324f"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="a-vbody">
+          <div class="k">보이스피싱 예방지도사 온라인 보충과정</div>
+          <h2>3강. 상담·신고·피해 확산 방지 대응 흐름</h2>
+          <p>의심 상황에서 무엇을 멈추고, 어디에 확인하고, 누구에게 알릴지 흐름을 설계합니다. 강의를 마친 뒤 대응 플로우차트를 내려받아 실습해 보세요.</p>
+          <div class="a-vfoot">
+            <button class="a-btn2">← 이전 강의</button>
+            <button class="a-btn1">이 차시 완료하고 다음 강의 →</button>
+          </div>
+        </div>
+      </div>
+      <div class="a-card a-plist">
+        <h4>차시 목록 <em>2/6 완료</em></h4>
+        <div class="a-lessons" style="padding:0">
+          <div class="a-lesson done"><div class="no">✓</div><div><div class="tt">예방교육의 목적과 지도사 역할</div><div class="dm">42분</div></div></div>
+          <div class="a-lesson done"><div class="no">✓</div><div><div class="tt">주요 사기 유형과 위험 신호 분류</div><div class="dm">55분</div></div></div>
+          <div class="a-lesson now"><div class="no">3</div><div><div class="tt">상담·신고·대응 흐름</div><div class="dm">48분 · 재생 중</div></div></div>
+          <div class="a-lesson todo"><div class="no">4</div><div><div class="tt">시민 대상 5분 설명 실습</div><div class="dm">50분</div></div></div>
+          <div class="a-lesson todo"><div class="no">5</div><div><div class="tt">교육 현장 운영과 질문 대응</div><div class="dm">45분</div></div></div>
+          <div class="a-lesson todo"><div class="no">6</div><div><div class="tt">복습 퀴즈와 수료 기준 안내</div><div class="dm">38분</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════ 시안 B — 포커스 다크 ═════════════════ -->
+<div class="dB hidden" id="design-b">
+  <div class="intro-strip">
+    <div>
+      <div class="iname">B. 포커스 다크</div>
+      <div class="idesc">몰입형 다크 테마. 영상 시청에 눈이 편하고, 프리미엄 스트리밍 서비스 같은 인상을 줍니다. 그린을 형광 포인트로 재해석 — <b>플레이어 화면이 가장 돋보이는 안</b>입니다.</div>
+    </div>
+    <div class="chips"><span class="chip">시청 몰입 최적</span><span class="chip">이식 난이도 중</span><span class="chip">Udemy·Netflix 계열</span></div>
+  </div>
+
+  <!-- B · 내 강의실 -->
+  <div class="screen view-room" id="b-room">
+    <div class="b-pagehead">
+      <div>
+        <div class="hello">안녕하세요, 김수강 님 👋</div>
+        <h1>오늘도 <b>이어서</b> 학습해 볼까요?</h1>
+      </div>
+      <div class="b-user">
+        <div class="av">김</div>
+        <div><div class="nm">김수강</div><div class="rl">보이스피싱 예방지도사 1기</div></div>
+      </div>
+    </div>
+
+    <div class="b-card b-hero">
+      <span class="kick"><i></i>이어보기 · Lesson 3</span>
+      <h2>상담·신고·피해 확산 방지 대응 흐름</h2>
+      <p class="sub">보이스피싱 예방지도사 온라인 보충과정 · 48분 · 의심 상황 대응 플로우 설계</p>
+      <div class="b-hero-row">
+        <div class="b-ring">
+          <svg width="92" height="92">
+            <circle cx="46" cy="46" r="38" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="8"/>
+            <circle cx="46" cy="46" r="38" fill="none" stroke="#4cc38a" stroke-width="8" stroke-linecap="round" stroke-dasharray="238.8" stroke-dashoffset="160"/>
+          </svg>
+          <div class="pct">33%<small>진도율</small></div>
+        </div>
+        <div class="b-hero-meta">
+          <div class="b-hm"><div class="l">완료 차시</div><div class="v">2 / 6</div></div>
+          <div class="b-hm"><div class="l">학습 시간</div><div class="v">1h 37m</div></div>
+          <div class="b-hm"><div class="l">수강 기간</div><div class="v">D-30</div></div>
+        </div>
+        <a class="b-cta" href="#">▶&ensp;이어보기</a>
+      </div>
+    </div>
+
+    <div class="b-cols">
+      <div class="b-card">
+        <div class="b-sec-h"><h3>커리큘럼</h3><span>총 6차시 · 4시간 38분</span></div>
+        <div class="b-lessons">
+          <div class="b-lesson done"><div class="no">✓</div><div><div class="tt">보이스피싱 예방교육의 목적과 지도사 역할</div><div class="dm">42분</div></div><span class="go">다시 보기 →</span></div>
+          <div class="b-lesson done"><div class="no">✓</div><div><div class="tt">주요 사기 유형과 위험 신호 분류</div><div class="dm">55분</div></div><span class="go">다시 보기 →</span></div>
+          <div class="b-lesson now"><div class="no">3</div><div><div class="tt">상담·신고·피해 확산 방지 대응 흐름</div><div class="dm">48분 · 수강 중</div></div><span class="go">이어보기 →</span></div>
+          <div class="b-lesson"><div class="no">4</div><div><div class="tt">시민 대상 5분 설명 실습</div><div class="dm">50분</div></div><span class="go">시작 →</span></div>
+          <div class="b-lesson"><div class="no">5</div><div><div class="tt">교육 현장 운영과 질문 대응</div><div class="dm">45분</div></div><span class="go">시작 →</span></div>
+          <div class="b-lesson"><div class="no">6</div><div><div class="tt">복습 퀴즈와 수료 기준 안내</div><div class="dm">38분</div></div><span class="go">시작 →</span></div>
+        </div>
+      </div>
+      <div class="b-side">
+        <div class="b-card">
+          <h4>📢 공지</h4>
+          <p>본 과정은 민간자격 연계 교육입니다. 수료·평가 세부 기준과 자료 배포 일정은 이곳 공지로 안내됩니다.</p>
+        </div>
+        <div class="b-card">
+          <h4>강의자료</h4>
+          <div class="b-file">강의 요약 PDF <span>PDF · 1.2MB</span></div>
+          <div class="b-file">위험 신호 체크리스트 <span>PDF · 640KB</span></div>
+          <div class="b-file">시민 안내 스크립트 <span>PDF · 380KB</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B · 플레이어 -->
+  <div class="screen view-player hidden" id="b-player">
+    <div class="b-player">
+      <div class="b-stage">
+        <div class="b-phead">
+          <a class="bk" href="#">← 내 강의실</a>
+          <span class="tm">3강 / 6강 · 48분</span>
+        </div>
+        <div class="b-video">
+          <button class="play" aria-label="재생"><svg width="30" height="30" viewBox="0 0 24 24" fill="#07130c"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="b-vbar"><i></i></div>
+        <div class="b-vbody">
+          <div class="k">LESSON 3</div>
+          <h2>상담·신고·피해 확산 방지 대응 흐름</h2>
+          <p>의심 상황에서 무엇을 멈추고, 어디에 확인하고, 누구에게 알릴지 흐름을 설계합니다. 시청 후 대응 플로우차트를 내려받아 실제 사례에 적용해 보세요.</p>
+          <div class="b-vfoot">
+            <button class="b-btn2">← 이전 강의</button>
+            <button class="b-btn1">완료하고 다음 강의 →</button>
+            <button class="b-btn2">자료 다운로드</button>
+          </div>
+        </div>
+      </div>
+      <div class="b-qlist">
+        <h4>차시 목록 <em>2/6 완료</em></h4>
+        <div class="b-lessons">
+          <div class="b-lesson done"><div class="no">✓</div><div><div class="tt">예방교육의 목적과 지도사 역할</div><div class="dm">42분</div></div></div>
+          <div class="b-lesson done"><div class="no">✓</div><div><div class="tt">주요 사기 유형과 위험 신호 분류</div><div class="dm">55분</div></div></div>
+          <div class="b-lesson now"><div class="no">3</div><div><div class="tt">상담·신고·대응 흐름</div><div class="dm">48분 · 재생 중</div></div></div>
+          <div class="b-lesson"><div class="no">4</div><div><div class="tt">시민 대상 5분 설명 실습</div><div class="dm">50분</div></div></div>
+          <div class="b-lesson"><div class="no">5</div><div><div class="tt">교육 현장 운영과 질문 대응</div><div class="dm">45분</div></div></div>
+          <div class="b-lesson"><div class="no">6</div><div><div class="tt">복습 퀴즈와 수료 기준 안내</div><div class="dm">38분</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════ 시안 C — 웜 트러스트 ═════════════════ -->
+<div class="dC hidden" id="design-c">
+  <div class="intro-strip">
+    <div>
+      <div class="iname">C. 웜 트러스트</div>
+      <div class="idesc">크림+딥그린의 따뜻한 시민단체 감성. 세리프 제목과 큰 글자로 중장년 수강생 배려 — 브랜드 포지셔닝 <b>"가족을 믿고 맡길 수 있는 동네 안전 전문가"에 가장 충실한 안</b>입니다.</div>
+    </div>
+    <div class="chips"><span class="chip">중장년 가독성 최우선</span><span class="chip">이식 난이도 중</span><span class="chip">공익·신뢰 감성</span></div>
+  </div>
+
+  <!-- C · 내 강의실 -->
+  <div class="screen view-room" id="c-room">
+    <div class="c-pagehead">
+      <div class="kick">URBAN SAFETY ACADEMY</div>
+      <h1>김수강 님의 강의실</h1>
+      <p>오늘도 안전한 우리 동네를 만드는 공부, 함께 이어가요.</p>
+      <div class="who">보이스피싱 예방지도사 1기 <button>로그아웃</button></div>
+    </div>
+
+    <div class="c-card c-hero">
+      <div class="c-hero-main">
+        <div class="eyebrow">이어보기 · 셋째 시간</div>
+        <h2>상담·신고·피해 확산 방지<br>대응 흐름</h2>
+        <p class="sub">48분 강의 · 의심 상황에서 멈추고, 확인하고, 알리는 순서를 배웁니다.</p>
+        <div class="c-steps"><i class="f"></i><i class="f"></i><i class="h"></i><i></i><i></i><i></i></div>
+        <div class="c-steps-l"><span>2강까지 완료했어요</span><span>남은 차시 4강</span></div>
+        <a class="c-cta" href="#">▶&ensp;강의 이어보기</a>
+      </div>
+      <div class="c-hero-side">
+        <h3>오늘의 학습 안내</h3>
+        <div class="c-today"><div class="n">1</div><div class="t">3강 영상 시청하기<small>48분 · 휴대폰으로도 보실 수 있어요</small></div></div>
+        <div class="c-today"><div class="n">2</div><div class="t">대응 플로우차트 내려받기<small>강의자료실에서 받으세요</small></div></div>
+        <div class="c-today"><div class="n">3</div><div class="t">[완료] 버튼 꼭 누르기<small>진도가 저장됩니다</small></div></div>
+      </div>
+    </div>
+
+    <div class="c-cols">
+      <div class="c-card">
+        <div class="c-sec-h"><h3>전체 차시</h3><p>총 6차시 · 4시간 38분 · 수료 기준: 전체 수강</p></div>
+        <div class="c-lessons">
+          <div class="c-lesson done"><div class="no">✓</div><div><div class="tt">보이스피싱 예방교육의 목적과 지도사 역할</div><div class="dm">1강 · 42분</div></div><span class="st">완료</span></div>
+          <div class="c-lesson done"><div class="no">✓</div><div><div class="tt">주요 사기 유형과 위험 신호 분류</div><div class="dm">2강 · 55분</div></div><span class="st">완료</span></div>
+          <div class="c-lesson now"><div class="no">3</div><div><div class="tt">상담·신고·피해 확산 방지 대응 흐름</div><div class="dm">3강 · 48분</div></div><span class="st">수강 중</span></div>
+          <div class="c-lesson todo"><div class="no">4</div><div><div class="tt">시민 대상 5분 설명 실습</div><div class="dm">4강 · 50분</div></div><span class="st">대기</span></div>
+          <div class="c-lesson todo"><div class="no">5</div><div><div class="tt">교육 현장 운영과 질문 대응</div><div class="dm">5강 · 45분</div></div><span class="st">대기</span></div>
+          <div class="c-lesson todo"><div class="no">6</div><div><div class="tt">복습 퀴즈와 수료 기준 안내</div><div class="dm">6강 · 38분</div></div><span class="st">대기</span></div>
+        </div>
+      </div>
+      <div class="c-side">
+        <div class="c-card">
+          <h4>📢 공지</h4>
+          <p>본 과정은 민간자격 연계 교육입니다. 수료·평가 세부 기준과 자료 배포 일정은 이곳에서 안내드립니다.</p>
+        </div>
+        <div class="c-card">
+          <h4>강의자료</h4>
+          <div class="c-file">강의 요약 PDF <span>받기</span></div>
+          <div class="c-file">위험 신호 체크리스트 <span>받기</span></div>
+          <div class="c-file">시민 안내 스크립트 <span>받기</span></div>
+        </div>
+        <div class="c-card c-call">
+          <h4>어려움이 있으신가요?</h4>
+          <p>영상이 안 나오거나 로그인이 어려우시면 언제든 전화 주세요.</p>
+          <span class="tel">042-254-8060</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C · 플레이어 -->
+  <div class="screen view-player hidden" id="c-player">
+    <div class="c-player">
+      <div class="c-card c-stage">
+        <div class="c-phead">
+          <a class="bk" href="#">← 내 강의실로 돌아가기</a>
+          <span class="no-b">셋째 시간 · 48분</span>
+        </div>
+        <div class="c-video-wrap">
+          <div class="c-video">
+            <button class="play" aria-label="재생"><svg width="28" height="28" viewBox="0 0 24 24" fill="#3d2e0a"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+        </div>
+        <div class="c-vbody">
+          <div class="k">보이스피싱 예방지도사 온라인 보충과정</div>
+          <h2>상담·신고·피해 확산 방지 대응 흐름</h2>
+          <p>의심스러운 전화나 문자를 받았을 때 무엇부터 멈추고, 어디에 확인하고, 누구에게 알려야 하는지 순서대로 배웁니다. 강의를 다 보신 뒤 아래 [완료] 버튼을 꼭 눌러 주세요.</p>
+          <div class="c-vfoot">
+            <button class="c-btn2">← 이전 강의</button>
+            <button class="c-btn1">✓ 다 봤어요 — 다음 강의로</button>
+          </div>
+        </div>
+      </div>
+      <div class="c-card c-plist">
+        <h4>차시 목록 <em>2/6 완료</em></h4>
+        <div class="c-lessons" style="padding:0">
+          <div class="c-lesson done"><div class="no">✓</div><div><div class="tt">예방교육의 목적과 지도사 역할</div><div class="dm">42분</div></div></div>
+          <div class="c-lesson done"><div class="no">✓</div><div><div class="tt">주요 사기 유형과 위험 신호 분류</div><div class="dm">55분</div></div></div>
+          <div class="c-lesson now"><div class="no">3</div><div><div class="tt">상담·신고·대응 흐름</div><div class="dm">48분 · 재생 중</div></div></div>
+          <div class="c-lesson todo"><div class="no">4</div><div><div class="tt">시민 대상 5분 설명 실습</div><div class="dm">50분</div></div></div>
+          <div class="c-lesson todo"><div class="no">5</div><div><div class="tt">교육 현장 운영과 질문 대응</div><div class="dm">45분</div></div></div>
+          <div class="c-lesson todo"><div class="no">6</div><div><div class="tt">복습 퀴즈와 수료 기준 안내</div><div class="dm">38분</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot-note">
+  모든 시안은 실제 과정 콘텐츠(보이스피싱 예방지도사 6차시) 기준으로 제작된 <b>화면 시안</b>입니다. 실제 코드에는 아직 반영되지 않았습니다.<br>
+  상단에서 시안(A/B/C)과 화면(내 강의실/플레이어)을 전환해 비교해 보세요. 마음에 드는 안을 고르시면 기존 기능을 유지한 채 순차 이식합니다.
+</div>
+
+<script>
+(function () {
+  var designs = ['a', 'b', 'c'];
+  var state = { design: 'a', view: 'room' };
+
+  function render() {
+    designs.forEach(function (d) {
+      var sec = document.getElementById('design-' + d);
+      sec.classList.toggle('hidden', d !== state.design);
+      var room = document.getElementById(d + '-room');
+      var player = document.getElementById(d + '-player');
+      if (room) room.classList.toggle('hidden', state.view !== 'room');
+      if (player) player.classList.toggle('hidden', state.view !== 'player');
+    });
+    document.querySelectorAll('[data-design]').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-design') === state.design);
+    });
+    document.querySelectorAll('[data-view]').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-view') === state.view);
+    });
+    window.scrollTo({ top: 0 });
+  }
+
+  document.querySelectorAll('[data-design]').forEach(function (b) {
+    b.addEventListener('click', function () { state.design = b.getAttribute('data-design'); render(); });
+  });
+  document.querySelectorAll('[data-view]').forEach(function (b) {
+    b.addEventListener('click', function () { state.view = b.getAttribute('data-view'); render(); });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
