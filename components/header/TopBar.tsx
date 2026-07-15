@@ -22,6 +22,12 @@ export default function TopBar() {
           >
             교육 과정 보기
           </Link>
+          <Link
+            href="/dashboard/learning"
+            className="bg-white text-navy-900 text-xs font-bold px-3 py-1 rounded hover:bg-navy-50 transition-colors"
+          >
+            온라인 강의실
+          </Link>
         </div>
       </div>
     </div>
