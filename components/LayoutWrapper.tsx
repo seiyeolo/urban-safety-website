@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import HeaderOptimized from './HeaderOptimized'
 import Footer from './Footer'
+import OnlineClassBanner from './OnlineClassBanner'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -15,6 +16,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   return (
     <>
       <HeaderOptimized />
+      <OnlineClassBanner />
       <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
       <Footer />
     </>

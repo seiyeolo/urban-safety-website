@@ -35,10 +35,18 @@ export const NAV_ITEMS = [
     children: [
       { label: '전체 교육과정', href: '/education' },
       { label: '온라인 교육', href: '/education/online' },
-      { label: '온라인 강의실 MVP', href: '/courses' },
-      { label: '내 강의실 mock', href: '/dashboard/learning' },
       { label: '오프라인 교육', href: '/education/offline' },
       { label: '기관·단체 맞춤형', href: '/education/group' },
+    ],
+  },
+  {
+    label: '온라인 강의실',
+    href: '/dashboard/learning',
+    children: [
+      { label: '내 강의실 (수강생 입장)', href: '/dashboard/learning' },
+      { label: '온라인 강의 전체 과정', href: '/courses' },
+      { label: '보이스피싱 예방지도사 과정', href: '/courses/voice-phishing-instructor' },
+      { label: '수강생 로그인', href: '/auth/login' },
     ],
   },
   {
