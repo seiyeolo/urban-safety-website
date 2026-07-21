@@ -8,6 +8,7 @@ import {
   ExternalLink,
   Phone,
 } from 'lucide-react'
+import HeroPromoVideo from '@/components/HeroPromoVideo'
 
 /*
  * Home — Stitch "The Civic Anchor" 디자인 이식 (2026-04-16)
@@ -95,34 +96,39 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full py-24 md:py-32">
-          <div className="max-w-2xl text-white">
-            <span className="inline-block py-1.5 px-4 bg-green-700 text-sm font-bold tracking-widest uppercase rounded mb-6">
-              35년의 공신력 · 경실련 산하
-            </span>
-            <h1 className="text-4xl md:text-[52px] lg:text-[56px] leading-[1.15] font-bold mb-8 tracking-tight">
-              가족을 믿고 맡길 수 있는
-              <br />
-              우리 동네 안전 전문가
-            </h1>
-            <p className="text-lg md:text-xl leading-relaxed mb-10 text-white/85 max-w-xl">
-              시민이 주도하는 도시안전디자인, 35년 경실련의 공신력으로
-              안전 교육의 새로운 기준을 세웁니다.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/certificates"
-                className="inline-flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white px-7 md:px-8 py-4 rounded-md font-bold text-base md:text-lg min-h-[56px] transition-all shadow-lg shadow-green-900/30"
-              >
-                자격과정 알아보기 <ArrowRight size={20} />
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white px-7 md:px-8 py-4 rounded-md font-bold text-base md:text-lg min-h-[56px] transition-all"
-              >
-                센터 소개
-              </Link>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full py-20 md:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="max-w-2xl text-white">
+              <span className="inline-block py-1.5 px-4 bg-green-700 text-sm font-bold tracking-widest uppercase rounded mb-6">
+                35년의 공신력 · 경실련 산하
+              </span>
+              <h1 className="text-4xl md:text-[52px] lg:text-[48px] xl:text-[52px] leading-[1.15] font-bold mb-8 tracking-tight">
+                가족을 믿고 맡길 수 있는
+                <br />
+                우리 동네 안전 전문가
+              </h1>
+              <p className="text-lg md:text-xl leading-relaxed mb-10 text-white/85 max-w-xl">
+                시민이 주도하는 도시안전디자인, 35년 경실련의 공신력으로
+                안전 교육의 새로운 기준을 세웁니다.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/certificates"
+                  className="inline-flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white px-7 md:px-8 py-4 rounded-md font-bold text-base md:text-lg min-h-[56px] transition-all shadow-lg shadow-green-900/30"
+                >
+                  자격과정 알아보기 <ArrowRight size={20} />
+                </Link>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white px-7 md:px-8 py-4 rounded-md font-bold text-base md:text-lg min-h-[56px] transition-all"
+                >
+                  센터 소개
+                </Link>
+              </div>
             </div>
+
+            {/* 홍보영상 카드 (모바일: 텍스트 아래 / 데스크톱: 우측) */}
+            <HeroPromoVideo />
           </div>
         </div>
       </section>
