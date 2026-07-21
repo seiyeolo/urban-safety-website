@@ -64,7 +64,7 @@ export default function LessonPlayer({ order }: { order: number }) {
           <header className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[.06] px-5 py-4 lg:px-7">
             <Link
               href="/dashboard/learning"
-              className="inline-flex items-center gap-2 rounded-lg text-[13px] font-extrabold text-[#7f8ea3] transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a]"
+              className="inline-flex items-center gap-2 rounded-lg text-[14px] font-extrabold text-[#7f8ea3] transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a]"
             >
               <ArrowLeft size={15} /> 내 강의실
             </Link>
@@ -117,7 +117,7 @@ export default function LessonPlayer({ order }: { order: number }) {
 
           {/* 차시 정보 */}
           <div className="flex-1 px-5 py-6 lg:px-7 lg:py-8">
-            <p className="text-[11.5px] font-black uppercase tracking-[.08em] text-[#4cc38a]">Lesson {lesson.order}</p>
+            <p className="text-[13px] font-black uppercase tracking-[.08em] text-[#4cc38a]">Lesson {lesson.order}</p>
             <h1 className="mt-2 text-[22px] font-black leading-snug tracking-[-.03em] text-white md:text-2xl">
               {lesson.title}
             </h1>
@@ -127,14 +127,14 @@ export default function LessonPlayer({ order }: { order: number }) {
               {prevLesson ? (
                 <Link
                   href={lessonHref(prevLesson.order)}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[.14] px-5 py-3 text-[13px] font-extrabold text-[#e8edf5] transition hover:bg-white/[.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a] active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[.14] px-5 py-3 text-[14px] font-extrabold text-[#e8edf5] transition hover:bg-white/[.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a] active:scale-[0.98]"
                 >
                   <ChevronLeft size={15} /> 이전 강의
                 </Link>
               ) : null}
               <button
                 onClick={handleComplete}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#4cc38a] px-6 py-3 text-[13px] font-black text-[#07130c] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#4cc38a] px-6 py-3 text-[14px] font-black text-[#07130c] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a] active:scale-[0.98]"
               >
                 {isCompleted ? '완료됨 · ' : ''}
                 {nextLesson ? '완료하고 다음 강의' : '완료하고 강의실로'}
@@ -143,7 +143,7 @@ export default function LessonPlayer({ order }: { order: number }) {
             </div>
 
             <div className="mt-7 max-w-2xl rounded-2xl border border-white/[.07] bg-[#151d2e] p-5">
-              <div className="mb-2 flex items-center gap-2 text-[13px] font-black text-white">
+              <div className="mb-2 flex items-center gap-2 text-[14px] font-black text-white">
                 <ShieldCheck size={15} className="text-[#4cc38a]" /> 수강 안내
               </div>
               <p className="text-xs leading-6 text-[#93a1b5]">
@@ -158,10 +158,10 @@ export default function LessonPlayer({ order }: { order: number }) {
         <aside className="border-l border-white/[.06] bg-[#121a2a] p-5 lg:min-h-screen lg:p-6">
           <div className="mb-5 flex items-center justify-between px-1">
             <div>
-              <p className="text-[11px] font-black uppercase tracking-[.06em] text-[#7f8ea3]">{course.title}</p>
+              <p className="text-[13px] font-black uppercase tracking-[.06em] text-[#7f8ea3]">{course.title}</p>
               <h2 className="mt-1 text-lg font-black tracking-[-.02em] text-white">차시 목록</h2>
             </div>
-            <span className="rounded-full bg-[#4cc38a]/10 px-3 py-1 text-[11px] font-black text-[#4cc38a]">
+            <span className="rounded-full bg-[#4cc38a]/10 px-3 py-1 text-[13px] font-black text-[#4cc38a]">
               {completedCount}/{totalCount} 완료
             </span>
           </div>
@@ -181,7 +181,7 @@ export default function LessonPlayer({ order }: { order: number }) {
                   }`}
                 >
                   <div
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[12.5px] font-black ${
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[13px] font-black ${
                       done
                         ? 'border-2 border-[#4cc38a] bg-[#4cc38a] text-[#07130c]'
                         : isCurrent
@@ -192,14 +192,14 @@ export default function LessonPlayer({ order }: { order: number }) {
                     {done ? <CheckCircle2 size={16} /> : item.order}
                   </div>
                   <div className="min-w-0">
-                    <h3 className={`text-[13.5px] leading-5 text-[#e8edf5] ${isCurrent ? 'font-black' : 'font-bold'}`}>
+                    <h3 className={`text-[14px] leading-5 text-[#e8edf5] ${isCurrent ? 'font-black' : 'font-bold'}`}>
                       {item.title}
                     </h3>
-                    <p className="mt-0.5 flex items-center gap-2 text-[11px] font-semibold text-[#7f8ea3]">
+                    <p className="mt-0.5 flex items-center gap-2 text-[13px] font-semibold text-[#7f8ea3]">
                       {item.duration}
                       {isCurrent && <Play size={11} className="text-[#4cc38a]" />}
                       {!hasVideo && (
-                        <span className="rounded-full bg-white/[.06] px-2 py-0.5 text-[10px] text-[#93a1b5]">준비 중</span>
+                        <span className="rounded-full bg-white/[.06] px-2 py-0.5 text-[12px] text-[#93a1b5]">준비 중</span>
                       )}
                     </p>
                   </div>
@@ -209,7 +209,7 @@ export default function LessonPlayer({ order }: { order: number }) {
           </nav>
 
           <div className="mt-6 rounded-2xl border border-white/[.07] bg-[#151d2e] p-5">
-            <div className="mb-3 flex items-center gap-2 text-[13px] font-black text-white">
+            <div className="mb-3 flex items-center gap-2 text-[14px] font-black text-white">
               <FileText size={15} className="text-[#4cc38a]" /> 강의자료
             </div>
             <div className="space-y-2">
@@ -219,7 +219,7 @@ export default function LessonPlayer({ order }: { order: number }) {
                   className="flex items-center justify-between rounded-xl bg-white/[.045] px-4 py-3 text-xs font-bold text-[#e8edf5]"
                 >
                   {item}
-                  <span className="inline-flex items-center gap-1 text-[10.5px] font-bold text-[#7f8ea3]">
+                  <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#7f8ea3]">
                     준비 중 <Download size={13} />
                   </span>
                 </div>
