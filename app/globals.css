@@ -44,8 +44,8 @@
   --color-gray-100: #f3f4f6;
   --color-gray-50:  #f9fafb;
 
-  /* 폰트 */
-  --font-sans: "Noto Sans KR", sans-serif;
+  /* 폰트 — next/font(app/layout.tsx)가 주입하는 --font-noto를 실제로 연결 */
+  --font-sans: var(--font-noto), "Noto Sans KR", sans-serif;
 
   /* 반응형 브레이크포인트 */
   --breakpoint-sm: 640px;
@@ -67,7 +67,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: var(--font-noto), "Noto Sans KR", sans-serif;
   word-break: keep-all;
   line-height: 1.7;
   font-size: 1rem; /* 18px */

@@ -28,7 +28,7 @@ export default function LocationPage() {
         <div className="container-main">
           {/* 주소 */}
           <div className="flex items-center gap-3 mb-8 justify-center">
-            <MapPin size={20} className="text-[#0f2d5e]" />
+            <MapPin size={20} className="text-[#1a3a5c]" />
             <p className="text-lg font-semibold text-gray-800">
               대전광역시 서구 용문동 255-4 서우아파트 상가동 201호
             </p>
@@ -74,9 +74,9 @@ export default function LocationPage() {
               <div key={title} className="card">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
-                    <Icon size={20} className="text-[#0f2d5e]" />
+                    <Icon size={20} className="text-[#1a3a5c]" />
                   </div>
-                  <h3 className="font-bold text-[#0f2d5e]">{title}</h3>
+                  <h3 className="font-bold text-[#1a3a5c]">{title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {items.map((item) => (

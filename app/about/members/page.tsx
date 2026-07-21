@@ -71,9 +71,9 @@ export default function MembersPage() {
             {KEY_PEOPLE.map(({ role, name, dept, spec }) => (
               <div key={role} className="card text-center">
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <User size={28} className="text-[#0f2d5e]" />
+                  <User size={28} className="text-[#1a3a5c]" />
                 </div>
-                <span className="text-xs font-semibold text-[#0f2d5e] bg-blue-50 px-2 py-1 rounded-full">{role}</span>
+                <span className="text-xs font-semibold text-[#1a3a5c] bg-blue-50 px-2 py-1 rounded-full">{role}</span>
                 <h3 className="text-lg font-bold text-gray-900 mt-3">{name}</h3>
                 <p className="text-sm text-gray-500 mt-1">{dept}</p>
                 <p className="text-xs text-gray-400 mt-2">{spec}</p>
@@ -124,9 +124,9 @@ export default function MembersPage() {
               <div key={title} className="card">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center">
-                    <Icon size={18} className="text-[#0f2d5e]" />
+                    <Icon size={18} className="text-[#1a3a5c]" />
                   </div>
-                  <h3 className="font-bold text-[#0f2d5e]">{title}</h3>
+                  <h3 className="font-bold text-[#1a3a5c]">{title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {items.map((item) => (

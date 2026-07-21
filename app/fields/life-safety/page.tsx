@@ -142,7 +142,7 @@ export default function LifeSafetyPage() {
         <div className="max-w-7xl mx-auto">
           {/* 생활안전 영역 */}
           <div className="mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-4 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               주요 생활안전 분야
             </h2>
@@ -173,7 +173,7 @@ export default function LifeSafetyPage() {
 
           {/* 교육 대상별 프로그램 */}
           <div className="mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               대상별 맞춤 교육
             </h2>
@@ -203,7 +203,7 @@ export default function LifeSafetyPage() {
 
           {/* 안전 통계 */}
           <div className="mb-16 bg-[#f5f3f3] rounded-xl p-6 md:p-12">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               생활안전 교육 효과
             </h2>
@@ -227,7 +227,7 @@ export default function LifeSafetyPage() {
 
           {/* 실용 안전 팁 */}
           <div>
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               실용 안전 가이드
             </h2>

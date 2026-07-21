@@ -48,8 +48,8 @@ export default async function SchedulePage() {
             {groupedSchedule.map(([month, items]) => (
               <div key={month}>
                 <div className="flex items-center gap-3 mb-5">
-                  <Calendar size={20} className="text-[#0f2d5e]" />
-                  <h2 className="text-xl font-bold text-[#0f2d5e]">{month}</h2>
+                  <Calendar size={20} className="text-[#1a3a5c]" />
+                  <h2 className="text-xl font-bold text-[#1a3a5c]">{month}</h2>
                 </div>
                 <div className="space-y-3">
                   {items.map(({ date, type, title, seats, href }) => (
@@ -64,7 +64,7 @@ export default async function SchedulePage() {
                         seats.startsWith('잔여') ? 'text-amber-700' : 'text-gray-400'
                       }`}>{seats}</span>
                       {href && (
-                        <Link href={href} className="text-[#0f2d5e] hover:text-blue-800 shrink-0">
+                        <Link href={href} className="text-[#1a3a5c] hover:text-blue-800 shrink-0">
                           <ArrowRight size={16} />
                         </Link>
                       )}
@@ -77,7 +77,7 @@ export default async function SchedulePage() {
 
           <div className="mt-12 text-center bg-blue-50 rounded-2xl p-8">
             <p className="text-gray-700 mb-2">교육 일정 및 신청 관련 문의</p>
-            <a href="tel:042-254-8060" className="text-[#0f2d5e] font-bold text-lg hover:underline">
+            <a href="tel:042-254-8060" className="text-[#1a3a5c] font-bold text-lg hover:underline">
               042-254-8060
             </a>
           </div>

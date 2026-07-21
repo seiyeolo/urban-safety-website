@@ -64,7 +64,7 @@ export default function InquiryForm() {
               value={form.name}
               onChange={(event) => updateField('name', event.target.value)}
               placeholder="홍길동"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] transition-colors"
               required
             />
           </div>
@@ -77,7 +77,7 @@ export default function InquiryForm() {
               value={form.phone}
               onChange={(event) => updateField('phone', event.target.value)}
               placeholder="010-0000-0000"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] transition-colors"
               required
             />
           </div>
@@ -89,7 +89,7 @@ export default function InquiryForm() {
             value={form.email}
             onChange={(event) => updateField('email', event.target.value)}
             placeholder="example@email.com"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] transition-colors"
           />
         </div>
         <div>
@@ -99,7 +99,7 @@ export default function InquiryForm() {
           <select
             value={form.inquiryType}
             onChange={(event) => updateField('inquiryType', event.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] transition-colors bg-white"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] transition-colors bg-white"
             required
           >
             <option value="">선택해주세요</option>
@@ -118,7 +118,7 @@ export default function InquiryForm() {
             value={form.title}
             onChange={(event) => updateField('title', event.target.value)}
             placeholder="문의 제목을 입력해주세요"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] transition-colors"
             required
           />
         </div>
@@ -131,7 +131,7 @@ export default function InquiryForm() {
             value={form.message}
             onChange={(event) => updateField('message', event.target.value)}
             placeholder="문의 내용을 자세히 입력해주세요"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] transition-colors resize-none"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] transition-colors resize-none"
             required
           />
         </div>
@@ -145,7 +145,7 @@ export default function InquiryForm() {
             required
           />
           <label htmlFor="privacy" className="text-sm text-gray-600">
-            <Link href="/privacy" className="text-[#0f2d5e] underline">
+            <Link href="/privacy" className="text-[#1a3a5c] underline">
               개인정보처리방침
             </Link>
             에 동의합니다. <span className="text-red-500">*</span>

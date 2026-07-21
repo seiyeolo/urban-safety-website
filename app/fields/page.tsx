@@ -82,7 +82,7 @@ export default function FieldsPage() {
         <div className="max-w-7xl mx-auto">
           {/* 소개 */}
           <div className="text-center mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-6">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-6">
               35년 경실련 공신력으로 만드는 안전한 도시
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -156,7 +156,7 @@ export default function FieldsPage() {
 
           {/* 접근 방식 */}
           <div className="bg-[#f5f3f3] rounded-xl p-6 md:p-12">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-4 text-center">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-4 text-center">
               우리의 접근 방식
             </h2>
             <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">

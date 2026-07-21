@@ -98,7 +98,7 @@ export default function CrimePreventionPage() {
         <div className="max-w-7xl mx-auto">
           {/* 범죄예방 영역 */}
           <div className="mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-4 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               주요 범죄예방 영역
             </h2>
@@ -129,7 +129,7 @@ export default function CrimePreventionPage() {
 
           {/* 교육 프로그램 */}
           <div className="mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               범죄예방 교육 프로그램
             </h2>
@@ -175,7 +175,7 @@ export default function CrimePreventionPage() {
 
           {/* 성공 사례 */}
           <div className="bg-[#f5f3f3] rounded-xl p-6 md:p-12">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
               <span className="w-8 h-1 bg-[#2e7d32] block"></span>
               범죄예방 성공 사례
             </h2>

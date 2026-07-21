@@ -63,20 +63,20 @@ export default function PressPage() {
             {PRESS_LIST.map(({ outlet, title, date, tag }) => (
               <div
                 key={title}
-                className="flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-xl hover:border-[#0f2d5e] hover:shadow-sm transition-all cursor-pointer group"
+                className="flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-xl hover:border-[#1a3a5c] hover:shadow-sm transition-all cursor-pointer group"
               >
                 <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center shrink-0">
-                  <Newspaper size={18} className="text-gray-400 group-hover:text-[#0f2d5e]" />
+                  <Newspaper size={18} className="text-gray-400 group-hover:text-[#1a3a5c]" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-xs font-semibold text-[#0f2d5e] bg-blue-50 px-2 py-0.5 rounded-full">{outlet}</span>
+                    <span className="text-xs font-semibold text-[#1a3a5c] bg-blue-50 px-2 py-0.5 rounded-full">{outlet}</span>
                     <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">{tag}</span>
                     <span className="text-xs text-gray-400 ml-auto shrink-0">{date}</span>
                   </div>
-                  <p className="font-medium text-gray-800 text-sm leading-snug group-hover:text-[#0f2d5e]">{title}</p>
+                  <p className="font-medium text-gray-800 text-sm leading-snug group-hover:text-[#1a3a5c]">{title}</p>
                 </div>
-                <ExternalLink size={14} className="text-gray-300 shrink-0 mt-1 group-hover:text-[#0f2d5e]" />
+                <ExternalLink size={14} className="text-gray-300 shrink-0 mt-1 group-hover:text-[#1a3a5c]" />
               </div>
             ))}
           </div>
@@ -84,8 +84,8 @@ export default function PressPage() {
           <div className="mt-10 bg-gray-50 rounded-2xl p-6 text-center">
             <p className="text-sm text-gray-600 mb-3">보도자료 문의 및 인터뷰 요청</p>
             <div className="space-y-1 text-sm">
-              <a href="tel:042-254-8060" className="block text-[#0f2d5e] font-semibold hover:underline">042-254-8060</a>
-              <a href="mailto:dj@ccej.or.kr" className="block text-gray-500 hover:text-[#0f2d5e]">dj@ccej.or.kr</a>
+              <a href="tel:042-254-8060" className="block text-[#1a3a5c] font-semibold hover:underline">042-254-8060</a>
+              <a href="mailto:dj@ccej.or.kr" className="block text-gray-500 hover:text-[#1a3a5c]">dj@ccej.or.kr</a>
             </div>
           </div>
         </div>

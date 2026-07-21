@@ -57,7 +57,7 @@ export default function OnlineEducationPage() {
             ].map(({ icon, label, desc }) => (
               <div key={label} className="text-center p-5 bg-gray-50 rounded-xl">
                 <p className="text-3xl mb-3">{icon}</p>
-                <p className="font-bold text-[#0f2d5e] mb-1">{label}</p>
+                <p className="font-bold text-[#1a3a5c] mb-1">{label}</p>
                 <p className="text-xs text-gray-500">{desc}</p>
               </div>
             ))}
@@ -73,11 +73,11 @@ export default function OnlineEducationPage() {
               <div key={href} className="card">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
-                    <Monitor size={20} className="text-[#0f2d5e]" />
+                    <Monitor size={20} className="text-[#1a3a5c]" />
                   </div>
                   <div>
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${tagColor}`}>{tag}</span>
-                    <h3 className="font-bold text-[#0f2d5e] mt-1">{title}</h3>
+                    <h3 className="font-bold text-[#1a3a5c] mt-1">{title}</h3>
                   </div>
                 </div>
                 <div className="flex gap-4 text-sm text-gray-600 mb-5">

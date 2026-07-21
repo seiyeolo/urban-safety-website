@@ -48,12 +48,12 @@ export default function RefundPage() {
 
           <div className="space-y-5 text-sm text-gray-700 leading-relaxed">
             <div>
-              <h3 className="font-bold text-[#0f2d5e] mb-2">환불 신청 방법</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-2">환불 신청 방법</h3>
               <p>환불 신청은 전화(042-254-8060) 또는 이메일(dj@ccej.or.kr)로 접수하시기 바랍니다.
               환불 처리는 영업일 기준 3~5일 소요됩니다.</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#0f2d5e] mb-2">유의사항</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-2">유의사항</h3>
               <ul className="space-y-1 list-disc list-inside">
                 <li>수강 시작일은 강의 영상 공개일 기준으로 합니다.</li>
                 <li>수강 진도율이 80% 이상인 경우 환불이 불가합니다.</li>

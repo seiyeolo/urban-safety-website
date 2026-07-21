@@ -28,7 +28,7 @@ export default function EducationContactPage() {
         <div className="container-main max-w-2xl mx-auto">
           {/* 자주 묻는 문의 유형 */}
           <div className="mb-10">
-            <h2 className="text-lg font-bold text-[#0f2d5e] mb-4">자주 문의하시는 내용</h2>
+            <h2 className="text-lg font-bold text-[#1a3a5c] mb-4">자주 문의하시는 내용</h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
                 '수강 신청 방법',
@@ -41,7 +41,7 @@ export default function EducationContactPage() {
                 '단체 수강 할인',
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm text-gray-700">
-                  <span className="w-1.5 h-1.5 bg-[#0f2d5e] rounded-full shrink-0" />
+                  <span className="w-1.5 h-1.5 bg-[#1a3a5c] rounded-full shrink-0" />
                   {item}
                 </div>
               ))}
@@ -49,7 +49,7 @@ export default function EducationContactPage() {
           </div>
 
           {/* 문의 폼 */}
-          <h2 className="text-lg font-bold text-[#0f2d5e] mb-5">온라인 문의</h2>
+          <h2 className="text-lg font-bold text-[#1a3a5c] mb-5">온라인 문의</h2>
           <form className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
@@ -57,7 +57,7 @@ export default function EducationContactPage() {
                 <input
                   type="text"
                   placeholder="홍길동"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
                 />
               </div>
               <div>
@@ -65,13 +65,13 @@ export default function EducationContactPage() {
                 <input
                   type="tel"
                   placeholder="010-0000-0000"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
                 />
               </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">문의 과정</label>
-              <select className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] bg-white">
+              <select className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] bg-white">
                 <option value="">선택해주세요</option>
                 <option>보이스피싱 예방지도사</option>
                 <option>생활안전지도사</option>
@@ -83,13 +83,13 @@ export default function EducationContactPage() {
               <textarea
                 rows={5}
                 placeholder="문의 내용을 자세히 입력해주세요"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] resize-none"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] resize-none"
               />
             </div>
             <div className="flex items-start gap-2">
               <input type="checkbox" id="privacy" className="mt-1" />
               <label htmlFor="privacy" className="text-sm text-gray-600">
-                <Link href="/privacy" className="text-[#0f2d5e] underline">개인정보처리방침</Link>에 동의합니다. <span className="text-red-500">*</span>
+                <Link href="/privacy" className="text-[#1a3a5c] underline">개인정보처리방침</Link>에 동의합니다. <span className="text-red-500">*</span>
               </label>
             </div>
             <button type="submit" className="btn-primary w-full justify-center py-4">
@@ -101,10 +101,10 @@ export default function EducationContactPage() {
           <div className="mt-8 p-5 bg-gray-50 rounded-xl">
             <p className="text-sm font-semibold text-gray-700 mb-3">직접 연락하기</p>
             <div className="space-y-2">
-              <a href="tel:042-254-8060" className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#0f2d5e]">
+              <a href="tel:042-254-8060" className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#1a3a5c]">
                 <Phone size={14} className="text-gray-400" />042-254-8060 (평일 09:00~18:00)
               </a>
-              <a href="mailto:dj@ccej.or.kr" className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#0f2d5e]">
+              <a href="mailto:dj@ccej.or.kr" className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#1a3a5c]">
                 <Mail size={14} className="text-gray-400" />dj@ccej.or.kr
               </a>
             </div>

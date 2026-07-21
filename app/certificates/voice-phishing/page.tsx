@@ -43,7 +43,7 @@ export default function VoicePhishingCertPage() {
   return (
     <>
       {/* 히어로 */}
-      <div className="bg-gradient-to-br from-[#06153a] to-[#0f2d5e] text-white py-16">
+      <div className="bg-gradient-to-br from-[#1a3a5c] to-[#002444] text-white py-16">
         <div className="container-main">
           <nav className="breadcrumb mb-6">
             <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
@@ -85,7 +85,7 @@ export default function VoicePhishingCertPage() {
 
             {/* 자격 소개 */}
             <section>
-              <h2 className="text-xl font-bold text-[#0f2d5e] mb-4 pb-3 border-b border-gray-200">자격 소개</h2>
+              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">자격 소개</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
                 보이스피싱 예방지도사는 보이스피싱 범죄의 주요 유형과 최신 수법을 이해하고,
                 시민·고령층·청소년·소상공인 등 다양한 대상에게 맞춤형 예방교육과 홍보활동을 수행할 수
@@ -101,7 +101,7 @@ export default function VoicePhishingCertPage() {
 
             {/* 교육목표 */}
             <section>
-              <h2 className="text-xl font-bold text-[#0f2d5e] mb-4 pb-3 border-b border-gray-200">교육목표</h2>
+              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">교육목표</h2>
               <ul className="space-y-3">
                 {[
                   '보이스피싱 범죄의 구조와 주요 유형을 이해한다.',
@@ -120,7 +120,7 @@ export default function VoicePhishingCertPage() {
 
             {/* 교육과정 */}
             <section>
-              <h2 className="text-xl font-bold text-[#0f2d5e] mb-4 pb-3 border-b border-gray-200">교육과정</h2>
+              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">교육과정</h2>
               <div className="bg-blue-50 rounded-xl p-5 mb-6 grid sm:grid-cols-2 gap-4 text-sm">
                 {[
                   { label: '교육기간', value: '4주 (총 20시간)' },
@@ -130,7 +130,7 @@ export default function VoicePhishingCertPage() {
                 ].map(({ label, value }) => (
                   <div key={label} className="flex gap-2">
                     <span className="text-gray-500 w-20 shrink-0">{label}</span>
-                    <span className="font-semibold text-[#0f2d5e]">{value}</span>
+                    <span className="font-semibold text-[#1a3a5c]">{value}</span>
                   </div>
                 ))}
               </div>
@@ -139,7 +139,7 @@ export default function VoicePhishingCertPage() {
                 {MODULES.map((mod) => (
                   <div key={mod.no} className="border border-gray-200 rounded-xl overflow-hidden">
                     <div className="bg-gray-50 px-5 py-3 flex items-center gap-3">
-                      <span className="w-7 h-7 bg-[#0f2d5e] text-white text-xs font-bold rounded-full flex items-center justify-center shrink-0">
+                      <span className="w-7 h-7 bg-[#1a3a5c] text-white text-xs font-bold rounded-full flex items-center justify-center shrink-0">
                         {mod.no}
                       </span>
                       <span className="font-semibold text-gray-800">{mod.title}</span>
@@ -159,7 +159,7 @@ export default function VoicePhishingCertPage() {
 
             {/* 활동분야 */}
             <section>
-              <h2 className="text-xl font-bold text-[#0f2d5e] mb-4 pb-3 border-b border-gray-200">활동분야</h2>
+              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">활동분야</h2>
               <ul className="space-y-3">
                 {ACTIVITY_FIELDS.map((field) => (
                   <li key={field} className="flex items-start gap-3">
@@ -172,11 +172,11 @@ export default function VoicePhishingCertPage() {
 
             {/* FAQ */}
             <section>
-              <h2 className="text-xl font-bold text-[#0f2d5e] mb-4 pb-3 border-b border-gray-200">자주 묻는 질문</h2>
+              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">자주 묻는 질문</h2>
               <div className="space-y-4">
                 {FAQ.map(({ q, a }) => (
                   <div key={q} className="bg-gray-50 rounded-xl p-5">
-                    <p className="font-semibold text-[#0f2d5e] mb-2">Q. {q}</p>
+                    <p className="font-semibold text-[#1a3a5c] mb-2">Q. {q}</p>
                     <p className="text-gray-600 text-sm leading-relaxed">A. {a}</p>
                   </div>
                 ))}
@@ -188,12 +188,12 @@ export default function VoicePhishingCertPage() {
           <div className="space-y-6">
             {/* 비용 */}
             <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-              <div className="bg-[#0f2d5e] text-white px-6 py-4">
+              <div className="bg-[#1a3a5c] text-white px-6 py-4">
                 <h3 className="font-bold">수강료 및 발급비 안내</h3>
               </div>
               <div className="p-6 space-y-3">
                 {COST_ITEMS.map(({ label, value, highlight }) => (
-                  <div key={label} className={`flex justify-between items-center ${highlight ? 'pt-3 border-t border-gray-200 font-bold text-[#0f2d5e]' : 'text-gray-700 text-sm'}`}>
+                  <div key={label} className={`flex justify-between items-center ${highlight ? 'pt-3 border-t border-gray-200 font-bold text-[#1a3a5c]' : 'text-gray-700 text-sm'}`}>
                     <span>{label}</span>
                     <span className={highlight ? 'text-xl' : ''}>{value}</span>
                   </div>
@@ -209,7 +209,7 @@ export default function VoicePhishingCertPage() {
 
             {/* 검정방법 */}
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="font-bold text-[#0f2d5e] mb-4">검정방법 및 합격기준</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-4">검정방법 및 합격기준</h3>
               <div className="space-y-3 text-sm text-gray-700">
                 <div className="flex justify-between"><span className="text-gray-500">진도율</span><span>80% 이상</span></div>
                 <div className="flex justify-between"><span className="text-gray-500">필기평가</span><span>객관식 / 60점 이상</span></div>
@@ -219,12 +219,12 @@ export default function VoicePhishingCertPage() {
 
             {/* 자격정보 — 민간자격 면책 고지 (amber 유지) */}
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-              <h3 className="font-bold text-[#0f2d5e] mb-3">자격 정보</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-3">자격 정보</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="text-gray-500">자격종류:</span> 민간자격</p>
                 <p><span className="text-gray-500">등록번호:</span> 2022-003784</p>
                 <p><span className="text-gray-500">자격관리기관:</span> 대전경실련 도시안전디자인센터</p>
-                <p><span className="text-gray-500">연락처:</span> <a href="tel:042-254-8060" className="text-[#0f2d5e] hover:underline">042-254-8060</a></p>
+                <p><span className="text-gray-500">연락처:</span> <a href="tel:042-254-8060" className="text-[#1a3a5c] hover:underline">042-254-8060</a></p>
               </div>
               <div className="mt-4 p-3 bg-amber-100 rounded-lg">
                 <p className="text-xs text-amber-800">
@@ -236,12 +236,12 @@ export default function VoicePhishingCertPage() {
 
             {/* 문의 */}
             <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-bold text-[#0f2d5e] mb-3">문의하기</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-3">문의하기</h3>
               <div className="space-y-2 text-sm">
-                <a href="tel:042-254-8060" className="flex items-center gap-2 text-gray-700 hover:text-[#0f2d5e]">
+                <a href="tel:042-254-8060" className="flex items-center gap-2 text-gray-700 hover:text-[#1a3a5c]">
                   <Phone size={14} className="text-gray-400" />042-254-8060
                 </a>
-                <a href="mailto:dj@ccej.or.kr" className="flex items-center gap-2 text-gray-700 hover:text-[#0f2d5e]">
+                <a href="mailto:dj@ccej.or.kr" className="flex items-center gap-2 text-gray-700 hover:text-[#1a3a5c]">
                   <Mail size={14} className="text-gray-400" />dj@ccej.or.kr
                 </a>
               </div>

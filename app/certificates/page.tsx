@@ -95,17 +95,17 @@ export default function VoicePhishingCertificatePage() {
               {INFO_PILLS.map(({ label, value }) => (
                 <div key={label} className="bg-[#f5f3f3] p-6 rounded-xl text-center">
                   <span className="block text-sm text-gray-600 mb-2">{label}</span>
-                  <span className="font-bold text-[#002444]">{value}</span>
+                  <span className="font-bold text-[#1a3a5c]">{value}</span>
                 </div>
               ))}
             </div>
 
-            <h2 className="text-3xl font-bold text-[#002444] mb-8">보이스피싱 피해 현황</h2>
+            <h2 className="text-3xl font-bold text-[#1a3a5c] mb-8">보이스피싱 피해 현황</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {STATS.map(({ label, value, suffix, type }) => (
                 <div key={label} className="bg-white p-8 rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-gray-100">
                   <p className="text-gray-600 text-sm mb-2">{label}</p>
-                  <p className="text-4xl font-black text-[#002444]">{value}</p>
+                  <p className="text-4xl font-black text-[#1a3a5c]">{value}</p>
                   <p className={`text-sm mt-2 font-medium ${type === 'error' ? 'text-red-600' : 'text-gray-600'}`}>
                     {suffix}
                   </p>
@@ -116,7 +116,7 @@ export default function VoicePhishingCertificatePage() {
 
           {/* Education Goals */}
           <section>
-            <h2 className="text-3xl font-bold text-[#002444] mb-8">교육 목표</h2>
+            <h2 className="text-3xl font-bold text-[#1a3a5c] mb-8">교육 목표</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {EDUCATION_GOALS.map((goal, index) => (
                 <div key={index} className="flex items-start gap-4 p-6 bg-white rounded-xl border-l-4 border-[#2e7d32] shadow-sm">
@@ -129,7 +129,7 @@ export default function VoicePhishingCertificatePage() {
 
           {/* FAQ Section */}
           <section>
-            <h2 className="text-3xl font-bold text-[#002444] mb-8">자주 묻는 질문</h2>
+            <h2 className="text-3xl font-bold text-[#1a3a5c] mb-8">자주 묻는 질문</h2>
             <div className="space-y-4">
               {[
                 {
@@ -146,7 +146,7 @@ export default function VoicePhishingCertificatePage() {
                 },
               ].map((faq, index) => (
                 <div key={index} className="bg-white rounded-xl p-6 border border-gray-200">
-                  <h3 className="font-bold text-[#002444] mb-3">Q. {faq.q}</h3>
+                  <h3 className="font-bold text-[#1a3a5c] mb-3">Q. {faq.q}</h3>
                   <p className="text-gray-700 leading-relaxed">A. {faq.a}</p>
                 </div>
               ))}
@@ -160,7 +160,7 @@ export default function VoicePhishingCertificatePage() {
             {/* Price Card */}
             <div className="bg-white rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-gray-100 overflow-hidden">
               <div className="bg-[#e4e2e2] px-6 py-4">
-                <h3 className="font-bold text-[#002444]">수강료 및 발급비</h3>
+                <h3 className="font-bold text-[#1a3a5c]">수강료 및 발급비</h3>
               </div>
               <div className="p-6">
                 <div className="space-y-3 mb-6">
@@ -172,8 +172,8 @@ export default function VoicePhishingCertificatePage() {
                   ))}
                   <div className="border-t pt-3 mt-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-[#002444]">총액</span>
-                      <span className="font-bold text-[#002444] text-xl">{TOTAL_PRICE.toLocaleString()}원</span>
+                      <span className="font-bold text-[#1a3a5c]">총액</span>
+                      <span className="font-bold text-[#1a3a5c] text-xl">{TOTAL_PRICE.toLocaleString()}원</span>
                     </div>
                   </div>
                 </div>
@@ -199,7 +199,7 @@ export default function VoicePhishingCertificatePage() {
                 </div>
 
                 <div className="bg-[#ffdbcb] border border-[#ff6f00]/20 rounded-lg p-4 mt-6">
-                  <Link href="/legal/refund" className="text-[#793100] font-medium hover:underline">
+                  <Link href="/refund" className="text-[#793100] font-medium hover:underline">
                     환불규정 확인하기 →
                   </Link>
                 </div>

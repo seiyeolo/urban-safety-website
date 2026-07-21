@@ -30,7 +30,7 @@ export default function FieldsPage() {
 
             {/* 범죄예방 */}
             <div>
-              <div className="bg-[#0f2d5e] rounded-2xl p-8 text-white mb-6">
+              <div className="bg-[#1a3a5c] rounded-2xl p-8 text-white mb-6">
                 <Shield size={36} className="mb-4 opacity-90" />
                 <h2 className="text-2xl font-bold mb-3">범죄예방</h2>
                 <p className="text-blue-200 leading-relaxed">
@@ -63,7 +63,7 @@ export default function FieldsPage() {
                         <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
                       </div>
                       {href && (
-                        <Link href={href} className="shrink-0 text-[#0f2d5e] hover:text-blue-800">
+                        <Link href={href} className="shrink-0 text-[#1a3a5c] hover:text-blue-800">
                           <ArrowRight size={18} />
                         </Link>
                       )}
@@ -108,7 +108,7 @@ export default function FieldsPage() {
                         <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
                       </div>
                       {href && (
-                        <Link href={href} className="shrink-0 text-[#0f2d5e] hover:text-blue-800">
+                        <Link href={href} className="shrink-0 text-[#1a3a5c] hover:text-blue-800">
                           <ArrowRight size={18} />
                         </Link>
                       )}

@@ -39,7 +39,7 @@ export default function NoSpamPage() {
 
           <div className="bg-gray-50 rounded-2xl p-6 text-sm text-gray-700 space-y-4 leading-relaxed">
             <div>
-              <h3 className="font-bold text-[#0f2d5e] mb-2">관련 법령</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-2">관련 법령</h3>
               <p>
                 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 제50조의2에 따라,
                 인터넷 홈페이지 운영자 또는 관리자의 기술적 조치에도 불구하고 이메일 주소를 수집하거나,
@@ -48,11 +48,11 @@ export default function NoSpamPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-bold text-[#0f2d5e] mb-2">게시 일자</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-2">게시 일자</h3>
               <p>2024년 1월 1일</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#0f2d5e] mb-2">게시자</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-2">게시자</h3>
               <p>대전경실련 도시안전디자인센터</p>
             </div>
           </div>
