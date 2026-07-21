@@ -105,7 +105,7 @@ export default function GroupInquiryForm() {
             onChange={(e) => updateField('name', e.target.value)}
             placeholder="홍길동"
             required
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
           />
         </div>
         <div>
@@ -121,7 +121,7 @@ export default function GroupInquiryForm() {
             onChange={(e) => updateField('phone', e.target.value)}
             placeholder="010-0000-0000"
             required
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
           />
         </div>
       </div>
@@ -139,7 +139,7 @@ export default function GroupInquiryForm() {
           onChange={(e) => updateField('organization', e.target.value)}
           placeholder="○○복지관"
           required
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
         />
       </div>
 
@@ -153,7 +153,7 @@ export default function GroupInquiryForm() {
             name="participants"
             value={form.participants}
             onChange={(e) => updateField('participants', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] bg-white"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] bg-white"
           >
             <option value="">선택해주세요</option>
             <option value="10~30명">10~30명</option>
@@ -171,7 +171,7 @@ export default function GroupInquiryForm() {
             name="topic"
             value={form.topic}
             onChange={(e) => updateField('topic', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] bg-white"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] bg-white"
           >
             <option value="">선택해주세요</option>
             <option value="보이스피싱 예방">보이스피싱 예방</option>
@@ -193,7 +193,7 @@ export default function GroupInquiryForm() {
           value={form.schedule}
           onChange={(e) => updateField('schedule', e.target.value)}
           placeholder="예) 2026년 6월 중, 매주 화요일 오후 등"
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
         />
       </div>
 
@@ -208,7 +208,7 @@ export default function GroupInquiryForm() {
           value={form.notes}
           onChange={(e) => updateField('notes', e.target.value)}
           placeholder="교육 대상, 목적, 특이사항 등을 자유롭게 적어주세요"
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] resize-none"
+          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] resize-none"
         />
       </div>
 
@@ -223,7 +223,7 @@ export default function GroupInquiryForm() {
           required
         />
         <label htmlFor={ids.privacy} className="text-sm text-gray-600">
-          <Link href="/privacy" className="text-[#0f2d5e] underline">
+          <Link href="/privacy" className="text-[#1a3a5c] underline">
             개인정보처리방침
           </Link>
           에 동의합니다. <span className="text-red-500">*</span>

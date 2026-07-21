@@ -91,16 +91,16 @@ export default function VisionPage() {
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card text-center">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#0f2d5e]" />
+                  <Icon size={24} className="text-[#1a3a5c]" />
                 </div>
-                <h3 className="font-bold text-[#0f2d5e] mb-2">{title}</h3>
+                <h3 className="font-bold text-[#1a3a5c] mb-2">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-12 bg-blue-50 rounded-2xl p-8 max-w-3xl mx-auto">
-            <h3 className="text-lg font-bold text-[#0f2d5e] mb-3">브로슈어 기반 핵심 문장</h3>
+            <h3 className="text-lg font-bold text-[#1a3a5c] mb-3">브로슈어 기반 핵심 문장</h3>
             <p className="text-gray-700 leading-relaxed">
               도시안전디자인센터는 도시안전디자인을 통해 시민의 안전한 생활기반을 제공하고,
               도시의 안전한 물리적 환경 조성과 지역 성장기반 구축까지 함께 바라보는 장기적 비전을 지향합니다.

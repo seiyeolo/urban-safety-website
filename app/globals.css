@@ -44,8 +44,8 @@
   --color-gray-100: #f3f4f6;
   --color-gray-50:  #f9fafb;
 
-  /* 폰트 */
-  --font-sans: "Noto Sans KR", sans-serif;
+  /* 폰트 — next/font(app/layout.tsx)가 주입하는 --font-noto를 실제로 연결 */
+  --font-sans: var(--font-noto), "Noto Sans KR", sans-serif;
 
   /* 반응형 브레이크포인트 */
   --breakpoint-sm: 640px;
@@ -67,7 +67,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: var(--font-noto), "Noto Sans KR", sans-serif;
   word-break: keep-all;
   line-height: 1.7;
   font-size: 1rem; /* 18px */
@@ -256,3 +256,18 @@ body {
 /* Impeccable Custom Utilities */
 .shadow-soft { box-shadow: 0 4px 20px -2px rgba(26, 58, 92, 0.08), 0 0 3px rgba(26, 58, 92, 0.04); }
 .shadow-float { box-shadow: 0 12px 40px -4px rgba(26, 58, 92, 0.12), 0 0 4px rgba(26, 58, 92, 0.04); }
+
+/* 전역 키보드 포커스 링 (a11y) — :focus-visible이라 마우스 클릭에는 영향 없음.
+   개별 컴포넌트가 focus-visible 스타일을 별도 지정하면 그쪽이 우선 적용됨. */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #2e7d32;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

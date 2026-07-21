@@ -36,8 +36,8 @@ export default function GroupEducationPage() {
           {/* 특징 */}
           <div className="grid sm:grid-cols-2 gap-6 mb-14">
             <div className="bg-blue-50 rounded-2xl p-7">
-              <Users size={32} className="text-[#0f2d5e] mb-4" />
-              <h3 className="font-bold text-[#0f2d5e] text-lg mb-3">맞춤형 프로그램 설계</h3>
+              <Users size={32} className="text-[#1a3a5c] mb-4" />
+              <h3 className="font-bold text-[#1a3a5c] text-lg mb-3">맞춤형 프로그램 설계</h3>
               <ul className="space-y-2">
                 {[
                   '기관 특성과 수강 인원에 맞춘 커리큘럼',
@@ -53,7 +53,7 @@ export default function GroupEducationPage() {
               </ul>
             </div>
             <div className="bg-gray-50 rounded-2xl p-7">
-              <h3 className="font-bold text-[#0f2d5e] text-lg mb-3">교육 후 지원</h3>
+              <h3 className="font-bold text-[#1a3a5c] text-lg mb-3">교육 후 지원</h3>
               <ul className="space-y-2">
                 {[
                   '교육 결과 보고서 제공',
@@ -79,14 +79,14 @@ export default function GroupEducationPage() {
             {TARGETS.map(({ emoji, label, desc }) => (
               <div key={label} className="card text-center">
                 <p className="text-4xl mb-4">{emoji}</p>
-                <h3 className="font-bold text-[#0f2d5e] mb-2">{label}</h3>
+                <h3 className="font-bold text-[#1a3a5c] mb-2">{label}</h3>
                 <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
 
           {/* 문의 */}
-          <div className="bg-[#0f2d5e] rounded-2xl p-8 text-white text-center">
+          <div className="bg-[#1a3a5c] rounded-2xl p-8 text-white text-center">
             <h3 className="text-xl font-bold mb-3">단체교육 문의</h3>
             <p className="text-blue-200 text-sm mb-6">
               단체 규모, 교육 주제, 일정 등을 알려주시면 맞춤 제안서를 보내드립니다.

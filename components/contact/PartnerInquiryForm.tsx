@@ -74,7 +74,7 @@ export default function PartnerInquiryForm() {
               value={form.name}
               onChange={(event) => updateField('name', event.target.value)}
               placeholder="홍길동"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
               required
             />
           </div>
@@ -87,7 +87,7 @@ export default function PartnerInquiryForm() {
               value={form.phone}
               onChange={(event) => updateField('phone', event.target.value)}
               placeholder="010-0000-0000"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
               required
             />
           </div>
@@ -99,7 +99,7 @@ export default function PartnerInquiryForm() {
             value={form.email}
             onChange={(event) => updateField('email', event.target.value)}
             placeholder="example@email.com"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
           />
         </div>
         <div>
@@ -109,7 +109,7 @@ export default function PartnerInquiryForm() {
             value={form.organization}
             onChange={(event) => updateField('organization', event.target.value)}
             placeholder="소속 기관명을 입력해주세요"
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
           />
         </div>
         <div>
@@ -119,7 +119,7 @@ export default function PartnerInquiryForm() {
           <select
             value={form.inquiryType}
             onChange={(event) => updateField('inquiryType', event.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] bg-white"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] bg-white"
             required
           >
             <option value="기관 협력 제안">기관 협력 제안</option>
@@ -136,7 +136,7 @@ export default function PartnerInquiryForm() {
             value={form.message}
             onChange={(event) => updateField('message', event.target.value)}
             placeholder="협력 목적, 희망 협력 내용, 기대 효과 등을 작성해주세요."
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] resize-none"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] resize-none"
             required
           />
         </div>
@@ -150,7 +150,7 @@ export default function PartnerInquiryForm() {
             required
           />
           <label htmlFor="partner-privacy" className="text-sm text-gray-600">
-            <Link href="/privacy" className="text-[#0f2d5e] underline">
+            <Link href="/privacy" className="text-[#1a3a5c] underline">
               개인정보처리방침
             </Link>
             에 동의합니다. <span className="text-red-500">*</span>

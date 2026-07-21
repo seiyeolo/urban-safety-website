@@ -212,7 +212,7 @@ export default function AdminContentManager<TSection extends ContentSection>({
                       onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.value as Draft[keyof Draft])}
                       placeholder={field.placeholder}
                       rows={5}
-                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#0f2d5e]"
+                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#1a3a5c]"
                     />
                   )}
 
@@ -220,7 +220,7 @@ export default function AdminContentManager<TSection extends ContentSection>({
                     <select
                       value={String(value ?? '')}
                       onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.value as Draft[keyof Draft])}
-                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-[#0f2d5e]"
+                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-[#1a3a5c]"
                     >
                       {(field.options ?? []).map((option) => (
                         <option key={option} value={option}>
@@ -248,7 +248,7 @@ export default function AdminContentManager<TSection extends ContentSection>({
                       value={String(value ?? '')}
                       onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.value as Draft[keyof Draft])}
                       placeholder={field.placeholder}
-                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#0f2d5e]"
+                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#1a3a5c]"
                     />
                   )}
                 </div>
@@ -261,7 +261,7 @@ export default function AdminContentManager<TSection extends ContentSection>({
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 px-4 py-3 bg-[#0f2d5e] text-white rounded-xl font-semibold hover:bg-blue-900 transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-4 py-3 bg-[#1a3a5c] text-white rounded-xl font-semibold hover:bg-blue-900 transition-colors disabled:opacity-50"
           >
             {submitting ? <Loader2 size={16} className="animate-spin" /> : editingId ? <Save size={16} /> : <Plus size={16} />}
             {editingId ? '수정 저장' : '항목 추가'}

@@ -47,8 +47,8 @@ export default async function DownloadsPage() {
                 key={cat}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   i === 0
-                    ? 'bg-[#0f2d5e] text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-[#0f2d5e]'
+                    ? 'bg-[#1a3a5c] text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-[#1a3a5c]'
                 }`}
               >
                 {cat}
@@ -69,7 +69,7 @@ export default async function DownloadsPage() {
               return (
                 <div
                   key={id}
-                  className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:border-[#0f2d5e] hover:shadow-sm transition-all cursor-pointer group"
+                  className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:border-[#1a3a5c] hover:shadow-sm transition-all cursor-pointer group"
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${fileInfo.color}`}>
                     <Icon size={18} />
@@ -78,7 +78,7 @@ export default async function DownloadsPage() {
                     <div className="flex items-center gap-2 mb-0.5">
                       <span className="text-xs font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">{category}</span>
                     </div>
-                    <p className="font-medium text-gray-800 text-sm truncate group-hover:text-[#0f2d5e]">{title}</p>
+                    <p className="font-medium text-gray-800 text-sm truncate group-hover:text-[#1a3a5c]">{title}</p>
                   </div>
                   <div className="hidden sm:flex items-center gap-4 text-xs text-gray-400 shrink-0">
                     <span className="font-semibold text-gray-500">{type}</span>
@@ -87,7 +87,7 @@ export default async function DownloadsPage() {
                   </div>
                   <Link
                     href={href || '#'}
-                    className="shrink-0 w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-[#0f2d5e] hover:text-white transition-colors text-gray-400 group-hover:bg-blue-50"
+                    className="shrink-0 w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-[#1a3a5c] hover:text-white transition-colors text-gray-400 group-hover:bg-blue-50"
                   >
                     <Download size={16} />
                   </Link>
@@ -98,7 +98,7 @@ export default async function DownloadsPage() {
 
           <p className="text-center text-sm text-gray-400 mt-8">
             원하시는 자료가 없으신가요?{' '}
-            <Link href="/contact" className="text-[#0f2d5e] hover:underline font-medium">문의하기</Link>
+            <Link href="/contact" className="text-[#1a3a5c] hover:underline font-medium">문의하기</Link>
           </p>
         </div>
       </section>

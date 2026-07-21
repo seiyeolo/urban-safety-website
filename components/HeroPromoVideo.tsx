@@ -1,7 +1,15 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useSyncExternalStore } from 'react'
 import { Play } from 'lucide-react'
+
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
+
+function subscribeReducedMotion(callback: () => void) {
+  const mq = window.matchMedia(REDUCED_MOTION_QUERY)
+  mq.addEventListener('change', callback)
+  return () => mq.removeEventListener('change', callback)
+}
 
 /*
  * 홈 히어로 홍보영상 카드
@@ -12,6 +20,14 @@ import { Play } from 'lucide-react'
 export default function HeroPromoVideo() {
   const [isFullVersion, setIsFullVersion] = useState(false)
   const fullVideoRef = useRef<HTMLVideoElement>(null)
+
+  // prefers-reduced-motion 사용자에겐 티저 자동재생을 끄고 정지 포스터를 노출 (a11y).
+  // matchMedia 외부 스토어 구독은 useSyncExternalStore로 처리 (SSR 스냅샷: false).
+  const reduceMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    () => window.matchMedia(REDUCED_MOTION_QUERY).matches,
+    () => false,
+  )
 
   const playFullVersion = () => {
     setIsFullVersion(true)
@@ -42,7 +58,7 @@ export default function HeroPromoVideo() {
             src="/videos/promo-teaser.mp4"
             poster="/videos/promo-poster.jpg"
             muted
-            autoPlay
+            autoPlay={!reduceMotion}
             loop
             playsInline
             preload="metadata"

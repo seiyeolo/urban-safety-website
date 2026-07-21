@@ -78,7 +78,7 @@ export default function LocationPage() {
             </div>
             <div>
               <h2 className="text-gray-600 text-sm font-bold uppercase tracking-wider mb-2">센터 위치 주소</h2>
-              <p className="text-base sm:text-xl lg:text-[24px] font-bold text-[#002444] leading-snug">
+              <p className="text-base sm:text-xl lg:text-[24px] font-bold text-[#1a3a5c] leading-snug">
                 대전광역시 서구 용문동 255-4<br className="sm:hidden" />
                 서우아파트 상가동 201호
               </p>
@@ -131,7 +131,7 @@ export default function LocationPage() {
       {/* Transit Cards */}
       <section className="px-4 sm:px-8 py-12 bg-[#f5f3f3]">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-12 flex items-center gap-3">
+          <h3 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
             <span className="w-8 h-1 bg-[#2e7d32] block"></span>
             대중교통 이용 안내
           </h3>
@@ -194,7 +194,7 @@ export default function LocationPage() {
       {/* Nearby Landmarks */}
       <section className="px-4 sm:px-8 py-12">
         <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-xl sm:text-[24px] font-bold text-[#002444] mb-6">주변 랜드마크</h3>
+          <h3 className="text-xl sm:text-[24px] font-bold text-[#1a3a5c] mb-6">주변 랜드마크</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {LANDMARKS.map((landmark) => (
               <span key={landmark} className="bg-[#f5f3f3] text-gray-700 px-4 py-2 rounded-full text-sm font-medium">
@@ -228,7 +228,7 @@ export default function LocationPage() {
       {/* Book a Visit CTA */}
       <section className="px-4 sm:px-8 py-16 text-center">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-6">방문 상담을 원하시나요?</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-6">방문 상담을 원하시나요?</h2>
           <p className="text-gray-600 mb-8 text-lg">편안한 상담을 위해 미리 예약해주시면 더욱 좋습니다.</p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -236,7 +236,7 @@ export default function LocationPage() {
               <ArrowRight size={20} />
               방문 상담 예약하기
             </Link>
-            <a href="tel:042-254-8060" className="bg-[#002444] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a3a5c] transition-colors flex items-center gap-2">
+            <a href="tel:042-254-8060" className="bg-[#1a3a5c] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a3a5c] transition-colors flex items-center gap-2">
               <Phone size={20} />
               바로 전화 (042-254-8060)
             </a>

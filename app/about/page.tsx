@@ -41,7 +41,7 @@ export default function AboutPage() {
               <Link
                 key={m.href}
                 href={m.href}
-                className="shrink-0 px-4 py-3 text-sm text-gray-600 hover:text-[#0f2d5e] font-medium border-b-2 border-transparent hover:border-[#0f2d5e] transition-colors"
+                className="shrink-0 px-4 py-3 text-sm text-gray-600 hover:text-[#1a3a5c] font-medium border-b-2 border-transparent hover:border-[#1a3a5c] transition-colors"
               >
                 {m.label}
               </Link>
@@ -89,9 +89,9 @@ export default function AboutPage() {
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card text-center">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#0f2d5e]" />
+                  <Icon size={24} className="text-[#1a3a5c]" />
                 </div>
-                <h3 className="font-bold text-[#0f2d5e] mb-2">{title}</h3>
+                <h3 className="font-bold text-[#1a3a5c] mb-2">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -157,9 +157,9 @@ export default function AboutPage() {
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card text-center">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#0f2d5e]" />
+                  <Icon size={24} className="text-[#1a3a5c]" />
                 </div>
-                <h3 className="font-bold text-[#0f2d5e] mb-2">{title}</h3>
+                <h3 className="font-bold text-[#1a3a5c] mb-2">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -178,10 +178,10 @@ export default function AboutPage() {
               <Link
                 key={m.href}
                 href={m.href}
-                className="flex items-center justify-between p-5 bg-white rounded-xl border border-gray-200 hover:border-[#0f2d5e] hover:shadow-md transition-all group"
+                className="flex items-center justify-between p-5 bg-white rounded-xl border border-gray-200 hover:border-[#1a3a5c] hover:shadow-md transition-all group"
               >
-                <span className="font-medium text-gray-700 group-hover:text-[#0f2d5e]">{m.label}</span>
-                <ChevronRight size={18} className="text-gray-400 group-hover:text-[#0f2d5e] transition-colors" />
+                <span className="font-medium text-gray-700 group-hover:text-[#1a3a5c]">{m.label}</span>
+                <ChevronRight size={18} className="text-gray-400 group-hover:text-[#1a3a5c] transition-colors" />
               </Link>
             ))}
           </div>

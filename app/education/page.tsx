@@ -75,15 +75,15 @@ export default function EducationHubPage() {
     <main className="pt-24 pb-20 max-w-7xl mx-auto px-6">
       {/* Hero Section & Stepper */}
       <section className="py-16 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-[52px] lg:text-[56px] font-black text-[#002444] leading-tight mb-4 tracking-tighter">교육안내</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-[52px] lg:text-[56px] font-black text-[#1a3a5c] leading-tight mb-4 tracking-tighter">교육안내</h1>
         <p className="text-base sm:text-lg lg:text-[20px] text-gray-600 max-w-2xl mx-auto leading-[1.7] mb-8 sm:mb-12">
           목적과 상황에 맞는 교육과정을 선택하세요. 대전경실련 도시안전디자인센터는 전문적인 시민 안전 교육을 지향합니다.
         </p>
 
         {/* 3-Step Process Stepper */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-16">
-          <div className="flex items-center gap-3 bg-[#002444] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg text-sm sm:text-base">
-            <span className="bg-white text-[#002444] rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">1</span>
+          <div className="flex items-center gap-3 bg-[#1a3a5c] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg text-sm sm:text-base">
+            <span className="bg-white text-[#1a3a5c] rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">1</span>
             <span className="font-bold">교육 방식</span>
           </div>
           <div className="w-[2px] h-6 sm:w-12 sm:h-[2px] bg-gray-300"></div>
@@ -123,11 +123,11 @@ export default function EducationHubPage() {
 
       {/* Schedule Table */}
       <section className="mb-24">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
         <div className="bg-white rounded-xl overflow-x-auto shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
           <table className="min-w-[640px] w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#e9e8e8] text-[#002444] font-bold">
+              <tr className="bg-[#e9e8e8] text-[#1a3a5c] font-bold">
                 <th className="px-6 py-5">일자</th>
                 <th className="px-6 py-5">구분</th>
                 <th className="px-6 py-5">과정명</th>
@@ -164,7 +164,7 @@ export default function EducationHubPage() {
 
       {/* Application Form */}
       <section className="mb-24">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">수강 신청 정보 입력</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-8 text-center md:text-left">수강 신청 정보 입력</h2>
         <div className="bg-white rounded-xl p-8 shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -209,7 +209,7 @@ export default function EducationHubPage() {
               <label className="flex items-center gap-3">
                 <input type="checkbox" className="w-5 h-5 text-[#2e7d32] border-gray-300 rounded focus:ring-[#2e7d32]" />
                 <span className="text-sm text-gray-700">
-                  <Link href="/legal/privacy" className="text-[#2e7d32] underline">개인정보처리방침</Link>에 동의합니다 *
+                  <Link href="/privacy" className="text-[#2e7d32] underline">개인정보처리방침</Link>에 동의합니다 *
                 </span>
               </label>
             </div>
@@ -218,7 +218,7 @@ export default function EducationHubPage() {
                 수강 신청하기
               </button>
               <div className="mt-4 text-center text-sm text-gray-600">
-                <p>1-2 영업일 내 확인 연락 | <Link href="/legal/refund" className="text-[#2e7d32] hover:underline">취소/환불 규정 보기</Link></p>
+                <p>1-2 영업일 내 확인 연락 | <Link href="/refund" className="text-[#2e7d32] hover:underline">취소/환불 규정 보기</Link></p>
               </div>
             </div>
           </form>
@@ -227,11 +227,11 @@ export default function EducationHubPage() {
 
       {/* FAQ */}
       <section className="mb-24">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-8 text-center md:text-left">자주 묻는 질문</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-8 text-center md:text-left">자주 묻는 질문</h2>
         <div className="space-y-4">
           {FAQ_DATA.map((faq, index) => (
             <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <h3 className="font-bold text-[#002444] mb-3">Q. {faq.q}</h3>
+              <h3 className="font-bold text-[#1a3a5c] mb-3">Q. {faq.q}</h3>
               <p className="text-gray-700 leading-relaxed">A. {faq.a}</p>
             </div>
           ))}
@@ -240,17 +240,17 @@ export default function EducationHubPage() {
 
       {/* Inquiry Fallback */}
       <section className="text-center">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#002444] mb-6">결정이 어려우세요?</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-6">결정이 어려우세요?</h2>
         <p className="text-gray-600 mb-8">전문 상담을 통해 최적의 교육과정을 안내해드립니다.</p>
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="tel:042-254-8060" className="bg-[#002444] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#1a3a5c] transition-colors flex items-center gap-2">
+          <a href="tel:042-254-8060" className="bg-[#1a3a5c] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#1a3a5c] transition-colors flex items-center gap-2">
             <Phone size={20} />
             042-254-8060 전화 상담
           </a>
           <button className="bg-[#2e7d32] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#217128] transition-colors">
             카카오톡 상담
           </button>
-          <Link href="/contact/education" className="border-2 border-[#002444] text-[#002444] px-8 py-4 rounded-xl font-bold hover:bg-[#002444] hover:text-white transition-colors">
+          <Link href="/contact/education" className="border-2 border-[#1a3a5c] text-[#1a3a5c] px-8 py-4 rounded-xl font-bold hover:bg-[#1a3a5c] hover:text-white transition-colors">
             온라인 문의
           </Link>
         </div>

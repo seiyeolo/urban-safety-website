@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-[#0f2d5e] rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-[#1a3a5c] rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Shield size={28} className="text-white" />
           </div>
           <h1 className="text-xl font-bold text-white">관리자 로그인</h1>
@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="관리자 비밀번호"
               autoComplete="current-password"
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#0f2d5e] focus:ring-1 focus:ring-[#0f2d5e] pr-12"
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] pr-12"
               required
             />
             <button
@@ -73,7 +73,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading || !password}
-            className="w-full py-3 bg-[#0f2d5e] text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-[#1a3a5c] text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {loading ? '로그인 중...' : '로그인'}
           </button>

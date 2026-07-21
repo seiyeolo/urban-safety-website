@@ -45,9 +45,9 @@ export default function ResultsPage() {
             {STATS.map(({ icon: Icon, value, label, sub }) => (
               <div key={label} className="card text-center">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#0f2d5e]" />
+                  <Icon size={24} className="text-[#1a3a5c]" />
                 </div>
-                <p className="text-3xl font-bold text-[#0f2d5e] mb-1">{value}</p>
+                <p className="text-3xl font-bold text-[#1a3a5c] mb-1">{value}</p>
                 <p className="font-semibold text-gray-800 text-sm mb-0.5">{label}</p>
                 <p className="text-xs text-gray-400">{sub}</p>
               </div>
@@ -62,7 +62,7 @@ export default function ResultsPage() {
           <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm max-w-2xl mx-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-[#0f2d5e] text-white">
+                <tr className="bg-[#1a3a5c] text-white">
                   <th className="px-6 py-4 text-left">연도</th>
                   <th className="px-6 py-4 text-right">운영 과정</th>
                   <th className="px-6 py-4 text-right">수강생 수</th>
@@ -72,7 +72,7 @@ export default function ResultsPage() {
               <tbody>
                 {HISTORY_DATA.map(({ year, courses, students, institutions }, i) => (
                   <tr key={year} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                    <td className="px-6 py-4 font-semibold text-[#0f2d5e]">{year}</td>
+                    <td className="px-6 py-4 font-semibold text-[#1a3a5c]">{year}</td>
                     <td className="px-6 py-4 text-right text-gray-700">{courses}개</td>
                     <td className="px-6 py-4 text-right text-gray-700">{students.toLocaleString()}명</td>
                     <td className="px-6 py-4 text-right text-gray-700">{institutions}곳</td>

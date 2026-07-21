@@ -34,7 +34,7 @@ export default function GreetingPage() {
 
           <div className="relative mb-10">
             <Quote size={48} className="text-blue-100 absolute -top-4 -left-4" />
-            <h2 className="text-2xl font-bold text-[#0f2d5e] text-center mb-8">
+            <h2 className="text-2xl font-bold text-[#1a3a5c] text-center mb-8">
               시민의 안전한 일상을 위해<br />함께하겠습니다
             </h2>
           </div>
@@ -69,7 +69,7 @@ export default function GreetingPage() {
 
           <div className="mt-12 text-right text-gray-600">
             <p className="text-sm text-gray-400 mb-1">대전경실련 도시안전디자인센터</p>
-            <p className="text-lg font-bold text-[#0f2d5e]">센터장 일동</p>
+            <p className="text-lg font-bold text-[#1a3a5c]">센터장 일동</p>
           </div>
         </div>
       </section>

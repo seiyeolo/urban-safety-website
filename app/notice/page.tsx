@@ -46,10 +46,10 @@ export default async function NoticePage() {
                 href={href}
                 className="flex flex-col items-center text-center p-5 bg-gray-50 rounded-2xl hover:bg-blue-50 hover:shadow-sm transition-all group"
               >
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm group-hover:bg-[#0f2d5e] transition-colors">
-                  <Icon size={22} className="text-[#0f2d5e] group-hover:text-white transition-colors" />
+                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm group-hover:bg-[#1a3a5c] transition-colors">
+                  <Icon size={22} className="text-[#1a3a5c] group-hover:text-white transition-colors" />
                 </div>
-                <p className="font-semibold text-gray-800 group-hover:text-[#0f2d5e] text-sm mb-1">{label}</p>
+                <p className="font-semibold text-gray-800 group-hover:text-[#1a3a5c] text-sm mb-1">{label}</p>
                 <p className="text-xs text-gray-400">{desc}</p>
               </Link>
             ))}
@@ -65,7 +65,7 @@ export default async function NoticePage() {
               <span className="section-tag">공지사항</span>
               <h2 className="section-title mt-2">최신 공지사항</h2>
             </div>
-            <Link href="/notice" className="text-sm text-[#0f2d5e] font-medium hover:underline flex items-center gap-1">
+            <Link href="/notice" className="text-sm text-[#1a3a5c] font-medium hover:underline flex items-center gap-1">
               더보기 <ChevronRight size={14} />
             </Link>
           </div>
@@ -82,7 +82,7 @@ export default async function NoticePage() {
                   i < notices.length - 1 ? 'border-b border-gray-100' : ''
                 }`}
               >
-                <span className="text-xs font-semibold text-[#0f2d5e] bg-blue-50 px-2 py-0.5 rounded shrink-0">{category}</span>
+                <span className="text-xs font-semibold text-[#1a3a5c] bg-blue-50 px-2 py-0.5 rounded shrink-0">{category}</span>
                 <p className="flex-1 text-gray-800 text-sm font-medium">{title}</p>
                 {isNew && (
                   <span className="text-xs font-bold text-red-500 bg-red-50 px-1.5 py-0.5 rounded shrink-0">N</span>

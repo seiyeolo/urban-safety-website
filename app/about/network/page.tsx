@@ -92,7 +92,7 @@ export default function NetworkPage() {
           </div>
 
           <div className="mt-10 bg-blue-50 rounded-2xl p-8 text-center">
-            <h3 className="text-lg font-bold text-[#0f2d5e] mb-3">협력 제안 환영합니다</h3>
+            <h3 className="text-lg font-bold text-[#1a3a5c] mb-3">협력 제안 환영합니다</h3>
             <p className="text-gray-600 text-sm mb-5">
               지역사회 안전교육 협력을 희망하시는 기관·단체는 언제든지 연락 주시기 바랍니다.
             </p>

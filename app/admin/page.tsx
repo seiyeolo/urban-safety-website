@@ -34,7 +34,7 @@ export default async function AdminPage() {
       <header className="bg-gray-900 border-b border-gray-800">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#0f2d5e] rounded-lg flex items-center justify-center">
+            <div className="w-9 h-9 bg-[#1a3a5c] rounded-lg flex items-center justify-center">
               <Shield size={18} className="text-white" />
             </div>
             <div>
@@ -81,13 +81,13 @@ export default async function AdminPage() {
             <Link
               key={href}
               href={href}
-              className="bg-gray-800 border border-gray-700 rounded-xl p-5 hover:border-[#0f2d5e] transition-colors"
+              className="bg-gray-800 border border-gray-700 rounded-xl p-5 hover:border-[#1a3a5c] transition-colors"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="w-9 h-9 bg-gray-700 rounded-lg flex items-center justify-center">
                   <Icon size={18} className="text-gray-300" />
                 </div>
-                <span className="text-xs bg-[#0f2d5e]/20 text-blue-300 px-2 py-0.5 rounded-full">
+                <span className="text-xs bg-[#1a3a5c]/20 text-blue-300 px-2 py-0.5 rounded-full">
                   관리 가능
                 </span>
               </div>

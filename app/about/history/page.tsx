@@ -88,13 +88,13 @@ export default function HistoryPage() {
             {HISTORY.map(({ year, events }) => (
               <div key={year} className="flex gap-8">
                 <div className="shrink-0 w-16 text-right">
-                  <span className="text-xl font-bold text-[#0f2d5e]">{year}</span>
+                  <span className="text-xl font-bold text-[#1a3a5c]">{year}</span>
                 </div>
                 <div className="flex-1 border-l-2 border-gray-200 pl-8 pb-4">
                   <ul className="space-y-3">
                     {events.map((event) => (
                       <li key={event} className="flex items-start gap-3">
-                        <span className="w-2 h-2 bg-[#0f2d5e] rounded-full shrink-0 mt-1.5" />
+                        <span className="w-2 h-2 bg-[#1a3a5c] rounded-full shrink-0 mt-1.5" />
                         <span className="text-gray-700">{event}</span>
                       </li>
                     ))}
