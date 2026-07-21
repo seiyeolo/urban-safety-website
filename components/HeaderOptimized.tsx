@@ -77,9 +77,11 @@ export default function HeaderOptimized() {
 
             {/* 모바일 전용 - 햄버거 버튼 */}
             <button
-              className="lg:hidden p-2 text-gray-600 hover:text-navy-900"
+              className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-600 hover:text-navy-900"
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="메뉴 열기"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+              aria-label={mobileOpen ? '메뉴 닫기' : '메뉴 열기'}
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -89,17 +91,19 @@ export default function HeaderOptimized() {
 
       {/* 모바일 메뉴 */}
       {mobileOpen && (
-        <Suspense
-          fallback={
-            <div className="lg:hidden bg-white border-b border-gray-200 shadow-lg">
-              <div className="container-main py-4">
-                <div className="w-full h-32 bg-gray-100 rounded animate-pulse" />
+        <div id="mobile-menu">
+          <Suspense
+            fallback={
+              <div className="lg:hidden bg-white border-b border-gray-200 shadow-lg">
+                <div className="container-main py-4">
+                  <div className="w-full h-32 bg-gray-100 rounded animate-pulse" />
+                </div>
               </div>
-            </div>
-          }
-        >
-          <MobileMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
-        </Suspense>
+            }
+          >
+            <MobileMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
+          </Suspense>
+        </div>
       )}
     </header>
   )
