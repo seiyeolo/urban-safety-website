@@ -40,7 +40,7 @@ export default function LearningDashboard() {
         {/* 페이지 헤더 */}
         <div className="mb-7 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-[13px] font-bold text-[#7f8ea3]">안녕하세요, 수강생님 👋</p>
+            <p className="text-[14px] font-bold text-[#7f8ea3]">안녕하세요, 수강생님 👋</p>
             <h1 className="mt-2 text-3xl font-black tracking-[-.04em] text-white sm:text-4xl">
               오늘도 <span className="text-[#4cc38a]">이어서</span> 학습해 볼까요?
             </h1>
@@ -50,12 +50,12 @@ export default function LearningDashboard() {
               <UserRound size={17} />
             </div>
             <div>
-              <p className="max-w-[190px] truncate text-[13px] font-extrabold text-white">{learnerLabel}</p>
-              <p className="text-[10.5px] font-semibold text-[#7f8ea3]">{currentCourse.eyebrow}</p>
+              <p className="max-w-[190px] truncate text-[14px] font-extrabold text-white">{learnerLabel}</p>
+              <p className="text-[12px] font-semibold text-[#7f8ea3]">{currentCourse.eyebrow}</p>
             </div>
             <button
               onClick={() => signOut()}
-              className="ml-1 inline-flex items-center gap-1 rounded-lg border border-white/[.12] px-3 py-1.5 text-[11px] font-extrabold text-[#93a1b5] transition hover:bg-white/[.06] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a] active:scale-[0.97]"
+              className="ml-1 inline-flex items-center gap-1 rounded-lg border border-white/[.12] px-3 py-1.5 text-[13px] font-extrabold text-[#93a1b5] transition hover:bg-white/[.06] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4cc38a] active:scale-[0.97]"
               aria-label="로그아웃"
             >
               <LogOut size={13} /> 로그아웃
@@ -65,7 +65,7 @@ export default function LearningDashboard() {
 
         {/* 이어보기 히어로 */}
         <section className="relative overflow-hidden rounded-[20px] border border-white/[.07] bg-[#151d2e] p-7 lg:p-9 [background-image:radial-gradient(ellipse_at_80%_-10%,rgba(76,195,138,0.16),transparent_55%),radial-gradient(ellipse_at_0%_110%,rgba(59,130,246,0.10),transparent_50%)]">
-          <p className="inline-flex items-center gap-2 text-[11.5px] font-black uppercase tracking-[.06em] text-[#4cc38a]">
+          <p className="inline-flex items-center gap-2 text-[13px] font-black uppercase tracking-[.06em] text-[#4cc38a]">
             <span className="h-[7px] w-[7px] rounded-full bg-[#4cc38a] shadow-[0_0_12px_#4cc38a]" aria-hidden />
             이어보기 · Lesson {continueLesson.order}
           </p>
@@ -98,26 +98,26 @@ export default function LearningDashboard() {
               <div className="absolute inset-0 grid place-items-center text-center">
                 <div>
                   <span className="text-lg font-black text-white">{percent}%</span>
-                  <span className="block text-[9px] font-bold text-[#7f8ea3]">진도율</span>
+                  <span className="block text-[12px] font-bold text-[#7f8ea3]">진도율</span>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-7">
               <div>
-                <p className="text-[11px] font-bold text-[#7f8ea3]">완료 차시</p>
+                <p className="text-[13px] font-bold text-[#7f8ea3]">완료 차시</p>
                 <p className="mt-1 text-base font-black text-white">
                   {progress.completed.length} / {totalLessons}
                 </p>
               </div>
               <div>
-                <p className="text-[11px] font-bold text-[#7f8ea3]">학습 시간</p>
+                <p className="text-[13px] font-bold text-[#7f8ea3]">학습 시간</p>
                 <p className="mt-1 text-base font-black text-white">
                   {totalMinutes > 0 ? `${Math.floor(totalMinutes / 60)}h ${totalMinutes % 60}m` : '시작 전'}
                 </p>
               </div>
               <div>
-                <p className="text-[11px] font-bold text-[#7f8ea3]">수료 기준</p>
+                <p className="text-[13px] font-bold text-[#7f8ea3]">수료 기준</p>
                 <p className="mt-1 text-base font-black text-white">전체 수강</p>
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function LearningDashboard() {
           <section className="rounded-[20px] border border-white/[.07] bg-[#151d2e] p-3">
             <div className="flex items-center justify-between px-4 pb-2 pt-4">
               <h3 className="text-[15.5px] font-black text-white">커리큘럼</h3>
-              <span className="text-[11.5px] font-bold text-[#7f8ea3]">
+              <span className="text-[13px] font-bold text-[#7f8ea3]">
                 총 {totalLessons}차시 · {currentCourse.stats[1].value}
               </span>
             </div>
@@ -164,12 +164,12 @@ export default function LearningDashboard() {
                     <h4 className={`truncate text-sm leading-5 text-[#e8edf5] ${isCurrent ? 'font-black' : 'font-bold'}`}>
                       {lesson.title}
                     </h4>
-                    <p className="mt-0.5 text-[11px] font-semibold text-[#7f8ea3]">
+                    <p className="mt-0.5 text-[13px] font-semibold text-[#7f8ea3]">
                       {lesson.duration}
                       {isCurrent ? ' · 수강 중' : done ? ' · 완료' : ''}
                     </p>
                   </div>
-                  <span className="flex items-center gap-1 text-[11px] font-extrabold text-[#4cc38a] opacity-0 transition group-hover:opacity-100">
+                  <span className="flex items-center gap-1 text-[13px] font-extrabold text-[#4cc38a] opacity-0 transition group-hover:opacity-100">
                     {done ? '다시 보기' : isCurrent ? '이어보기' : '시작'} <ArrowRight size={12} />
                   </span>
                 </Link>
@@ -179,7 +179,7 @@ export default function LearningDashboard() {
 
           <aside className="space-y-4">
             <div className="rounded-[20px] border border-white/[.07] bg-[#151d2e] p-6">
-              <div className="mb-3 flex items-center gap-2 text-[13.5px] font-black text-white">
+              <div className="mb-3 flex items-center gap-2 text-[14px] font-black text-white">
                 <Bell size={15} className="text-[#4cc38a]" /> 공지
               </div>
               <p className="text-xs leading-7 text-[#93a1b5]">
@@ -187,7 +187,7 @@ export default function LearningDashboard() {
               </p>
             </div>
             <div className="rounded-[20px] border border-white/[.07] bg-[#151d2e] p-6">
-              <div className="mb-3 flex items-center gap-2 text-[13.5px] font-black text-white">
+              <div className="mb-3 flex items-center gap-2 text-[14px] font-black text-white">
                 <Download size={15} className="text-[#4cc38a]" /> 강의자료
               </div>
               <div className="space-y-2">
@@ -197,13 +197,13 @@ export default function LearningDashboard() {
                     className="flex items-center justify-between rounded-xl bg-white/[.045] px-4 py-3 text-xs font-bold text-[#e8edf5]"
                   >
                     {item}
-                    <span className="text-[10.5px] font-bold text-[#7f8ea3]">준비 중</span>
+                    <span className="text-[12px] font-bold text-[#7f8ea3]">준비 중</span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="rounded-[20px] border border-white/[.07] bg-[#151d2e] p-6">
-              <div className="mb-2 flex items-center gap-2 text-[13.5px] font-black text-white">
+              <div className="mb-2 flex items-center gap-2 text-[14px] font-black text-white">
                 <ShieldCheck size={15} className="text-[#4cc38a]" /> 이용 안내
               </div>
               <p className="text-xs leading-7 text-[#93a1b5]">
