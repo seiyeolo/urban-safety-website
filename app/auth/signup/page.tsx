@@ -64,15 +64,18 @@ export default function SignupPage() {
     setError('')
 
     try {
-      const { error } = await signUp(formData.email, formData.password, {
+      const { data, error } = await signUp(formData.email, formData.password, {
         name: formData.name,
         phone: formData.phone
       })
 
       if (error) {
         setError(error.message)
+      } else if (data?.session) {
+        // 세션 즉시 발급(이메일 확인 비활성) — 가입과 동시에 강의실 입장
+        router.push('/dashboard/learning')
       } else {
-        // 회원가입 성공 - 이메일 확인 안내 페이지로 이동하거나 대시보드로 이동
+        // 이메일 확인이 켜져 있는 경우의 폴백 — 인증 안내 페이지로 이동
         router.push('/auth/verify-email')
       }
     } catch {
