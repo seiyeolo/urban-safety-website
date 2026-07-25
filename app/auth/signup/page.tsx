@@ -135,6 +135,12 @@ export default function SignupPage() {
 
         {/* 회원가입 폼 */}
         <div className="bg-white rounded-2xl p-8 shadow-xl">
+          {/* 간편 가입 안내 */}
+          <div className="mb-4 rounded-lg bg-blue-50 px-4 py-3 text-sm leading-6 text-[#1a3a5c]">
+            <b>가장 쉬운 가입 방법</b> — 카카오톡이나 구글을 쓰고 계시다면
+            아래 버튼 하나로 가입이 바로 끝나고, 곧바로 강의를 들으실 수 있습니다.
+          </div>
+
           {/* 소셜 회원가입 버튼들 */}
           <div className="space-y-3 mb-6">
             <button
@@ -169,7 +175,7 @@ export default function SignupPage() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">또는</span>
+              <span className="px-2 bg-white text-gray-500">또는 이메일로 직접 가입</span>
             </div>
           </div>
 

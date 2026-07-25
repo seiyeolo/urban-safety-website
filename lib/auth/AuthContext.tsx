@@ -101,7 +101,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (typeof window === 'undefined') {
       return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
     }
-    return `${window.location.origin}/dashboard`
+    // 소셜 로그인 완료 후 온라인 강의실로 직행 (가입 즉시 수강 원칙)
+    return `${window.location.origin}/dashboard/learning`
   }
 
   const signInWithGoogle = async (): Promise<OAuthResult> => {
