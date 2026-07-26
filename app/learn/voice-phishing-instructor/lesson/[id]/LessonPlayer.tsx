@@ -200,7 +200,7 @@ export default function LessonPlayer({ order }: { order: number }) {
                       ) : done ? (
                         '시청 완료'
                       ) : (
-                        `${item.order}강`
+                        '아직 보지 않음'
                       )}
                       {!hasVideo && (
                         <span className="rounded-full bg-white/[.06] px-2 py-0.5 text-[11.5px]">준비 중</span>

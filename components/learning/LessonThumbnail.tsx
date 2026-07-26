@@ -51,7 +51,7 @@ export function LessonThumbnail({
           alt=""
           fill
           sizes={s.sizes}
-          className={cn('object-cover transition', done && 'opacity-55')}
+          className={cn('object-cover transition', done && 'opacity-75')}
           aria-hidden="true"
         />
       ) : (
@@ -69,7 +69,7 @@ export function LessonThumbnail({
 
       {/* 상태 오버레이 */}
       {done ? (
-        <span className="absolute inset-0 flex items-center justify-center bg-brand-950/45">
+        <span className="absolute inset-0 flex items-center justify-center bg-brand-950/30">
           <CheckCircle2 size={22} className="text-accent-400" aria-hidden="true" />
         </span>
       ) : isCurrent ? (
