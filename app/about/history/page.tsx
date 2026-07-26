@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '연혁',
@@ -68,19 +68,15 @@ const HISTORY = [
 export default function HistoryPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/about" className="text-blue-300 hover:text-white">센터소개</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">연혁</span>
-          </nav>
-          <h1>연혁</h1>
-          <p>대전경실련 도시안전디자인센터의 발자취</p>
-        </div>
-      </div>
+      <PageHero
+        title="연혁"
+        description="대전경실련 도시안전디자인센터의 발자취"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개', href: '/about' },
+          { label: '연혁' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main max-w-2xl mx-auto">
@@ -88,13 +84,13 @@ export default function HistoryPage() {
             {HISTORY.map(({ year, events }) => (
               <div key={year} className="flex gap-8">
                 <div className="shrink-0 w-16 text-right">
-                  <span className="text-xl font-bold text-[#1a3a5c]">{year}</span>
+                  <span className="text-xl font-bold text-brand-600">{year}</span>
                 </div>
                 <div className="flex-1 border-l-2 border-gray-200 pl-8 pb-4">
                   <ul className="space-y-3">
                     {events.map((event) => (
                       <li key={event} className="flex items-start gap-3">
-                        <span className="w-2 h-2 bg-[#1a3a5c] rounded-full shrink-0 mt-1.5" />
+                        <span className="w-2 h-2 bg-brand-600 rounded-full shrink-0 mt-1.5" />
                         <span className="text-gray-700">{event}</span>
                       </li>
                     ))}

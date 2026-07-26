@@ -41,12 +41,14 @@ export default function HeaderOptimized() {
           <div className="flex items-center justify-between h-full">
             {/* 로고 */}
             <Link href="/" className="flex items-center gap-4 group flex-shrink-0">
+              {/* logo.svg는 A4 아트보드째 내보낸 파일이라 viewBox를 실제 심볼 영역으로
+                  크롭해 둠(원본: logo-a4-original.svg). 비율 283:256 ≈ 1.11 */}
               <Image
                 src="/brand/logo.svg"
                 alt="도시안전디자인센터 로고"
-                width={40}
+                width={62}
                 height={56}
-                className="h-14 w-auto transition-opacity group-hover:opacity-85"
+                className="h-12 sm:h-14 w-auto transition-opacity group-hover:opacity-85"
                 priority
               />
               <div className="leading-tight min-w-0">

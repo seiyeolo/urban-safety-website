@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Building2, GraduationCap, Shield, Users } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '협력 네트워크',
@@ -11,25 +12,25 @@ const NETWORKS = [
   {
     icon: Shield,
     title: '공공기관',
-    color: 'bg-blue-50 text-blue-700',
+    color: 'bg-brand-50 text-brand-700',
     items: ['대전광역시', '대전지방경찰청', '대전소방본부', '대전광역시의회', '연구개발특구지원본부'],
   },
   {
     icon: Building2,
     title: '복지·교육기관',
-    color: 'bg-green-50 text-green-700',
+    color: 'bg-cta-50 text-cta-800',
     items: ['대전발전연구원', '대전테크노파크', '대전복지재단', '지역 사회복지관', '주민자치센터'],
   },
   {
     icon: GraduationCap,
     title: '학술·연구기관',
-    color: 'bg-purple-50 text-purple-700',
+    color: 'bg-accent-100 text-brand-800',
     items: ['한밭대학교', '목원대학교', '중부대학교', '공주대학교', '대전대학교'],
   },
   {
     icon: Users,
     title: '시민사회단체',
-    color: 'bg-green-50 text-green-700',
+    color: 'bg-neutral-100 text-neutral-700',
     items: ['경제정의실천시민연합', '한국R&D디자인융합연구조합', '지역 자원봉사센터', '관련 시민단체 및 전문가 네트워크'],
   },
 ]
@@ -37,19 +38,15 @@ const NETWORKS = [
 export default function NetworkPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/about" className="text-blue-300 hover:text-white">센터소개</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">협력 네트워크</span>
-          </nav>
-          <h1>협력 네트워크</h1>
-          <p>안전한 지역사회를 함께 만들어가는 파트너들</p>
-        </div>
-      </div>
+      <PageHero
+        title="협력 네트워크"
+        description="안전한 지역사회를 함께 만들어가는 파트너들"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개', href: '/about' },
+          { label: '협력 네트워크' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main">
@@ -91,8 +88,8 @@ export default function NetworkPage() {
             ))}
           </div>
 
-          <div className="mt-10 bg-blue-50 rounded-2xl p-8 text-center">
-            <h3 className="text-lg font-bold text-[#1a3a5c] mb-3">협력 제안 환영합니다</h3>
+          <div className="mt-10 bg-brand-50 rounded-2xl p-8 text-center">
+            <h3 className="text-lg font-bold text-brand-600 mb-3">협력 제안 환영합니다</h3>
             <p className="text-gray-600 text-sm mb-5">
               지역사회 안전교육 협력을 희망하시는 기관·단체는 언제든지 연락 주시기 바랍니다.
             </p>

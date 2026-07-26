@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Shield, Target, Eye, Lightbulb } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '설립 취지와 비전',
@@ -10,19 +10,15 @@ export const metadata: Metadata = {
 export default function VisionPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/about" className="text-blue-300 hover:text-white">센터소개</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">설립 취지와 비전</span>
-          </nav>
-          <h1>설립 취지와 비전</h1>
-          <p>왜 이 센터가 필요한지, 어디를 향해 나아가는지</p>
-        </div>
-      </div>
+      <PageHero
+        title="설립 취지와 비전"
+        description="왜 이 센터가 필요한지, 어디를 향해 나아가는지"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개', href: '/about' },
+          { label: '설립 취지와 비전' },
+        ]}
+      />
 
       {/* 설립 취지 */}
       <section className="section-padding bg-white">
@@ -53,7 +49,7 @@ export default function VisionPage() {
       <section className="section-padding bg-gray-50">
         <div className="container-main">
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-[#1a3a5c] text-white rounded-2xl p-8">
+            <div className="bg-brand-600 text-white rounded-2xl p-8">
               <Eye size={36} className="mb-4 opacity-80" />
               <p className="text-navy-100 text-sm font-semibold mb-2">MISSION</p>
               <h3 className="text-xl font-bold mb-4">미션</h3>
@@ -62,7 +58,7 @@ export default function VisionPage() {
                 지역사회가 스스로 안전 역량을 키울 수 있는 공익 실천 플랫폼으로 활동한다.
               </p>
             </div>
-            <div className="bg-[#2e7d32] text-white rounded-2xl p-8">
+            <div className="bg-cta-700 text-white rounded-2xl p-8">
               <Lightbulb size={36} className="mb-4 opacity-80" />
               <p className="text-green-100 text-sm font-semibold mb-2">VISION</p>
               <h3 className="text-xl font-bold mb-4">비전</h3>
@@ -90,17 +86,17 @@ export default function VisionPage() {
               { icon: Lightbulb, title: '성장성', desc: '안전을 시민의 삶의 질 향상과 지역 성장 기반으로 확장합니다.' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card text-center">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#1a3a5c]" />
+                <div className="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Icon size={24} className="text-brand-600" />
                 </div>
-                <h3 className="font-bold text-[#1a3a5c] mb-2">{title}</h3>
+                <h3 className="font-bold text-brand-600 mb-2">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 bg-blue-50 rounded-2xl p-8 max-w-3xl mx-auto">
-            <h3 className="text-lg font-bold text-[#1a3a5c] mb-3">브로슈어 기반 핵심 문장</h3>
+          <div className="mt-12 bg-brand-50 rounded-2xl p-8 max-w-3xl mx-auto">
+            <h3 className="text-lg font-bold text-brand-600 mb-3">브로슈어 기반 핵심 문장</h3>
             <p className="text-gray-700 leading-relaxed">
               도시안전디자인센터는 도시안전디자인을 통해 시민의 안전한 생활기반을 제공하고,
               도시의 안전한 물리적 환경 조성과 지역 성장기반 구축까지 함께 바라보는 장기적 비전을 지향합니다.

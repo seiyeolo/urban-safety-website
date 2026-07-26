@@ -75,17 +75,17 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a3a5c] to-[#002444] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-brand-600 to-brand-950 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* 로고 & 제목 */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block mb-6">
             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-[#1a3a5c] font-bold text-xl">安</span>
+              <span className="text-brand-600 font-bold text-xl">安</span>
             </div>
           </Link>
           <h1 className="text-3xl font-bold text-white mb-2">로그인</h1>
-          <p className="text-blue-300">
+          <p className="text-brand-200">
             {rawRedirect?.startsWith('/learn') || rawRedirect?.startsWith('/dashboard')
               ? '온라인 강의실 입장을 위해 로그인해 주세요'
               : '도시안전디자인센터에 오신 것을 환영합니다'}
@@ -135,16 +135,18 @@ function LoginForm() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* 이메일 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="login-email" className="block text-sm font-medium text-neutral-800 mb-2">
                 이메일
               </label>
               <div className="relative">
-                <Mail size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Mail size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" aria-hidden="true" />
                 <input
+                  id="login-email"
                   type="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   placeholder="이메일을 입력하세요"
                   required
                 />
@@ -153,23 +155,26 @@ function LoginForm() {
 
             {/* 비밀번호 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="login-password" className="block text-sm font-medium text-neutral-800 mb-2">
                 비밀번호
               </label>
               <div className="relative">
-                <Lock size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Lock size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" aria-hidden="true" />
                 <input
+                  id="login-password"
                   type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-neutral-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   placeholder="비밀번호를 입력하세요"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  aria-label={showPassword ? '비밀번호 숨기기' : '비밀번호 표시'}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-700"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -187,7 +192,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#2e7d32] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#217128] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-cta-700 text-white py-3 px-4 rounded-lg font-medium hover:bg-cta-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -203,7 +208,7 @@ function LoginForm() {
           <div className="mt-6 text-center space-y-2">
             <p className="text-sm text-gray-600">
               계정이 없으신가요?{' '}
-              <Link href="/auth/signup" className="text-[#2e7d32] hover:underline font-medium">
+              <Link href="/auth/signup" className="text-cta-700 hover:underline font-medium">
                 회원가입
               </Link>
             </p>
@@ -217,7 +222,7 @@ function LoginForm() {
         <div className="mt-6 text-center">
           <Link
             href="/admin"
-            className="text-blue-300 hover:text-white text-sm hover:underline"
+            className="text-brand-200 hover:text-white text-sm hover:underline"
           >
             관리자 로그인
           </Link>
@@ -231,7 +236,7 @@ export default function LoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-gradient-to-br from-[#1a3a5c] to-[#002444] flex items-center justify-center">
+        <div className="min-h-screen bg-gradient-to-br from-brand-600 to-brand-950 flex items-center justify-center">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white" aria-hidden />
         </div>
       }

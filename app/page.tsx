@@ -82,8 +82,8 @@ export default function HomePage() {
       {/* ───────── Hero ───────── */}
       <section className="relative min-h-[680px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* 네이비 그라데이션 (좌상 다크 → 우하 밝은 네이비) */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0d1829] via-[#1a3a5c] to-[#2b4870]" />
+          {/* 브랜드 인디고 그라데이션 (좌상 최심부 → 우하 로고 원본색) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-950 via-brand-800 to-brand-600" />
           {/* 미세한 radial accent (우측 상단 희미한 밝음) */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.08),_transparent_60%)]" />
           {/* SVG noise texture 로 질감 부여 */}
@@ -99,7 +99,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full py-20 md:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="max-w-2xl text-white">
-              <span className="inline-block py-1.5 px-4 bg-green-700 text-sm font-bold tracking-widest uppercase rounded mb-6">
+              <span className="inline-block py-1.5 px-4 bg-accent-400 text-brand-900 text-sm font-bold tracking-widest uppercase rounded mb-6">
                 35년의 공신력 · 경실련 산하
               </span>
               <h1 className="text-4xl md:text-[52px] lg:text-[48px] xl:text-[52px] leading-[1.15] font-bold mb-8 tracking-tight">
@@ -120,7 +120,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white px-7 md:px-8 py-4 rounded-md font-bold text-base md:text-lg min-h-[56px] transition-all"
+                  className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border-2 border-white/50 hover:bg-white/25 text-white px-7 md:px-8 py-4 rounded-md font-bold text-base md:text-lg min-h-[56px] transition-all"
                 >
                   센터 소개
                 </Link>
@@ -134,7 +134,7 @@ export default function HomePage() {
       </section>
 
       {/* ───────── Value Cards ───────── */}
-      <section className="py-20 md:py-24 bg-[#f5f3f3]">
+      <section className="py-20 md:py-24 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="max-w-2xl mb-14 md:mb-16">
             <div className="w-16 h-1 bg-green-700 mb-6" />
@@ -242,7 +242,7 @@ export default function HomePage() {
       </section>
 
       {/* ───────── News & Notice Archive ───────── */}
-      <section className="py-20 md:py-24 bg-[#f5f3f3]">
+      <section className="py-20 md:py-24 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Shield, Eye, Users, BookOpen, Target, CheckCircle, ArrowRight, Clock, MapPin } from 'lucide-react'
+import { Badge, Button, Card } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '범죄예방 - 대전경실련 도시안전디자인센터',
@@ -13,28 +14,28 @@ const CRIME_PREVENTION_AREAS = [
     title: '보이스피싱 예방',
     description: 'AI 피싱 기법 분석 및 대응 전략',
     features: ['최신 피싱 기법 분석', '예방 교육 프로그램', '신고·대응 체계'],
-    color: 'bg-red-100 text-red-600'
+    color: 'bg-cta-100 text-cta-800'
   },
   {
     icon: Eye,
     title: 'CPTED 환경설계',
     description: '범죄예방 환경설계를 통한 안전 공간 조성',
     features: ['자연적 감시', '접근 통제', '영역성 강화'],
-    color: 'bg-blue-100 text-blue-600'
+    color: 'bg-brand-100 text-brand-600'
   },
   {
     icon: Users,
     title: '지역사회 안전망',
     description: '주민 참여형 범죄예방 네트워크 구축',
     features: ['주민자치 연계', '안전지킴이 양성', '신고 체계 구축'],
-    color: 'bg-green-100 text-green-600'
+    color: 'bg-neutral-200 text-neutral-700'
   },
   {
     icon: Target,
     title: '취약계층 보호',
     description: '어르신·아동 등 범죄 취약계층 맞춤 보호',
     features: ['맞춤형 교육', '보호자 연계', '응급상황 대응'],
-    color: 'bg-purple-100 text-purple-600'
+    color: 'bg-accent-200 text-brand-900'
   }
 ]
 
@@ -76,15 +77,15 @@ export default function CrimePreventionPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-16">
+      <section className="relative bg-gradient-to-br from-brand-600 to-brand-950 overflow-hidden py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-          <nav className="flex mb-6 gap-2 text-blue-300 text-sm font-medium">
+          <nav className="flex mb-6 gap-2 text-brand-200 text-sm font-medium">
             <Link href="/fields" className="hover:text-white">핵심분야</Link>
             <span className="material-symbols-outlined text-xs self-center">›</span>
             <span className="text-white">범죄예방</span>
           </nav>
           <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">범죄예방</h1>
-          <p className="text-xl text-blue-300 max-w-2xl">CPTED 환경설계를 통한 근본적 범죄예방. 시민 참여로 만드는 안전한 도시.</p>
+          <p className="text-xl text-brand-200 max-w-2xl">CPTED 환경설계를 통한 근본적 범죄예방. 시민 참여로 만드는 안전한 도시.</p>
         </div>
 
         {/* Decorative Element */}
@@ -98,8 +99,8 @@ export default function CrimePreventionPage() {
         <div className="max-w-7xl mx-auto">
           {/* 범죄예방 영역 */}
           <div className="mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-4 flex items-center gap-3">
-              <span className="w-8 h-1 bg-[#2e7d32] block"></span>
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-4 flex items-center gap-3">
+              <span className="w-8 h-1 bg-cta-700 block"></span>
               주요 범죄예방 영역
             </h2>
             <p className="text-gray-600 text-lg mb-12 max-w-3xl">
@@ -117,7 +118,7 @@ export default function CrimePreventionPage() {
                   <ul className="space-y-2">
                     {features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                        <CheckCircle size={16} className="text-[#2e7d32] mt-0.5 flex-shrink-0" />
+                        <CheckCircle size={16} className="text-cta-700 mt-0.5 flex-shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -129,19 +130,19 @@ export default function CrimePreventionPage() {
 
           {/* 교육 프로그램 */}
           <div className="mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
-              <span className="w-8 h-1 bg-[#2e7d32] block"></span>
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-12 flex items-center gap-3">
+              <span className="w-8 h-1 bg-cta-700 block"></span>
               범죄예방 교육 프로그램
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {PROGRAMS.map((program) => (
-                <div key={program.title} className="bg-white p-5 sm:p-8 lg:p-10 rounded-xl shadow-sm border border-gray-100">
+                <Card key={program.title} padding="lg">
                   <div className="flex items-start justify-between mb-6">
                     <div>
-                      <span className="inline-block px-3 py-1 bg-[#2e7d32]/10 text-[#2e7d32] text-xs font-bold rounded-full mb-3">
+                      <Badge tone="cta" className="mb-3">
                         {program.type}
-                      </span>
+                      </Badge>
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">{program.title}</h3>
                     </div>
                     <div className="text-right text-sm text-gray-600">
@@ -149,34 +150,31 @@ export default function CrimePreventionPage() {
                         <Clock size={14} />
                         <span>{program.duration}</span>
                       </div>
-                      <div className="font-medium text-[#2e7d32]">{program.level}</div>
+                      <div className="font-medium text-cta-700">{program.level}</div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 mb-8">
                     {program.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm text-gray-700">
-                        <div className="w-1.5 h-1.5 bg-[#2e7d32] rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-cta-700 rounded-full"></div>
                         <span>{feature}</span>
                       </div>
                     ))}
                   </div>
 
-                  <Link
-                    href={program.link}
-                    className="inline-flex items-center gap-2 bg-[#2e7d32] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#217128] transition-colors"
-                  >
+                  <Button href={program.link} size="sm">
                     자세히 보기 <ArrowRight size={16} />
-                  </Link>
-                </div>
+                  </Button>
+                </Card>
               ))}
             </div>
           </div>
 
           {/* 성공 사례 */}
-          <div className="bg-[#f5f3f3] rounded-xl p-6 md:p-12">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
-              <span className="w-8 h-1 bg-[#2e7d32] block"></span>
+          <div className="bg-neutral-100 rounded-xl p-6 md:p-12">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-12 flex items-center gap-3">
+              <span className="w-8 h-1 bg-cta-700 block"></span>
               범죄예방 성공 사례
             </h2>
 
@@ -184,8 +182,8 @@ export default function CrimePreventionPage() {
               {SUCCESS_CASES.map((case_study, index) => (
                 <div key={index} className="bg-white p-8 rounded-xl shadow-sm">
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="w-12 h-12 bg-[#2e7d32]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <MapPin size={24} className="text-[#2e7d32]" />
+                    <div className="w-12 h-12 bg-cta-700/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <MapPin size={24} className="text-cta-700" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{case_study.title}</h3>
@@ -198,7 +196,7 @@ export default function CrimePreventionPage() {
                     <h4 className="font-bold text-gray-900 mb-3">주요 성과</h4>
                     {case_study.results.map((result, idx) => (
                       <div key={idx} className="flex items-start gap-2">
-                        <CheckCircle size={16} className="text-[#2e7d32] mt-0.5 flex-shrink-0" />
+                        <CheckCircle size={16} className="text-cta-700 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700 text-sm">{result}</span>
                       </div>
                     ))}
@@ -211,7 +209,7 @@ export default function CrimePreventionPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 sm:px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
+      <section className="px-4 sm:px-8 py-16 bg-gradient-to-br from-cta-700 to-cta-800">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-white mb-6">범죄예방 전문가가 되어보세요</h2>
           <p className="text-green-100 mb-8 text-lg leading-relaxed">
@@ -221,18 +219,15 @@ export default function CrimePreventionPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/certificates/voice-phishing"
-              className="bg-white text-[#2e7d32] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+              className="bg-white text-cta-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
             >
               <BookOpen size={20} />
               보이스피싱 예방지도사
             </Link>
-            <Link
-              href="/education"
-              className="bg-[#217128] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a5a21] transition-colors flex items-center gap-2 border-2 border-white/20"
-            >
+            <Button href="/education" size="lg" className="border-2 border-white/20">
               <ArrowRight size={20} />
               전체 교육과정 보기
-            </Link>
+            </Button>
           </div>
 
           <div className="mt-8 text-green-100 text-sm">

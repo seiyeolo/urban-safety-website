@@ -12,7 +12,7 @@ export default function AdminEnrollmentsMockPage() {
   const avgProgress = Math.round(mockEnrollments.reduce((sum, row) => sum + row.progress, 0) / mockEnrollments.length)
 
   return (
-    <main className="min-h-screen bg-[#f3f5ef]">
+    <main className="min-h-screen bg-neutral-100">
       <section className="border-b border-navy-100 bg-white">
         <div className="container-main flex flex-col gap-5 py-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
@@ -48,8 +48,8 @@ export default function AdminEnrollmentsMockPage() {
                 <h2 className="text-2xl font-black text-navy-900">배정 현황 테이블</h2>
               </div>
               <div className="flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#f5f7f2] px-4 py-2 text-sm font-bold text-gray-700"><Filter size={15} /> 2026년 7월</span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#f5f7f2] px-4 py-2 text-sm font-bold text-gray-700"><Search size={15} /> 이름/과정 검색</span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-neutral-50 px-4 py-2 text-sm font-bold text-gray-700"><Filter size={15} /> 2026년 7월</span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-neutral-50 px-4 py-2 text-sm font-bold text-gray-700"><Search size={15} /> 이름/과정 검색</span>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ export default function AdminEnrollmentsMockPage() {
           </section>
 
           <aside className="space-y-5">
-            <div className="rounded-[2rem] bg-[#0d1829] p-6 text-white">
+            <div className="rounded-[2rem] bg-brand-950 p-6 text-white">
               <h2 className="text-2xl font-black">운영 흐름</h2>
               <div className="mt-5 space-y-3">
                 {['기수/반 선택', 'mock 수강생 확인', '강의 배정 상태 확인', '막힌 수강생 후보 표시'].map((step, index) => (

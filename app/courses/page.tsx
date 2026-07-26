@@ -19,8 +19,8 @@ export default function CoursesPage() {
   const totalHours = Math.round(onlineCourses.reduce((sum, course) => sum + course.totalMinutes, 0) / 60)
 
   return (
-    <main className="min-h-screen bg-[#f5f7f2]">
-      <section className="relative overflow-hidden bg-[#0d1829] text-white">
+    <main className="min-h-screen bg-neutral-50">
+      <section className="relative overflow-hidden bg-brand-950 text-white">
         <div className="absolute inset-0 opacity-70 [background:radial-gradient(circle_at_18%_18%,rgba(46,125,50,0.42),transparent_30%),radial-gradient(circle_at_82%_8%,rgba(255,111,0,0.22),transparent_26%),linear-gradient(135deg,#0d1829_0%,#1a3a5c_62%,#12351f_100%)]" />
         <div className="container-main relative grid gap-10 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <div>
@@ -44,7 +44,7 @@ export default function CoursesPage() {
           </div>
 
           <div className="rounded-[2rem] border border-white/15 bg-white/10 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-xl">
-            <div className="rounded-[1.5rem] bg-[#f8fbf4] p-5 text-gray-900">
+            <div className="rounded-[1.5rem] bg-neutral-50 p-5 text-gray-900">
               <div className="mb-5 flex items-center justify-between">
                 <div>
                   <p className="text-sm font-bold text-green-700">Learning dashboard</p>
@@ -113,7 +113,7 @@ export default function CoursesPage() {
               <p className="mt-4 flex-1 text-base leading-8 text-gray-600">{course.summary}</p>
               <div className="my-6 grid grid-cols-2 gap-3">
                 {course.stats.map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="rounded-2xl bg-[#f5f7f2] p-4">
+                  <div key={label} className="rounded-2xl bg-neutral-50 p-4">
                     <Icon className="mb-2 text-green-700" size={20} />
                     <p className="text-xs text-gray-500">{label}</p>
                     <p className="font-black text-navy-900">{value}</p>

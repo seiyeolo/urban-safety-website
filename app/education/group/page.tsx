@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Users, CheckCircle, ArrowRight, Phone, Mail } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '기관·단체 교육',
@@ -17,27 +18,23 @@ const TARGETS = [
 export default function GroupEducationPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/education" className="text-blue-300 hover:text-white">교육안내</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">기관·단체 교육</span>
-          </nav>
-          <h1>기관·단체 교육</h1>
-          <p>기관·단체의 특성에 맞춘 맞춤형 안전교육 프로그램</p>
-        </div>
-      </div>
+      <PageHero
+        title="기관·단체 교육"
+        description="기관·단체의 특성에 맞춘 맞춤형 안전교육 프로그램"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '교육안내', href: '/education' },
+          { label: '기관·단체 교육' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main">
           {/* 특징 */}
           <div className="grid sm:grid-cols-2 gap-6 mb-14">
-            <div className="bg-blue-50 rounded-2xl p-7">
-              <Users size={32} className="text-[#1a3a5c] mb-4" />
-              <h3 className="font-bold text-[#1a3a5c] text-lg mb-3">맞춤형 프로그램 설계</h3>
+            <div className="bg-brand-50 rounded-2xl p-7">
+              <Users size={32} className="text-brand-600 mb-4" />
+              <h3 className="font-bold text-brand-600 text-lg mb-3">맞춤형 프로그램 설계</h3>
               <ul className="space-y-2">
                 {[
                   '기관 특성과 수강 인원에 맞춘 커리큘럼',
@@ -53,7 +50,7 @@ export default function GroupEducationPage() {
               </ul>
             </div>
             <div className="bg-gray-50 rounded-2xl p-7">
-              <h3 className="font-bold text-[#1a3a5c] text-lg mb-3">교육 후 지원</h3>
+              <h3 className="font-bold text-brand-600 text-lg mb-3">교육 후 지원</h3>
               <ul className="space-y-2">
                 {[
                   '교육 결과 보고서 제공',
@@ -79,16 +76,16 @@ export default function GroupEducationPage() {
             {TARGETS.map(({ emoji, label, desc }) => (
               <div key={label} className="card text-center">
                 <p className="text-4xl mb-4">{emoji}</p>
-                <h3 className="font-bold text-[#1a3a5c] mb-2">{label}</h3>
+                <h3 className="font-bold text-brand-600 mb-2">{label}</h3>
                 <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
 
           {/* 문의 */}
-          <div className="bg-[#1a3a5c] rounded-2xl p-8 text-white text-center">
+          <div className="bg-brand-600 rounded-2xl p-8 text-white text-center">
             <h3 className="text-xl font-bold mb-3">단체교육 문의</h3>
-            <p className="text-blue-200 text-sm mb-6">
+            <p className="text-brand-200 text-sm mb-6">
               단체 규모, 교육 주제, 일정 등을 알려주시면 맞춤 제안서를 보내드립니다.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

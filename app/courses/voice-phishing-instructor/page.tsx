@@ -12,8 +12,8 @@ const course = onlineCourses.find((item) => item.slug === 'voice-phishing-instru
 
 export default function VoicePhishingCoursePage() {
   return (
-    <main className="min-h-screen bg-[#f7f8f4]">
-      <section className="bg-[#0d1829] text-white">
+    <main className="min-h-screen bg-neutral-50">
+      <section className="bg-brand-950 text-white">
         <div className="container-main grid gap-10 py-18 lg:grid-cols-[1fr_380px] lg:items-center">
           <div>
             <p className="mb-5 inline-flex rounded-full bg-green-700/25 px-4 py-2 text-sm font-bold text-green-100 ring-1 ring-green-100/20">{course.eyebrow}</p>
@@ -34,7 +34,7 @@ export default function VoicePhishingCoursePage() {
               <h2 className="mt-1 text-2xl font-black text-navy-900">과정 핵심지표</h2>
               <div className="mt-6 grid grid-cols-2 gap-3">
                 {course.stats.map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="rounded-2xl bg-[#f5f7f2] p-4">
+                  <div key={label} className="rounded-2xl bg-neutral-50 p-4">
                     <Icon className="mb-3 text-green-700" size={20} />
                     <p className="text-xs text-gray-500">{label}</p>
                     <p className="font-black text-navy-900">{value}</p>
@@ -88,7 +88,7 @@ export default function VoicePhishingCoursePage() {
           </div>
           <div className="space-y-4">
             {voicePhishingLessons.map((lesson) => (
-              <div key={lesson.id} className="grid gap-4 rounded-3xl border border-navy-100 bg-[#fbfcf8] p-5 md:grid-cols-[80px_1fr_auto] md:items-center">
+              <div key={lesson.id} className="grid gap-4 rounded-3xl border border-navy-100 bg-neutral-50 p-5 md:grid-cols-[80px_1fr_auto] md:items-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-navy-900 font-black text-white">{String(lesson.order).padStart(2, '0')}</div>
                 <div>
                   <h3 className="text-lg font-black text-navy-900">{lesson.title}</h3>

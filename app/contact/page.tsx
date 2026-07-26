@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MapPin, Copy, Bus, Train, Car, Clock, Phone, CheckCircle, ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '오시는 길 - 대전경실련 도시안전디자인센터',
@@ -11,8 +12,8 @@ const TRANSIT_INFO = [
   {
     icon: Bus,
     title: '버스 이용',
-    iconBg: 'bg-blue-100',
-    iconColor: 'text-blue-800',
+    iconBg: 'bg-brand-100',
+    iconColor: 'text-brand-700',
     stopName: '용문역 정류장 (도보 5분)',
     distance: '280m',
     routes: ['37번', '102번', '201번'],
@@ -21,8 +22,8 @@ const TRANSIT_INFO = [
   {
     icon: Train,
     title: '지하철 이용',
-    iconBg: 'bg-orange-100',
-    iconColor: 'text-orange-800',
+    iconBg: 'bg-cta-100',
+    iconColor: 'text-cta-800',
     stopName: '용문역 1번 출구',
     distance: '도보 10분 (650m)',
     description: '용문역 1번 출구에서 나오셔서 도보로 약 10분 정도 소요됩니다.',
@@ -30,8 +31,8 @@ const TRANSIT_INFO = [
   {
     icon: Car,
     title: '자동차 / 주차',
-    iconBg: 'bg-green-100',
-    iconColor: 'text-green-800',
+    iconBg: 'bg-accent-200',
+    iconColor: 'text-brand-900',
     parkingInfo: '건물 내 방문자 주차 가능 (시간당 무료)',
     description: '서우아파트 상가동 지하주차장을 이용하실 수 있습니다.',
   },
@@ -52,15 +53,15 @@ export default function LocationPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-16">
+      <section className="relative bg-gradient-to-br from-brand-600 to-brand-950 overflow-hidden py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-          <nav className="flex mb-6 gap-2 text-blue-300 text-sm font-medium">
+          <nav className="flex mb-6 gap-2 text-brand-200 text-sm font-medium">
             <Link href="/contact" className="hover:text-white">참여·문의</Link>
             <span className="material-symbols-outlined text-xs self-center">›</span>
             <span className="text-white">오시는 길</span>
           </nav>
           <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">오시는 길</h1>
-          <p className="text-xl text-blue-300 max-w-2xl">시민의 발걸음이 안전한 도시의 시작입니다.</p>
+          <p className="text-xl text-brand-200 max-w-2xl">시민의 발걸음이 안전한 도시의 시작입니다.</p>
         </div>
 
         {/* Decorative Element */}
@@ -73,12 +74,12 @@ export default function LocationPage() {
       <section className="px-4 sm:px-8 -mt-12 relative z-20">
         <div className="max-w-7xl mx-auto bg-white shadow-[0_20px_40px_rgba(27,28,28,0.06)] rounded-xl p-6 sm:p-10 flex flex-col lg:flex-row items-center gap-6 sm:gap-10">
           <div className="flex items-start gap-4 sm:gap-6 flex-1">
-            <div className="bg-[#a0f399] p-3 sm:p-4 rounded-full shrink-0">
-              <MapPin size={24} className="text-[#217128] sm:w-8 sm:h-8" />
+            <div className="bg-accent-200 p-3 sm:p-4 rounded-full shrink-0">
+              <MapPin size={24} className="text-cta-800 sm:w-8 sm:h-8" />
             </div>
             <div>
               <h2 className="text-gray-600 text-sm font-bold uppercase tracking-wider mb-2">센터 위치 주소</h2>
-              <p className="text-base sm:text-xl lg:text-[24px] font-bold text-[#1a3a5c] leading-snug">
+              <p className="text-base sm:text-xl lg:text-[24px] font-bold text-brand-600 leading-snug">
                 대전광역시 서구 용문동 255-4<br className="sm:hidden" />
                 서우아파트 상가동 201호
               </p>
@@ -96,7 +97,7 @@ export default function LocationPage() {
             <button className="h-12 px-6 flex items-center justify-center gap-2 bg-[#03C75A] hover:brightness-95 text-white font-bold rounded-lg transition-all active:scale-95">
               네이버지도
             </button>
-            <button className="h-12 px-6 flex items-center justify-center gap-2 bg-[#1a3a5c] hover:brightness-110 text-white font-bold rounded-lg transition-all active:scale-95">
+            <button className="h-12 px-6 flex items-center justify-center gap-2 bg-brand-600 hover:brightness-110 text-white font-bold rounded-lg transition-all active:scale-95">
               T맵
             </button>
           </div>
@@ -105,9 +106,9 @@ export default function LocationPage() {
 
       {/* Map Embed Section */}
       <section className="px-4 sm:px-8 py-16">
-        <div className="max-w-7xl mx-auto bg-[#f5f3f3] rounded-xl overflow-hidden relative border border-gray-200 h-[280px] sm:h-[400px] lg:h-[500px]">
+        <div className="max-w-7xl mx-auto bg-neutral-100 rounded-xl overflow-hidden relative border border-gray-200 h-[280px] sm:h-[400px] lg:h-[500px]">
           {/* Map Placeholder */}
-          <div className="w-full h-full bg-slate-200 flex items-center justify-center relative">
+          <div className="w-full h-full bg-neutral-200 flex items-center justify-center relative">
             <div className="text-center text-gray-500">
               <MapPin size={48} className="mx-auto mb-4 opacity-50" />
               <p className="text-lg font-medium">카카오맵 연동 예정</p>
@@ -116,11 +117,11 @@ export default function LocationPage() {
 
             {/* Marker UI Overlay */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full flex flex-col items-center">
-              <div className="bg-white px-6 py-3 rounded-xl shadow-xl border border-[#2e7d32]/20 mb-2 whitespace-nowrap">
-                <span className="text-[#2e7d32] font-bold text-lg">도시안전디자인센터</span>
+              <div className="bg-white px-6 py-3 rounded-xl shadow-xl border border-cta-700/20 mb-2 whitespace-nowrap">
+                <span className="text-cta-700 font-bold text-lg">도시안전디자인센터</span>
                 <span className="block text-sm text-gray-600">서우아파트 상가동 201호</span>
               </div>
-              <div className="w-10 h-10 bg-[#2e7d32] rounded-full border-4 border-white flex items-center justify-center shadow-lg animate-pulse">
+              <div className="w-10 h-10 bg-cta-700 rounded-full border-4 border-white flex items-center justify-center shadow-lg animate-pulse">
                 <MapPin size={20} className="text-white" />
               </div>
             </div>
@@ -129,10 +130,10 @@ export default function LocationPage() {
       </section>
 
       {/* Transit Cards */}
-      <section className="px-4 sm:px-8 py-12 bg-[#f5f3f3]">
+      <section className="px-4 sm:px-8 py-12 bg-neutral-100">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-12 flex items-center gap-3">
-            <span className="w-8 h-1 bg-[#2e7d32] block"></span>
+          <h3 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-12 flex items-center gap-3">
+            <span className="w-8 h-1 bg-cta-700 block"></span>
             대중교통 이용 안내
           </h3>
 
@@ -160,7 +161,7 @@ export default function LocationPage() {
                       <p className="text-gray-600 text-sm font-bold mb-2">노선 안내</p>
                       <div className="flex flex-wrap gap-2">
                         {routes.map((route) => (
-                          <span key={route} className="px-3 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded text-sm font-bold">
+                          <span key={route} className="px-3 py-1 bg-brand-50 text-brand-700 border border-brand-200 rounded text-sm font-bold">
                             {route}
                           </span>
                         ))}
@@ -181,7 +182,7 @@ export default function LocationPage() {
                 </div>
 
                 {link && (
-                  <a href={link.href} className="mt-8 text-[#2e7d32] font-bold flex items-center gap-2 hover:underline">
+                  <a href={link.href} className="mt-8 text-cta-700 font-bold flex items-center gap-2 hover:underline">
                     {link.text} <ArrowRight size={16} />
                   </a>
                 )}
@@ -194,10 +195,10 @@ export default function LocationPage() {
       {/* Nearby Landmarks */}
       <section className="px-4 sm:px-8 py-12">
         <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-xl sm:text-[24px] font-bold text-[#1a3a5c] mb-6">주변 랜드마크</h3>
+          <h3 className="text-xl sm:text-[24px] font-bold text-brand-600 mb-6">주변 랜드마크</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {LANDMARKS.map((landmark) => (
-              <span key={landmark} className="bg-[#f5f3f3] text-gray-700 px-4 py-2 rounded-full text-sm font-medium">
+              <span key={landmark} className="bg-neutral-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">
                 {landmark}
               </span>
             ))}
@@ -206,16 +207,16 @@ export default function LocationPage() {
       </section>
 
       {/* Visit Tips */}
-      <section className="px-4 sm:px-8 py-12 bg-[#f5f3f3]">
+      <section className="px-4 sm:px-8 py-12 bg-neutral-100">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-[#ffdbcb] border border-[#ff6f00]/20 rounded-xl p-8">
-            <h3 className="text-xl sm:text-[24px] font-bold text-[#793100] mb-6 flex items-center gap-3">
+          <div className="bg-cta-100 border border-cta-600/20 rounded-xl p-8">
+            <h3 className="text-xl sm:text-[24px] font-bold text-cta-800 mb-6 flex items-center gap-3">
               <CheckCircle size={24} />
               방문 전 확인사항
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {VISIT_TIPS.map(({ icon: Icon, text }, index) => (
-                <div key={index} className="flex items-center gap-3 text-[#793100]">
+                <div key={index} className="flex items-center gap-3 text-cta-800">
                   <Icon size={20} className="flex-shrink-0" />
                   <span className="text-[18px] leading-[1.7]">{text}</span>
                 </div>
@@ -228,15 +229,15 @@ export default function LocationPage() {
       {/* Book a Visit CTA */}
       <section className="px-4 sm:px-8 py-16 text-center">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-6">방문 상담을 원하시나요?</h2>
+          <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-6">방문 상담을 원하시나요?</h2>
           <p className="text-gray-600 mb-8 text-lg">편안한 상담을 위해 미리 예약해주시면 더욱 좋습니다.</p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="bg-[#2e7d32] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#217128] transition-colors flex items-center gap-2">
+            <Button href="/contact" size="lg">
               <ArrowRight size={20} />
               방문 상담 예약하기
-            </Link>
-            <a href="tel:042-254-8060" className="bg-[#1a3a5c] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a3a5c] transition-colors flex items-center gap-2">
+            </Button>
+            <a href="tel:042-254-8060" className="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-brand-600 transition-colors flex items-center gap-2">
               <Phone size={20} />
               바로 전화 (042-254-8060)
             </a>

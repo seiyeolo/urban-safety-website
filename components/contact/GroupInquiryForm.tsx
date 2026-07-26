@@ -2,6 +2,7 @@
 
 import { useId, useState } from 'react'
 import Link from 'next/link'
+import { Button, Input, Select, Textarea } from '@/components/ui'
 
 const INITIAL_FORM = {
   name: '',
@@ -78,176 +79,121 @@ export default function GroupInquiryForm() {
     }
   }
 
-  const ids = {
-    name: `${formId}-name`,
-    phone: `${formId}-phone`,
-    organization: `${formId}-organization`,
-    participants: `${formId}-participants`,
-    topic: `${formId}-topic`,
-    schedule: `${formId}-schedule`,
-    notes: `${formId}-notes`,
-    privacy: `${formId}-privacy`,
-  }
+  const privacyId = `${formId}-privacy`
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor={ids.name} className="block text-sm font-medium text-gray-700 mb-1.5">
-            담당자 이름 <span className="text-red-500">*</span>
-          </label>
-          <input
-            id={ids.name}
-            name="name"
-            type="text"
-            autoComplete="name"
-            value={form.name}
-            onChange={(e) => updateField('name', e.target.value)}
-            placeholder="홍길동"
-            required
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
-          />
-        </div>
-        <div>
-          <label htmlFor={ids.phone} className="block text-sm font-medium text-gray-700 mb-1.5">
-            연락처 <span className="text-red-500">*</span>
-          </label>
-          <input
-            id={ids.phone}
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            value={form.phone}
-            onChange={(e) => updateField('phone', e.target.value)}
-            placeholder="010-0000-0000"
-            required
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor={ids.organization} className="block text-sm font-medium text-gray-700 mb-1.5">
-          기관·단체명 <span className="text-red-500">*</span>
-        </label>
-        <input
-          id={ids.organization}
-          name="organization"
-          type="text"
-          autoComplete="organization"
-          value={form.organization}
-          onChange={(e) => updateField('organization', e.target.value)}
-          placeholder="○○복지관"
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+      <div className="grid sm:grid-cols-2 gap-5">
+        <Input
+          label="담당자 이름"
           required
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
-        />
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor={ids.participants} className="block text-sm font-medium text-gray-700 mb-1.5">
-            예상 참여 인원
-          </label>
-          <select
-            id={ids.participants}
-            name="participants"
-            value={form.participants}
-            onChange={(e) => updateField('participants', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] bg-white"
-          >
-            <option value="">선택해주세요</option>
-            <option value="10~30명">10~30명</option>
-            <option value="30~50명">30~50명</option>
-            <option value="50~100명">50~100명</option>
-            <option value="100명 이상">100명 이상</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor={ids.topic} className="block text-sm font-medium text-gray-700 mb-1.5">
-            희망 교육 주제
-          </label>
-          <select
-            id={ids.topic}
-            name="topic"
-            value={form.topic}
-            onChange={(e) => updateField('topic', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] bg-white"
-          >
-            <option value="">선택해주세요</option>
-            <option value="보이스피싱 예방">보이스피싱 예방</option>
-            <option value="생활안전">생활안전</option>
-            <option value="두 주제 모두">두 주제 모두</option>
-            <option value="기타 협의">기타 협의</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor={ids.schedule} className="block text-sm font-medium text-gray-700 mb-1.5">
-          교육 희망 일정
-        </label>
-        <input
-          id={ids.schedule}
-          name="schedule"
+          name="name"
           type="text"
-          value={form.schedule}
-          onChange={(e) => updateField('schedule', e.target.value)}
-          placeholder="예) 2026년 6월 중, 매주 화요일 오후 등"
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c]"
+          autoComplete="name"
+          value={form.name}
+          onChange={(e) => updateField('name', e.target.value)}
+          placeholder="홍길동"
+        />
+        <Input
+          label="연락처"
+          required
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          value={form.phone}
+          onChange={(e) => updateField('phone', e.target.value)}
+          placeholder="010-0000-0000"
         />
       </div>
 
-      <div>
-        <label htmlFor={ids.notes} className="block text-sm font-medium text-gray-700 mb-1.5">
-          요청 사항
-        </label>
-        <textarea
-          id={ids.notes}
-          name="notes"
-          rows={4}
-          value={form.notes}
-          onChange={(e) => updateField('notes', e.target.value)}
-          placeholder="교육 대상, 목적, 특이사항 등을 자유롭게 적어주세요"
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#1a3a5c] focus:ring-1 focus:ring-[#1a3a5c] resize-none"
-        />
+      <Input
+        label="기관·단체명"
+        required
+        name="organization"
+        type="text"
+        autoComplete="organization"
+        value={form.organization}
+        onChange={(e) => updateField('organization', e.target.value)}
+        placeholder="○○복지관"
+      />
+
+      <div className="grid sm:grid-cols-2 gap-5">
+        <Select
+          label="예상 참여 인원"
+          name="participants"
+          value={form.participants}
+          onChange={(e) => updateField('participants', e.target.value)}
+        >
+          <option value="">선택해주세요</option>
+          <option value="10~30명">10~30명</option>
+          <option value="30~50명">30~50명</option>
+          <option value="50~100명">50~100명</option>
+          <option value="100명 이상">100명 이상</option>
+        </Select>
+        <Select
+          label="희망 교육 주제"
+          name="topic"
+          value={form.topic}
+          onChange={(e) => updateField('topic', e.target.value)}
+        >
+          <option value="">선택해주세요</option>
+          <option value="보이스피싱 예방">보이스피싱 예방</option>
+          <option value="생활안전">생활안전</option>
+          <option value="두 주제 모두">두 주제 모두</option>
+          <option value="기타 협의">기타 협의</option>
+        </Select>
       </div>
+
+      <Input
+        label="교육 희망 일정"
+        name="schedule"
+        type="text"
+        value={form.schedule}
+        onChange={(e) => updateField('schedule', e.target.value)}
+        placeholder="예) 2026년 6월 중, 매주 화요일 오후 등"
+      />
+
+      <Textarea
+        label="요청 사항"
+        name="notes"
+        rows={4}
+        value={form.notes}
+        onChange={(e) => updateField('notes', e.target.value)}
+        placeholder="교육 대상, 목적, 특이사항 등을 자유롭게 적어주세요"
+      />
 
       <div className="flex items-start gap-2">
         <input
           type="checkbox"
-          id={ids.privacy}
+          id={privacyId}
           name="privacyConsent"
           checked={form.privacyConsent}
           onChange={(e) => updateField('privacyConsent', e.target.checked)}
-          className="mt-1"
+          className="mt-1.5"
           required
         />
-        <label htmlFor={ids.privacy} className="text-sm text-gray-600">
-          <Link href="/privacy" className="text-[#1a3a5c] underline">
+        <label htmlFor={privacyId} className="text-sm text-neutral-700">
+          <Link href="/privacy" className="text-brand-600 underline">
             개인정보처리방침
           </Link>
-          에 동의합니다. <span className="text-red-500">*</span>
+          에 동의합니다. <span className="text-danger-600">*</span>
         </label>
       </div>
 
       {error && (
-        <p role="alert" aria-live="assertive" className="text-sm text-red-600">
+        <p role="alert" aria-live="assertive" className="text-sm text-danger-600">
           {error}
         </p>
       )}
       {message && (
-        <p role="status" aria-live="polite" className="text-sm text-emerald-700">
+        <p role="status" aria-live="polite" className="text-sm text-success-600">
           {message}
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className="btn-primary w-full justify-center py-4 disabled:opacity-60"
-      >
+      <Button type="submit" disabled={submitting} className="w-full">
         {submitting ? '전송 중…' : '단체교육 문의 보내기'}
-      </button>
+      </Button>
     </form>
   )
 }

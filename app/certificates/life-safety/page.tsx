@@ -43,13 +43,13 @@ export default function LifeSafetyCertPage() {
   return (
     <>
       {/* 히어로 */}
-      <div className="bg-gradient-to-br from-[#1a3a5c] to-[#002444] text-white py-16">
+      <div className="bg-gradient-to-br from-brand-600 to-brand-950 text-white py-16">
         <div className="container-main">
           <nav className="breadcrumb mb-6">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/certificates" className="text-blue-300 hover:text-white">민간자격증</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
+            <Link href="/" className="text-brand-200 hover:text-white">홈</Link>
+            <span className="breadcrumb-sep text-brand-300">›</span>
+            <Link href="/certificates" className="text-brand-200 hover:text-white">민간자격증</Link>
+            <span className="breadcrumb-sep text-brand-300">›</span>
             <span className="text-white">생활안전지도사</span>
           </nav>
 
@@ -60,7 +60,7 @@ export default function LifeSafetyCertPage() {
             <div>
               <p className="text-green-300 text-sm font-semibold mb-2">민간자격 | 행정안전부 관련부처</p>
               <h1 className="text-3xl md:text-4xl font-bold mb-3">생활안전지도사</h1>
-              <p className="text-blue-200 text-lg max-w-2xl">
+              <p className="text-brand-200 text-lg max-w-2xl">
                 일상생활의 안전 위험요인을 파악하고 시민 맞춤형 예방교육을 수행하는 실천형 민간자격과정
               </p>
             </div>
@@ -85,7 +85,7 @@ export default function LifeSafetyCertPage() {
 
             {/* 자격 소개 */}
             <section>
-              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">자격 소개</h2>
+              <h2 className="text-xl font-bold text-brand-600 mb-4 pb-3 border-b border-gray-200">자격 소개</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
                 생활안전지도사는 가정, 교통, 재난 등 일상생활 전반의 안전 위험요인을 이해하고,
                 고령층·어린이·청소년·장애인 등 다양한 취약계층을 포함한 시민에게 맞춤형 안전교육을
@@ -101,7 +101,7 @@ export default function LifeSafetyCertPage() {
 
             {/* 교육목표 */}
             <section>
-              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">교육목표</h2>
+              <h2 className="text-xl font-bold text-brand-600 mb-4 pb-3 border-b border-gray-200">교육목표</h2>
               <ul className="space-y-3">
                 {[
                   '일상생활 속 안전 위험요인을 체계적으로 파악한다.',
@@ -120,8 +120,8 @@ export default function LifeSafetyCertPage() {
 
             {/* 교육과정 */}
             <section>
-              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">교육과정</h2>
-              <div className="bg-blue-50 rounded-xl p-5 mb-6 grid sm:grid-cols-2 gap-4 text-sm">
+              <h2 className="text-xl font-bold text-brand-600 mb-4 pb-3 border-b border-gray-200">교육과정</h2>
+              <div className="bg-brand-50 rounded-xl p-5 mb-6 grid sm:grid-cols-2 gap-4 text-sm">
                 {[
                   { label: '교육기간', value: '4주 (총 20시간)' },
                   { label: '운영방식', value: '온라인 + 실시간 특강' },
@@ -130,7 +130,7 @@ export default function LifeSafetyCertPage() {
                 ].map(({ label, value }) => (
                   <div key={label} className="flex gap-2">
                     <span className="text-gray-500 w-20 shrink-0">{label}</span>
-                    <span className="font-semibold text-[#1a3a5c]">{value}</span>
+                    <span className="font-semibold text-brand-600">{value}</span>
                   </div>
                 ))}
               </div>
@@ -139,7 +139,7 @@ export default function LifeSafetyCertPage() {
                 {MODULES.map((mod) => (
                   <div key={mod.no} className="border border-gray-200 rounded-xl overflow-hidden">
                     <div className="bg-gray-50 px-5 py-3 flex items-center gap-3">
-                      <span className="w-7 h-7 bg-[#1a3a5c] text-white text-xs font-bold rounded-full flex items-center justify-center shrink-0">
+                      <span className="w-7 h-7 bg-brand-600 text-white text-xs font-bold rounded-full flex items-center justify-center shrink-0">
                         {mod.no}
                       </span>
                       <span className="font-semibold text-gray-800">{mod.title}</span>
@@ -159,7 +159,7 @@ export default function LifeSafetyCertPage() {
 
             {/* 활동분야 */}
             <section>
-              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">활동분야</h2>
+              <h2 className="text-xl font-bold text-brand-600 mb-4 pb-3 border-b border-gray-200">활동분야</h2>
               <ul className="space-y-3">
                 {ACTIVITY_FIELDS.map((field) => (
                   <li key={field} className="flex items-start gap-3">
@@ -172,11 +172,11 @@ export default function LifeSafetyCertPage() {
 
             {/* FAQ */}
             <section>
-              <h2 className="text-xl font-bold text-[#1a3a5c] mb-4 pb-3 border-b border-gray-200">자주 묻는 질문</h2>
+              <h2 className="text-xl font-bold text-brand-600 mb-4 pb-3 border-b border-gray-200">자주 묻는 질문</h2>
               <div className="space-y-4">
                 {FAQ.map(({ q, a }) => (
                   <div key={q} className="bg-gray-50 rounded-xl p-5">
-                    <p className="font-semibold text-[#1a3a5c] mb-2">Q. {q}</p>
+                    <p className="font-semibold text-brand-600 mb-2">Q. {q}</p>
                     <p className="text-gray-600 text-sm leading-relaxed">A. {a}</p>
                   </div>
                 ))}
@@ -188,12 +188,12 @@ export default function LifeSafetyCertPage() {
           <div className="space-y-6">
             {/* 비용 */}
             <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-              <div className="bg-[#1a3a5c] text-white px-6 py-4">
+              <div className="bg-brand-600 text-white px-6 py-4">
                 <h3 className="font-bold">수강료 및 발급비 안내</h3>
               </div>
               <div className="p-6 space-y-3">
                 {COST_ITEMS.map(({ label, value, highlight }) => (
-                  <div key={label} className={`flex justify-between items-center ${highlight ? 'pt-3 border-t border-gray-200 font-bold text-[#1a3a5c]' : 'text-gray-700 text-sm'}`}>
+                  <div key={label} className={`flex justify-between items-center ${highlight ? 'pt-3 border-t border-gray-200 font-bold text-brand-600' : 'text-gray-700 text-sm'}`}>
                     <span>{label}</span>
                     <span className={highlight ? 'text-xl' : ''}>{value}</span>
                   </div>
@@ -209,7 +209,7 @@ export default function LifeSafetyCertPage() {
 
             {/* 검정방법 */}
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="font-bold text-[#1a3a5c] mb-4">검정방법 및 합격기준</h3>
+              <h3 className="font-bold text-brand-600 mb-4">검정방법 및 합격기준</h3>
               <div className="space-y-3 text-sm text-gray-700">
                 <div className="flex justify-between"><span className="text-gray-500">진도율</span><span>80% 이상</span></div>
                 <div className="flex justify-between"><span className="text-gray-500">필기평가</span><span>객관식 / 60점 이상</span></div>
@@ -219,12 +219,12 @@ export default function LifeSafetyCertPage() {
 
             {/* 자격정보 */}
             <div className="bg-green-50 border border-green-100 rounded-2xl p-6">
-              <h3 className="font-bold text-[#1a3a5c] mb-3">자격 정보</h3>
+              <h3 className="font-bold text-brand-600 mb-3">자격 정보</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="text-gray-500">자격종류:</span> 민간자격</p>
                 <p><span className="text-gray-500">등록번호:</span> 2022-003785</p>
                 <p><span className="text-gray-500">자격관리기관:</span> 대전경실련 도시안전디자인센터</p>
-                <p><span className="text-gray-500">연락처:</span> <a href="tel:042-254-8060" className="text-[#1a3a5c] hover:underline">042-254-8060</a></p>
+                <p><span className="text-gray-500">연락처:</span> <a href="tel:042-254-8060" className="text-brand-600 hover:underline">042-254-8060</a></p>
               </div>
               <div className="mt-4 p-3 bg-green-100 rounded-lg">
                 <p className="text-xs text-green-800">
@@ -236,12 +236,12 @@ export default function LifeSafetyCertPage() {
 
             {/* 문의 */}
             <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-bold text-[#1a3a5c] mb-3">문의하기</h3>
+              <h3 className="font-bold text-brand-600 mb-3">문의하기</h3>
               <div className="space-y-2 text-sm">
-                <a href="tel:042-254-8060" className="flex items-center gap-2 text-gray-700 hover:text-[#1a3a5c]">
+                <a href="tel:042-254-8060" className="flex items-center gap-2 text-gray-700 hover:text-brand-600">
                   <Phone size={14} className="text-gray-400" />042-254-8060
                 </a>
-                <a href="mailto:dj@ccej.or.kr" className="flex items-center gap-2 text-gray-700 hover:text-[#1a3a5c]">
+                <a href="mailto:dj@ccej.or.kr" className="flex items-center gap-2 text-gray-700 hover:text-brand-600">
                   <Mail size={14} className="text-gray-400" />dj@ccej.or.kr
                 </a>
               </div>

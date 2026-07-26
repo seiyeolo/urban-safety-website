@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { User, Users, Briefcase } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '주요 인물·전문 네트워크',
@@ -43,19 +43,15 @@ const FOUNDING_GROUPS = [
 export default function MembersPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/about" className="text-blue-300 hover:text-white">센터소개</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">주요 인물·전문 네트워크</span>
-          </nav>
-          <h1>주요 인물·전문 네트워크</h1>
-          <p>공개 자료를 기준으로 확인 가능한 활동 기반 인물과 전문가 네트워크</p>
-        </div>
-      </div>
+      <PageHero
+        title="주요 인물·전문 네트워크"
+        description="공개 자료를 기준으로 확인 가능한 활동 기반 인물과 전문가 네트워크"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개', href: '/about' },
+          { label: '주요 인물·전문 네트워크' },
+        ]}
+      />
 
       {/* 주요 인물 */}
       <section className="section-padding bg-white">
@@ -70,10 +66,10 @@ export default function MembersPage() {
           <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {KEY_PEOPLE.map(({ role, name, dept, spec }) => (
               <div key={role} className="card text-center">
-                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <User size={28} className="text-[#1a3a5c]" />
+                <div className="w-16 h-16 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <User size={28} className="text-brand-600" />
                 </div>
-                <span className="text-xs font-semibold text-[#1a3a5c] bg-blue-50 px-2 py-1 rounded-full">{role}</span>
+                <span className="text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-1 rounded-full">{role}</span>
                 <h3 className="text-lg font-bold text-gray-900 mt-3">{name}</h3>
                 <p className="text-sm text-gray-500 mt-1">{dept}</p>
                 <p className="text-xs text-gray-400 mt-2">{spec}</p>
@@ -123,10 +119,10 @@ export default function MembersPage() {
             {FOUNDING_GROUPS.map(({ title, icon: Icon, items }) => (
               <div key={title} className="card">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center">
-                    <Icon size={18} className="text-[#1a3a5c]" />
+                  <div className="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center">
+                    <Icon size={18} className="text-brand-600" />
                   </div>
-                  <h3 className="font-bold text-[#1a3a5c]">{title}</h3>
+                  <h3 className="font-bold text-brand-600">{title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {items.map((item) => (

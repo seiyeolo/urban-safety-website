@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Download, FileText, Image, FileSpreadsheet } from 'lucide-react'
 import { getSectionItems } from '@/lib/content-store'
+import { PageHero } from '@/components/ui'
 
 // 관리자 수정이 공개 페이지에 반영되도록 60초 ISR (정적 박제 방지)
 export const revalidate = 60
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 const FILE_ICON_MAP: Record<string, { icon: typeof FileText; color: string }> = {
   PDF: { icon: FileText, color: 'text-red-500 bg-red-50' },
-  HWP: { icon: FileText, color: 'text-blue-500 bg-blue-50' },
+  HWP: { icon: FileText, color: 'text-brand-500 bg-brand-50' },
   PPT: { icon: Image, color: 'text-amber-600 bg-amber-50' },
   XLSX: { icon: FileSpreadsheet, color: 'text-green-600 bg-green-50' },
 }
@@ -24,19 +25,15 @@ export default async function DownloadsPage() {
 
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/notice" className="text-blue-300 hover:text-white">공지·자료실</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">자료 다운로드</span>
-          </nav>
-          <h1>자료 다운로드</h1>
-          <p>교육 자료 및 각종 서식을 다운로드하세요</p>
-        </div>
-      </div>
+      <PageHero
+        title="자료 다운로드"
+        description="교육 자료 및 각종 서식을 다운로드하세요"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '공지·자료실', href: '/notice' },
+          { label: '자료 다운로드' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main">
@@ -47,8 +44,8 @@ export default async function DownloadsPage() {
                 key={cat}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   i === 0
-                    ? 'bg-[#1a3a5c] text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-blue-50 hover:text-[#1a3a5c]'
+                    ? 'bg-brand-600 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-brand-50 hover:text-brand-600'
                 }`}
               >
                 {cat}
@@ -69,7 +66,7 @@ export default async function DownloadsPage() {
               return (
                 <div
                   key={id}
-                  className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:border-[#1a3a5c] hover:shadow-sm transition-all cursor-pointer group"
+                  className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:border-brand-600 hover:shadow-sm transition-all cursor-pointer group"
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${fileInfo.color}`}>
                     <Icon size={18} />
@@ -78,7 +75,7 @@ export default async function DownloadsPage() {
                     <div className="flex items-center gap-2 mb-0.5">
                       <span className="text-xs font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">{category}</span>
                     </div>
-                    <p className="font-medium text-gray-800 text-sm truncate group-hover:text-[#1a3a5c]">{title}</p>
+                    <p className="font-medium text-gray-800 text-sm truncate group-hover:text-brand-600">{title}</p>
                   </div>
                   <div className="hidden sm:flex items-center gap-4 text-xs text-gray-400 shrink-0">
                     <span className="font-semibold text-gray-500">{type}</span>
@@ -87,7 +84,7 @@ export default async function DownloadsPage() {
                   </div>
                   <Link
                     href={href || '#'}
-                    className="shrink-0 w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-[#1a3a5c] hover:text-white transition-colors text-gray-400 group-hover:bg-blue-50"
+                    className="shrink-0 w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors text-gray-400 group-hover:bg-brand-50"
                   >
                     <Download size={16} />
                   </Link>
@@ -98,7 +95,7 @@ export default async function DownloadsPage() {
 
           <p className="text-center text-sm text-gray-400 mt-8">
             원하시는 자료가 없으신가요?{' '}
-            <Link href="/contact" className="text-[#1a3a5c] hover:underline font-medium">문의하기</Link>
+            <Link href="/contact" className="text-brand-600 hover:underline font-medium">문의하기</Link>
           </p>
         </div>
       </section>

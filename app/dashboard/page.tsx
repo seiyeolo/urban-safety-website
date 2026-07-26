@@ -36,7 +36,7 @@ export default function DashboardPage() {
   // 로딩 중이거나 세션이 없으면 로딩 화면 표시
   if (loading || !session) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#1a3a5c] to-[#002444] flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-brand-600 to-brand-950 flex items-center justify-center">
         <div className="text-white text-center">
           <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
           <p>로딩 중...</p>
@@ -51,28 +51,28 @@ export default function DashboardPage() {
       title: '교육 신청하기',
       description: '새로운 교육과정에 참여하세요',
       href: '/education',
-      color: 'bg-blue-500'
+      color: 'bg-brand-500'
     },
     {
       icon: Award,
       title: '자격증 확인',
       description: '취득한 자격증을 확인하세요',
       href: '/certificates',
-      color: 'bg-green-500'
+      color: 'bg-brand-600'
     },
     {
       icon: Calendar,
       title: '일정 관리',
       description: '내 교육 일정을 관리하세요',
       href: '/dashboard/schedule',
-      color: 'bg-purple-500'
+      color: 'bg-accent-500'
     },
     {
       icon: MessageCircle,
       title: '문의하기',
       description: '궁금한 점을 문의하세요',
       href: '/contact',
-      color: 'bg-orange-500'
+      color: 'bg-cta-600'
     }
   ]
 
@@ -102,7 +102,7 @@ export default function DashboardPage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-4">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#1a3a5c] rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">安</span>
                 </div>
                 <span className="font-bold text-gray-900">도시안전디자인센터</span>
@@ -114,7 +114,7 @@ export default function DashboardPage() {
                 <Bell size={20} />
               </button>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-[#2e7d32] rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-cta-700 rounded-full flex items-center justify-center">
                   <User size={16} className="text-white" />
                 </div>
                 <span className="text-sm font-medium text-gray-700">
@@ -188,7 +188,7 @@ export default function DashboardPage() {
                         <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                           activity.status === '완료'
                             ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            : 'bg-warning-50 text-warning-600'
                         }`}>
                           {activity.status}
                         </span>
@@ -207,7 +207,7 @@ export default function DashboardPage() {
               <h2 className="text-xl font-bold text-gray-900 mb-4">프로필</h2>
               <div className="bg-white rounded-xl shadow-sm border p-6">
                 <div className="text-center mb-6">
-                  <div className="w-20 h-20 bg-[#2e7d32] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-cta-700 rounded-full flex items-center justify-center mx-auto mb-4">
                     <User size={32} className="text-white" />
                   </div>
                   <h3 className="font-bold text-gray-900 mb-1">
@@ -238,19 +238,19 @@ export default function DashboardPage() {
                 <div className="bg-white rounded-xl shadow-sm border p-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">수강 중인 과정</span>
-                    <span className="font-bold text-[#2e7d32]">2개</span>
+                    <span className="font-bold text-cta-700">2개</span>
                   </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-sm border p-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">취득한 자격증</span>
-                    <span className="font-bold text-[#2e7d32]">1개</span>
+                    <span className="font-bold text-cta-700">1개</span>
                   </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-sm border p-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">완료한 과정</span>
-                    <span className="font-bold text-[#2e7d32]">3개</span>
+                    <span className="font-bold text-cta-700">3개</span>
                   </div>
                 </div>
               </div>

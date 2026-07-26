@@ -3,10 +3,13 @@ import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import LayoutWrapper from '@/components/LayoutWrapper'
 
-// 한국어 subset 명시적 지정 — Google Fonts 런타임 추가 요청 방지
+/* next/font가 셀프호스팅 — Google Fonts 런타임 요청 없음.
+   한글은 subsets 목록에 'korean'이 없어도 unicode-range 청크로 정상 로드된다.
+   900: 코드에서 font-black을 73곳 쓰는데 미로드 상태라 700으로 대체되고 있었음.
+   font-extrabold(800, 7곳)은 CSS 폰트 매칭상 900으로 대체되므로 별도 로드 불필요. */
 const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400', '500', '700', '900'],
   variable: '--font-noto',
   display: 'swap',
 })
@@ -33,11 +36,11 @@ export const metadata: Metadata = {
   keywords: ['도시안전', '범죄예방', '생활안전', 'CPTED', '보이스피싱', '민간자격', '대전경실련'],
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/brand/logo-favicon.png', type: 'image/png', sizes: '45x64' },
+      { url: '/favicon.ico', sizes: '48x48 32x32 16x16' },
+      { url: '/brand/logo-favicon.png', type: 'image/png', sizes: '64x64' },
       { url: '/brand/logo.svg', type: 'image/svg+xml' },
     ],
-    apple: [{ url: '/brand/logo-header.png', type: 'image/png' }],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
     shortcut: ['/favicon.ico'],
   },
   openGraph: {
@@ -46,9 +49,10 @@ export const metadata: Metadata = {
     siteName: '대전경실련 도시안전디자인센터',
     images: [
       {
+        // OG 카드는 가로형(1.91:1)이 표준 — 세로형이면 SNS에서 잘림
         url: '/brand/logo-og.png',
-        width: 362,
-        height: 512,
+        width: 1200,
+        height: 630,
         alt: '대전경실련 도시안전디자인센터 로고',
       },
     ],

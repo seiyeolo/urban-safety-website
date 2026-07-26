@@ -12,13 +12,13 @@ export default function ForgotPasswordPage() {
   return (
     <main
       id="main-content"
-      className="min-h-screen bg-gradient-to-br from-[#1a3a5c] to-[#002444] flex items-center justify-center p-4"
+      className="min-h-screen bg-gradient-to-br from-brand-600 to-brand-950 flex items-center justify-center p-4"
     >
       <div className="max-w-md w-full">
         <div className="mb-6">
           <Link
             href="/auth/login"
-            className="inline-flex items-center gap-2 text-blue-300 hover:text-white transition-colors text-sm"
+            className="inline-flex items-center gap-2 text-brand-200 hover:text-white transition-colors text-sm"
           >
             <ArrowLeft size={18} aria-hidden="true" />
             로그인으로 돌아가기
@@ -43,10 +43,10 @@ export default function ForgotPasswordPage() {
           <div className="space-y-3 mb-6">
             <a
               href="tel:042-254-8060"
-              className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2e7d32] hover:bg-green-50 transition-colors group"
+              className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-cta-700 hover:bg-green-50 transition-colors group"
             >
               <div className="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full group-hover:bg-green-200 transition-colors">
-                <Phone size={18} className="text-[#2e7d32]" aria-hidden="true" />
+                <Phone size={18} className="text-cta-700" aria-hidden="true" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900">전화 문의</p>
@@ -56,10 +56,10 @@ export default function ForgotPasswordPage() {
 
             <a
               href="mailto:dj@ccej.or.kr?subject=비밀번호 재설정 요청"
-              className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2e7d32] hover:bg-green-50 transition-colors group"
+              className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-cta-700 hover:bg-green-50 transition-colors group"
             >
               <div className="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full group-hover:bg-green-200 transition-colors">
-                <Mail size={18} className="text-[#2e7d32]" aria-hidden="true" />
+                <Mail size={18} className="text-cta-700" aria-hidden="true" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900">이메일 문의</p>
@@ -71,14 +71,14 @@ export default function ForgotPasswordPage() {
           <div className="pt-4 border-t border-gray-100 text-center">
             <p className="text-sm text-gray-600">
               비밀번호가 기억나셨나요?{' '}
-              <Link href="/auth/login" className="text-[#2e7d32] hover:underline font-medium">
+              <Link href="/auth/login" className="text-cta-700 hover:underline font-medium">
                 로그인
               </Link>
             </p>
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-blue-300">
+        <p className="mt-6 text-center text-xs text-brand-200">
           서비스 오픈 시 이 페이지를 통해 직접 재설정이 가능하도록 준비 중입니다.
         </p>
       </div>

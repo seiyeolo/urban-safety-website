@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MapPin, Calendar, ArrowRight } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '오프라인 교육',
@@ -34,19 +35,15 @@ const PROGRAMS = [
 export default function OfflineEducationPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/education" className="text-blue-300 hover:text-white">교육안내</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">오프라인 교육</span>
-          </nav>
-          <h1>오프라인 교육</h1>
-          <p>강사와 함께하는 현장 집합 교육</p>
-        </div>
-      </div>
+      <PageHero
+        title="오프라인 교육"
+        description="강사와 함께하는 현장 집합 교육"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '교육안내', href: '/education' },
+          { label: '오프라인 교육' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main">
@@ -59,10 +56,10 @@ export default function OfflineEducationPage() {
             {PROGRAMS.map(({ title, target, duration, format, desc }) => (
               <div key={title} className="card">
                 <div className="flex items-center gap-2 mb-4">
-                  <MapPin size={16} className="text-[#1a3a5c]" />
-                  <span className="text-xs font-semibold text-[#1a3a5c]">현장 교육</span>
+                  <MapPin size={16} className="text-brand-600" />
+                  <span className="text-xs font-semibold text-brand-600">현장 교육</span>
                 </div>
-                <h3 className="font-bold text-[#1a3a5c] text-lg mb-3">{title}</h3>
+                <h3 className="font-bold text-brand-600 text-lg mb-3">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-5">{desc}</p>
                 <div className="space-y-2 text-sm border-t border-gray-100 pt-4">
                   <div className="flex justify-between"><span className="text-gray-400">대상</span><span className="font-medium text-gray-700">{target}</span></div>
@@ -74,8 +71,8 @@ export default function OfflineEducationPage() {
           </div>
 
           <div className="mt-12 bg-navy-50 rounded-2xl p-8 text-center">
-            <Calendar size={32} className="text-[#1a3a5c] mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-[#1a3a5c] mb-3">교육 일정 문의</h3>
+            <Calendar size={32} className="text-brand-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-brand-600 mb-3">교육 일정 문의</h3>
             <p className="text-gray-600 text-sm mb-6">
               기관 방문 교육 또는 특강 일정은 전화·온라인 문의로 협의하실 수 있습니다.
             </p>

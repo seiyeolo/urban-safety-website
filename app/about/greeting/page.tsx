@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Quote } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '인사말',
@@ -10,19 +10,15 @@ export const metadata: Metadata = {
 export default function GreetingPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/about" className="text-blue-300 hover:text-white">센터소개</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">인사말</span>
-          </nav>
-          <h1>인사말</h1>
-          <p>센터장 인사말</p>
-        </div>
-      </div>
+      <PageHero
+        title="인사말"
+        description="센터장 인사말"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개', href: '/about' },
+          { label: '인사말' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main max-w-3xl mx-auto">
@@ -33,8 +29,8 @@ export default function GreetingPage() {
           </div>
 
           <div className="relative mb-10">
-            <Quote size={48} className="text-blue-100 absolute -top-4 -left-4" />
-            <h2 className="text-2xl font-bold text-[#1a3a5c] text-center mb-8">
+            <Quote size={48} className="text-brand-100 absolute -top-4 -left-4" />
+            <h2 className="text-2xl font-bold text-brand-600 text-center mb-8">
               시민의 안전한 일상을 위해<br />함께하겠습니다
             </h2>
           </div>
@@ -69,7 +65,7 @@ export default function GreetingPage() {
 
           <div className="mt-12 text-right text-gray-600">
             <p className="text-sm text-gray-400 mb-1">대전경실련 도시안전디자인센터</p>
-            <p className="text-lg font-bold text-[#1a3a5c]">센터장 일동</p>
+            <p className="text-lg font-bold text-brand-600">센터장 일동</p>
           </div>
         </div>
       </section>

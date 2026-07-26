@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '민간자격 표시사항',
@@ -38,19 +38,15 @@ const CERTS_INFO = [
 export default function DisclosurePage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/certificates" className="text-blue-300 hover:text-white">민간자격증</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">민간자격 표시사항</span>
-          </nav>
-          <h1>민간자격 표시사항</h1>
-          <p>자격기본법 제17조에 따른 민간자격 표시사항 고지</p>
-        </div>
-      </div>
+      <PageHero
+        title="민간자격 표시사항"
+        description="자격기본법 제17조에 따른 민간자격 표시사항 고지"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '민간자격증', href: '/certificates' },
+          { label: '민간자격 표시사항' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main max-w-3xl mx-auto">
@@ -79,7 +75,7 @@ export default function DisclosurePage() {
           <div className="space-y-8">
             {CERTS_INFO.map(({ title, registNo, registDate, govRelated, cost }) => (
               <div key={title} className="border border-gray-200 rounded-2xl overflow-hidden">
-                <div className="bg-[#1a3a5c] text-white px-6 py-4">
+                <div className="bg-brand-600 text-white px-6 py-4">
                   <h3 className="font-bold">{title}</h3>
                 </div>
                 <div className="p-6 space-y-4 text-sm">
@@ -106,7 +102,7 @@ export default function DisclosurePage() {
                     </div>
                     <div className="flex gap-3">
                       <span className="text-gray-400 w-24 shrink-0">연락처</span>
-                      <a href="tel:042-254-8060" className="font-medium text-[#1a3a5c] hover:underline">042-254-8060</a>
+                      <a href="tel:042-254-8060" className="font-medium text-brand-600 hover:underline">042-254-8060</a>
                     </div>
                   </div>
 
@@ -114,7 +110,7 @@ export default function DisclosurePage() {
                     <p className="font-semibold text-gray-700 mb-3">비용 안내</p>
                     <div className="space-y-2">
                       {Object.entries(cost).map(([label, value]) => (
-                        <div key={label} className={`flex justify-between ${label === '총 취득비용' ? 'pt-2 border-t border-gray-200 font-bold text-[#1a3a5c]' : 'text-gray-700'}`}>
+                        <div key={label} className={`flex justify-between ${label === '총 취득비용' ? 'pt-2 border-t border-gray-200 font-bold text-brand-600' : 'text-gray-700'}`}>
                           <span>{label}</span>
                           <span>{value}</span>
                         </div>

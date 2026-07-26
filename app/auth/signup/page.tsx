@@ -120,23 +120,23 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a3a5c] to-[#002444] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-brand-600 to-brand-950 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* 로고 & 제목 */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block mb-6">
             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-[#1a3a5c] font-bold text-xl">安</span>
+              <span className="text-brand-600 font-bold text-xl">安</span>
             </div>
           </Link>
           <h1 className="text-3xl font-bold text-white mb-2">회원가입</h1>
-          <p className="text-blue-300">도시안전디자인센터와 함께 시작하세요</p>
+          <p className="text-brand-200">도시안전디자인센터와 함께 시작하세요</p>
         </div>
 
         {/* 회원가입 폼 */}
         <div className="bg-white rounded-2xl p-8 shadow-xl">
           {/* 간편 가입 안내 */}
-          <div className="mb-4 rounded-lg bg-blue-50 px-4 py-3 text-sm leading-6 text-[#1a3a5c]">
+          <div className="mb-4 rounded-lg bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-600">
             <b>가장 쉬운 가입 방법</b> — 카카오톡이나 구글을 쓰고 계시다면
             아래 버튼 하나로 가입이 바로 끝나고, 곧바로 강의를 들으실 수 있습니다.
           </div>
@@ -182,17 +182,19 @@ export default function SignupPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* 이름 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="signup-name" className="block text-sm font-medium text-neutral-800 mb-2">
                 이름
               </label>
               <div className="relative">
-                <User size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <User size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" aria-hidden="true" />
                 <input
+                  id="signup-name"
                   type="text"
                   name="name"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   placeholder="이름을 입력하세요"
                   required
                 />
@@ -201,17 +203,19 @@ export default function SignupPage() {
 
             {/* 이메일 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="signup-email" className="block text-sm font-medium text-neutral-800 mb-2">
                 이메일
               </label>
               <div className="relative">
-                <Mail size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Mail size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" aria-hidden="true" />
                 <input
+                  id="signup-email"
                   type="email"
                   name="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   placeholder="이메일을 입력하세요"
                   required
                 />
@@ -220,17 +224,19 @@ export default function SignupPage() {
 
             {/* 전화번호 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="signup-phone" className="block text-sm font-medium text-neutral-800 mb-2">
                 전화번호
               </label>
               <div className="relative">
-                <Phone size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Phone size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" aria-hidden="true" />
                 <input
+                  id="signup-phone"
                   type="tel"
                   name="phone"
+                  autoComplete="tel"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   placeholder="전화번호를 입력하세요"
                   required
                 />
@@ -239,24 +245,27 @@ export default function SignupPage() {
 
             {/* 비밀번호 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="signup-password" className="block text-sm font-medium text-neutral-800 mb-2">
                 비밀번호
               </label>
               <div className="relative">
-                <Lock size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Lock size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" aria-hidden="true" />
                 <input
+                  id="signup-password"
                   type={showPassword ? 'text' : 'password'}
                   name="password"
+                  autoComplete="new-password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-neutral-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   placeholder="비밀번호를 입력하세요 (최소 6자)"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  aria-label={showPassword ? '비밀번호 숨기기' : '비밀번호 표시'}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-700"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -265,24 +274,27 @@ export default function SignupPage() {
 
             {/* 비밀번호 확인 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="signup-confirm-password" className="block text-sm font-medium text-neutral-800 mb-2">
                 비밀번호 확인
               </label>
               <div className="relative">
-                <Lock size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Lock size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" aria-hidden="true" />
                 <input
+                  id="signup-confirm-password"
                   type={showConfirmPassword ? 'text' : 'password'}
                   name="confirmPassword"
+                  autoComplete="new-password"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-neutral-300 rounded-md focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                   placeholder="비밀번호를 다시 입력하세요"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  aria-label={showConfirmPassword ? '비밀번호 숨기기' : '비밀번호 표시'}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-700"
                 >
                   {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -296,12 +308,12 @@ export default function SignupPage() {
                   type="checkbox"
                   checked={termsAccepted}
                   onChange={(e) => setTermsAccepted(e.target.checked)}
-                  className="mt-1 w-4 h-4 text-[#2e7d32] border-gray-300 rounded focus:ring-[#2e7d32]"
+                  className="mt-1 w-4 h-4 text-cta-700 border-gray-300 rounded focus:ring-cta-700"
                   required
                 />
                 <span className="text-sm text-gray-600 leading-relaxed">
-                  <Link href="/terms" className="text-[#2e7d32] hover:underline">이용약관</Link>과{' '}
-                  <Link href="/privacy" className="text-[#2e7d32] hover:underline">개인정보처리방침</Link>을 읽었으며 이에 동의합니다.
+                  <Link href="/terms" className="text-cta-700 hover:underline">이용약관</Link>과{' '}
+                  <Link href="/privacy" className="text-cta-700 hover:underline">개인정보처리방침</Link>을 읽었으며 이에 동의합니다.
                 </span>
               </label>
             </div>
@@ -317,7 +329,7 @@ export default function SignupPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#2e7d32] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#217128] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-cta-700 text-white py-3 px-4 rounded-lg font-medium hover:bg-cta-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -333,7 +345,7 @@ export default function SignupPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               이미 계정이 있으신가요?{' '}
-              <Link href="/auth/login" className="text-[#2e7d32] hover:underline font-medium">
+              <Link href="/auth/login" className="text-cta-700 hover:underline font-medium">
                 로그인
               </Link>
             </p>
@@ -342,7 +354,7 @@ export default function SignupPage() {
 
         {/* 도움말 */}
         <div className="mt-6 text-center">
-          <p className="text-blue-300 text-sm">
+          <p className="text-brand-200 text-sm">
             회원가입에 문제가 있으신가요?{' '}
             <Link href="/contact" className="hover:text-white hover:underline">
               문의하기

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight, Bell, Calendar, Trophy, Download, Newspaper } from 'lucide-react'
 import { getSectionItems } from '@/lib/content-store'
+import { PageHero } from '@/components/ui'
 
 // 관리자 수정이 공개 페이지에 반영되도록 60초 ISR (정적 박제 방지)
 export const revalidate = 60
@@ -24,17 +25,14 @@ export default async function NoticePage() {
 
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">공지·자료실</span>
-          </nav>
-          <h1>공지·자료실</h1>
-          <p>센터 소식, 교육 일정, 자료를 확인하세요</p>
-        </div>
-      </div>
+      <PageHero
+        title="공지·자료실"
+        description="센터 소식, 교육 일정, 자료를 확인하세요"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '공지·자료실' },
+        ]}
+      />
 
       {/* 카테고리 바로가기 */}
       <section className="section-padding bg-white">
@@ -44,12 +42,12 @@ export default async function NoticePage() {
               <Link
                 key={href}
                 href={href}
-                className="flex flex-col items-center text-center p-5 bg-gray-50 rounded-2xl hover:bg-blue-50 hover:shadow-sm transition-all group"
+                className="flex flex-col items-center text-center p-5 bg-gray-50 rounded-2xl hover:bg-brand-50 hover:shadow-sm transition-all group"
               >
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm group-hover:bg-[#1a3a5c] transition-colors">
-                  <Icon size={22} className="text-[#1a3a5c] group-hover:text-white transition-colors" />
+                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm group-hover:bg-brand-600 transition-colors">
+                  <Icon size={22} className="text-brand-600 group-hover:text-white transition-colors" />
                 </div>
-                <p className="font-semibold text-gray-800 group-hover:text-[#1a3a5c] text-sm mb-1">{label}</p>
+                <p className="font-semibold text-gray-800 group-hover:text-brand-600 text-sm mb-1">{label}</p>
                 <p className="text-xs text-gray-400">{desc}</p>
               </Link>
             ))}
@@ -65,7 +63,7 @@ export default async function NoticePage() {
               <span className="section-tag">공지사항</span>
               <h2 className="section-title mt-2">최신 공지사항</h2>
             </div>
-            <Link href="/notice" className="text-sm text-[#1a3a5c] font-medium hover:underline flex items-center gap-1">
+            <Link href="/notice" className="text-sm text-brand-600 font-medium hover:underline flex items-center gap-1">
               더보기 <ChevronRight size={14} />
             </Link>
           </div>
@@ -82,7 +80,7 @@ export default async function NoticePage() {
                   i < notices.length - 1 ? 'border-b border-gray-100' : ''
                 }`}
               >
-                <span className="text-xs font-semibold text-[#1a3a5c] bg-blue-50 px-2 py-0.5 rounded shrink-0">{category}</span>
+                <span className="text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded shrink-0">{category}</span>
                 <p className="flex-1 text-gray-800 text-sm font-medium">{title}</p>
                 {isNew && (
                   <span className="text-xs font-bold text-red-500 bg-red-50 px-1.5 py-0.5 rounded shrink-0">N</span>

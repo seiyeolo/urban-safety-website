@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { CheckCircle, ChevronRight, ArrowRight } from 'lucide-react'
+import { CheckCircle, ChevronRight } from 'lucide-react'
+import { Button, Card } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '보이스피싱 예방지도사 - 민간자격증',
@@ -43,22 +44,24 @@ const INFO_PILLS = [
   { label: '모집 대상', value: '제한 없음' },
 ]
 
+/* 금액은 숫자로 보관한다. 문자열 '220,000'에 parseInt를 쓰면 쉼표에서 파싱이
+   멈춰 220원으로 표시되던 버그가 있었음. 표시 시점에만 toLocaleString으로 포맷. */
 const PRICE_TABLE = [
-  { label: '수강료', value: '220,000' },
-  { label: '심사료', value: '30,000' },
-  { label: '자격증 발급비', value: '50,000' },
+  { label: '수강료', value: 220000 },
+  { label: '심사료', value: 30000 },
+  { label: '자격증 발급비', value: 50000 },
 ]
 
-const TOTAL_PRICE = PRICE_TABLE.reduce((sum, item) => sum + parseInt(item.value), 0)
+const TOTAL_PRICE = PRICE_TABLE.reduce((sum, item) => sum + item.value, 0)
 
 export default function VoicePhishingCertificatePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-24 lg:py-32">
+      <section className="relative bg-gradient-to-br from-brand-600 to-brand-950 overflow-hidden py-24 lg:py-32">
         <div className="absolute inset-0 opacity-95"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-          <nav className="flex mb-8 gap-2 text-blue-300 text-sm font-medium">
+          <nav className="flex mb-8 gap-2 text-brand-200 text-sm font-medium">
             <Link href="/certificates" className="hover:text-white">민간자격증</Link>
             <ChevronRight size={16} className="self-center" />
             <span className="text-white">보이스피싱 예방지도사</span>
@@ -70,14 +73,14 @@ export default function VoicePhishingCertificatePage() {
           </div>
 
           <h1 className="text-5xl lg:text-6xl font-black text-white mb-6 leading-tight max-w-3xl">보이스피싱 예방지도사</h1>
-          <p className="text-xl lg:text-2xl text-blue-300 mb-12 max-w-2xl font-light">
+          <p className="text-xl lg:text-2xl text-brand-200 mb-12 max-w-2xl font-light">
             시민의 소중한 자산을 지키는 <br className="hidden md:block"/>금융 안전 전문가 양성 과정
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="bg-[#2e7d32] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#217128] transition-all shadow-xl">
+            <Button href="/education" size="lg">
               교육 신청하기
-            </button>
+            </Button>
             <button className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm">
               자격 문의
             </button>
@@ -93,34 +96,34 @@ export default function VoicePhishingCertificatePage() {
           <section>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
               {INFO_PILLS.map(({ label, value }) => (
-                <div key={label} className="bg-[#f5f3f3] p-6 rounded-xl text-center">
+                <div key={label} className="bg-neutral-100 p-6 rounded-xl text-center">
                   <span className="block text-sm text-gray-600 mb-2">{label}</span>
-                  <span className="font-bold text-[#1a3a5c]">{value}</span>
+                  <span className="font-bold text-brand-600">{value}</span>
                 </div>
               ))}
             </div>
 
-            <h2 className="text-3xl font-bold text-[#1a3a5c] mb-8">보이스피싱 피해 현황</h2>
+            <h2 className="text-3xl font-bold text-brand-600 mb-8">보이스피싱 피해 현황</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {STATS.map(({ label, value, suffix, type }) => (
-                <div key={label} className="bg-white p-8 rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-gray-100">
-                  <p className="text-gray-600 text-sm mb-2">{label}</p>
-                  <p className="text-4xl font-black text-[#1a3a5c]">{value}</p>
-                  <p className={`text-sm mt-2 font-medium ${type === 'error' ? 'text-red-600' : 'text-gray-600'}`}>
+                <Card key={label} padding="lg">
+                  <p className="text-neutral-600 text-sm mb-2">{label}</p>
+                  <p className="text-4xl font-black text-brand-600">{value}</p>
+                  <p className={`text-sm mt-2 font-medium ${type === 'error' ? 'text-danger-600' : 'text-neutral-600'}`}>
                     {suffix}
                   </p>
-                </div>
+                </Card>
               ))}
             </div>
           </section>
 
           {/* Education Goals */}
           <section>
-            <h2 className="text-3xl font-bold text-[#1a3a5c] mb-8">교육 목표</h2>
+            <h2 className="text-3xl font-bold text-brand-600 mb-8">교육 목표</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {EDUCATION_GOALS.map((goal, index) => (
-                <div key={index} className="flex items-start gap-4 p-6 bg-white rounded-xl border-l-4 border-[#2e7d32] shadow-sm">
-                  <CheckCircle size={24} className="text-[#2e7d32] mt-1 flex-shrink-0" />
+                <div key={index} className="flex items-start gap-4 p-6 bg-white rounded-xl border-l-4 border-cta-700 shadow-sm">
+                  <CheckCircle size={24} className="text-cta-700 mt-1 flex-shrink-0" />
                   <span className="font-medium text-gray-800 leading-tight">{goal}</span>
                 </div>
               ))}
@@ -129,7 +132,7 @@ export default function VoicePhishingCertificatePage() {
 
           {/* FAQ Section */}
           <section>
-            <h2 className="text-3xl font-bold text-[#1a3a5c] mb-8">자주 묻는 질문</h2>
+            <h2 className="text-3xl font-bold text-brand-600 mb-8">자주 묻는 질문</h2>
             <div className="space-y-4">
               {[
                 {
@@ -145,10 +148,10 @@ export default function VoicePhishingCertificatePage() {
                   a: '지역 주민센터, 경로당, 사회복지관 등에서 보이스피싱 예방 교육 강사로 활동할 수 있으며, 금융기관이나 보험회사의 고객 상담 및 교육 업무에도 활용 가능합니다. 또한 개인 컨설팅이나 교육 사업도 가능합니다.'
                 },
               ].map((faq, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-gray-200">
-                  <h3 className="font-bold text-[#1a3a5c] mb-3">Q. {faq.q}</h3>
-                  <p className="text-gray-700 leading-relaxed">A. {faq.a}</p>
-                </div>
+                <Card key={index}>
+                  <h3 className="font-bold text-brand-600 mb-3">Q. {faq.q}</h3>
+                  <p className="text-neutral-700 leading-relaxed">A. {faq.a}</p>
+                </Card>
               ))}
             </div>
           </section>
@@ -159,28 +162,28 @@ export default function VoicePhishingCertificatePage() {
           <div className="lg:sticky lg:top-24 space-y-6">
             {/* Price Card */}
             <div className="bg-white rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-gray-100 overflow-hidden">
-              <div className="bg-[#e4e2e2] px-6 py-4">
-                <h3 className="font-bold text-[#1a3a5c]">수강료 및 발급비</h3>
+              <div className="bg-neutral-200 px-6 py-4">
+                <h3 className="font-bold text-brand-600">수강료 및 발급비</h3>
               </div>
               <div className="p-6">
                 <div className="space-y-3 mb-6">
                   {PRICE_TABLE.map(({ label, value }) => (
                     <div key={label} className="flex justify-between items-center">
-                      <span className="text-gray-700">{label}</span>
-                      <span className="font-medium">{parseInt(value).toLocaleString()}원</span>
+                      <span className="text-neutral-700">{label}</span>
+                      <span className="font-medium">{value.toLocaleString()}원</span>
                     </div>
                   ))}
                   <div className="border-t pt-3 mt-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-[#1a3a5c]">총액</span>
-                      <span className="font-bold text-[#1a3a5c] text-xl">{TOTAL_PRICE.toLocaleString()}원</span>
+                      <span className="font-bold text-brand-600">총액</span>
+                      <span className="font-bold text-brand-600 text-xl">{TOTAL_PRICE.toLocaleString()}원</span>
                     </div>
                   </div>
                 </div>
 
-                <button className="w-full bg-[#2e7d32] text-white py-4 px-6 rounded-xl font-bold text-lg hover:bg-[#217128] transition-colors mb-6">
+                <Button href="/education" size="lg" className="w-full mb-6">
                   지금 교육 신청하기
-                </button>
+                </Button>
 
                 {/* Additional Info */}
                 <div className="space-y-4 text-sm">
@@ -198,8 +201,8 @@ export default function VoicePhishingCertificatePage() {
                   </div>
                 </div>
 
-                <div className="bg-[#ffdbcb] border border-[#ff6f00]/20 rounded-lg p-4 mt-6">
-                  <Link href="/refund" className="text-[#793100] font-medium hover:underline">
+                <div className="bg-cta-100 border border-cta-600/20 rounded-lg p-4 mt-6">
+                  <Link href="/refund" className="text-cta-800 font-medium hover:underline">
                     환불규정 확인하기 →
                   </Link>
                 </div>

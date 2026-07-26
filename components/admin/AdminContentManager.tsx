@@ -199,28 +199,31 @@ export default function AdminContentManager<TSection extends ContentSection>({
               const value = draft[field.key as keyof Draft]
               const fieldType = field.type ?? 'text'
               const isWide = fieldType === 'textarea'
+              const fieldId = `admin-field-${String(field.key)}`
 
               return (
                 <div key={String(field.key)} className={isWide ? 'md:col-span-2' : ''}>
-                  <label className="block text-sm font-medium text-gray-300 mb-1.5">
+                  <label htmlFor={fieldId} className="block text-sm font-medium text-neutral-300 mb-1.5">
                     {field.label}
                   </label>
 
                   {fieldType === 'textarea' && (
                     <textarea
+                      id={fieldId}
                       value={String(value ?? '')}
                       onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.value as Draft[keyof Draft])}
                       placeholder={field.placeholder}
                       rows={5}
-                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#1a3a5c]"
+                      className="w-full px-4 py-3 bg-neutral-950 border border-neutral-700 rounded-xl text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-brand-400"
                     />
                   )}
 
                   {fieldType === 'select' && (
                     <select
+                      id={fieldId}
                       value={String(value ?? '')}
                       onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.value as Draft[keyof Draft])}
-                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-[#1a3a5c]"
+                      className="w-full px-4 py-3 bg-neutral-950 border border-neutral-700 rounded-xl text-sm text-white focus:outline-none focus:border-brand-400"
                     >
                       {(field.options ?? []).map((option) => (
                         <option key={option} value={option}>
@@ -231,24 +234,26 @@ export default function AdminContentManager<TSection extends ContentSection>({
                   )}
 
                   {fieldType === 'checkbox' && (
-                    <label className="flex items-center gap-3 px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white">
+                    <div className="flex items-center gap-3 px-4 py-3 bg-neutral-950 border border-neutral-700 rounded-xl text-sm text-white">
                       <input
+                        id={fieldId}
                         type="checkbox"
                         checked={Boolean(value)}
                         onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.checked as Draft[keyof Draft])}
                         className="w-4 h-4"
                       />
-                      사용
-                    </label>
+                      <span>사용</span>
+                    </div>
                   )}
 
                   {(fieldType === 'text' || fieldType === 'date') && (
                     <input
+                      id={fieldId}
                       type={fieldType}
                       value={String(value ?? '')}
                       onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.value as Draft[keyof Draft])}
                       placeholder={field.placeholder}
-                      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#1a3a5c]"
+                      className="w-full px-4 py-3 bg-neutral-950 border border-neutral-700 rounded-xl text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-brand-400"
                     />
                   )}
                 </div>
@@ -256,12 +261,12 @@ export default function AdminContentManager<TSection extends ContentSection>({
             })}
           </div>
 
-          {message && <p className="text-sm text-emerald-400">{message}</p>}
+          {message && <p className="text-sm text-accent-400">{message}</p>}
 
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 px-4 py-3 bg-[#1a3a5c] text-white rounded-xl font-semibold hover:bg-blue-900 transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-4 py-3 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-800 transition-colors disabled:opacity-50"
           >
             {submitting ? <Loader2 size={16} className="animate-spin" /> : editingId ? <Save size={16} /> : <Plus size={16} />}
             {editingId ? '수정 저장' : '항목 추가'}

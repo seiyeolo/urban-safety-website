@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Shield, Target, ChevronRight, ArrowRight } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '핵심 운영분야',
@@ -10,19 +11,15 @@ export const metadata: Metadata = {
 export default function FieldsPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/about" className="text-blue-300 hover:text-white">센터소개</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">핵심 운영분야</span>
-          </nav>
-          <h1>핵심 운영분야</h1>
-          <p>범죄예방과 생활안전, 두 축으로 운영됩니다</p>
-        </div>
-      </div>
+      <PageHero
+        title="핵심 운영분야"
+        description="범죄예방과 생활안전, 두 축으로 운영됩니다"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개', href: '/about' },
+          { label: '핵심 운영분야' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main">
@@ -30,10 +27,10 @@ export default function FieldsPage() {
 
             {/* 범죄예방 */}
             <div>
-              <div className="bg-[#1a3a5c] rounded-2xl p-8 text-white mb-6">
+              <div className="bg-brand-600 rounded-2xl p-8 text-white mb-6">
                 <Shield size={36} className="mb-4 opacity-90" />
                 <h2 className="text-2xl font-bold mb-3">범죄예방</h2>
-                <p className="text-blue-200 leading-relaxed">
+                <p className="text-brand-200 leading-relaxed">
                   보이스피싱, CPTED, 지역사회 범죄예방 교육을 통해
                   시민이 스스로를 지킬 수 있는 역량을 키웁니다.
                 </p>
@@ -63,7 +60,7 @@ export default function FieldsPage() {
                         <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
                       </div>
                       {href && (
-                        <Link href={href} className="shrink-0 text-[#1a3a5c] hover:text-blue-800">
+                        <Link href={href} className="shrink-0 text-brand-600 hover:text-brand-700">
                           <ArrowRight size={18} />
                         </Link>
                       )}
@@ -75,7 +72,7 @@ export default function FieldsPage() {
 
             {/* 생활안전 */}
             <div>
-              <div className="bg-[#2e7d32] rounded-2xl p-8 text-white mb-6">
+              <div className="bg-cta-700 rounded-2xl p-8 text-white mb-6">
                 <Target size={36} className="mb-4 opacity-90" />
                 <h2 className="text-2xl font-bold mb-3">생활안전</h2>
                 <p className="text-green-100 leading-relaxed">
@@ -108,7 +105,7 @@ export default function FieldsPage() {
                         <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
                       </div>
                       {href && (
-                        <Link href={href} className="shrink-0 text-[#1a3a5c] hover:text-blue-800">
+                        <Link href={href} className="shrink-0 text-brand-600 hover:text-brand-700">
                           <ArrowRight size={18} />
                         </Link>
                       )}

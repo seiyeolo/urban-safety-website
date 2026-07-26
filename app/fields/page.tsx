@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Shield, Heart, ArrowRight, CheckCircle, HandHeart, GraduationCap, Wrench } from 'lucide-react'
+import { Button } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '핵심분야 - 대전경실련 도시안전디자인센터',
@@ -68,10 +69,10 @@ export default function FieldsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1a3a5c] to-[#002444] overflow-hidden py-16">
+      <section className="relative bg-gradient-to-br from-brand-600 to-brand-950 overflow-hidden py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
           <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">핵심분야</h1>
-          <p className="text-xl text-blue-300 max-w-2xl">
+          <p className="text-xl text-brand-200 max-w-2xl">
             범죄예방과 생활안전, 두 핵심분야를 통해 시민이 안전한 일상을 누릴 수 있도록 지원합니다.
           </p>
         </div>
@@ -82,7 +83,7 @@ export default function FieldsPage() {
         <div className="max-w-7xl mx-auto">
           {/* 소개 */}
           <div className="text-center mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-6">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-6">
               35년 경실련 공신력으로 만드는 안전한 도시
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -117,7 +118,7 @@ export default function FieldsPage() {
                     <ul className="space-y-3">
                       {features.map((feature, index) => (
                         <li key={index} className="flex items-start gap-3">
-                          <CheckCircle size={16} className="text-[#2e7d32] mt-1 flex-shrink-0" />
+                          <CheckCircle size={16} className="text-cta-700 mt-1 flex-shrink-0" />
                           <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
                         </li>
                       ))}
@@ -155,8 +156,8 @@ export default function FieldsPage() {
           </div>
 
           {/* 접근 방식 */}
-          <div className="bg-[#f5f3f3] rounded-xl p-6 md:p-12">
-            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-4 text-center">
+          <div className="bg-neutral-100 rounded-xl p-6 md:p-12">
+            <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-4 text-center">
               우리의 접근 방식
             </h2>
             <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
@@ -167,8 +168,8 @@ export default function FieldsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {APPROACH.map(({ icon: Icon, title, description }) => (
                 <div key={title} className="bg-white p-8 rounded-xl shadow-sm text-center">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#2e7d32]/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                    <Icon size={32} className="text-[#2e7d32]" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-cta-700/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <Icon size={32} className="text-cta-700" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
                   <p className="text-gray-600 leading-relaxed">{description}</p>
@@ -180,7 +181,7 @@ export default function FieldsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 sm:px-8 py-16 bg-gradient-to-br from-[#2e7d32] to-[#1b5e20]">
+      <section className="px-4 sm:px-8 py-16 bg-gradient-to-br from-cta-700 to-cta-800">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-white mb-6">지역사회 안전 리더가 되어보세요</h2>
           <p className="text-green-100 mb-8 text-lg leading-relaxed">
@@ -190,18 +191,15 @@ export default function FieldsPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/certificates"
-              className="bg-white text-[#2e7d32] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+              className="bg-white text-cta-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
             >
               <Shield size={20} />
               자격증 알아보기
             </Link>
-            <Link
-              href="/education"
-              className="bg-[#217128] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#1a5a21] transition-colors flex items-center gap-2 border-2 border-white/20"
-            >
+            <Button href="/education" size="lg" className="border-2 border-white/20">
               <ArrowRight size={20} />
               교육과정 보기
-            </Link>
+            </Button>
           </div>
 
           <div className="mt-8 text-green-100 text-sm">

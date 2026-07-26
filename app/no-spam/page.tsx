@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { ShieldAlert } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '이메일무단수집거부',
@@ -10,16 +10,13 @@ export const metadata: Metadata = {
 export default function NoSpamPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">이메일무단수집거부</span>
-          </nav>
-          <h1>이메일무단수집거부</h1>
-        </div>
-      </div>
+      <PageHero
+        title="이메일무단수집거부"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '이메일무단수집거부' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main max-w-2xl mx-auto">
@@ -39,7 +36,7 @@ export default function NoSpamPage() {
 
           <div className="bg-gray-50 rounded-2xl p-6 text-sm text-gray-700 space-y-4 leading-relaxed">
             <div>
-              <h3 className="font-bold text-[#1a3a5c] mb-2">관련 법령</h3>
+              <h3 className="font-bold text-brand-600 mb-2">관련 법령</h3>
               <p>
                 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 제50조의2에 따라,
                 인터넷 홈페이지 운영자 또는 관리자의 기술적 조치에도 불구하고 이메일 주소를 수집하거나,
@@ -48,11 +45,11 @@ export default function NoSpamPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-bold text-[#1a3a5c] mb-2">게시 일자</h3>
+              <h3 className="font-bold text-brand-600 mb-2">게시 일자</h3>
               <p>2024년 1월 1일</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#1a3a5c] mb-2">게시자</h3>
+              <h3 className="font-bold text-brand-600 mb-2">게시자</h3>
               <p>대전경실련 도시안전디자인센터</p>
             </div>
           </div>

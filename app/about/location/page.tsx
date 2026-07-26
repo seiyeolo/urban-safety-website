@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { MapPin, Bus, Train, Car } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '오시는 길',
@@ -10,25 +10,21 @@ export const metadata: Metadata = {
 export default function LocationPage() {
   return (
     <>
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="text-blue-300 hover:text-white">홈</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <Link href="/about" className="text-blue-300 hover:text-white">센터소개</Link>
-            <span className="breadcrumb-sep text-blue-400">›</span>
-            <span className="text-white">오시는 길</span>
-          </nav>
-          <h1>오시는 길</h1>
-          <p>대전경실련 도시안전디자인센터를 찾아오시는 방법</p>
-        </div>
-      </div>
+      <PageHero
+        title="오시는 길"
+        description="대전경실련 도시안전디자인센터를 찾아오시는 방법"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개', href: '/about' },
+          { label: '오시는 길' },
+        ]}
+      />
 
       <section className="section-padding bg-white">
         <div className="container-main">
           {/* 주소 */}
           <div className="flex items-center gap-3 mb-8 justify-center">
-            <MapPin size={20} className="text-[#1a3a5c]" />
+            <MapPin size={20} className="text-brand-600" />
             <p className="text-lg font-semibold text-gray-800">
               대전광역시 서구 용문동 255-4 서우아파트 상가동 201호
             </p>
@@ -73,10 +69,10 @@ export default function LocationPage() {
             ].map(({ icon: Icon, title, items }) => (
               <div key={title} className="card">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
-                    <Icon size={20} className="text-[#1a3a5c]" />
+                  <div className="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center">
+                    <Icon size={20} className="text-brand-600" />
                   </div>
-                  <h3 className="font-bold text-[#1a3a5c]">{title}</h3>
+                  <h3 className="font-bold text-brand-600">{title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {items.map((item) => (

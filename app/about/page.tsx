@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Shield, Target, Eye, Users, Building, ChevronRight, Network, BookOpen } from 'lucide-react'
+import { PageHero } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '센터소개',
@@ -20,18 +21,14 @@ const SUB_MENUS = [
 export default function AboutPage() {
   return (
     <>
-      {/* 페이지 히어로 */}
-      <div className="page-hero">
-        <div className="container-main">
-          <nav className="breadcrumb justify-center">
-            <Link href="/" className="breadcrumb-link">홈</Link>
-            <span className="breadcrumb-sep">›</span>
-            <span className="breadcrumb-current">센터소개</span>
-          </nav>
-          <h1>센터소개</h1>
-          <p>대전경실련 도시안전디자인센터를 소개합니다</p>
-        </div>
-      </div>
+      <PageHero
+        title="센터소개"
+        description="대전경실련 도시안전디자인센터를 소개합니다"
+        breadcrumb={[
+          { label: '홈', href: '/' },
+          { label: '센터소개' },
+        ]}
+      />
 
       {/* 서브 메뉴 */}
       <div className="bg-white border-b border-gray-200 sticky top-16 z-30">
@@ -41,7 +38,7 @@ export default function AboutPage() {
               <Link
                 key={m.href}
                 href={m.href}
-                className="shrink-0 px-4 py-3 text-sm text-gray-600 hover:text-[#1a3a5c] font-medium border-b-2 border-transparent hover:border-[#1a3a5c] transition-colors"
+                className="shrink-0 px-4 py-3 text-sm text-gray-600 hover:text-brand-600 font-medium border-b-2 border-transparent hover:border-brand-600 transition-colors"
               >
                 {m.label}
               </Link>
@@ -88,10 +85,10 @@ export default function AboutPage() {
               { icon: Shield, title: '실천 네트워크', desc: 'MOU, 전문가 간담회, 국제심포지움 등으로 이어진 현장 중심 활동' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card text-center">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#1a3a5c]" />
+                <div className="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Icon size={24} className="text-brand-600" />
                 </div>
-                <h3 className="font-bold text-[#1a3a5c] mb-2">{title}</h3>
+                <h3 className="font-bold text-brand-600 mb-2">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -109,13 +106,13 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                color: 'bg-[#1a3a5c]',
+                color: 'bg-brand-600',
                 icon: Shield,
                 title: '범죄예방',
                 items: ['보이스피싱 예방', 'CPTED (환경설계를 통한 범죄예방)', '지역사회 범죄예방 교육·홍보·실천'],
               },
               {
-                color: 'bg-[#2e7d32]',
+                color: 'bg-cta-700',
                 icon: Target,
                 title: '생활안전',
                 items: ['일상생활 안전교육', '지역사회 안전문화 확산', '시민 실천형 안전지도자 양성'],
@@ -156,10 +153,10 @@ export default function AboutPage() {
               { icon: Building, title: '교육 기능', desc: '민주시민 교육을 통한 성숙한 시민사회 기여' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card text-center">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#1a3a5c]" />
+                <div className="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Icon size={24} className="text-brand-600" />
                 </div>
-                <h3 className="font-bold text-[#1a3a5c] mb-2">{title}</h3>
+                <h3 className="font-bold text-brand-600 mb-2">{title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -178,10 +175,10 @@ export default function AboutPage() {
               <Link
                 key={m.href}
                 href={m.href}
-                className="flex items-center justify-between p-5 bg-white rounded-xl border border-gray-200 hover:border-[#1a3a5c] hover:shadow-md transition-all group"
+                className="flex items-center justify-between p-5 bg-white rounded-xl border border-gray-200 hover:border-brand-600 hover:shadow-md transition-all group"
               >
-                <span className="font-medium text-gray-700 group-hover:text-[#1a3a5c]">{m.label}</span>
-                <ChevronRight size={18} className="text-gray-400 group-hover:text-[#1a3a5c] transition-colors" />
+                <span className="font-medium text-gray-700 group-hover:text-brand-600">{m.label}</span>
+                <ChevronRight size={18} className="text-gray-400 group-hover:text-brand-600 transition-colors" />
               </Link>
             ))}
           </div>

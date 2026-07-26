@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Monitor, Building, Users, CheckCircle, ArrowRight, Phone } from 'lucide-react'
+import { Button, Input, Select, Textarea } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: '교육 신청 허브 - 교육안내',
@@ -12,32 +13,32 @@ const EDUCATION_MODES = [
     icon: Monitor,
     title: '온라인 교육',
     features: ['24시간 수강 가능', '모바일 지원', '자동 진도관리'],
-    bgStyle: 'bg-[#f5f3f3] hover:bg-white hover:shadow-2xl border border-transparent hover:border-[#2e7d32]/20',
-    iconColor: 'text-[#2e7d32]',
-    buttonStyle: 'bg-[#2e7d32] text-white hover:bg-[#217128]',
+    bgStyle: 'bg-neutral-100 hover:bg-white hover:shadow-2xl border border-transparent hover:border-cta-700/20',
+    iconColor: 'text-cta-700',
+    buttonStyle: 'bg-cta-700 text-white hover:bg-cta-800',
   },
   {
     icon: Building,
     title: '오프라인 교육',
     features: ['강사 직접 지도', '실습 포함', '수료증 즉시 발급'],
-    bgStyle: 'bg-[#1a3a5c] text-white hover:shadow-2xl',
+    bgStyle: 'bg-brand-600 text-white hover:shadow-2xl',
     iconColor: 'text-white',
-    buttonStyle: 'bg-white text-[#1a3a5c] hover:bg-[#f5f3f3]',
+    buttonStyle: 'bg-white text-brand-600 hover:bg-neutral-100',
   },
   {
     icon: Users,
     title: '기관·단체 교육',
     features: ['찾아가는 교육', '맞춤형 설계', '단체 할인 혜택'],
-    bgStyle: 'bg-[#f5f3f3] hover:bg-white hover:shadow-2xl border border-transparent hover:border-[#1a3a5c]/20',
-    iconColor: 'text-[#1a3a5c]',
-    buttonStyle: 'border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white',
+    bgStyle: 'bg-neutral-100 hover:bg-white hover:shadow-2xl border border-transparent hover:border-brand-600/20',
+    iconColor: 'text-brand-600',
+    buttonStyle: 'border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white',
   },
 ]
 
 const SCHEDULE_DATA = [
   { date: '2026.03.15', type: '온라인', title: '보이스피싱 예방지도사 6기', spots: '20명', status: '모집중', statusColor: 'text-green-600 bg-green-100' },
   { date: '2026.03.22', type: '오프라인', title: '생활안전지도사 현장 교육', spots: '15명', status: '모집중', statusColor: 'text-green-600 bg-green-100' },
-  { date: '2026.04.05', type: '단체', title: '대전시청 맞춤형 안전교육', spots: '30명', status: '접수완료', statusColor: 'text-blue-600 bg-blue-100' },
+  { date: '2026.04.05', type: '단체', title: '대전시청 맞춤형 안전교육', spots: '30명', status: '접수완료', statusColor: 'text-brand-600 bg-brand-100' },
   { date: '2026.04.12', type: '온라인', title: '보이스피싱 예방지도사 7기', spots: '25명', status: '모집중', statusColor: 'text-green-600 bg-green-100' },
   { date: '2026.04.19', type: '오프라인', title: '생활안전지도사 심화과정', spots: '12명', status: '마감임박', statusColor: 'text-amber-600 bg-amber-100' },
   { date: '2026.04.26', type: '단체', title: '경로당 안전교육 순회', spots: '50명', status: '예정', statusColor: 'text-gray-600 bg-gray-100' },
@@ -75,15 +76,15 @@ export default function EducationHubPage() {
     <main className="pt-24 pb-20 max-w-7xl mx-auto px-6">
       {/* Hero Section & Stepper */}
       <section className="py-16 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-[52px] lg:text-[56px] font-black text-[#1a3a5c] leading-tight mb-4 tracking-tighter">교육안내</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-[52px] lg:text-[56px] font-black text-brand-600 leading-tight mb-4 tracking-tighter">교육안내</h1>
         <p className="text-base sm:text-lg lg:text-[20px] text-gray-600 max-w-2xl mx-auto leading-[1.7] mb-8 sm:mb-12">
           목적과 상황에 맞는 교육과정을 선택하세요. 대전경실련 도시안전디자인센터는 전문적인 시민 안전 교육을 지향합니다.
         </p>
 
         {/* 3-Step Process Stepper */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-16">
-          <div className="flex items-center gap-3 bg-[#1a3a5c] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg text-sm sm:text-base">
-            <span className="bg-white text-[#1a3a5c] rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">1</span>
+          <div className="flex items-center gap-3 bg-brand-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg text-sm sm:text-base">
+            <span className="bg-white text-brand-600 rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm">1</span>
             <span className="font-bold">교육 방식</span>
           </div>
           <div className="w-[2px] h-6 sm:w-12 sm:h-[2px] bg-gray-300"></div>
@@ -123,11 +124,11 @@ export default function EducationHubPage() {
 
       {/* Schedule Table */}
       <section className="mb-24">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-8 text-center md:text-left">2026 예정 교육 일정</h2>
         <div className="bg-white rounded-xl overflow-x-auto shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
           <table className="min-w-[640px] w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#e9e8e8] text-[#1a3a5c] font-bold">
+              <tr className="bg-neutral-200 text-brand-600 font-bold">
                 <th className="px-6 py-5">일자</th>
                 <th className="px-6 py-5">구분</th>
                 <th className="px-6 py-5">과정명</th>
@@ -137,13 +138,13 @@ export default function EducationHubPage() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {SCHEDULE_DATA.map((item, index) => (
-                <tr key={index} className="hover:bg-[#f5f3f3] transition-colors">
+                <tr key={index} className="hover:bg-neutral-100 transition-colors">
                   <td className="px-6 py-5 text-gray-600">{item.date}</td>
                   <td className="px-6 py-5">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      item.type === '온라인' ? 'bg-[#2e7d32]/10 text-[#2e7d32]' :
-                      item.type === '오프라인' ? 'bg-[#1a3a5c]/10 text-[#1a3a5c]' :
-                      'bg-purple-100 text-purple-800'
+                      item.type === '온라인' ? 'bg-cta-700/10 text-cta-700' :
+                      item.type === '오프라인' ? 'bg-brand-600/10 text-brand-600' :
+                      'bg-accent-200 text-brand-900'
                     }`}>
                       {item.type}
                     </span>
@@ -164,61 +165,50 @@ export default function EducationHubPage() {
 
       {/* Application Form */}
       <section className="mb-24">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-8 text-center md:text-left">수강 신청 정보 입력</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-8 text-center md:text-left">수강 신청 정보 입력</h2>
         <div className="bg-white rounded-xl p-8 shadow-[0_20px_40px_rgba(27,28,28,0.06)]">
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">이름 *</label>
-              <input type="text" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent" placeholder="성명을 입력하세요" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">연락처 *</label>
-              <input type="tel" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent" placeholder="010-0000-0000" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">이메일 *</label>
-              <input type="email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent" placeholder="name@example.com" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">선택한 교육과정</label>
-              <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent">
-                <option>보이스피싱 예방지도사</option>
-                <option>생활안전지도사</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">수강 방식</label>
-              <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent">
-                <option>온라인 교육</option>
-                <option>오프라인 교육</option>
-                <option>기관·단체 교육</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">희망 기수/일정</label>
-              <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent">
-                <option>2026.03.15 - 보이스피싱 예방지도사 6기</option>
-                <option>2026.04.12 - 보이스피싱 예방지도사 7기</option>
-              </select>
-            </div>
+            <Input label="이름" required type="text" placeholder="성명을 입력하세요" />
+            <Input label="연락처" required type="tel" placeholder="010-0000-0000" />
+            <Input label="이메일" required type="email" placeholder="name@example.com" />
+
+            <Select label="선택한 교육과정">
+              <option>보이스피싱 예방지도사</option>
+              <option>생활안전지도사</option>
+            </Select>
+
+            <Select label="수강 방식">
+              <option>온라인 교육</option>
+              <option>오프라인 교육</option>
+              <option>기관·단체 교육</option>
+            </Select>
+
+            <Select label="희망 기수/일정">
+              <option>2026.03.15 - 보이스피싱 예방지도사 6기</option>
+              <option>2026.04.12 - 보이스피싱 예방지도사 7기</option>
+            </Select>
+
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">특이사항/질문 (선택사항)</label>
-              <textarea rows={4} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2e7d32] focus:border-transparent" placeholder="궁금한 사항이나 요청사항을 입력하세요"></textarea>
+              <Textarea
+                label="특이사항/질문 (선택사항)"
+                rows={4}
+                placeholder="궁금한 사항이나 요청사항을 입력하세요"
+              />
             </div>
             <div className="md:col-span-2">
               <label className="flex items-center gap-3">
-                <input type="checkbox" className="w-5 h-5 text-[#2e7d32] border-gray-300 rounded focus:ring-[#2e7d32]" />
+                <input type="checkbox" className="w-5 h-5 text-cta-700 border-gray-300 rounded focus:ring-cta-700" />
                 <span className="text-sm text-gray-700">
-                  <Link href="/privacy" className="text-[#2e7d32] underline">개인정보처리방침</Link>에 동의합니다 *
+                  <Link href="/privacy" className="text-cta-700 underline">개인정보처리방침</Link>에 동의합니다 *
                 </span>
               </label>
             </div>
             <div className="md:col-span-2">
-              <button type="submit" className="w-full bg-[#2e7d32] text-white py-4 px-8 rounded-xl font-bold text-lg hover:bg-[#217128] transition-colors">
+              <Button type="submit" size="lg" className="w-full">
                 수강 신청하기
-              </button>
+              </Button>
               <div className="mt-4 text-center text-sm text-gray-600">
-                <p>1-2 영업일 내 확인 연락 | <Link href="/refund" className="text-[#2e7d32] hover:underline">취소/환불 규정 보기</Link></p>
+                <p>1-2 영업일 내 확인 연락 | <Link href="/refund" className="text-cta-700 hover:underline">취소/환불 규정 보기</Link></p>
               </div>
             </div>
           </form>
@@ -227,11 +217,11 @@ export default function EducationHubPage() {
 
       {/* FAQ */}
       <section className="mb-24">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-8 text-center md:text-left">자주 묻는 질문</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-8 text-center md:text-left">자주 묻는 질문</h2>
         <div className="space-y-4">
           {FAQ_DATA.map((faq, index) => (
             <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <h3 className="font-bold text-[#1a3a5c] mb-3">Q. {faq.q}</h3>
+              <h3 className="font-bold text-brand-600 mb-3">Q. {faq.q}</h3>
               <p className="text-gray-700 leading-relaxed">A. {faq.a}</p>
             </div>
           ))}
@@ -240,17 +230,17 @@ export default function EducationHubPage() {
 
       {/* Inquiry Fallback */}
       <section className="text-center">
-        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-[#1a3a5c] mb-6">결정이 어려우세요?</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold text-brand-600 mb-6">결정이 어려우세요?</h2>
         <p className="text-gray-600 mb-8">전문 상담을 통해 최적의 교육과정을 안내해드립니다.</p>
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="tel:042-254-8060" className="bg-[#1a3a5c] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#1a3a5c] transition-colors flex items-center gap-2">
+          <a href="tel:042-254-8060" className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-md font-bold hover:bg-brand-700 transition-colors">
             <Phone size={20} />
             042-254-8060 전화 상담
           </a>
-          <button className="bg-[#2e7d32] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#217128] transition-colors">
+          <Button size="lg">
             카카오톡 상담
-          </button>
-          <Link href="/contact/education" className="border-2 border-[#1a3a5c] text-[#1a3a5c] px-8 py-4 rounded-xl font-bold hover:bg-[#1a3a5c] hover:text-white transition-colors">
+          </Button>
+          <Link href="/contact/education" className="border-2 border-brand-600 text-brand-600 px-8 py-4 rounded-xl font-bold hover:bg-brand-600 hover:text-white transition-colors">
             온라인 문의
           </Link>
         </div>
