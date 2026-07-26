@@ -221,28 +221,31 @@ test.describe('성능 테스트', () => {
     await context.close();
   });
 
-  test('캐시 효율성 확인', async ({ page }) => {
-    // 첫 번째 방문
+  test('정적 자산에 캐시 헤더가 설정된다', async ({ page }) => {
+    // 이전 버전은 요청 수만 console.log 하고 expect가 없어 아무것도 검증하지 않았다.
+    // (게다가 리스너를 goto 뒤에 붙여 첫 방문 요청은 항상 0으로 집계됐다)
+    // 캐시의 실제 계약은 "빌드 산출물에 장기 캐시 헤더가 붙는가"이므로 그것을 본다.
+    const staticAssets: Array<{ url: string; cacheControl: string | undefined }> = [];
+    page.on('response', (response) => {
+      const url = response.url();
+      if (url.includes('/_next/static/')) {
+        staticAssets.push({ url, cacheControl: response.headers()['cache-control'] });
+      }
+    });
+
+    // 홈 히어로에 자동재생 비디오가 있어 networkidle이 오지 않는다 → load 기준으로 대기
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
 
-    const firstVisitRequests: string[] = [];
-    page.on('response', response => {
-      firstVisitRequests.push(response.url());
-    });
+    expect(staticAssets.length, '정적 자산 요청이 하나도 관측되지 않음').toBeGreaterThan(0);
 
-    // 페이지 새로고침 (캐시된 리소스 확인)
-    await page.reload();
-    await page.waitForLoadState('networkidle');
-
-    const secondVisitRequests: string[] = [];
-    page.on('response', response => {
-      secondVisitRequests.push(response.url());
-    });
-
-    // 두 번째 방문에서 요청 수가 줄어들었는지 확인 (캐시 적용)
-    console.log(`First visit requests: ${firstVisitRequests.length}`);
-    console.log(`Second visit requests: ${secondVisitRequests.length}`);
+    const withoutCache = staticAssets.filter(
+      (a) => !a.cacheControl || !a.cacheControl.includes('max-age'),
+    );
+    expect(
+      withoutCache.map((a) => a.url),
+      '빌드 해시가 붙은 정적 자산에는 max-age 캐시 헤더가 있어야 한다',
+    ).toEqual([]);
   });
 
   test('Core Web Vitals 종합 측정', async ({ page }) => {

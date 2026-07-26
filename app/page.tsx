@@ -141,7 +141,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-navy-900 leading-tight mb-4">
               &ldquo;누구도 소외되지 않는 안전한 도시를 그립니다.&rdquo;
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg text-neutral-700 leading-relaxed">
               35년간 쌓아온 시민운동의 공신력을 기반으로, 일상의 위험 요인부터
               지역사회 공동체의 안전 역량까지 함께 키워갑니다.
             </p>
@@ -396,7 +396,7 @@ export default function HomePage() {
       {/* ───────── Partners Strip ───────── */}
       <section className="py-14 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
-          <h3 className="text-gray-500 text-xs md:text-sm font-bold uppercase tracking-widest mb-10">
+          <h3 className="text-neutral-600 text-xs md:text-sm font-bold uppercase tracking-widest mb-10">
             함께하는 파트너 기관
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 text-gray-400">

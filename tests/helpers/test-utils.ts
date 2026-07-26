@@ -71,9 +71,21 @@ export class TestUtils {
       await this.page.setViewportSize(viewport);
       await this.page.waitForLoadState('domcontentloaded');
 
-      // Check if navigation is accessible on all screen sizes
-      const nav = this.page.locator('nav[role="navigation"]');
-      await expect(nav).toBeVisible();
+      // 화면 크기에 따라 내비 형태가 달라진다.
+      // 좁은 화면에서는 데스크톱 메뉴가 숨고 햄버거 버튼이 나오는 것이 정상이므로,
+      // "특정 요소가 보이는가"가 아니라 "어떤 형태로든 내비에 접근 가능한가"를 검증한다.
+      const desktopNav = this.page.locator('header nav').first();
+      const mobileMenuButton = this.page
+        .locator('header button[aria-expanded], header button[aria-label*="메뉴"]')
+        .first();
+
+      const navVisible = await desktopNav.isVisible().catch(() => false);
+      const menuButtonVisible = await mobileMenuButton.isVisible().catch(() => false);
+
+      expect(
+        navVisible || menuButtonVisible,
+        `${viewport.width}px에서 내비게이션에 접근할 수단이 없음`,
+      ).toBe(true);
     }
   }
 
@@ -96,29 +108,27 @@ export class TestUtils {
 
   // Link checker
   async checkAllLinks(): Promise<{ working: string[]; broken: string[] }> {
-    const links = await this.page.locator('a[href]').all();
+    // href를 먼저 한 번에 수집한다. 예전 구현은 링크마다 page.goto로 이동해서
+    // (a) 매우 느리고 (b) 두 번째 링크부터는 '이동한 페이지'의 링크를 보게 되는 문제가 있었다.
+    const hrefs = await this.page.$$eval('a[href]', (anchors) =>
+      anchors.map((a) => a.getAttribute('href') ?? '').filter(Boolean),
+    );
+
+    // 내부 링크만, 중복 제거해서 확인한다 (외부 사이트 가용성에 테스트가 흔들리지 않도록)
+    const internal = [...new Set(hrefs)].filter(
+      (h) => h.startsWith('/') && !h.startsWith('//'),
+    );
+
     const working: string[] = [];
     const broken: string[] = [];
 
-    for (const link of links) {
-      const href = await link.getAttribute('href');
-      if (!href) continue;
-
+    for (const href of internal) {
       try {
-        if (href.startsWith('http')) {
-          const response = await this.page.request.get(href);
-          if (response.ok()) {
-            working.push(href);
-          } else {
-            broken.push(href);
-          }
-        } else {
-          // Internal link
-          await this.page.goto(href);
-          working.push(href);
-        }
+        const response = await this.page.request.get(href);
+        if (response.ok()) working.push(href);
+        else broken.push(`${href} (${response.status()})`);
       } catch {
-        broken.push(href);
+        broken.push(`${href} (요청 실패)`);
       }
     }
 

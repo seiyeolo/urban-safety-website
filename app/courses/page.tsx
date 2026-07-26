@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, Filter, LayoutDashboard, LockKeyhole, PlayCir
 import { courseCategories, dashboardInspiration, onlineCourses, safetyGates } from '@/lib/mockCourses'
 
 export const metadata: Metadata = {
-  title: '온라인 강의실 | 도시안전디자인센터',
+  title: '온라인 강의실',
   description: '오프라인 수강생이 온라인에서 이어 학습할 수 있는 mock 기반 강의 카탈로그입니다.',
 }
 

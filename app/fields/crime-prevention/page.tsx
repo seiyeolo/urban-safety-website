@@ -4,7 +4,7 @@ import { Shield, Eye, Users, BookOpen, Target, CheckCircle, ArrowRight, Clock, M
 import { Badge, Button, Card } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: '범죄예방 - 대전경실련 도시안전디자인센터',
+  title: '범죄예방',
   description: 'CPTED 환경설계를 통한 범죄예방. 보이스피싱부터 생활범죄까지, 시민이 직접 참여하는 예방 중심의 안전 프로그램.',
 }
 

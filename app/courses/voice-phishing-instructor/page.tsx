@@ -4,7 +4,7 @@ import { ArrowRight, Award, CheckCircle2, Clock, Download, GraduationCap, Shield
 import { onlineCourses, safetyGates, voicePhishingLessons } from '@/lib/mockCourses'
 
 export const metadata: Metadata = {
-  title: '보이스피싱 예방지도사 온라인 보충과정 | 도시안전디자인센터',
+  title: '보이스피싱 예방지도사 온라인 보충과정',
   description: '보이스피싱 예방지도사 오프라인 수강생을 위한 mock 기반 온라인 보충과정 상세 화면입니다.',
 }
 

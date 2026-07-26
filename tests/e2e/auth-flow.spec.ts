@@ -1,190 +1,146 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('인증 플로우 - 회원가입/로그인', () => {
+/**
+ * 인증 플로우 E2E.
+ *
+ * 이전 버전은 홈에서 "로그인" 버튼을 못 찾으면 `test.skip(true, '로그인 기능이
+ * 구현되지 않음')`으로 건너뛰었다. 로그인은 실제로 구현돼 있으므로 이 skip은
+ * 사실과 달랐고, 헤더 레이아웃이 바뀌면 인증 검증 전체가 조용히 사라졌다.
+ * → 로그인/회원가입 페이지로 직접 이동해 항상 검증한다.
+ *
+ * 실제 로그인 성공 흐름만 계정이 필요하며, 그 경우에만 사유를 명시해 skip한다.
+ *   E2E_TEST_EMAIL / E2E_TEST_PASSWORD
+ */
+
+const TEST_EMAIL = process.env.E2E_TEST_EMAIL;
+const TEST_PASSWORD = process.env.E2E_TEST_PASSWORD;
+const hasTestAccount = Boolean(TEST_EMAIL && TEST_PASSWORD);
+
+test.describe('로그인 페이지', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/auth/login');
+    await page.waitForLoadState('domcontentloaded');
   });
 
-  test('로그인 페이지 접근 및 폼 확인', async ({ page }) => {
-    // 로그인 링크/버튼 찾기
-    const loginButton = page.locator('a:has-text("로그인"), button:has-text("로그인")');
+  test('로그인 폼이 렌더링된다', async ({ page }) => {
+    await expect(page.locator('input[type="email"]')).toBeVisible();
+    await expect(page.locator('input[type="password"]')).toBeVisible();
+    await expect(page.locator('button[type="submit"]')).toBeVisible();
+  });
 
-    if (await loginButton.isVisible()) {
-      await loginButton.click();
-      await page.waitForLoadState('domcontentloaded');
-
-      // 로그인 폼 요소들 확인
-      await expect(page.locator('input[type="email"], input[name="email"]')).toBeVisible();
-      await expect(page.locator('input[type="password"], input[name="password"]')).toBeVisible();
-      await expect(page.locator('button[type="submit"]:has-text("로그인")')).toBeVisible();
-
-      // 폼 라벨 확인
-      await expect(page.locator('label:has-text("이메일"), label:has-text("email")')).toBeVisible();
-      await expect(page.locator('label:has-text("비밀번호"), label:has-text("password")')).toBeVisible();
-    } else {
-      test.skip(true, '로그인 기능이 구현되지 않음');
+  test('이메일·비밀번호 입력에 라벨이 연결되어 있다 (스크린리더 접근성)', async ({ page }) => {
+    for (const type of ['email', 'password']) {
+      const input = page.locator(`input[type="${type}"]`).first();
+      const id = await input.getAttribute('id');
+      expect(id, `input[type=${type}]에 id가 없어 라벨을 연결할 수 없음`).toBeTruthy();
+      await expect(page.locator(`label[for="${id}"]`)).toBeVisible();
     }
   });
 
-  test('로그인 폼 검증 - 잘못된 입력', async ({ page }) => {
-    // 로그인 페이지로 이동
-    const loginButton = page.locator('a:has-text("로그인"), button:has-text("로그인")');
+  test('필수 입력을 비우고 제출하면 브라우저 검증이 막는다', async ({ page }) => {
+    await page.locator('button[type="submit"]').click();
+    // 제출이 막혀 로그인 페이지에 머물러야 한다
+    await expect(page).toHaveURL(/\/auth\/login/);
+  });
 
-    if (await loginButton.isVisible()) {
-      await loginButton.click();
+  test('잘못된 자격 증명은 오류를 보여주고 통과시키지 않는다', async ({ page }) => {
+    await page.locator('input[type="email"]').fill('nonexistent-user@example.invalid');
+    await page.locator('input[type="password"]').fill('definitely-wrong-password');
+    await page.locator('button[type="submit"]').click();
 
-      // 이메일과 비밀번호 필드 확인
-      const emailField = page.locator('input[type="email"], input[name="email"]');
-      const passwordField = page.locator('input[type="password"], input[name="password"]');
-      const submitButton = page.locator('button[type="submit"]:has-text("로그인")');
+    // 대시보드로 넘어가면 안 된다
+    await page.waitForTimeout(3000);
+    await expect(page).not.toHaveURL(/\/dashboard/);
+  });
 
-      // 빈 폼 제출 시 검증
-      await submitButton.click();
+  test('소셜 로그인 수단이 제공된다', async ({ page }) => {
+    const social = page.locator('button:has-text("구글"), button:has-text("카카오")');
+    expect(await social.count()).toBeGreaterThan(0);
+  });
 
-      // 에러 메시지 확인
-      const errorMessages = page.locator('.error, [role="alert"], [data-testid="error"]');
-      if (await errorMessages.count() > 0) {
-        await expect(errorMessages.first()).toBeVisible();
-      }
+  test('회원가입 페이지로 이동할 수 있다', async ({ page }) => {
+    await page.locator('a[href*="signup"]').first().click();
+    await expect(page).toHaveURL(/signup/);
+  });
+});
 
-      // 잘못된 이메일 형식 테스트
-      await emailField.fill('invalid-email');
-      await passwordField.fill('password123');
-      await submitButton.click();
+test.describe('회원가입 페이지', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/auth/signup');
+    await page.waitForLoadState('domcontentloaded');
+  });
 
-      // HTML5 validation 또는 커스텀 에러 메시지 확인
-      const isEmailInvalid = await emailField.evaluate(el => !(el as HTMLInputElement).checkValidity());
-      expect(isEmailInvalid).toBe(true);
+  test('회원가입 폼이 렌더링된다', async ({ page }) => {
+    await expect(page.locator('input[type="email"]')).toBeVisible();
+    await expect(page.locator('input[type="password"]').first()).toBeVisible();
+    await expect(page.locator('button[type="submit"]')).toBeVisible();
+  });
 
-      // 올바른 이메일 형식으로 수정
-      await emailField.fill('test@example.com');
-      await passwordField.fill('short'); // 너무 짧은 비밀번호
-      await submitButton.click();
+  test('모든 입력에 라벨이 연결되어 있다', async ({ page }) => {
+    const inputs = page.locator('input:not([type="checkbox"]):not([type="hidden"])');
+    const count = await inputs.count();
+    expect(count).toBeGreaterThan(0);
 
-      // 비밀번호 길이 검증 (있는 경우)
-      const passwordError = page.locator('[data-testid="password-error"], .password-error');
-      if (await passwordError.isVisible()) {
-        await expect(passwordError).toContainText(/길이|length|짧|short/i);
-      }
-    } else {
-      test.skip(true, '로그인 기능이 구현되지 않음');
+    for (let i = 0; i < count; i++) {
+      const id = await inputs.nth(i).getAttribute('id');
+      expect(id, `${i}번째 입력에 id가 없음`).toBeTruthy();
+      expect(await page.locator(`label[for="${id}"]`).count()).toBeGreaterThan(0);
     }
   });
 
-  test('회원가입 페이지 접근 및 폼 확인', async ({ page }) => {
-    // 회원가입 링크/버튼 찾기
-    const signupButton = page.locator('a:has-text("회원가입"), button:has-text("회원가입"), a:has-text("가입")');
+  test('약관 동의 없이는 가입이 진행되지 않는다', async ({ page }) => {
+    await page.locator('button[type="submit"]').click();
+    await page.waitForTimeout(1000);
+    await expect(page).toHaveURL(/signup/);
+  });
+});
 
-    if (await signupButton.isVisible()) {
-      await signupButton.click();
-      await page.waitForLoadState('domcontentloaded');
+test.describe('보호 경로', () => {
+  // 미인증 사용자가 개인 데이터 화면에 접근하지 못하는지 — 가장 중요한 계약
+  for (const path of ['/dashboard', '/dashboard/learning']) {
+    test(`미로그인 상태로 ${path} 접근 시 로그인 페이지로 보낸다`, async ({ page }) => {
+      await page.goto(path);
+      await page.waitForURL(/\/auth\/login/, { timeout: 15_000 });
+      await expect(page).toHaveURL(/\/auth\/login/);
+    });
+  }
 
-      // 회원가입 폼 기본 요소들 확인
-      await expect(page.locator('input[type="email"], input[name="email"]')).toBeVisible();
-      await expect(page.locator('input[type="password"], input[name="password"]')).toBeVisible();
+  test('미로그인 상태에서는 개인 정보가 화면에 남지 않는다', async ({ page }) => {
+    await page.goto('/dashboard');
+    await page.waitForURL(/\/auth\/login/, { timeout: 15_000 });
+    // 대시보드 본문이 잠깐이라도 렌더링된 채 남아 있으면 안 된다
+    await expect(page.locator('text=빠른 실행')).toHaveCount(0);
+  });
+});
 
-      // 이름 필드 확인
-      const nameField = page.locator('input[name="name"], input[name="fullName"]');
-      if (await nameField.isVisible()) {
-        await expect(nameField).toBeVisible();
-      }
+test.describe('로그인 성공 흐름', () => {
+  test.skip(
+    !hasTestAccount,
+    'E2E_TEST_EMAIL / E2E_TEST_PASSWORD 미설정 — 테스트 전용 계정을 준비한 뒤 실행하세요',
+  );
 
-      // 전화번호 필드 확인
-      const phoneField = page.locator('input[name="phone"], input[type="tel"]');
-      if (await phoneField.isVisible()) {
-        await expect(phoneField).toBeVisible();
-      }
+  test('올바른 자격 증명으로 로그인하면 강의실로 이동한다', async ({ page }) => {
+    await page.goto('/auth/login');
+    await page.locator('input[type="email"]').fill(TEST_EMAIL!);
+    await page.locator('input[type="password"]').fill(TEST_PASSWORD!);
+    await page.locator('button[type="submit"]').click();
 
-      // 약관 동의 체크박스 확인
-      const termsCheckbox = page.locator('input[type="checkbox"]:near(text="약관"), input[type="checkbox"]:near(text="동의")');
-      if (await termsCheckbox.isVisible()) {
-        await expect(termsCheckbox).toBeVisible();
-      }
-
-      // 제출 버튼 확인
-      await expect(page.locator('button[type="submit"]:has-text("가입"), button[type="submit"]:has-text("회원가입")')).toBeVisible();
-    } else {
-      test.skip(true, '회원가입 기능이 구현되지 않음');
-    }
+    await page.waitForURL(/\/dashboard/, { timeout: 20_000 });
+    await expect(page).toHaveURL(/\/dashboard/);
   });
 
-  test('소셜 로그인 버튼 확인', async ({ page }) => {
-    // 소셜 로그인 페이지로 이동 시도
-    const loginButton = page.locator('a:has-text("로그인"), button:has-text("로그인")');
+  test('로그인 후 로그아웃하면 세션이 해제된다', async ({ page }) => {
+    await page.goto('/auth/login');
+    await page.locator('input[type="email"]').fill(TEST_EMAIL!);
+    await page.locator('input[type="password"]').fill(TEST_PASSWORD!);
+    await page.locator('button[type="submit"]').click();
+    await page.waitForURL(/\/dashboard/, { timeout: 20_000 });
 
-    if (await loginButton.isVisible()) {
-      await loginButton.click();
+    await page.locator('button:has-text("로그아웃")').first().click();
 
-      // Google 로그인 버튼 확인
-      const googleLogin = page.locator('button:has-text("Google"), a:has-text("Google"), [data-testid="google-login"]');
-      if (await googleLogin.isVisible()) {
-        await expect(googleLogin).toBeEnabled();
-
-        // 버튼 클릭 시 새 탭이 열리는지 확인 (실제 로그인은 하지 않음)
-        await expect(googleLogin).toHaveAttribute('target', '_blank');
-      }
-
-      // Kakao 로그인 버튼 확인
-      const kakaoLogin = page.locator('button:has-text("Kakao"), a:has-text("카카오"), [data-testid="kakao-login"]');
-      if (await kakaoLogin.isVisible()) {
-        await expect(kakaoLogin).toBeEnabled();
-      }
-
-      // Naver 로그인 버튼 확인
-      const naverLogin = page.locator('button:has-text("Naver"), a:has-text("네이버"), [data-testid="naver-login"]');
-      if (await naverLogin.isVisible()) {
-        await expect(naverLogin).toBeEnabled();
-      }
-    } else {
-      test.skip(true, '로그인 기능이 구현되지 않음');
-    }
-  });
-
-  test('비밀번호 재설정 링크 확인', async ({ page }) => {
-    const loginButton = page.locator('a:has-text("로그인"), button:has-text("로그인")');
-
-    if (await loginButton.isVisible()) {
-      await loginButton.click();
-
-      // 비밀번호 찾기/재설정 링크 확인
-      const forgotPasswordLink = page.locator('a:has-text("비밀번호"), a:has-text("찾기"), a:has-text("재설정")');
-
-      if (await forgotPasswordLink.isVisible()) {
-        await expect(forgotPasswordLink).toBeVisible();
-
-        // 링크 클릭 시 적절한 페이지로 이동하는지 확인
-        await forgotPasswordLink.click();
-        await page.waitForLoadState('domcontentloaded');
-
-        // 비밀번호 재설정 폼 또는 안내 메시지 확인
-        const resetForm = page.locator('form:has(input[type="email"])');
-        const resetMessage = page.locator('text=/이메일|email|재설정|reset/i');
-
-        const hasResetForm = await resetForm.isVisible();
-        const hasResetMessage = await resetMessage.isVisible();
-
-        expect(hasResetForm || hasResetMessage).toBe(true);
-      }
-    } else {
-      test.skip(true, '로그인 기능이 구현되지 않음');
-    }
-  });
-
-  test('로그아웃 기능 (로그인 후)', async ({ page }) => {
-    // 이미 로그인된 상태라고 가정하고 로그아웃 버튼 찾기
-    const logoutButton = page.locator('button:has-text("로그아웃"), a:has-text("로그아웃")');
-
-    if (await logoutButton.isVisible()) {
-      await logoutButton.click();
-
-      // 로그아웃 후 메인 페이지로 리다이렉트 또는 로그인 상태 변경 확인
-      await page.waitForLoadState('domcontentloaded');
-
-      // 로그인 버튼이 다시 나타나는지 확인
-      const loginButtonAfterLogout = page.locator('a:has-text("로그인"), button:has-text("로그인")');
-      await expect(loginButtonAfterLogout).toBeVisible();
-    } else {
-      test.skip(true, '현재 로그인되지 않았거나 로그아웃 기능이 구현되지 않음');
-    }
+    // 로그아웃 후 보호 경로에 다시 접근하면 로그인 페이지로 가야 한다
+    await page.goto('/dashboard');
+    await page.waitForURL(/\/auth\/login/, { timeout: 15_000 });
+    await expect(page).toHaveURL(/\/auth\/login/);
   });
 });

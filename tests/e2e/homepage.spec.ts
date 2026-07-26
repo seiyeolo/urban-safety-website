@@ -18,7 +18,7 @@ test.describe('Homepage - 메인 페이지 접근성', () => {
 
     // 메인 헤더 요소들 확인
     await expect(page.locator('header')).toBeVisible();
-    await expect(page.locator('nav[role="navigation"]')).toBeVisible();
+    await expect(page.locator('header nav').first()).toBeVisible();
 
     // 메인 콘텐츠 영역 확인
     await expect(page.locator('main, [role="main"]')).toBeVisible();

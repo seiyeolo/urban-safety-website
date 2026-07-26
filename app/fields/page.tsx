@@ -4,7 +4,7 @@ import { Shield, Heart, ArrowRight, CheckCircle, HandHeart, GraduationCap, Wrenc
 import { Button } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: '핵심분야 - 대전경실련 도시안전디자인센터',
+  title: '핵심분야',
   description: '범죄예방과 생활안전, 두 핵심분야를 통해 시민이 안전한 일상을 누릴 수 있도록 지원합니다.',
 }
 

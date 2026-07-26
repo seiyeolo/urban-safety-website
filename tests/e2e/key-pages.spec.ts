@@ -16,8 +16,8 @@ test.describe('핵심 정보 페이지 테스트', () => {
     // 핵심 콘텐츠 영역 확인
     await expect(page.locator('main, [role="main"]')).toBeVisible();
 
-    // 분야별 콘텐츠 카드/섹션 확인
-    const contentSections = page.locator('.field, .area, .section, [data-testid*="field"]');
+    // 분야별 콘텐츠 블록 확인 (Tailwind 프로젝트라 .field 같은 클래스는 없다 — 시맨틱 구조로 검증)
+    const contentSections = page.locator('main section, main article');
     expect(await contentSections.count()).toBeGreaterThan(0);
 
     // 각 분야 제목과 설명이 있는지 확인
@@ -99,10 +99,13 @@ test.describe('핵심 정보 페이지 테스트', () => {
     expect(hasScheduleInfo || hasTimeInfo).toBe(true);
 
     // 교육 신청 버튼 확인
-    const applyButton = page.locator('button:has-text("신청"), a:has-text("신청"), button:has-text("등록"), a:has-text("등록")');
-    if (await applyButton.isVisible()) {
-      await expect(applyButton).toBeEnabled();
-    }
+    // 헤더 CTA('자격증 신청')와 구분되도록 본문 영역으로 한정한다
+    const applyButton = page
+      .locator('main')
+      .locator('button:has-text("신청"), a:has-text("신청"), button:has-text("등록"), a:has-text("등록")')
+      .first();
+    await expect(applyButton).toBeVisible();
+    await expect(applyButton).toBeEnabled();
   });
 
   test('/contact - 문의 페이지', async ({ page }) => {
@@ -175,24 +178,26 @@ test.describe('핵심 정보 페이지 테스트', () => {
       await expect(page.locator('header')).toBeVisible();
 
       // 로고가 메인 페이지로 연결되는지 확인
-      const logo = page.locator('a[href="/"], img[alt*="로고"], [data-testid="logo"]');
-      if (await logo.isVisible()) {
-        await expect(logo).toHaveAttribute('href', '/');
-      }
+      // 로고 링크(헤더 내 홈 링크)만 대상 — img에는 href가 없어 함께 잡으면 strict mode 위반
+      const logo = page.locator('header a[href="/"]').first();
+      await expect(logo).toBeVisible();
+      await expect(logo).toHaveAttribute('href', '/');
 
-      // 공통 네비게이션 메뉴 확인
-      await expect(page.locator('nav')).toBeVisible();
+      // 공통 네비게이션 메뉴 확인 (breadcrumb도 <nav>이므로 헤더 내비로 한정)
+      await expect(page.locator('header nav').first()).toBeVisible();
 
       // 공통 푸터 확인
       await expect(page.locator('footer')).toBeVisible();
 
       // 각 페이지에서 다른 페이지로의 네비게이션 링크 확인
-      const navLinks = page.locator('nav a');
+      const navLinks = page.locator('header nav a');
       expect(await navLinks.count()).toBeGreaterThan(3);
     }
   });
 
   test('페이지 간 링크 연결성', async ({ page }) => {
+    // 홈의 내부 링크를 전수 확인하므로 기본 30초로는 부족하다
+    test.setTimeout(120_000);
     await page.goto('/');
     const utils = new TestUtils(page);
 

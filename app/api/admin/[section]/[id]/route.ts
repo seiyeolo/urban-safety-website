@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 import { isAdminRequest } from '@/lib/admin-auth'
-import { deleteSectionItem, updateSectionItem } from '@/lib/content-store'
+import {
+  ContentStoreWriteError, deleteSectionItem, updateSectionItem
+} from '@/lib/content-store'
 import { getSection, sectionSchemas } from '@/lib/admin-schemas'
 
 export async function PUT(
@@ -46,6 +48,10 @@ export async function PUT(
     const item = await updateSectionItem(section, id, validationResult.data)
     return NextResponse.json({ item })
   } catch (error) {
+    if (error instanceof ContentStoreWriteError) {
+      console.error('[admin API] 저장소 쓰기 차단:', error.message)
+      return NextResponse.json({ error: error.message, code: error.code }, { status: 503 })
+    }
     if (error instanceof Error && error.message === 'NOT_FOUND') {
       return NextResponse.json({ error: 'Not found' }, { status: 404 })
     }
@@ -69,6 +75,18 @@ export async function DELETE(
     return NextResponse.json({ error: 'Invalid section' }, { status: 404 })
   }
 
-  await deleteSectionItem(section, id)
-  return NextResponse.json({ success: true })
+  try {
+    await deleteSectionItem(section, id)
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    if (error instanceof ContentStoreWriteError) {
+      console.error('[admin API] 저장소 쓰기 차단:', error.message)
+      return NextResponse.json({ error: error.message, code: error.code }, { status: 503 })
+    }
+    if (error instanceof Error && error.message === 'NOT_FOUND') {
+      return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    }
+    console.error('관리자 DELETE 처리 중 오류:', error)
+    return NextResponse.json({ error: 'Delete failed' }, { status: 500 })
+  }
 }

@@ -4,7 +4,7 @@ import { MapPin, Copy, Bus, Train, Car, Clock, Phone, CheckCircle, ArrowRight } 
 import { Button } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: '오시는 길 - 대전경실련 도시안전디자인센터',
+  title: '오시는 길',
   description: '대전경실련 도시안전디자인센터 위치 안내. 시민의 발걸음이 안전한 도시의 시작입니다.',
 }
 

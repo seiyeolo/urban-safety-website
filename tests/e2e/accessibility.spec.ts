@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TestUtils } from '../helpers/test-utils';
+import { contrastRatio, parseRgb, relativeLuminance, requiredRatio } from '../helpers/contrast';
 
 test.describe('접근성 테스트 (WCAG 2.1 AA)', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,8 +7,6 @@ test.describe('접근성 테스트 (WCAG 2.1 AA)', () => {
   });
 
   test('키보드 네비게이션 - Tab 순서', async ({ page }) => {
-    const utils = new TestUtils(page);
-
     // 탭 가능한 요소들 확인
     const focusableElements = await page.locator('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])').all();
     expect(focusableElements.length).toBeGreaterThan(0);
@@ -84,45 +82,93 @@ test.describe('접근성 테스트 (WCAG 2.1 AA)', () => {
     }
   });
 
-  test('색상 대비 검사', async ({ page }) => {
-    const utils = new TestUtils(page);
+  test('색상 대비 검사 (WCAG 2.1 AA)', async ({ page }) => {
+    // 텍스트가 있는 요소만 골라 실제 WCAG 명암비로 검사한다.
+    // 배경이 투명하면 조상을 거슬러 올라가 실제 배경색을 찾는다.
+    const samples = await page.evaluate(() => {
+      const selectors = ['h1', 'h2', 'h3', 'p', 'a', 'button', 'label'];
+      const out: Array<{
+        selector: string; text: string; color: string; background: string;
+        fontSize: number; fontWeight: number;
+      }> = [];
 
-    // 주요 텍스트 요소들의 색상 대비 확인
-    const textElements = [
-      'h1', 'h2', 'h3', 'p', 'a', 'button', 'label'
-    ];
+      // 배경을 거슬러 올라가며 찾는다. gradient·배경이미지를 만나면 단일 색으로
+      // 환산할 수 없으므로 'undeterminable'을 돌려 검사에서 제외한다.
+      // (임의로 흰색이라고 가정하면 어두운 히어로 위의 흰 글씨가 위반으로 오탐된다)
+      const resolveBackground = (el: Element): string => {
+        let node: Element | null = el;
+        while (node) {
+          const cs = window.getComputedStyle(node);
+          if (cs.backgroundImage && cs.backgroundImage !== 'none') return 'undeterminable';
 
-    for (const selector of textElements) {
-      const elements = await page.locator(selector).all();
+          const bg = cs.backgroundColor;
+          const alpha = bg.match(/rgba?\([^)]*,\s*([\d.]+)\s*\)/);
+          const isTransparent = bg === 'transparent' || (alpha ? Number(alpha[1]) === 0 : false);
+          if (!isTransparent) return bg;
+          node = node.parentElement;
+        }
+        return 'rgb(255, 255, 255)';
+      };
 
-      for (const element of elements.slice(0, 5)) { // 처음 5개만 테스트
-        if (await element.isVisible()) {
-          const contrastRatio = await element.evaluate(el => {
-            const styles = window.getComputedStyle(el);
-            const backgroundColor = styles.backgroundColor;
-            const color = styles.color;
+      for (const selector of selectors) {
+        const elements = Array.from(document.querySelectorAll(selector)).slice(0, 5);
+        for (const el of elements) {
+          const rect = el.getBoundingClientRect();
+          const text = (el.textContent ?? '').trim();
+          if (!text || rect.width === 0 || rect.height === 0) continue;
 
-            // RGB 값을 추출하여 간단한 대비 계산
-            const getRGB = (colorStr: string) => {
-              const match = colorStr.match(/rgb\((\d+), (\d+), (\d+)\)/);
-              return match ? [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])] : [0, 0, 0];
-            };
+          const cs = window.getComputedStyle(el);
+          if (cs.visibility === 'hidden' || cs.display === 'none' || Number(cs.opacity) === 0) continue;
 
-            const bgRGB = getRGB(backgroundColor);
-            const textRGB = getRGB(color);
-
-            // 간단한 대비 계산 (실제 WCAG 계산보다 단순화)
-            const bgLuminance = (bgRGB[0] * 0.299 + bgRGB[1] * 0.587 + bgRGB[2] * 0.114) / 255;
-            const textLuminance = (textRGB[0] * 0.299 + textRGB[1] * 0.587 + textRGB[2] * 0.114) / 255;
-
-            return Math.abs(bgLuminance - textLuminance);
+          out.push({
+            selector,
+            text: text.slice(0, 40),
+            color: cs.color,
+            background: resolveBackground(el),
+            fontSize: parseFloat(cs.fontSize),
+            fontWeight: Number(cs.fontWeight) || 400,
           });
-
-          // 최소 대비 확인 (실제로는 더 정교한 계산 필요)
-          expect(contrastRatio).toBeGreaterThan(0.3);
         }
       }
+      return out;
+    });
+
+    expect(samples.length).toBeGreaterThan(0);
+
+    const violations: string[] = [];
+    const skipped: string[] = [];
+    for (const s of samples) {
+      if (s.background === 'undeterminable') {
+        skipped.push(`${s.selector} "${s.text}" (그라데이션/배경이미지 — 자동 판정 불가)`);
+        continue;
+      }
+      const fg = parseRgb(s.color);
+      const bg = parseRgb(s.background);
+      if (!fg || !bg) continue;
+
+      // 흰 텍스트인데 배경도 밝게 판정되면, 실제로는 겹쳐진 배경 레이어
+      // (예: 히어로의 absolute gradient 형제 요소) 위에 있을 가능성이 높다.
+      // 조상 탐색만으로는 그 레이어를 볼 수 없어 자동 판정을 신뢰할 수 없다.
+      if (relativeLuminance(fg) > 0.9 && relativeLuminance(bg) > 0.9) {
+        skipped.push(`${s.selector} "${s.text}" (겹친 배경 레이어 추정 — 자동 판정 불가)`);
+        continue;
+      }
+
+      const ratio = contrastRatio(fg, bg);
+      const required = requiredRatio(s.fontSize, s.fontWeight);
+      if (ratio < required) {
+        violations.push(
+          `${s.selector} "${s.text}" — ${ratio.toFixed(2)}:1 (필요 ${required}:1, ${s.fontSize}px/${s.fontWeight})`
+        );
+      }
     }
+
+    // 자동 판정에서 빠진 항목은 숨기지 않고 로그로 남긴다 (수동 확인 대상)
+    if (skipped.length > 0) {
+      console.log(`[a11y] 명암비 자동 판정 제외 ${skipped.length}건:\n${skipped.join('\n')}`);
+    }
+
+    expect(violations, `WCAG AA 명암비 미달:\n${violations.join('\n')}`).toEqual([]);
   });
 
   test('헤딩 구조 - 논리적 순서', async ({ page }) => {
@@ -155,7 +201,6 @@ test.describe('접근성 테스트 (WCAG 2.1 AA)', () => {
 
     for (const input of formInputs) {
       const inputId = await input.getAttribute('id');
-      const inputName = await input.getAttribute('name');
       const inputType = await input.getAttribute('type');
 
       // hidden input은 제외

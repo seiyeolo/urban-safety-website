@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Heart, Home, Car, Zap, Users, Baby, CheckCircle, ArrowRight, Clock, AlertTriangle } from 'lucide-react'
+import { Heart, Home, Car, Zap, Users, Baby, CheckCircle, ArrowRight, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: '생활안전 - 대전경실련 도시안전디자인센터',
+  title: '생활안전',
   description: '일상생활 속 안전사고 예방과 대응. 가정·교통·화재·전기 안전부터 응급처치까지 실생활 밀착형 안전 교육.',
 }
 

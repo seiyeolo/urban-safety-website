@@ -4,7 +4,7 @@ import { AlertTriangle, BarChart3, CheckCircle2, Filter, Search, Send, ShieldChe
 import { mockEnrollments, safetyGates } from '@/lib/mockCourses'
 
 export const metadata: Metadata = {
-  title: '수강생 배정 mock | 관리자 | 도시안전디자인센터',
+  title: '수강생 배정 mock | 관리자',
   description: '오프라인 수강생을 온라인 강의에 배정하는 관리자 mock 화면입니다.',
 }
 

@@ -8,7 +8,7 @@ import { getContentStore } from '@/lib/content-store'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: '관리자 대시보드 | 도시안전디자인센터',
+  title: '관리자 대시보드',
 }
 
 const MENUS = [

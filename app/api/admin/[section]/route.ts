@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 import { isAdminRequest } from '@/lib/admin-auth'
-import { createSectionItem, getSectionItems } from '@/lib/content-store'
+import {
+  ContentStoreWriteError,
+  createSectionItem,
+  getSectionItems,
+} from '@/lib/content-store'
 import { getSection, sectionSchemas } from '@/lib/admin-schemas'
 
 export async function GET(
@@ -43,7 +47,7 @@ export async function POST(
     let payload: unknown
     try {
       payload = await request.json()
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { error: '요청 본문이 올바른 JSON 형식이 아닙니다' },
         { status: 400 }
@@ -71,6 +75,16 @@ export async function POST(
     const item = await createSectionItem(section, validatedPayload)
     return NextResponse.json({ item }, { status: 201 })
   } catch (error) {
+    // 저장소 설정 문제는 '서버 오류'로 뭉뚱그리지 않고 원인을 그대로 알린다.
+    // (관리자 인증을 통과한 요청이므로 설정 이름 노출은 허용 — 값은 포함하지 않는다)
+    if (error instanceof ContentStoreWriteError) {
+      console.error('[admin API] 저장소 쓰기 차단:', error.message)
+      return NextResponse.json(
+        { error: error.message, code: error.code },
+        { status: 503 }
+      )
+    }
+
     console.error('관리자 API 처리 중 오류:', error)
     return NextResponse.json(
       { error: '서버 내부 오류가 발생했습니다' },

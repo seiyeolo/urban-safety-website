@@ -51,7 +51,10 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json({ success: true })
-  } catch {
+  } catch (error) {
+    // 공개 API이므로 사용자에게는 내부 설정을 노출하지 않는다.
+    // 다만 운영자가 원인을 진단할 수 있도록 서버 로그에는 남긴다.
+    console.error('[contact API] 문의 저장 실패:', error)
     return NextResponse.json(
       { error: '문의 접수 중 오류가 발생했습니다.' },
       { status: 500 }
