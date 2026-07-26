@@ -237,7 +237,7 @@ export default function LocationPage() {
               <ArrowRight size={20} />
               방문 상담 예약하기
             </Button>
-            <a href="tel:042-254-8060" className="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-brand-600 transition-colors flex items-center gap-2">
+            <a href="tel:042-254-8060" className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-md font-bold text-lg hover:bg-brand-700 transition-colors">
               <Phone size={20} />
               바로 전화 (042-254-8060)
             </a>
