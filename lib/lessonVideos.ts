@@ -14,7 +14,7 @@ export const lessonVideoIds: Record<string, string> = {
   'lesson-01': 's6seQtnwMlU', // 1강 — 김창호교수 보이스피싱피해 1
   'lesson-02': 'C3e5vKuF-8w', // 2강 — 김창호교수 보이스피싱피해 2
   'lesson-03': 'Gcln7KApPRo', // 3강 — 김창호교수 보이스피싱피해 3
-  'lesson-04': '',
+  'lesson-04': 'JHkuysQWuCE', // 4강 — 보이스피싱 심화과정 (49분)
   'lesson-05': '',
   'lesson-06': '',
 }
