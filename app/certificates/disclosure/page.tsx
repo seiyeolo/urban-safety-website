@@ -13,11 +13,11 @@ const CERTS_INFO = [
     registDate: '세부 등록일 확인 중',
     govRelated: '금융위원회',
     cost: {
-      수강료: '220,000원',
-      '검정료(응시료)': '30,000원',
-      '자격증 발급비': '50,000원',
+      교육비: '350,000원',
+      '시험 및 자격증 발급비': '100,000원',
       재발급비: '30,000원',
-      '총 취득비용': '300,000원',
+      '총 취득비용': '450,000원',
+      '연회비(자격 유지)': '100,000원',
     },
   },
   {
@@ -26,11 +26,11 @@ const CERTS_INFO = [
     registDate: '세부 등록일 확인 중',
     govRelated: '행정안전부',
     cost: {
-      수강료: '220,000원',
-      '검정료(응시료)': '30,000원',
-      '자격증 발급비': '50,000원',
+      교육비: '350,000원',
+      '시험 및 자격증 발급비': '100,000원',
       재발급비: '30,000원',
-      '총 취득비용': '300,000원',
+      '총 취득비용': '450,000원',
+      '연회비(자격 유지)': '100,000원',
     },
   },
 ]
@@ -110,7 +110,13 @@ export default function DisclosurePage() {
                     <p className="font-semibold text-gray-700 mb-3">비용 안내</p>
                     <div className="space-y-2">
                       {Object.entries(cost).map(([label, value]) => (
-                        <div key={label} className={`flex justify-between ${label === '총 취득비용' ? 'pt-2 border-t border-gray-200 font-bold text-brand-600' : 'text-gray-700'}`}>
+                        <div key={label} className={`flex justify-between ${
+                          label === '총 취득비용'
+                            ? 'pt-2 border-t border-gray-200 font-bold text-brand-600'
+                            : label.startsWith('연회비')
+                              ? 'pt-2 mt-1 border-t border-dashed border-gray-200 text-gray-700'
+                              : 'text-gray-700'
+                        }`}>
                           <span>{label}</span>
                           <span>{value}</span>
                         </div>

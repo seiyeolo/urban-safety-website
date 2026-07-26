@@ -32,11 +32,11 @@ const FAQ = [
 ]
 
 const COST_ITEMS = [
-  { label: '수강료', value: '220,000원' },
-  { label: '검정료(응시료)', value: '30,000원' },
-  { label: '자격증 발급비', value: '50,000원' },
+  { label: '교육비', value: '350,000원' },
+  { label: '시험 및 자격증 발급비', value: '100,000원' },
   { label: '재발급비', value: '30,000원' },
-  { label: '총 취득비용', value: '300,000원', highlight: true },
+  { label: '총 취득비용', value: '450,000원', highlight: true },
+  { label: '연회비 (자격 유지 · 매년)', value: '100,000원' },
 ]
 
 export default function LifeSafetyCertPage() {

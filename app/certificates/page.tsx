@@ -44,15 +44,18 @@ const INFO_PILLS = [
   { label: '모집 대상', value: '제한 없음' },
 ]
 
-/* 금액은 숫자로 보관한다. 문자열 '220,000'에 parseInt를 쓰면 쉼표에서 파싱이
-   멈춰 220원으로 표시되던 버그가 있었음. 표시 시점에만 toLocaleString으로 포맷. */
+/* 금액은 숫자로 보관한다. 문자열 '350,000'처럼 쉼표가 든 값에 parseInt를 쓰면
+   쉼표에서 파싱이 멈춰 350원으로 표시되던 버그가 있었음.
+   표시 시점에만 toLocaleString으로 포맷한다. */
 const PRICE_TABLE = [
-  { label: '수강료', value: 220000 },
-  { label: '심사료', value: 30000 },
-  { label: '자격증 발급비', value: 50000 },
+  { label: '교육비', value: 350000 },
+  { label: '시험 및 자격증 발급비', value: 100000 },
 ]
 
 const TOTAL_PRICE = PRICE_TABLE.reduce((sum, item) => sum + item.value, 0)
+
+/* 연회비는 자격 취득 후 유지 비용이라 총 취득비용과 분리해 표기한다 */
+const ANNUAL_FEE = 100000
 
 export default function VoicePhishingCertificatePage() {
   return (
@@ -163,7 +166,7 @@ export default function VoicePhishingCertificatePage() {
             {/* Price Card */}
             <div className="bg-white rounded-2xl shadow-[0_20px_40px_rgba(27,28,28,0.06)] border border-gray-100 overflow-hidden">
               <div className="bg-neutral-200 px-6 py-4">
-                <h3 className="font-bold text-brand-600">수강료 및 발급비</h3>
+                <h3 className="font-bold text-brand-600">교육비 및 취득 비용</h3>
               </div>
               <div className="p-6">
                 <div className="space-y-3 mb-6">
@@ -175,8 +178,19 @@ export default function VoicePhishingCertificatePage() {
                   ))}
                   <div className="border-t pt-3 mt-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-brand-600">총액</span>
+                      <span className="font-bold text-brand-600">총 취득비용</span>
                       <span className="font-bold text-brand-600 text-xl">{TOTAL_PRICE.toLocaleString()}원</span>
+                    </div>
+                  </div>
+
+                  {/* 연회비는 취득 후 자격 유지 비용이므로 총액과 분리해 명시한다 */}
+                  <div className="border-t border-dashed pt-3 mt-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-neutral-700">
+                        연회비
+                        <span className="ml-1.5 text-xs text-neutral-600">자격 유지 · 매년</span>
+                      </span>
+                      <span className="font-medium">{ANNUAL_FEE.toLocaleString()}원</span>
                     </div>
                   </div>
                 </div>
