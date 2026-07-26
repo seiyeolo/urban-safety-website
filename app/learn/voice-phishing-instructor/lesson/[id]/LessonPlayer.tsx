@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { voicePhishingLessons, onlineCourses } from '@/lib/mockCourses'
 import { getLessonVideoId, youtubeEmbedUrl } from '@/lib/lessonVideos'
+import { LessonThumbnail } from '@/components/learning/LessonThumbnail'
 import { EMPTY_PROGRESS, getProgressSnapshot, markCompleted, setLastOrder, subscribeProgress } from '@/lib/learning/progress'
 
 const COURSE_SLUG = 'voice-phishing-instructor'
@@ -93,9 +94,9 @@ export default function LessonPlayer({ order }: { order: number }) {
               />
             </div>
           ) : (
-            <div className="relative flex aspect-video w-full items-center justify-center bg-[radial-gradient(circle_at_30%_25%,#1a2c45,#0a1322_70%)]">
+            <div className="relative flex aspect-video w-full items-center justify-center bg-[radial-gradient(circle_at_30%_25%,#131941,#0c1029_70%)]">
               <div className="px-6 text-center">
-                <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-accent-400 shadow-[0_0_0_12px_rgba(76,195,138,0.12),0_18px_55px_rgba(0,0,0,0.5)]">
+                <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-accent-400 shadow-[0_0_0_12px_rgba(190,215,58,0.12),0_18px_55px_rgba(0,0,0,0.5)]">
                   <Video size={32} className="text-brand-950" />
                 </div>
                 <p className="text-xs font-black uppercase tracking-[.08em] text-accent-400">영상 준비 중</p>
@@ -176,30 +177,33 @@ export default function LessonPlayer({ order }: { order: number }) {
                   key={item.id}
                   href={lessonHref(item.order)}
                   aria-current={isCurrent ? 'page' : undefined}
-                  className={`flex items-center gap-3.5 rounded-xl p-3.5 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 active:scale-[0.99] ${
+                  className={`flex gap-3 rounded-xl p-2.5 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 active:scale-[0.99] ${
                     isCurrent ? 'bg-white/[.06]' : 'hover:bg-white/[.04]'
                   }`}
                 >
-                  <div
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[13px] font-black ${
-                      done
-                        ? 'border-2 border-accent-400 bg-accent-400 text-brand-950'
-                        : isCurrent
-                          ? 'border-2 border-accent-400 text-accent-400 shadow-[0_0_14px_rgba(76,195,138,0.35)]'
-                          : 'border-2 border-white/[.14] text-neutral-400'
-                    }`}
-                  >
-                    {done ? <CheckCircle2 size={16} /> : item.order}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className={`text-[14px] leading-5 text-brand-100 ${isCurrent ? 'font-black' : 'font-bold'}`}>
+                  <LessonThumbnail
+                    videoId={getLessonVideoId(item.id)}
+                    duration={item.duration}
+                    order={item.order}
+                    done={done}
+                    isCurrent={isCurrent}
+                  />
+                  <div className="min-w-0 flex-1 py-0.5">
+                    <h3 className={`line-clamp-2 text-[14px] leading-5 text-white ${isCurrent ? 'font-black' : 'font-bold'}`}>
                       {item.title}
                     </h3>
-                    <p className="mt-0.5 flex items-center gap-2 text-[13px] font-semibold text-neutral-400">
-                      {item.duration}
-                      {isCurrent && <Play size={11} className="text-accent-400" />}
+                    <p className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[12.5px] font-semibold text-neutral-400">
+                      {isCurrent ? (
+                        <span className="inline-flex items-center gap-1 text-accent-400">
+                          <Play size={10} fill="currentColor" /> 재생 중
+                        </span>
+                      ) : done ? (
+                        '시청 완료'
+                      ) : (
+                        `${item.order}강`
+                      )}
                       {!hasVideo && (
-                        <span className="rounded-full bg-white/[.06] px-2 py-0.5 text-[12px] text-neutral-400">준비 중</span>
+                        <span className="rounded-full bg-white/[.06] px-2 py-0.5 text-[11.5px]">준비 중</span>
                       )}
                     </p>
                   </div>

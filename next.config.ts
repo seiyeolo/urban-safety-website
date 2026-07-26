@@ -9,6 +9,13 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  images: {
+    // 강의 목록 썸네일 — YouTube가 제공하는 영상 대표 이미지
+    remotePatterns: [
+      { protocol: 'https', hostname: 'img.youtube.com', pathname: '/vi/**' },
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
+    ],
+  },
   async headers() {
     return [
       {

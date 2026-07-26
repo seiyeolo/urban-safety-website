@@ -24,6 +24,14 @@ export function youtubeEmbedUrl(videoId: string): string {
   return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`
 }
 
+/**
+ * 강의 목록용 썸네일. 일부공개(Unlisted) 영상도 접근 가능하다.
+ * mq: 320x180(16:9) — 목록용 / hq: 480x360(4:3, 상하 레터박스 포함)
+ */
+export function youtubeThumbnailUrl(videoId: string, quality: 'mq' | 'sd' = 'mq'): string {
+  return `https://img.youtube.com/vi/${videoId}/${quality}default.jpg`
+}
+
 export function getLessonVideoId(lessonId: string): string {
   return lessonVideoIds[lessonId] ?? ''
 }

@@ -2,8 +2,10 @@
 
 import { useSyncExternalStore } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Bell, CheckCircle2, Download, LogOut, PlayCircle, ShieldCheck, UserRound } from 'lucide-react'
+import { ArrowRight, Bell, Download, LogOut, PlayCircle, ShieldCheck, UserRound } from 'lucide-react'
 import { onlineCourses, voicePhishingLessons } from '@/lib/mockCourses'
+import { getLessonVideoId } from '@/lib/lessonVideos'
+import { LessonThumbnail } from '@/components/learning/LessonThumbnail'
 import { useAuth } from '@/lib/auth/AuthContext'
 import { EMPTY_PROGRESS, getProgressSnapshot, progressPercent, subscribeProgress } from '@/lib/learning/progress'
 
@@ -64,9 +66,9 @@ export default function LearningDashboard() {
         </div>
 
         {/* 이어보기 히어로 */}
-        <section className="relative overflow-hidden rounded-[20px] border border-white/[.07] bg-brand-900 p-7 lg:p-9 [background-image:radial-gradient(ellipse_at_80%_-10%,rgba(76,195,138,0.16),transparent_55%),radial-gradient(ellipse_at_0%_110%,rgba(59,130,246,0.10),transparent_50%)]">
+        <section className="relative overflow-hidden rounded-[20px] border border-white/[.07] bg-brand-900 p-7 lg:p-9 [background-image:radial-gradient(ellipse_at_80%_-10%,rgba(190,215,58,0.16),transparent_55%),radial-gradient(ellipse_at_0%_110%,rgba(42,56,144,0.10),transparent_50%)]">
           <p className="inline-flex items-center gap-2 text-[13px] font-black uppercase tracking-[.06em] text-accent-400">
-            <span className="h-[7px] w-[7px] rounded-full bg-accent-400 shadow-[0_0_12px_#4cc38a]" aria-hidden />
+            <span className="h-[7px] w-[7px] rounded-full bg-accent-400 shadow-[0_0_12px_#bed73a]" aria-hidden />
             이어보기 · Lesson {continueLesson.order}
           </p>
           <h2 className="mt-3.5 max-w-2xl text-2xl font-black leading-snug tracking-[-.035em] text-white lg:text-[26px]">
@@ -87,7 +89,7 @@ export default function LearningDashboard() {
                   cy="46"
                   r={RING_RADIUS}
                   fill="none"
-                  stroke="#4cc38a"
+                  stroke="#bed73a"
                   strokeWidth="8"
                   strokeLinecap="round"
                   strokeDasharray={RING_CIRCUMFERENCE}
@@ -124,7 +126,7 @@ export default function LearningDashboard() {
 
             <Link
               href={lessonHref(continueLesson.order)}
-              className="inline-flex items-center gap-2.5 rounded-2xl bg-accent-400 px-7 py-4 text-[15px] font-black text-brand-950 shadow-[0_10px_32px_rgba(76,195,138,0.25)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(76,195,138,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 active:scale-[0.98] lg:ml-auto"
+              className="inline-flex items-center gap-2.5 rounded-2xl bg-accent-400 px-7 py-4 text-[15px] font-black text-brand-950 shadow-[0_10px_32px_rgba(190,215,58,0.25)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(190,215,58,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 active:scale-[0.98] lg:ml-auto"
             >
               <PlayCircle size={18} /> {progress.completed.length > 0 ? '이어보기' : '첫 강의 시작'}
             </Link>
@@ -147,29 +149,26 @@ export default function LearningDashboard() {
                 <Link
                   key={lesson.id}
                   href={lessonHref(lesson.order)}
-                  className="group flex items-center gap-4 rounded-[13px] px-4 py-3.5 transition hover:bg-white/[.045] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 active:scale-[0.995]"
+                  className="group flex items-center gap-4 rounded-[13px] px-4 py-3 transition hover:bg-white/[.045] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 active:scale-[0.995]"
                 >
-                  <div
-                    className={`flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full text-xs font-black ${
-                      done
-                        ? 'border-2 border-accent-400 bg-accent-400 text-brand-950'
-                        : isCurrent
-                          ? 'border-2 border-accent-400 text-accent-400 shadow-[0_0_14px_rgba(76,195,138,0.35)]'
-                          : 'border-2 border-white/[.14] text-neutral-400'
-                    }`}
-                  >
-                    {done ? <CheckCircle2 size={15} /> : lesson.order}
-                  </div>
+                  <LessonThumbnail
+                    videoId={getLessonVideoId(lesson.id)}
+                    duration={lesson.duration}
+                    order={lesson.order}
+                    done={done}
+                    isCurrent={isCurrent}
+                    size="md"
+                  />
                   <div className="min-w-0 flex-1">
-                    <h4 className={`truncate text-sm leading-5 text-brand-100 ${isCurrent ? 'font-black' : 'font-bold'}`}>
+                    <h4 className={`text-[15px] leading-6 text-white ${isCurrent ? 'font-black' : 'font-bold'}`}>
                       {lesson.title}
                     </h4>
-                    <p className="mt-0.5 text-[13px] font-semibold text-neutral-400">
-                      {lesson.duration}
-                      {isCurrent ? ' · 수강 중' : done ? ' · 완료' : ''}
+                    <p className="mt-1 text-[13px] font-semibold text-neutral-400">
+                      {isCurrent ? '수강 중' : done ? '시청 완료' : '아직 보지 않음'}
                     </p>
+                    <p className="mt-0.5 line-clamp-1 text-[13px] leading-5 text-neutral-500">{lesson.summary}</p>
                   </div>
-                  <span className="flex items-center gap-1 text-[13px] font-extrabold text-accent-400 opacity-0 transition group-hover:opacity-100">
+                  <span className="hidden shrink-0 items-center gap-1 text-[13px] font-extrabold text-accent-400 opacity-0 transition group-hover:opacity-100 sm:flex">
                     {done ? '다시 보기' : isCurrent ? '이어보기' : '시작'} <ArrowRight size={12} />
                   </span>
                 </Link>
