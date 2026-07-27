@@ -15,8 +15,7 @@ import {
   Video,
 } from 'lucide-react'
 import { voicePhishingLessons, onlineCourses } from '@/lib/mockCourses'
-import { getLessonVideoId } from '@/lib/lessonVideos'
-import { LessonVideo } from '@/components/learning/LessonVideo'
+import { getLessonVideoId, youtubeEmbedUrl } from '@/lib/lessonVideos'
 import { LessonThumbnail } from '@/components/learning/LessonThumbnail'
 import { EMPTY_PROGRESS, getProgressSnapshot, markCompleted, setLastOrder, subscribeProgress } from '@/lib/learning/progress'
 
@@ -49,6 +48,8 @@ export default function LessonPlayer({ order }: { order: number }) {
   const nextLesson = voicePhishingLessons.find((l) => l.order === order + 1)
   const completedCount = progress.completed.length
   const totalCount = voicePhishingLessons.length
+
+  const embedUrl = videoId ? youtubeEmbedUrl(videoId) : null
 
   const handleComplete = () => {
     markCompleted(COURSE_SLUG, order, TOTAL_LESSONS)
@@ -84,8 +85,17 @@ export default function LessonPlayer({ order }: { order: number }) {
           </header>
 
           {/* 영상 */}
-          {videoId ? (
-            <LessonVideo videoId={videoId} label={`${lesson.order}강 ${lesson.title}`} />
+          {embedUrl ? (
+            <div className="relative aspect-video w-full bg-black">
+              <iframe
+                src={embedUrl}
+                title={`${lesson.order}강 ${lesson.title}`}
+                className="absolute inset-0 h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
           ) : (
             <div className="relative flex aspect-video w-full items-center justify-center bg-[radial-gradient(circle_at_30%_25%,#131941,#0c1029_70%)]">
               <div className="px-6 text-center">
