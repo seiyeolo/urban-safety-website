@@ -60,7 +60,8 @@ export const voicePhishingLessons = [
     title: '보이스피싱 피해자 구제',
     duration: '30분',
     status: 'locked' as LessonStatus,
-    summary: '피해가 발생한 뒤 피해자가 밟을 수 있는 구제 절차를 다룹니다. (강의: 윤행서연구원)',
+    summary:
+      '피해가 발생한 뒤 피해자가 밟을 수 있는 구제 절차를 다룹니다. (강의: 한국형사·법무정책연구원 윤해성 선임연구위원)',
     materials: ['피해 구제 절차 안내'],
   },
 ]
