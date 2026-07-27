@@ -1,7 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Award, CheckCircle2, Clock, Download, GraduationCap, ShieldAlert } from 'lucide-react'
-import { onlineCourses, safetyGates, voicePhishingLessons } from '@/lib/mockCourses'
+import {
+  formatLessonMinutes,
+  onlineCourses,
+  safetyGates,
+  voicePhishingLessons,
+  voicePhishingTotalMinutes,
+} from '@/lib/mockCourses'
 
 export const metadata: Metadata = {
   title: '보이스피싱 예방지도사 온라인 보충과정',
@@ -84,7 +90,9 @@ export default function VoicePhishingCoursePage() {
               <p className="text-sm font-black text-green-700">Curriculum</p>
               <h2 className="text-3xl font-black tracking-[-0.04em] text-navy-900">커리큘럼</h2>
             </div>
-            <span className="rounded-full bg-navy-50 px-4 py-2 text-sm font-black text-navy-900">총 3강 · 1시간 5분</span>
+            <span className="rounded-full bg-navy-50 px-4 py-2 text-sm font-black text-navy-900">
+              총 {voicePhishingLessons.length}강 · {formatLessonMinutes(voicePhishingTotalMinutes)}
+            </span>
           </div>
           <div className="space-y-4">
             {voicePhishingLessons.map((lesson) => (

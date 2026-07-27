@@ -17,6 +17,74 @@ export const dashboardInspiration = {
 
 export const courseCategories = ['전체', '자격증 과정', '오프라인 보충', '기관교육', '준비 중']
 
+export const voicePhishingLessons = [
+  {
+    id: 'lesson-01',
+    order: 1,
+    title: '보이스피싱 주요 피해 사례 (1)',
+    duration: '24분',
+    status: 'current' as LessonStatus,
+    summary: '실제 피해 사례를 통해 보이스피싱이 어떻게 시작되고 진행되는지 살펴봅니다. (강의: 김창호 교수)',
+    materials: ['강의 요약 자료'],
+  },
+  {
+    id: 'lesson-02',
+    order: 2,
+    title: '보이스피싱 주요 피해 사례 (2)',
+    duration: '25분',
+    status: 'locked' as LessonStatus,
+    summary: '이어지는 피해 사례 분석으로 유형별 수법과 위험 신호를 구체적으로 파악합니다. (강의: 김창호 교수)',
+    materials: ['위험 신호 체크리스트'],
+  },
+  {
+    id: 'lesson-03',
+    order: 3,
+    title: '보이스피싱 기본과정',
+    duration: '15분',
+    status: 'locked' as LessonStatus,
+    summary: '보이스피싱의 기본 개념과 예방 원칙을 정리합니다.',
+    materials: ['예방 안내 자료'],
+  },
+  {
+    id: 'lesson-04',
+    order: 4,
+    title: '보이스피싱 심화과정',
+    duration: '49분',
+    status: 'locked' as LessonStatus,
+    summary: '기관사칭·대면편취 등 신종 수법과 유형별 대응 요령을 상세히 다루는 심화 학습으로 과정을 마무리합니다.',
+    materials: ['심화과정 강의안'],
+  },
+  {
+    id: 'lesson-05',
+    order: 5,
+    title: '보이스피싱 피해자 구제',
+    duration: '30분',
+    status: 'locked' as LessonStatus,
+    summary: '피해가 발생한 뒤 피해자가 밟을 수 있는 구제 절차를 다룹니다. (강의: 윤행서연구원)',
+    materials: ['피해 구제 절차 안내'],
+  },
+]
+
+/**
+ * 과정 요약 수치는 강의 목록에서 직접 계산한다.
+ * 이전에는 "총 4강 / 1시간 54분" 같은 값을 여러 파일에 손으로 적어둬서,
+ * 차시를 추가할 때마다 화면마다 다른 숫자가 남았다
+ * (커리큘럼 페이지는 4강이 렌더링되는데 배지는 "총 3강"이었다).
+ */
+export const voicePhishingTotalMinutes = voicePhishingLessons.reduce(
+  (sum, lesson) => sum + parseInt(lesson.duration, 10),
+  0,
+)
+
+/** 143 → '2시간 23분' */
+export function formatLessonMinutes(minutes: number): string {
+  const hours = Math.floor(minutes / 60)
+  const rest = minutes % 60
+  if (hours === 0) return `${rest}분`
+  if (rest === 0) return `${hours}시간`
+  return `${hours}시간 ${rest}분`
+}
+
 export const onlineCourses = [
   {
     id: 'voice-phishing-instructor',
@@ -26,17 +94,17 @@ export const onlineCourses = [
     category: '자격증 과정',
     delivery: '온라인 + 오프라인 보충',
     audience: '오프라인 수강생, 기관 교육 담당자, 시민 안전 강사 후보',
-    totalMinutes: 114,
-    lessonsCount: 4,
+    totalMinutes: voicePhishingTotalMinutes,
+    lessonsCount: voicePhishingLessons.length,
     status: 'open' as CourseStatus,
     progress: 0,
     level: '입문~실무',
     summary:
-      '보이스피싱 주요 피해 사례와 기본 개념부터 심화과정까지 강의 영상으로 학습하는 온라인 보충과정입니다.',
+      '보이스피싱 주요 피해 사례와 기본 개념부터 심화과정, 피해자 구제 절차까지 강의 영상으로 학습하는 온라인 보충과정입니다.',
     outcomes: ['사례 기반 위험 신호 분류', '피해 예방 안내 스크립트 작성', '기관 교육용 체크리스트 활용'],
     stats: [
-      { label: '총 차시', value: '4강', icon: BookOpen },
-      { label: '학습 시간', value: '1시간 54분', icon: Clock },
+      { label: '총 차시', value: `${voicePhishingLessons.length}강`, icon: BookOpen },
+      { label: '학습 시간', value: formatLessonMinutes(voicePhishingTotalMinutes), icon: Clock },
       { label: '자료', value: '준비 중', icon: FileText },
       { label: '평가', value: '준비 중', icon: ClipboardCheck },
     ],
@@ -84,45 +152,6 @@ export const onlineCourses = [
       { label: '대상', value: '시민/기관', icon: Users },
       { label: '방식', value: '초대형', icon: UserCheck },
     ],
-  },
-]
-
-export const voicePhishingLessons = [
-  {
-    id: 'lesson-01',
-    order: 1,
-    title: '보이스피싱 주요 피해 사례 (1)',
-    duration: '24분',
-    status: 'current' as LessonStatus,
-    summary: '실제 피해 사례를 통해 보이스피싱이 어떻게 시작되고 진행되는지 살펴봅니다. (강의: 김창호 교수)',
-    materials: ['강의 요약 자료'],
-  },
-  {
-    id: 'lesson-02',
-    order: 2,
-    title: '보이스피싱 주요 피해 사례 (2)',
-    duration: '25분',
-    status: 'locked' as LessonStatus,
-    summary: '이어지는 피해 사례 분석으로 유형별 수법과 위험 신호를 구체적으로 파악합니다. (강의: 김창호 교수)',
-    materials: ['위험 신호 체크리스트'],
-  },
-  {
-    id: 'lesson-03',
-    order: 3,
-    title: '보이스피싱 기본과정',
-    duration: '15분',
-    status: 'locked' as LessonStatus,
-    summary: '보이스피싱의 기본 개념과 예방 원칙을 정리합니다.',
-    materials: ['예방 안내 자료'],
-  },
-  {
-    id: 'lesson-04',
-    order: 4,
-    title: '보이스피싱 심화과정',
-    duration: '49분',
-    status: 'locked' as LessonStatus,
-    summary: '기관사칭·대면편취 등 신종 수법과 유형별 대응 요령을 상세히 다루는 심화 학습으로 과정을 마무리합니다.',
-    materials: ['심화과정 강의안'],
   },
 ]
 
