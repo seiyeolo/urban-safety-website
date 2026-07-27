@@ -27,6 +27,9 @@ import {
 
 const COURSE_SLUG = 'voice-phishing-instructor'
 
+/* 존재하지 않는 차시가 진도에 섞이지 않도록 정규화 기준으로 넘긴다 */
+const TOTAL_LESSONS = voicePhishingLessons.length
+
 /* 아직 페이지가 없는 기능은 링크 대신 '준비 중'으로 표시한다.
    링크를 살리려고 빈 페이지를 만들지 않는다(404 유발 방지). */
 type QuickAction = {
@@ -86,11 +89,11 @@ function DashboardContent() {
   // 서버에는 없으므로 계산 가능한 지표만 노출한다.
   const progress = useSyncExternalStore(
     subscribeProgress,
-    () => getProgressSnapshot(COURSE_SLUG),
+    () => getProgressSnapshot(COURSE_SLUG, TOTAL_LESSONS),
     () => EMPTY_PROGRESS,
   )
 
-  const totalLessons = voicePhishingLessons.length
+  const totalLessons = TOTAL_LESSONS
   const completedCount = progress.completed.length
   const percent = progressPercent(progress, totalLessons)
   const hasStarted = completedCount > 0 || progress.lastOrder > 1

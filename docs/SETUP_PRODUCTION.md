@@ -29,6 +29,25 @@
 즉 **설정이 빠진 채로 "저장된 것처럼 보이는" 상태는 발생하지 않는다.**
 관리자 화면에서 저장이 503으로 실패한다면 아래 1번 Supabase 설정을 확인할 것.
 
+### 저장소 상태 확인 방법
+
+| 방법 | 내용 |
+|---|---|
+| **관리자 화면 배너** | `/admin` 접속 시 문제가 있으면 상단에 배너가 뜬다. 정상이면 배너 없음 |
+| **health API** | 관리자 로그인 후 `GET /api/admin/health/storage` |
+
+health 응답의 `status` 의미:
+
+| status | 뜻 | HTTP |
+|---|---|---|
+| `healthy` | Supabase 설정 완비, 저장 정상 | 200 |
+| `degraded` | 로컬 파일 저장소로 동작 중(개발용, 영구 저장소 아님) | 200 |
+| `unhealthy` | **운영인데 저장 불가** 또는 `CONTENT_STORE` 값 오류 | **503** |
+
+응답에는 설정 **이름만** 담기고 URL·키 등 값은 포함되지 않는다.
+`CONTENT_STORE`에 허용값(`supabase`/`file`) 외의 값을 넣으면 조용히 무시되지 않고
+`unhealthy`로 표시되며 쓰기가 차단된다.
+
 ## 1. Supabase 설정 (필수 — 약 10분)
 
 1. https://supabase.com → 프로젝트 생성 (무료 티어, 리전: Northeast Asia(Seoul) 권장)

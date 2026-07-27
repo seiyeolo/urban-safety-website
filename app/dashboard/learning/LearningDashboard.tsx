@@ -12,6 +12,9 @@ import { EMPTY_PROGRESS, getProgressSnapshot, progressPercent, subscribeProgress
 const COURSE_SLUG = 'voice-phishing-instructor'
 const lessonHref = (order: number) => `/learn/${COURSE_SLUG}/lesson/${String(order).padStart(2, '0')}`
 
+/* 존재하지 않는 차시가 진도에 섞이지 않도록 정규화 기준으로 넘긴다 */
+const TOTAL_LESSONS = voicePhishingLessons.length
+
 const RING_RADIUS = 38
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS
 
@@ -19,7 +22,7 @@ export default function LearningDashboard() {
   const { user, signOut } = useAuth()
   const progress = useSyncExternalStore(
     subscribeProgress,
-    () => getProgressSnapshot(COURSE_SLUG),
+    () => getProgressSnapshot(COURSE_SLUG, TOTAL_LESSONS),
     () => EMPTY_PROGRESS,
   )
 

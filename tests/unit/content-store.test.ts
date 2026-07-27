@@ -231,3 +231,99 @@ describe('읽기는 막지 않는다', () => {
     await expect(store.getSectionItems('notices')).resolves.toEqual([])
   })
 })
+
+describe('CONTENT_STORE 값 검증', () => {
+  it('허용값은 그대로 인식한다', async () => {
+    setEnv({ CONTENT_STORE: 'file' })
+    let store = await loadStore()
+    expect(store.readConfiguredMode()).toEqual({ mode: 'file', invalidValue: null })
+
+    setEnv({ CONTENT_STORE: 'SUPABASE' }) // 대소문자는 관대하게 받는다
+    store = await loadStore()
+    expect(store.readConfiguredMode().mode).toBe('supabase')
+  })
+
+  it('오타 같은 잘못된 값은 조용히 무시하지 않고 따로 알린다', async () => {
+    setEnv({ CONTENT_STORE: 'postgres' })
+    const store = await loadStore()
+    expect(store.readConfiguredMode()).toEqual({ mode: null, invalidValue: 'postgres' })
+  })
+
+  it('잘못된 값이면 쓰기를 막는다 (의도한 저장소를 알 수 없으므로)', async () => {
+    setEnv({
+      CONTENT_STORE: 'postgres',
+      NEXT_PUBLIC_SUPABASE_URL: 'https://example.supabase.co',
+      SUPABASE_SERVICE_ROLE_KEY: 'x'.repeat(40),
+    })
+    const store = await loadStore()
+    const result = store.checkWritable()
+
+    expect(result.writable).toBe(false)
+    if (!result.writable) {
+      expect(result.reason).toContain('postgres')
+      expect(result.reason).toContain('CONTENT_STORE')
+    }
+  })
+
+  it('잘못된 값이어도 읽기는 계속 제공한다 (사이트 전체 중단 방지)', async () => {
+    setEnv({ CONTENT_STORE: 'postgres' })
+    const store = await loadStore()
+    await expect(store.getSectionItems('notices')).resolves.toEqual([])
+  })
+})
+
+describe('getStorageHealth', () => {
+  it('Supabase 설정이 갖춰지면 healthy', async () => {
+    setEnv({
+      NEXT_PUBLIC_SUPABASE_URL: 'https://example.supabase.co',
+      SUPABASE_SERVICE_ROLE_KEY: 'x'.repeat(40),
+    })
+    const store = await loadStore()
+    const health = store.getStorageHealth()
+
+    expect(health.status).toBe('healthy')
+    expect(health.mode).toBe('supabase')
+    expect(health.writable).toBe(true)
+    expect(health.missingConfig).toEqual([])
+  })
+
+  it('로컬 파일 저장소는 degraded로 알린다 (동작하지만 영구 저장소가 아님)', async () => {
+    setEnv({ CONTENT_STORE: 'file' })
+    const store = await loadStore()
+    const health = store.getStorageHealth()
+
+    expect(health.status).toBe('degraded')
+    expect(health.writable).toBe(true)
+    expect(health.issues.length).toBeGreaterThan(0)
+  })
+
+  it('운영에서 쓰기가 막히면 unhealthy', async () => {
+    setEnv({ VERCEL: '1' })
+    const store = await loadStore()
+    const health = store.getStorageHealth()
+
+    expect(health.status).toBe('unhealthy')
+    expect(health.production).toBe(true)
+    expect(health.writable).toBe(false)
+  })
+
+  it('CONTENT_STORE가 잘못되면 설정이 완비돼 있어도 unhealthy', async () => {
+    setEnv({
+      CONTENT_STORE: 'postgres',
+      NEXT_PUBLIC_SUPABASE_URL: 'https://example.supabase.co',
+      SUPABASE_SERVICE_ROLE_KEY: 'x'.repeat(40),
+    })
+    const store = await loadStore()
+    expect(store.getStorageHealth().status).toBe('unhealthy')
+  })
+
+  it('빠진 설정의 이름만 담고 값은 담지 않는다', async () => {
+    const secret = 'super-secret-service-role-key'
+    setEnv({ CONTENT_STORE: 'supabase', SUPABASE_SERVICE_ROLE_KEY: secret })
+    const store = await loadStore()
+    const health = store.getStorageHealth()
+
+    expect(health.missingConfig).toContain('NEXT_PUBLIC_SUPABASE_URL')
+    expect(JSON.stringify(health)).not.toContain(secret)
+  })
+})

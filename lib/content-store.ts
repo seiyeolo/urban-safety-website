@@ -40,9 +40,32 @@ export function missingSupabaseConfig(): string[] {
   return missing
 }
 
+export const CONTENT_STORE_MODES: readonly ContentStoreMode[] = ['supabase', 'file']
+
+/**
+ * CONTENT_STORE 값을 읽는다.
+ * 오타(예: `postgres`)를 조용히 무시하면 운영자는 자기가 지정한 값이 적용됐다고
+ * 믿게 되므로, 잘못된 값은 별도로 돌려주어 상위에서 문제로 취급하게 한다.
+ */
+export function readConfiguredMode(): {
+  mode: ContentStoreMode | null
+  invalidValue: string | null
+} {
+  const raw = process.env.CONTENT_STORE?.trim()
+  if (!raw) return { mode: null, invalidValue: null }
+
+  const normalized = raw.toLowerCase()
+  if (normalized === 'supabase' || normalized === 'file') {
+    return { mode: normalized, invalidValue: null }
+  }
+  return { mode: null, invalidValue: raw }
+}
+
 export function resolveStoreMode(): ContentStoreMode {
-  const explicit = process.env.CONTENT_STORE?.trim().toLowerCase()
-  if (explicit === 'supabase' || explicit === 'file') return explicit
+  const { mode } = readConfiguredMode()
+  if (mode) return mode
+  // 잘못된 값이어도 사이트를 내리지 않는다 — 자동 판정으로 읽기는 계속 제공하고,
+  // 쓰기 차단과 health 상태(unhealthy)로 운영자에게 알린다.
   return supabaseStore.isSupabaseStoreConfigured() ? 'supabase' : 'file'
 }
 
@@ -61,6 +84,18 @@ export class ContentStoreWriteError extends Error {
  * 저장이 조용히 유실되는 경로를 모두 막는 것이 목적이다.
  */
 export function checkWritable(): { writable: true } | { writable: false; reason: string } {
+  // 설정값 자체가 잘못됐다면 어느 저장소가 의도됐는지 알 수 없다.
+  // 이 상태에서 쓰기를 허용하면 운영자가 기대한 곳이 아닌 데 저장될 수 있다.
+  const { invalidValue } = readConfiguredMode()
+  if (invalidValue) {
+    return {
+      writable: false,
+      reason:
+        `CONTENT_STORE 값이 올바르지 않습니다: "${invalidValue}". ` +
+        `허용값은 ${CONTENT_STORE_MODES.join(' 또는 ')} 입니다. docs/SETUP_PRODUCTION.md를 확인하세요.`,
+    }
+  }
+
   const mode = resolveStoreMode()
 
   if (mode === 'supabase') {
@@ -89,6 +124,60 @@ export function checkWritable(): { writable: true } | { writable: false; reason:
 function assertWritable(): void {
   const result = checkWritable()
   if (!result.writable) throw new ContentStoreWriteError(result.reason)
+}
+
+/* ── 저장소 상태 점검 ───────────────────────────────────────────
+ * 운영자가 "지금 저장이 되는 상태인가"를 한눈에 확인할 수 있게 한다.
+ * 응답에는 설정 '이름'만 담고 값·URL·키는 절대 포함하지 않는다.
+ */
+
+export type StorageHealthStatus = 'healthy' | 'degraded' | 'unhealthy'
+
+export interface StorageHealth {
+  status: StorageHealthStatus
+  mode: ContentStoreMode
+  writable: boolean
+  /** 운영 런타임 여부 — 같은 file 모드라도 로컬과 운영의 의미가 다르다 */
+  production: boolean
+  /** 사람이 읽을 수 있는 문제 설명 (비밀값 없음) */
+  issues: string[]
+  /** 빠진 설정의 '이름'만 */
+  missingConfig: string[]
+}
+
+export function getStorageHealth(): StorageHealth {
+  const { invalidValue } = readConfiguredMode()
+  const mode = resolveStoreMode()
+  const production = isProductionRuntime()
+  const writableResult = checkWritable()
+  const writable = writableResult.writable
+  const missingConfig = mode === 'supabase' ? missingSupabaseConfig() : []
+
+  const issues: string[] = []
+  if (invalidValue) {
+    issues.push(
+      `CONTENT_STORE 값이 올바르지 않습니다: "${invalidValue}" (허용값: ${CONTENT_STORE_MODES.join(', ')})`,
+    )
+  }
+  if (!writable && !invalidValue) {
+    issues.push(writableResult.reason)
+  }
+
+  let status: StorageHealthStatus
+  if (invalidValue || (production && !writable)) {
+    // 운영인데 저장이 안 되거나 설정이 깨진 상태 — 운영자가 반드시 알아야 한다
+    status = 'unhealthy'
+  } else if (mode === 'file') {
+    // 로컬 개발의 파일 저장소는 정상 동작이지만 영구 저장소가 아니라는 점을 알린다
+    status = 'degraded'
+    if (issues.length === 0) {
+      issues.push('로컬 파일 저장소로 동작 중입니다. 운영 배포에는 Supabase 설정이 필요합니다.')
+    }
+  } else {
+    status = 'healthy'
+  }
+
+  return { status, mode, writable, production, issues, missingConfig }
 }
 
 /** 저장소 구현은 호출 시점에 고른다 (테스트에서 환경 변수를 바꿔 검증할 수 있도록) */

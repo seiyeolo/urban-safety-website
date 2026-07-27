@@ -22,6 +22,9 @@ import { EMPTY_PROGRESS, getProgressSnapshot, markCompleted, setLastOrder, subsc
 const COURSE_SLUG = 'voice-phishing-instructor'
 const course = onlineCourses[0]
 
+/* 존재하지 않는 차시가 진도에 섞이지 않도록 정규화 기준으로 넘긴다 */
+const TOTAL_LESSONS = voicePhishingLessons.length
+
 const lessonHref = (order: number) => `/learn/${COURSE_SLUG}/lesson/${String(order).padStart(2, '0')}`
 
 export default function LessonPlayer({ order }: { order: number }) {
@@ -31,13 +34,13 @@ export default function LessonPlayer({ order }: { order: number }) {
 
   const progress = useSyncExternalStore(
     subscribeProgress,
-    () => getProgressSnapshot(COURSE_SLUG),
+    () => getProgressSnapshot(COURSE_SLUG, TOTAL_LESSONS),
     () => EMPTY_PROGRESS,
   )
 
   useEffect(() => {
     // 외부 시스템(localStorage)에 마지막 시청 차시만 기록
-    setLastOrder(COURSE_SLUG, order)
+    setLastOrder(COURSE_SLUG, order, TOTAL_LESSONS)
   }, [order])
 
   const isCompleted = progress.completed.includes(order)
@@ -49,7 +52,7 @@ export default function LessonPlayer({ order }: { order: number }) {
   const embedUrl = videoId ? youtubeEmbedUrl(videoId) : null
 
   const handleComplete = () => {
-    markCompleted(COURSE_SLUG, order)
+    markCompleted(COURSE_SLUG, order, TOTAL_LESSONS)
     if (nextLesson) {
       router.push(lessonHref(nextLesson.order))
     } else {

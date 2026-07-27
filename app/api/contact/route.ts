@@ -26,7 +26,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const payload = await request.json()
+    // 본문 파싱 실패는 클라이언트 오류(400)다.
+    // 바깥 catch에 맡기면 서버 오류(500)로 뭉뚱그려져 원인을 알 수 없다.
+    let payload: unknown
+    try {
+      payload = await request.json()
+    } catch {
+      return NextResponse.json(
+        { error: '요청 본문이 올바른 JSON 형식이 아닙니다.' },
+        { status: 400 }
+      )
+    }
 
     // Zod 스키마 검증
     const result = contactSchema.safeParse(payload)

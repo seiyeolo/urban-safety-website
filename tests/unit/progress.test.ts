@@ -152,3 +152,131 @@ describe('subscribeProgress', () => {
     expect(calls).toBe(1) // 구독 해지 후에는 더 이상 호출되지 않는다
   })
 })
+
+describe('정규화 — 완료 차시는 양의 정수만', () => {
+  it.each([
+    ['0', 0],
+    ['음수', -3],
+    ['소수', 2.5],
+    ['NaN', Number.NaN],
+    ['Infinity', Number.POSITIVE_INFINITY],
+    ['-Infinity', Number.NEGATIVE_INFINITY],
+  ])('%s는 걸러낸다', (_label, bad) => {
+    raw.set(KEY, JSON.stringify({ completed: [1, bad, 2], lastOrder: 1 }))
+    expect(progress.getProgress(COURSE).completed).toEqual([1, 2])
+  })
+
+  it('문자열 숫자도 걸러낸다 (타입이 다르면 신뢰하지 않는다)', () => {
+    raw.set(KEY, JSON.stringify({ completed: [1, '2', 3], lastOrder: 1 }))
+    expect(progress.getProgress(COURSE).completed).toEqual([1, 3])
+  })
+
+  it('중복을 제거하고 오름차순으로 정렬한다', () => {
+    raw.set(KEY, JSON.stringify({ completed: [3, 1, 3, 2, 1], lastOrder: 3 }))
+    expect(progress.getProgress(COURSE).completed).toEqual([1, 2, 3])
+  })
+})
+
+describe('정규화 — 전체 차시 범위', () => {
+  it('총 차시를 알려주면 범위를 벗어난 차시를 제외한다', () => {
+    raw.set(KEY, JSON.stringify({ completed: [1, 2, 99], lastOrder: 2 }))
+    expect(progress.getProgress(COURSE, 4).completed).toEqual([1, 2])
+  })
+
+  it('총 차시를 모르면 범위 검사는 하지 않는다 (구조만 정규화)', () => {
+    raw.set(KEY, JSON.stringify({ completed: [1, 99], lastOrder: 1 }))
+    expect(progress.getProgress(COURSE).completed).toEqual([1, 99])
+  })
+
+  it('lastOrder가 범위를 벗어나면 1로 되돌린다', () => {
+    raw.set(KEY, JSON.stringify({ completed: [1], lastOrder: 99 }))
+    expect(progress.getProgress(COURSE, 4).lastOrder).toBe(1)
+  })
+
+  it.each([[0], [-1], [1.5], [Number.NaN]])('lastOrder가 %s면 1로 정정한다', (bad) => {
+    raw.set(KEY, JSON.stringify({ completed: [1], lastOrder: bad }))
+    expect(progress.getProgress(COURSE).lastOrder).toBe(1)
+  })
+})
+
+describe('정규화 — 손상 데이터', () => {
+  it.each([
+    ['null', 'null'],
+    ['배열', '[1,2,3]'],
+    ['문자열', '"hello"'],
+    ['숫자', '42'],
+    ['빈 객체', '{}'],
+    ['깨진 JSON', '{ broken'],
+  ])('%s이어도 예외 없이 빈 진도로 복구한다', (_label, stored) => {
+    raw.set(KEY, stored)
+    expect(() => progress.getProgress(COURSE)).not.toThrow()
+    const result = progress.getProgress(COURSE)
+    expect(Array.isArray(result.completed)).toBe(true)
+    expect(result.lastOrder).toBeGreaterThanOrEqual(1)
+  })
+
+  it('normalizeProgress는 어떤 입력에도 안전한 형태를 돌려준다', () => {
+    for (const input of [null, undefined, 0, 'x', [], { completed: null }, { completed: [1] }]) {
+      const result = progress.normalizeProgress(input)
+      expect(Array.isArray(result.completed)).toBe(true)
+      expect(Number.isInteger(result.lastOrder)).toBe(true)
+      expect(result.lastOrder).toBeGreaterThanOrEqual(1)
+    }
+  })
+})
+
+describe('쓰기 시 범위 검증', () => {
+  it('존재하지 않는 차시는 완료로 기록하지 않는다', () => {
+    const before = progress.getProgress(COURSE, 4)
+    const after = progress.markCompleted(COURSE, 99, 4)
+    expect(after.completed).toEqual(before.completed)
+  })
+
+  it.each([[0], [-1], [2.5]])('잘못된 차시 번호(%s)는 무시한다', (bad) => {
+    const after = progress.markCompleted(COURSE, bad, 4)
+    expect(after.completed).toEqual([])
+  })
+
+  it('setLastOrder도 범위를 벗어나면 기록하지 않는다', () => {
+    progress.markCompleted(COURSE, 1, 4)
+    progress.setLastOrder(COURSE, 99, 4)
+    expect(progress.getProgress(COURSE, 4).lastOrder).toBe(1)
+  })
+})
+
+describe('progressPercent 범위 제한', () => {
+  it('완료 수가 총 차시보다 많아도 100을 넘지 않는다', () => {
+    expect(progress.progressPercent({ completed: [1, 2, 3, 4, 5, 6], lastOrder: 1 }, 4)).toBe(100)
+  })
+
+  it('총 차시가 유효하지 않으면 0을 반환한다', () => {
+    expect(progress.progressPercent({ completed: [1], lastOrder: 1 }, Number.NaN)).toBe(0)
+    expect(progress.progressPercent({ completed: [1], lastOrder: 1 }, Number.POSITIVE_INFINITY)).toBe(0)
+  })
+
+  it('결과는 항상 0~100 사이다', () => {
+    for (const total of [1, 3, 4, 10]) {
+      for (const count of [0, 1, 5, 50]) {
+        const value = progress.progressPercent(
+          { completed: Array.from({ length: count }, (_, i) => i + 1), lastOrder: 1 },
+          total,
+        )
+        expect(value).toBeGreaterThanOrEqual(0)
+        expect(value).toBeLessThanOrEqual(100)
+      }
+    }
+  })
+})
+
+describe('스냅샷 캐시와 총 차시', () => {
+  it('총 차시가 다르면 각각의 정규화 결과를 돌려준다', () => {
+    raw.set(KEY, JSON.stringify({ completed: [1, 99], lastOrder: 1 }))
+    expect(progress.getProgressSnapshot(COURSE, 4).completed).toEqual([1])
+    expect(progress.getProgressSnapshot(COURSE).completed).toEqual([1, 99])
+  })
+
+  it('같은 인자면 동일 참조를 유지한다 (렌더 루프 방지)', () => {
+    raw.set(KEY, JSON.stringify({ completed: [1], lastOrder: 1 }))
+    expect(progress.getProgressSnapshot(COURSE, 4)).toBe(progress.getProgressSnapshot(COURSE, 4))
+  })
+})
