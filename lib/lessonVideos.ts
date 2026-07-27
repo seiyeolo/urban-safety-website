@@ -19,16 +19,32 @@ export const lessonVideoIds: Record<string, string> = {
   'lesson-06': '',
 }
 
-/** 개인정보 보호를 위해 nocookie 도메인 사용 */
-export function youtubeEmbedUrl(videoId: string): string {
-  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`
+/**
+ * 개인정보 보호를 위해 nocookie 도메인 사용.
+ *
+ * modestbranding 파라미터는 넣지 않는다 — YouTube가 폐기해서 아무 효과가 없다.
+ * 채널명 오버레이는 LessonVideo의 파사드(재생 전 자체 썸네일)로 가린다.
+ */
+export function youtubeEmbedUrl(videoId: string, options: { autoplay?: boolean } = {}): string {
+  const params = new URLSearchParams({ rel: '0', playsinline: '1' })
+  if (options.autoplay) params.set('autoplay', '1')
+  return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`
 }
 
 /**
- * 강의 목록용 썸네일. 일부공개(Unlisted) 영상도 접근 가능하다.
- * mq: 320x180(16:9) — 목록용 / hq: 480x360(4:3, 상하 레터박스 포함)
+ * 강의 썸네일. 일부공개(Unlisted) 영상도 접근 가능하다.
+ *
+ * mq: 320x180(16:9) — 목록용
+ * maxres: 1280x720(16:9) — 플레이어 파사드용. 다만 원본 해상도가 낮게
+ *   업로드된 영상에는 없을 수 있고, 그 경우 404가 온다.
+ * hq: 480x360(4:3, 상하 레터박스) — 모든 영상에 존재하는 폴백.
+ *   16:9 컨테이너에서 object-cover로 자르면 레터박스가 제거된다.
+ * sd: 640x480(4:3)
  */
-export function youtubeThumbnailUrl(videoId: string, quality: 'mq' | 'sd' = 'mq'): string {
+export function youtubeThumbnailUrl(
+  videoId: string,
+  quality: 'mq' | 'hq' | 'sd' | 'maxres' = 'mq',
+): string {
   return `https://img.youtube.com/vi/${videoId}/${quality}default.jpg`
 }
 
