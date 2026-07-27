@@ -132,45 +132,44 @@ test.describe('성능 테스트', () => {
     console.log(`JavaScript files loaded: ${scriptRequests.length}`);
   });
 
-  test('폰트 로딩 최적화', async ({ page }) => {
+  test('폰트 로딩에 실패한 항목이 없다', async ({ page }) => {
+    // 이전 구현은 재귀 호출마다 total/loaded/failed를 리셋하지 않고 누적해서,
+    // 폰트가 아직 로딩 중이면 total만 계속 불어나 집계가 깨졌다.
+    // (로컬 macOS는 빨라서 통과했지만 느린 CI 러너에서는 실패했다)
+    // 표준 API인 document.fonts.ready로 로딩이 끝난 뒤 한 번만 센다.
     await page.goto('/');
+    await page.waitForLoadState('load');
 
-    // 폰트 로딩 성능 확인
-    const fontMetrics = await page.evaluate(() => {
-      return new Promise<{ loaded: number; failed: number }>((resolve) => {
-        let loaded = 0;
-        let failed = 0;
-        let total = 0;
+    const fontMetrics = await page.evaluate(async () => {
+      // ready가 영원히 대기하는 상황을 대비해 타임아웃과 경쟁시킨다
+      await Promise.race([
+        document.fonts.ready,
+        new Promise((resolve) => setTimeout(resolve, 8000)),
+      ]);
 
-        // 모든 폰트 페이스 확인
-        const checkFonts = () => {
-          if ('fonts' in document) {
-            document.fonts.forEach(font => {
-              total++;
-              if (font.status === 'loaded') {
-                loaded++;
-              } else if (font.status === 'error') {
-                failed++;
-              }
-            });
-          }
+      let loaded = 0;
+      let failed = 0;
+      let pending = 0;
+      const failedFamilies: string[] = [];
 
-          if (loaded + failed >= total || total === 0) {
-            resolve({ loaded, failed });
-          } else {
-            setTimeout(checkFonts, 100);
-          }
-        };
-
-        checkFonts();
-
-        // 3초 후 타임아웃
-        setTimeout(() => resolve({ loaded, failed }), 3000);
+      document.fonts.forEach((font) => {
+        if (font.status === 'loaded') loaded++;
+        else if (font.status === 'error') {
+          failed++;
+          failedFamilies.push(font.family);
+        } else pending++;
       });
+
+      return { loaded, failed, pending, failedFamilies };
     });
 
-    expect(fontMetrics.failed).toBe(0);
-    console.log(`Fonts loaded: ${fontMetrics.loaded}, failed: ${fontMetrics.failed}`);
+    // unicode-range로 쪼갠 서브셋은 해당 글자가 쓰일 때만 로드되므로
+    // pending(unloaded)이 남는 것은 정상이다. 실패(error)만 문제로 본다.
+    expect(
+      fontMetrics.failed,
+      `폰트 로딩 실패: ${fontMetrics.failedFamilies.join(', ')}`,
+    ).toBe(0);
+    expect(fontMetrics.loaded, '로드된 폰트가 하나도 없음').toBeGreaterThan(0);
   });
 
   test('CSS 차단 리소스 확인', async ({ page }) => {
