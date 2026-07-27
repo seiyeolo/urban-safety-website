@@ -150,9 +150,19 @@ test.describe('성능 테스트', () => {
       let loaded = 0;
       let failed = 0;
       let pending = 0;
+      let skippedFallback = 0;
       const failedFamilies: string[] = [];
 
       document.fonts.forEach((font) => {
+        // next/font가 레이아웃 시프트를 줄이려고 만드는 'X Fallback'은
+        // `src: local(Arial)` 처럼 시스템 폰트를 참조한다(빌드 CSS에서 확인).
+        // 해당 폰트가 없는 OS(리눅스 CI 등)에서는 error가 되지만 웹폰트
+        // 로딩과는 무관하고 사용자 화면에도 영향이 없으므로 집계에서 뺀다.
+        if (font.family.includes('Fallback')) {
+          skippedFallback++;
+          return;
+        }
+
         if (font.status === 'loaded') loaded++;
         else if (font.status === 'error') {
           failed++;
@@ -160,7 +170,7 @@ test.describe('성능 테스트', () => {
         } else pending++;
       });
 
-      return { loaded, failed, pending, failedFamilies };
+      return { loaded, failed, pending, skippedFallback, failedFamilies };
     });
 
     // unicode-range로 쪼갠 서브셋은 해당 글자가 쓰일 때만 로드되므로
