@@ -108,7 +108,14 @@ test.describe('핵심 정보 페이지 테스트', () => {
     await expect(applyButton).toBeEnabled();
   });
 
-  test('/contact - 문의 페이지', async ({ page }) => {
+  /**
+   * ⚠️ IA 문제 (테스트가 아니라 사이트 구조 쪽 과제)
+   * /contact 는 현재 '오시는 길'(약도·교통·주차) 페이지이고,
+   * 실제 문의 폼은 /contact/education, /contact/group, /contact/partner 에 있다.
+   * 헤더 메뉴가 '문의'인데 들어가면 약도가 나오므로 사용자 기대와 어긋난다.
+   * 경로 재편은 별도 결정이 필요해, 이 테스트는 현재 구조를 있는 그대로 검증한다.
+   */
+  test('/contact - 오시는 길 페이지', async ({ page }) => {
     await page.goto('/contact');
     const utils = new TestUtils(page);
 
@@ -117,7 +124,7 @@ test.describe('핵심 정보 페이지 테스트', () => {
     expect(loadTime).toBeLessThan(3000);
 
     // 페이지 제목 확인
-    await expect(page).toHaveTitle(/문의|contact/i);
+    await expect(page).toHaveTitle(/오시는 길|contact/i);
 
     // 연락처 정보 확인
     const phoneNumber = page.locator('text=/042-254-8060|전화|phone/i');

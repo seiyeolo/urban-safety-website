@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# 같은 브랜치에 새 커밋이 오면 이전 실행을 취소한다 (러너 시간 절약)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # 빌드·공개 E2E는 실제 자격 증명이 필요 없다.
+  # Supabase 설정이 없으면 앱이 mock 클라이언트로 대체되므로 빌드가 통과한다.
+  # 저장소는 file 모드로 고정해 "운영 판정 → 쓰기 차단" 경로에 걸리지 않게 한다.
+  CONTENT_STORE: file
+
+jobs:
+  # ── 1) 정적 검사 · 단위 테스트 · 빌드 (자격 증명 불필요) ──
+  verify:
+    name: lint · unit · build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Build
+        run: npm run build
+
+  # ── 2) 공개·미인증 E2E (자격 증명 불필요 → 외부 PR에서도 실행) ──
+  e2e-public:
+    name: E2E (공개·미인증)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # 브라우저 미설치로 인한 실패를 제품 실패와 구분하기 위해 별도 단계로 둔다
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # playwright.config의 webServer가 로컬 서버를 띄운다.
+      # baseURL 기본값이 로컬이므로 운영 사이트에는 어떤 요청도 보내지 않는다.
+      - name: Run public E2E
+        run: npx playwright test --project=chromium --grep-invert "로그인 성공 흐름"
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-public
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  # ── 3) 인증 E2E (테스트 계정 필요) ──
+  # fork PR은 secret에 접근할 수 없으므로 아예 실행하지 않는다.
+  # 반대로 실행되는 환경에서 secret이 비어 있으면 조용히 skip하지 않고 실패시킨다.
+  e2e-authenticated:
+    name: E2E (인증)
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'push' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Verify test credentials are configured
+        env:
+          E2E_TEST_EMAIL: ${{ secrets.E2E_TEST_EMAIL }}
+          E2E_TEST_PASSWORD: ${{ secrets.E2E_TEST_PASSWORD }}
+          SUPABASE_URL: ${{ secrets.E2E_SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.E2E_SUPABASE_ANON_KEY }}
+        run: |
+          missing=""
+          [ -z "$E2E_TEST_EMAIL" ]    && missing="$missing E2E_TEST_EMAIL"
+          [ -z "$E2E_TEST_PASSWORD" ] && missing="$missing E2E_TEST_PASSWORD"
+          [ -z "$SUPABASE_URL" ]      && missing="$missing E2E_SUPABASE_URL"
+          [ -z "$SUPABASE_ANON_KEY" ] && missing="$missing E2E_SUPABASE_ANON_KEY"
+          if [ -n "$missing" ]; then
+            echo "::error::인증 E2E에 필요한 secret이 없습니다:$missing"
+            echo "::error::Settings → Secrets and variables → Actions 에서 등록하세요."
+            echo "::error::테스트 전용 계정을 쓰고 운영 관리자 계정은 사용하지 마세요."
+            exit 1
+          fi
+          echo "필요한 secret이 모두 설정되어 있습니다."
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # 로그인은 조회 동작이라 데이터를 만들지 않는다.
+      # 대상은 로컬 서버(baseURL 기본값)이므로 운영 사이트에 흔적을 남기지 않는다.
+      - name: Run authenticated E2E
+        env:
+          E2E_TEST_EMAIL: ${{ secrets.E2E_TEST_EMAIL }}
+          E2E_TEST_PASSWORD: ${{ secrets.E2E_TEST_PASSWORD }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.E2E_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.E2E_SUPABASE_ANON_KEY }}
+        run: npx playwright test --project=chromium --grep "로그인 성공 흐름"
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-authenticated
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

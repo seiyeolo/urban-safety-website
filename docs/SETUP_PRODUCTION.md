@@ -84,6 +84,44 @@ Settings → Environment Variables에 아래 전부 등록:
 | `UPSTASH_REDIS_REST_TOKEN` | 2번에서 복사 — **Sensitive 체크** |
 | `NEXT_PUBLIC_SITE_URL` | 실제 도메인 (예: `https://example.org`) — OG/메타데이터용 |
 
+## 3-1. CI(GitHub Actions) 설정
+
+`.github/workflows/ci.yml`이 push·PR마다 아래를 실행한다.
+
+| Job | 내용 | secret 필요 |
+|---|---|---|
+| `verify` | lint → 단위 테스트 → 빌드 | ❌ |
+| `e2e-public` | 공개·미인증 E2E (Chromium) | ❌ |
+| `e2e-authenticated` | 로그인 성공/로그아웃 E2E | ✅ |
+
+**secret 없이도 `verify`와 `e2e-public`은 완전히 돌아간다.** Supabase 설정이 없으면
+앱이 mock 클라이언트로 대체되고, 저장소는 `CONTENT_STORE=file`로 고정된다.
+
+### 인증 E2E용 secret (선택)
+
+로그인 흐름까지 CI에서 검증하려면 **Settings → Secrets and variables → Actions**에 등록한다.
+
+| Secret | 설명 |
+|---|---|
+| `E2E_TEST_EMAIL` | **테스트 전용 계정** 이메일 |
+| `E2E_TEST_PASSWORD` | 위 계정 비밀번호 |
+| `E2E_SUPABASE_URL` | `NEXT_PUBLIC_SUPABASE_URL`과 같은 값 |
+| `E2E_SUPABASE_ANON_KEY` | `NEXT_PUBLIC_SUPABASE_ANON_KEY`와 같은 값 |
+
+- ⚠️ **운영 관리자 계정을 쓰지 말 것.** 수강생 권한의 테스트 전용 계정을 따로 만든다.
+- `SUPABASE_SERVICE_ROLE_KEY`는 CI에 넣지 않는다. 로그인에는 anon 키만 필요하다.
+- secret이 하나라도 비어 있으면 **조용히 건너뛰지 않고 job이 실패**하며, 어떤 값이
+  빠졌는지 로그에 표시된다.
+- fork에서 온 PR은 secret에 접근할 수 없으므로 이 job 자체가 실행되지 않는다
+  (공개 E2E는 그대로 실행된다).
+
+### 운영 데이터 보호
+
+CI의 E2E는 **항상 러너 안에서 띄운 로컬 서버**를 대상으로 한다
+(`playwright.config.ts`의 `baseURL` 기본값이 로컬). 운영 사이트에 문의를 남기거나
+테스트 데이터를 만들지 않는다. 외부 URL을 대상으로 하려면 `PLAYWRIGHT_BASE_URL`을
+명시해야 하며, CI에는 설정하지 않는다.
+
 ## 4. 시크릿 위생 권고
 
 - 이 프로젝트는 현재 **iCloud 동기화 폴더** 안에 있다. `.env.local`(시크릿 포함)이
