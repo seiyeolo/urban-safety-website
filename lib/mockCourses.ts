@@ -17,6 +17,21 @@ export const dashboardInspiration = {
 
 export const courseCategories = ['전체', '자격증 과정', '오프라인 보충', '기관교육', '준비 중']
 
+/**
+ * 강의자료 한 건.
+ *
+ * href가 없으면 화면에 '준비 중'으로 표시된다 — 파일이 아직 없는데 링크처럼
+ * 보이면 눌러보고 실패하게 되므로, 있을 때만 다운로드로 만든다.
+ *
+ * 주소는 관리자 자료실(/admin/files)에 올린 파일의 공개 URL이다.
+ * 같은 파일을 다시 올리면 저장 이름이 바뀌므로(덮어쓰기 방지) 여기도 갱신해야 한다.
+ * 영상 ID를 lessonVideos.ts에 적어두는 것과 같은 방식이다.
+ */
+export interface LessonMaterial {
+  label: string
+  href?: string
+}
+
 export const voicePhishingLessons = [
   {
     id: 'lesson-01',
@@ -25,7 +40,7 @@ export const voicePhishingLessons = [
     duration: '24분',
     status: 'current' as LessonStatus,
     summary: '실제 피해 사례를 통해 보이스피싱이 어떻게 시작되고 진행되는지 살펴봅니다. (강의: 김창호 교수)',
-    materials: ['강의 요약 자료'],
+    materials: [{ label: '강의 요약 자료' }] as LessonMaterial[],
   },
   {
     id: 'lesson-02',
@@ -34,7 +49,7 @@ export const voicePhishingLessons = [
     duration: '25분',
     status: 'locked' as LessonStatus,
     summary: '이어지는 피해 사례 분석으로 유형별 수법과 위험 신호를 구체적으로 파악합니다. (강의: 김창호 교수)',
-    materials: ['위험 신호 체크리스트'],
+    materials: [{ label: '위험 신호 체크리스트' }] as LessonMaterial[],
   },
   {
     id: 'lesson-03',
@@ -43,7 +58,7 @@ export const voicePhishingLessons = [
     duration: '15분',
     status: 'locked' as LessonStatus,
     summary: '보이스피싱의 기본 개념과 예방 원칙을 정리합니다.',
-    materials: ['예방 안내 자료'],
+    materials: [{ label: '예방 안내 자료' }] as LessonMaterial[],
   },
   {
     id: 'lesson-04',
@@ -52,7 +67,7 @@ export const voicePhishingLessons = [
     duration: '49분',
     status: 'locked' as LessonStatus,
     summary: '기관사칭·대면편취 등 신종 수법과 유형별 대응 요령을 상세히 다루는 심화 학습으로 과정을 마무리합니다.',
-    materials: ['심화과정 강의안'],
+    materials: [{ label: '심화과정 강의안' }] as LessonMaterial[],
   },
   {
     id: 'lesson-05',
@@ -62,7 +77,12 @@ export const voicePhishingLessons = [
     status: 'locked' as LessonStatus,
     summary:
       '피해가 발생한 뒤 피해자가 밟을 수 있는 구제 절차를 다룹니다. (강의: 한국형사·법무정책연구원 윤해성 선임연구위원)',
-    materials: ['피해 구제 절차 안내'],
+    materials: [
+      {
+        label: '보이스피싱 피해자 구제 강의안 (PPTX · 317KB)',
+        href: 'https://sugrcdndujsstsdxmepc.supabase.co/storage/v1/object/public/downloads/6d81b0ad-file.pptx',
+      },
+    ] as LessonMaterial[],
   },
 ]
 

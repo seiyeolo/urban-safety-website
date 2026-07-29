@@ -102,9 +102,22 @@ export default function VoicePhishingCoursePage() {
                   <h3 className="text-lg font-black text-navy-900">{lesson.title}</h3>
                   <p className="mt-2 text-sm leading-7 text-gray-600">{lesson.summary}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {lesson.materials.map((material) => (
-                      <span key={material} className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 text-xs font-bold text-gray-600 ring-1 ring-navy-100"><Download size={13} /> {material}</span>
-                    ))}
+                    {lesson.materials.map((material) =>
+                      material.href ? (
+                        <a
+                          key={material.label}
+                          href={material.href}
+                          download
+                          className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 text-xs font-bold text-brand-700 ring-1 ring-brand-200 transition hover:bg-brand-50"
+                        >
+                          <Download size={13} /> {material.label}
+                        </a>
+                      ) : (
+                        <span key={material.label} className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 text-xs font-bold text-gray-600 ring-1 ring-navy-100">
+                          <Download size={13} /> {material.label}
+                        </span>
+                      )
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-black text-green-800 ring-1 ring-green-100">

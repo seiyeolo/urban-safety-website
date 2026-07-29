@@ -220,17 +220,31 @@ export default function LessonPlayer({ order }: { order: number }) {
               <FileText size={15} className="text-accent-400" /> 강의자료
             </div>
             <div className="space-y-2">
-              {lesson.materials.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center justify-between rounded-xl bg-white/[.045] px-4 py-3 text-xs font-bold text-brand-100"
-                >
-                  {item}
-                  <span className="inline-flex items-center gap-1 text-[12px] font-bold text-neutral-400">
-                    준비 중 <Download size={13} />
-                  </span>
-                </div>
-              ))}
+              {lesson.materials.map((item) =>
+                item.href ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    download
+                    className="flex items-center justify-between gap-3 rounded-xl bg-white/[.045] px-4 py-3 text-xs font-bold text-brand-100 transition hover:bg-white/[.09] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400"
+                  >
+                    {item.label}
+                    <span className="inline-flex shrink-0 items-center gap-1 text-[12px] font-black text-accent-400">
+                      받기 <Download size={13} />
+                    </span>
+                  </a>
+                ) : (
+                  <div
+                    key={item.label}
+                    className="flex items-center justify-between gap-3 rounded-xl bg-white/[.045] px-4 py-3 text-xs font-bold text-brand-100"
+                  >
+                    {item.label}
+                    <span className="inline-flex shrink-0 items-center gap-1 text-[12px] font-bold text-neutral-400">
+                      준비 중 <Download size={13} />
+                    </span>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </aside>
