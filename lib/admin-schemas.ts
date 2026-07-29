@@ -10,15 +10,29 @@ export const noticeItemSchema = z.object({
   isNew: z.boolean().default(false)
 })
 
+/**
+ * 연결 경로 검증 — 일정·자료실이 함께 쓴다.
+ *
+ * 관리자는 '/certificates/voice-phishing' 처럼 짧은 내부 경로를 적는 게 자연스러운데,
+ * 예전에는 new URL()만 통과시켜 전체 주소를 강요했다. 링크를 아직 못 정한 경우도
+ * 있으므로 빈 값도 받는다.
+ *
+ * '#'은 일부러 막는다 — 눌러도 아무 데도 가지 않는 링크를 공개 페이지에 내보내느니
+ * 비워두는 편이 낫다. 비어 있으면 화면에서 링크 자체가 사라진다.
+ */
+const hrefSchema = z.string().refine(val => {
+  if (val === '') return true
+  if (val.startsWith('/')) return true
+  try { return Boolean(new URL(val)); } catch { return false; }
+}, '비워두거나, 내부 경로(/로 시작) 또는 전체 주소(https://…)를 입력해주세요')
+
 export const scheduleItemSchema = z.object({
   month: z.string().min(1, '월은 필수입니다'),
   date: z.string().min(1, '날짜는 필수입니다'),
   type: z.string().min(1, '타입은 필수입니다'),
   title: z.string().min(1, '제목은 필수입니다').max(200, '제목은 200자를 초과할 수 없습니다'),
   seats: z.string().min(1, '좌석 정보는 필수입니다'),
-  href: z.string().refine(val => {
-    try { return Boolean(new URL(val)); } catch { return false; }
-  }, '올바른 URL을 입력해주세요')
+  href: hrefSchema
 })
 
 export const downloadItemSchema = z.object({
@@ -27,9 +41,7 @@ export const downloadItemSchema = z.object({
   type: z.string().min(1, '타입은 필수입니다'),
   size: z.string().min(1, '크기 정보는 필수입니다'),
   date: z.string().refine(val => /^\d{4}-\d{2}-\d{2}$/.test(val), '날짜 형식이 올바르지 않습니다 (YYYY-MM-DD)'),
-  href: z.string().refine(val => {
-    try { return Boolean(new URL(val)); } catch { return false; }
-  }, '올바른 URL을 입력해주세요')
+  href: hrefSchema
 })
 
 export const contactItemSchema = z.object({

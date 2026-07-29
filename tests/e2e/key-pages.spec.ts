@@ -108,6 +108,42 @@ test.describe('핵심 정보 페이지 테스트', () => {
     await expect(applyButton).toBeEnabled();
   });
 
+  test('/education - 수강 신청 폼이 문의 API로 연결된다', async ({ page }) => {
+    // 객체에 담아 둔다 — 지역 변수로 두면 TypeScript가 "콜백이 실행됐는지 모른다"고 보고
+    // 단언 이후 타입을 never로 좁혀 버린다 (@ts-ignore나 as 없이 우회하는 방법)
+    const captured: { payload: Record<string, unknown> | null } = { payload: null };
+
+    await page.route('**/api/contact', async (route) => {
+      captured.payload = route.request().postDataJSON() as Record<string, unknown>;
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await page.goto('/education');
+
+    const main = page.locator('main');
+    await main.getByLabel('이름').fill('홍길동');
+    await main.getByLabel('연락처').fill('010-1234-5678');
+    await main.getByLabel('이메일').fill('hong@example.com');
+    await main.getByLabel('특이사항/질문 (선택사항)').fill('오전 수강 가능 여부를 알고 싶습니다.');
+    await main.getByLabel(/개인정보처리방침/).check();
+    await main.getByRole('button', { name: '수강 신청하기' }).click();
+
+    await expect(main.getByText('수강 신청이 접수되었습니다.')).toBeVisible();
+    expect(captured.payload).toMatchObject({
+      name: '홍길동',
+      phone: '010-1234-5678',
+      email: 'hong@example.com',
+      inquiryType: '교육 신청',
+      privacyConsent: true,
+    });
+    expect(String(captured.payload?.title)).toContain('[교육 신청]');
+    expect(String(captured.payload?.message)).toContain('[특이사항/질문]');
+  });
+
   /**
    * ⚠️ IA 문제 (테스트가 아니라 사이트 구조 쪽 과제)
    * /contact 는 현재 '오시는 길'(약도·교통·주차) 페이지이고,

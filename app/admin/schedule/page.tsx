@@ -1,6 +1,11 @@
 import AdminContentManager from '@/components/admin/AdminContentManager'
 
 export default function AdminSchedulePage() {
+  // 기본 월을 '2026년 4월'로 박아뒀더니 시간이 지나 지난 달이 먼저 뜨고 있었다.
+  // 새 일정은 대개 이번 달 이후이므로 현재 월을 기본값으로 준다.
+  const now = new Date()
+  const currentMonth = `${now.getFullYear()}년 ${now.getMonth() + 1}월`
+
   return (
     <AdminContentManager
       section="schedules"
@@ -8,7 +13,7 @@ export default function AdminSchedulePage() {
       description="개강, 특강, 단체교육 일정을 관리합니다."
       emptyMessage="등록된 교육 일정이 없습니다."
       createInitial={{
-        month: '2026년 4월',
+        month: currentMonth,
         date: '',
         type: '온라인',
         title: '',

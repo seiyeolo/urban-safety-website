@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Phone, Mail } from 'lucide-react'
-import { Button, Input, PageHero, Select, Textarea } from '@/components/ui'
+import { PageHero } from '@/components/ui'
+import EducationInquiryForm from '@/components/contact/EducationInquiryForm'
 
 export const metadata: Metadata = {
   title: '교육 및 자격증 문의',
@@ -47,37 +47,7 @@ export default function EducationContactPage() {
 
           {/* 문의 폼 */}
           <h2 className="text-lg font-bold text-brand-600 mb-5">온라인 문의</h2>
-          <form className="space-y-5">
-            <div className="grid sm:grid-cols-2 gap-5">
-              <Input label="이름" required type="text" placeholder="홍길동" />
-              <Input label="연락처" required type="tel" placeholder="010-0000-0000" />
-            </div>
-
-            <Select label="문의 과정">
-              <option value="">선택해주세요</option>
-              <option>보이스피싱 예방지도사</option>
-              <option>생활안전지도사</option>
-              <option>기타 교육과정</option>
-            </Select>
-
-            <Textarea
-              label="문의 내용"
-              required
-              rows={5}
-              placeholder="문의 내용을 자세히 입력해주세요"
-            />
-
-            <div className="flex items-start gap-2">
-              <input type="checkbox" id="privacy" className="mt-1.5" />
-              <label htmlFor="privacy" className="text-sm text-neutral-700">
-                <Link href="/privacy" className="text-brand-600 underline">개인정보처리방침</Link>에 동의합니다. <span className="text-danger-600">*</span>
-              </label>
-            </div>
-
-            <Button type="submit" className="w-full">
-              문의 보내기
-            </Button>
-          </form>
+          <EducationInquiryForm />
 
           {/* 직접 연락 */}
           <div className="mt-8 p-5 bg-gray-50 rounded-xl">

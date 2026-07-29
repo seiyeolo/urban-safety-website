@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Calendar, ArrowRight } from 'lucide-react'
 import { getSectionItems } from '@/lib/content-store'
+import { scheduleStatusClass, scheduleTypeClass } from '@/lib/schedule-status'
 import { PageHero } from '@/components/ui'
 
 // 관리자 수정이 공개 페이지에 반영되도록 60초 ISR (정적 박제 방지)
@@ -49,17 +50,12 @@ export default async function SchedulePage() {
                   <h2 className="text-xl font-bold text-brand-600">{month}</h2>
                 </div>
                 <div className="space-y-3">
-                  {items.map(({ date, type, title, seats, href }) => (
-                    <div key={title} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                  {items.map(({ id, date, type, title, seats, href }) => (
+                    <div key={id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
                       <span className="text-sm text-gray-500 w-24 shrink-0">{date}</span>
-                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 ${
-                        type === '온라인' ? 'bg-navy-50 text-navy-700' : 'bg-navy-100 text-navy-800'
-                      }`}>{type}</span>
+                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 ${scheduleTypeClass(type)}`}>{type}</span>
                       <p className="flex-1 font-medium text-gray-800 text-sm">{title}</p>
-                      <span className={`text-xs font-semibold shrink-0 ${
-                        seats === '모집 중' ? 'text-green-600' :
-                        seats.startsWith('잔여') ? 'text-amber-700' : 'text-gray-400'
-                      }`}>{seats}</span>
+                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 ${scheduleStatusClass(seats)}`}>{seats || '안내 예정'}</span>
                       {href && (
                         <Link href={href} className="text-brand-600 hover:text-brand-700 shrink-0">
                           <ArrowRight size={16} />

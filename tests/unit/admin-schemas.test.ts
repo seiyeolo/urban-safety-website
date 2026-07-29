@@ -65,15 +65,20 @@ describe('scheduleItemSchema', () => {
     type: '온라인',
     title: '보이스피싱 예방지도사 6기',
     seats: '20석',
-    href: 'https://example.com/apply',
+    href: '/certificates/voice-phishing',
   }
 
-  it('정상 입력을 통과시킨다', () => {
+  it('정상 입력을 통과시킨다 — 내부 경로를 허용한다', () => {
     expect(scheduleItemSchema.safeParse(valid).success).toBe(true)
   })
 
-  it.each(['not-a-url', '/relative/path', '', 'example.com'])(
-    '절대 URL이 아니면 거부한다: %s',
+  it('외부 URL과 빈 연결 경로도 허용한다', () => {
+    expect(scheduleItemSchema.safeParse({ ...valid, href: 'https://example.com/apply' }).success).toBe(true)
+    expect(scheduleItemSchema.safeParse({ ...valid, href: '' }).success).toBe(true)
+  })
+
+  it.each(['not-a-url', 'example.com', '#'])(
+    '내부 경로나 절대 URL이 아니면 거부한다: %s',
     (href) => {
       expect(scheduleItemSchema.safeParse({ ...valid, href }).success).toBe(false)
     },
@@ -98,6 +103,16 @@ describe('downloadItemSchema', () => {
     const withoutSize = { ...valid } as Partial<typeof valid>
     delete withoutSize.size
     expect(downloadItemSchema.safeParse(withoutSize).success).toBe(false)
+  })
+
+  it('일정과 동일하게 내부 경로와 빈 값을 허용한다', () => {
+    // 자료실만 전체 URL을 강요해서, 관리자 화면 기본값('#')으로는 저장 자체가 불가능했다
+    expect(downloadItemSchema.safeParse({ ...valid, href: '/downloads/guide.pdf' }).success).toBe(true)
+    expect(downloadItemSchema.safeParse({ ...valid, href: '' }).success).toBe(true)
+  })
+
+  it("'#'은 거부한다 — 눌러도 아무 데도 가지 않는 링크는 비워두는 편이 낫다", () => {
+    expect(downloadItemSchema.safeParse({ ...valid, href: '#' }).success).toBe(false)
   })
 })
 

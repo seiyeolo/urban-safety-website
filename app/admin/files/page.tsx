@@ -13,7 +13,8 @@ export default function AdminFilesPage() {
         type: 'PDF',
         size: '',
         date: new Date().toISOString().slice(0, 10),
-        href: '#',
+        // '#'이 기본값이면 새 항목마다 검증에서 막힌다 — 아직 링크가 없으면 비워둔다
+        href: '',
       }}
       fields={[
         { key: 'category', label: '분류', type: 'select', options: ['교육 자료', '홍보 자료', '서식', '기타'] },

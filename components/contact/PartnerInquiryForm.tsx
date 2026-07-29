@@ -43,23 +43,27 @@ export default function PartnerInquiryForm() {
       privacyConsent: form.privacyConsent,
     }
 
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    })
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
 
-    const data = (await response.json().catch(() => ({}))) as { error?: string }
+      const data = (await response.json().catch(() => ({}))) as { error?: string }
 
-    if (!response.ok) {
-      setError(data.error ?? '문의 접수에 실패했습니다.')
+      if (!response.ok) {
+        setError(data.error ?? '문의 접수에 실패했습니다.')
+        return
+      }
+
+      setForm(INITIAL_FORM)
+      setMessage('제휴 문의가 접수되었습니다. 담당자가 검토 후 연락드리겠습니다.')
+    } catch {
+      setError('네트워크 오류로 제휴 문의를 접수하지 못했습니다. 잠시 후 다시 시도해주세요.')
+    } finally {
       setSubmitting(false)
-      return
     }
-
-    setForm(INITIAL_FORM)
-    setMessage('제휴 문의가 접수되었습니다. 담당자가 검토 후 연락드리겠습니다.')
-    setSubmitting(false)
   }
 
   return (
