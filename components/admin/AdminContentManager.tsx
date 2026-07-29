@@ -5,7 +5,7 @@ import { Loader2, Pencil, Plus, Save, Trash2, X } from 'lucide-react'
 
 import type { ContentItemMap, ContentSection } from '@/lib/content-types'
 
-type InputType = 'text' | 'textarea' | 'date' | 'select' | 'checkbox'
+type InputType = 'text' | 'textarea' | 'date' | 'select' | 'checkbox' | 'file'
 
 interface FieldConfig<TItem> {
   key: keyof TItem
@@ -14,6 +14,18 @@ interface FieldConfig<TItem> {
   placeholder?: string
   options?: string[]
   displayMap?: Record<string, string>
+  /**
+   * type: 'file' 전용 — 업로드가 끝나면 함께 채울 필드.
+   * 크기·형식을 관리자가 손으로 적지 않아도 되게 한다.
+   */
+  autoFill?: { size?: keyof TItem; type?: keyof TItem; title?: keyof TItem }
+}
+
+interface UploadResponse {
+  href: string
+  size: string
+  type: string
+  originalName: string
 }
 
 interface AdminContentManagerProps<TSection extends ContentSection> {
@@ -42,6 +54,8 @@ export default function AdminContentManager<TSection extends ContentSection>({
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState('')
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
 
   const editingItem = useMemo(
     () => items.find((item) => item.id === editingId) ?? null,
@@ -117,6 +131,51 @@ export default function AdminContentManager<TSection extends ContentSection>({
     setEditingId(id)
     setDraft(rest as Draft)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  /**
+   * 파일을 고르면 곧바로 올리고, 받은 주소·크기·형식을 입력칸에 채운다.
+   * 관리자가 크기와 형식을 손으로 적던 일을 없앤다.
+   */
+  async function handleFileSelect(field: FieldConfig<Item>, file: File) {
+    setUploading(true)
+    setUploadError('')
+    setMessage('')
+
+    try {
+      const body = new FormData()
+      body.append('file', file)
+
+      const response = await fetch('/api/admin/upload', {
+        method: 'POST',
+        credentials: 'include',
+        body,
+      })
+
+      const data = (await response.json().catch(() => ({}))) as Partial<UploadResponse> & { error?: string }
+
+      if (!response.ok) {
+        setUploadError(data.error ?? '파일 업로드에 실패했습니다.')
+        return
+      }
+
+      setDraft((current) => {
+        const next = { ...current, [field.key]: data.href } as Draft
+        const { size, type, title } = field.autoFill ?? {}
+        if (size && data.size) Object.assign(next, { [size]: data.size })
+        if (type && data.type) Object.assign(next, { [type]: data.type })
+        // 자료명이 비어 있을 때만 파일명으로 채운다 — 이미 적은 제목을 덮지 않는다
+        if (title && data.originalName && !String(current[title as keyof Draft] ?? '').trim()) {
+          Object.assign(next, { [title]: data.originalName.replace(/\.[^.]+$/, '') })
+        }
+        return next
+      })
+      setMessage(`'${file.name}' 업로드 완료`)
+    } catch {
+      setUploadError('네트워크 오류로 파일을 올리지 못했습니다. 잠시 후 다시 시도해주세요.')
+    } finally {
+      setUploading(false)
+    }
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -231,6 +290,45 @@ export default function AdminContentManager<TSection extends ContentSection>({
                         </option>
                       ))}
                     </select>
+                  )}
+
+                  {fieldType === 'file' && (
+                    <div className="space-y-2">
+                      <input
+                        id={fieldId}
+                        type="file"
+                        disabled={uploading}
+                        onChange={(event) => {
+                          const selected = event.target.files?.[0]
+                          if (selected) handleFileSelect(field, selected)
+                          // 같은 파일을 다시 고를 수 있도록 입력값을 비운다
+                          event.target.value = ''
+                        }}
+                        className="w-full px-4 py-3 bg-neutral-950 border border-neutral-700 rounded-xl text-sm text-white file:mr-3 file:rounded-lg file:border-0 file:bg-brand-600 file:px-3 file:py-1.5 file:text-sm file:font-bold file:text-white disabled:opacity-50"
+                      />
+
+                      <p className="text-xs text-neutral-400" aria-live="polite">
+                        {uploading
+                          ? '업로드 중…'
+                          : value
+                            ? '업로드됨 — 아래 주소로 내려받습니다'
+                            : 'PDF · HWP · DOC · XLS · PPT · ZIP · 이미지 (20MB 이하)'}
+                      </p>
+
+                      {uploadError && (
+                        <p role="alert" className="text-xs text-danger-600">{uploadError}</p>
+                      )}
+
+                      {/* 업로드 결과 주소. 외부 링크를 직접 넣고 싶을 때도 쓸 수 있게 열어 둔다 */}
+                      <input
+                        type="text"
+                        value={String(value ?? '')}
+                        onChange={(event) => setDraftValue(field.key as keyof Draft, event.target.value as Draft[keyof Draft])}
+                        placeholder={field.placeholder}
+                        aria-label={`${field.label} 주소`}
+                        className="w-full px-4 py-2.5 bg-neutral-950 border border-neutral-700 rounded-xl text-xs text-neutral-300 placeholder-neutral-500 focus:outline-none focus:border-brand-400"
+                      />
+                    </div>
                   )}
 
                   {fieldType === 'checkbox' && (

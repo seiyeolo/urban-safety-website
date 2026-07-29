@@ -28,6 +28,8 @@ const STATUS_RULES: readonly StatusRule[] = [
   { keywords: ['마감', '종료', '완료'], className: 'bg-gray-200 text-gray-700' },
   // 신청 가능
   { keywords: ['모집', '접수', '잔여'], className: 'bg-accent-200 text-brand-900' },
+  // 이미 개강해 수업이 돌아가는 중. '종료'와 달라서 회색으로 두면 끝난 것처럼 보인다
+  { keywords: ['교육중', '교육 중', '진행중', '진행 중', '개강'], className: 'bg-brand-600 text-white' },
   // 아직 열리지 않음
   { keywords: ['예정'], className: 'bg-brand-100 text-brand-800' },
 ]

@@ -43,9 +43,24 @@ describe('scheduleStatusClass — 의미 분류', () => {
     expect(scheduleStatusClass('협의 후 안내')).toBe(DEFAULT_STATUS_CLASS)
   })
 
-  it('네 상태가 서로 다른 색을 갖는다 (구분 불가 회귀 방지)', () => {
-    const classes = ['모집중', '마감임박', '접수완료', '예정'].map(scheduleStatusClass)
-    expect(new Set(classes).size).toBe(4)
+  it("'교육중'을 종료로 오분류하지 않는다", () => {
+    // 실제로 관리자가 넣은 값이다. 기본값(회색)으로 떨어지면 끝난 일정처럼 보인다
+    const running = scheduleStatusClass('교육중')
+    expect(running).toBe('bg-brand-600 text-white')
+    expect(running).not.toBe(DEFAULT_STATUS_CLASS)
+    expect(running).not.toBe(scheduleStatusClass('접수완료'))
+  })
+
+  it('진행 중 표현의 변형들을 같은 색으로 묶는다', () => {
+    const running = scheduleStatusClass('교육중')
+    for (const variant of ['교육 중', '진행중', '진행 중', '개강']) {
+      expect(scheduleStatusClass(variant), variant).toBe(running)
+    }
+  })
+
+  it('다섯 상태가 서로 다른 색을 갖는다 (구분 불가 회귀 방지)', () => {
+    const classes = ['모집중', '마감임박', '접수완료', '교육중', '예정'].map(scheduleStatusClass)
+    expect(new Set(classes).size).toBe(5)
   })
 })
 
@@ -65,7 +80,12 @@ describe('scheduleTypeClass', () => {
 
 const CSS = readFileSync(new URL('../../app/globals.css', import.meta.url), 'utf-8')
 
+/** white·black은 토큰이 아니라 CSS 키워드라 별도로 둔다 */
+const LITERAL_COLORS: Record<string, string> = { white: '#ffffff', black: '#000000' }
+
 function tokenHex(name: string): string {
+  if (LITERAL_COLORS[name]) return LITERAL_COLORS[name]
+
   const match = CSS.match(new RegExp(`--color-${name}:\\s*(#[0-9a-fA-F]{6})`))
   if (!match) throw new Error(`globals.css에 --color-${name} 토큰이 없습니다`)
   return match[1]
@@ -81,8 +101,8 @@ function hexToRgb(hex: string) {
 
 /** 'bg-accent-200 text-brand-900' → 대비값 */
 function ratioOf(className: string): number {
-  const bg = className.match(/bg-([a-z]+-\d+)/)?.[1]
-  const fg = className.match(/text-([a-z]+-\d+)/)?.[1]
+  const bg = className.match(/bg-([a-z]+(?:-\d+)?)/)?.[1]
+  const fg = className.match(/text-([a-z]+(?:-\d+)?)/)?.[1]
   if (!bg || !fg) throw new Error(`토큰을 못 읽었습니다: ${className}`)
   return contrastRatio(hexToRgb(tokenHex(fg)), hexToRgb(tokenHex(bg)))
 }
@@ -92,6 +112,7 @@ describe('뱃지 대비 — WCAG AA (작은 글씨 4.5:1)', () => {
     ['모집중', '모집중'],
     ['마감임박', '마감임박'],
     ['접수완료', '접수완료'],
+    ['교육중', '교육중'],
     ['예정', '예정'],
   ] as const
 
